@@ -1,0 +1,8 @@
+2012/10/08 07:09:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gill".' in D:\APM_Setup\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\APM_Setup\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('gill')
+#1 D:\APM_Setup\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\APM_Setup\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=gill
+---
