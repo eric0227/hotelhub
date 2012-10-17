@@ -6,3 +6,1963 @@ Stack trace:
 #3 {main}
 REQUEST_URI=/hotelhub/index.php?r=gill
 ---
+2012/10/11 01:10:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "test".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('test')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=test
+---
+2012/10/11 01:10:40 [error] [exception.CException] exception 'CException' with message 'TestController cannot find the requested view "index".' in D:\xampp\htdocs\yii\framework\web\CController.php:879
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(783): CController->renderPartial('index', NULL, true)
+#1 D:\xampp\htdocs\hotelhub\protected\controllers\TestController.php(32): CController->render('index')
+#2 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): TestController->actionIndex()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('test')
+#8 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/hotelhub/index.php?r=test
+---
+2012/10/11 01:11:03 [error] [exception.CException] exception 'CException' with message 'TestController cannot find the requested view "index".' in D:\xampp\htdocs\yii\framework\web\CController.php:879
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(783): CController->renderPartial('index', NULL, true)
+#1 D:\xampp\htdocs\hotelhub\protected\controllers\TestController.php(32): CController->render('index')
+#2 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): TestController->actionIndex()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('test')
+#8 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/hotelhub/index.php?r=test
+---
+2012/10/12 02:39:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gill".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('gill')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=gill
+---
+2012/10/12 03:03:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "gill".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('gill')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=gill
+---
+2012/10/12 03:21:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "emplee".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('emplee')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=emplee
+---
+2012/10/12 03:21:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "employee".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('employee')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=employee
+---
+2012/10/12 03:22:21 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "employee".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('employee')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=employee
+---
+2012/10/12 03:22:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "emplee".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('emplee')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php?r=emplee
+---
+2012/10/16 00:26:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "admin".' in D:\xampp\htdocs\yii\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(271): CController->missingAction('admin')
+#1 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('admin')
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/admin')
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/hotelhub/index.php/site/admin
+---
+2012/10/16 00:26:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "admin".' in D:\xampp\htdocs\yii\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(271): CController->missingAction('admin')
+#1 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('admin')
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/admin')
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/hotelhub/index.php/site/admin
+---
+2012/10/16 00:27:29 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "menu".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('menu')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/menu
+---
+2012/10/16 00:28:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "admin".' in D:\xampp\htdocs\yii\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(271): CController->missingAction('admin')
+#1 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('admin')
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/admin')
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/hotelhub/index.php/site/admin
+---
+2012/10/16 00:28:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "admin".' in D:\xampp\htdocs\yii\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(271): CController->missingAction('admin')
+#1 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('admin')
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('employee/admin')
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/hotelhub/index.php/employee/admin
+---
+2012/10/16 00:30:47 [error] [php] include(Post.php): failed to open stream: No such file or directory (D:\xampp\htdocs\yii\framework\YiiBase.php:423)
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\controllers\EmployeeController.php(42): spl_autoload_call()
+#1 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): EmployeeController->actionAdmin()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(287): EmployeeController->runAction()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(266): EmployeeController->runActionWithFilters()
+#5 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): EmployeeController->run()
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#7 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/employee/admin
+in D:\xampp\htdocs\hotelhub\protected\controllers\EmployeeController.php (42)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 00:31:13 [error] [php] include(Post.php): failed to open stream: No such file or directory (D:\xampp\htdocs\yii\framework\YiiBase.php:423)
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\controllers\EmployeeController.php(42): spl_autoload_call()
+#1 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): EmployeeController->actionAdmin()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(287): EmployeeController->runAction()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(266): EmployeeController->runActionWithFilters()
+#5 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): EmployeeController->run()
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#7 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/employee/admin
+in D:\xampp\htdocs\hotelhub\protected\controllers\EmployeeController.php (42)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 00:31:13 [error] [php] include(Post.php): failed to open stream: No such file or directory (D:\xampp\htdocs\yii\framework\YiiBase.php:423)
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\controllers\EmployeeController.php(42): spl_autoload_call()
+#1 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): EmployeeController->actionAdmin()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(287): EmployeeController->runAction()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(266): EmployeeController->runActionWithFilters()
+#5 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): EmployeeController->run()
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#7 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#8 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/employee/admin
+in D:\xampp\htdocs\hotelhub\protected\controllers\EmployeeController.php (42)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 01:30:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "admin".' in D:\xampp\htdocs\yii\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(271): CController->missingAction('admin')
+#1 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('admin')
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/admin')
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/hotelhub/index.php/site/admin
+---
+2012/10/16 02:27:36 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:31:36 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:31:43 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 02:39:13 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:39:16 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shope".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shope')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shope
+---
+2012/10/16 02:39:20 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:39:25 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 02:45:38 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 02:45:52 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:48:40 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:23 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:31 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:33 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:33 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:34 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:34 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:44 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:45 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:54:45 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop
+---
+2012/10/16 02:55:19 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/include')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/include')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/include
+---
+2012/10/16 02:57:14 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/include')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/include')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/include
+---
+2012/10/16 02:57:14 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/include')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/include')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/include
+---
+2012/10/16 02:58:06 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/include')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/include')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/include
+---
+2012/10/16 02:58:07 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/include')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/include')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/include
+---
+2012/10/16 02:58:17 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/
+---
+2012/10/16 02:58:25 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 02:58:29 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 02:58:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shop2/install".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop2/install')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shop2/install
+---
+2012/10/16 02:58:41 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:04:56 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:04:57 [error] [exception.CException] exception 'CException' with message 'Alias "shop.ShopModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in D:\xampp\htdocs\yii\framework\YiiBase.php:318
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\YiiBase.php(198): YiiBase::import('shop.ShopModule', true)
+#1 D:\xampp\htdocs\yii\framework\base\CModule.php(283): YiiBase::createComponent('shop.ShopModule', 'shop', NULL, Array)
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(338): CModule->getModule('shop')
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(277): CWebApplication->createController('shop/install')
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:09:38 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_products' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_products`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php (181)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:09:38 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_products" for active record class "Products" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Products))
+#1 D:\xampp\htdocs\yii\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Products')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php(181): CActiveDataProvider->__construct('Products', Array)
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionIndex()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/index
+---
+2012/10/16 03:09:49 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (314)
+2012/10/16 03:09:49 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:15:55 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_products' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_products`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php (181)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:15:55 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_products" for active record class "Products" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Products))
+#1 D:\xampp\htdocs\yii\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Products')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php(181): CActiveDataProvider->__construct('Products', Array)
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionIndex()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/index
+---
+2012/10/16 03:16:06 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (314)
+2012/10/16 03:16:06 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:23:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (314)
+2012/10/16 03:23:48 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:37 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:38 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:39 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:39 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:40 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:40 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:40 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:40 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:41 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:42 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:42 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:24:43 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:28:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shop/install2".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install2')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install2
+---
+2012/10/16 03:28:06 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shop/instal".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/instal')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shop/instal
+---
+2012/10/16 03:28:09 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shop/instal1".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/instal1')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shop/instal1
+---
+2012/10/16 03:28:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (314)
+2012/10/16 03:28:13 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:32:51 [error] [php] Object of class CDbConnection could not be converted to string (D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php:13)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(287): InstallController->runAction()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(266): InstallController->runActionWithFilters()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): InstallController->run()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/install
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (13)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (333)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:35:02 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (327)
+2012/10/16 03:35:02 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(327): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(336): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:35:49 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (331)
+2012/10/16 03:35:49 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(331): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(340): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:36:04 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (332)
+2012/10/16 03:36:04 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(332): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(341): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:36:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (333)
+2012/10/16 03:36:12 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(333): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(342): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:37:35 [error] [php] Undefined index: categoryTable (D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php:27)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(287): InstallController->runAction()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(266): InstallController->runActionWithFilters()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): InstallController->run()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/install
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (27)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (337)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:38:11 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_products' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_products`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php (181)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:38:11 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_products" for active record class "Products" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Products))
+#1 D:\xampp\htdocs\yii\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Products')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php(181): CActiveDataProvider->__construct('Products', Array)
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionIndex()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/index
+---
+2012/10/16 03:38:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "install".' in D:\xampp\htdocs\yii\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(271): CController->missingAction('install')
+#1 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('install')
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/install
+---
+2012/10/16 03:39:06 [error] [php] Undefined index: categoryTable (D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php:27)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(287): InstallController->runAction()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(266): InstallController->runActionWithFilters()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): InstallController->run()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/install
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (27)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (337)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:39:39 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_products' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_products`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php (181)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:39:39 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_products" for active record class "Products" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Products))
+#1 D:\xampp\htdocs\yii\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Products')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php(181): CActiveDataProvider->__construct('Products', Array)
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionIndex()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/index
+---
+2012/10/16 03:41:44 [error] [php] Undefined index: categoryTable (D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php:27)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(287): InstallController->runAction()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(266): InstallController->runActionWithFilters()
+#3 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): InstallController->run()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#5 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/install
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (27)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (337)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:45:10 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_products' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_products`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php (181)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:45:10 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_products" for active record class "Products" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Products))
+#1 D:\xampp\htdocs\yii\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Products')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php(181): CActiveDataProvider->__construct('Products', Array)
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionIndex()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/index
+---
+2012/10/16 03:45:44 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order, Customer, Image, ProductVariation, Tax, `ShippingMethod`, PaymentMethod, ' at line 1. The SQL statement executed was: drop table if exists Category, Products, Order, Customer, Image, ProductVariation, Tax, `ShippingMethod`, PaymentMethod, ProductSpecifications.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (69)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (348)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:45:44 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Order, Customer, Image, ProductVariation, Tax, `ShippingMethod`, PaymentMethod, ' at line 1. The SQL statement executed was: drop table if exists Category, Products, Order, Customer, Image, ProductVariation, Tax, `ShippingMethod`, PaymentMethod, ProductSpecifications' in D:\xampp\htdocs\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(69): CDbCommand->execute()
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(348): InstallController->actionInstall()
+#2 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#8 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:47:24 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_tax' doesn't exist. The SQL statement executed was: INSERT INTO `shop_tax` (`id`, `title`, `percent`) VALUES
+							(1, '19%', 19),
+							(2, '7%', 7);.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (106)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (349)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:47:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_tax' doesn't exist. The SQL statement executed was: INSERT INTO `shop_tax` (`id`, `title`, `percent`) VALUES
+							(1, '19%', 19),
+							(2, '7%', 7);' in D:\xampp\htdocs\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(106): CDbCommand->execute()
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(349): InstallController->actionInstall()
+#2 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#6 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#8 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#9 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#10 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:48:41 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shop/instal".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/instal')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shop/instal
+---
+2012/10/16 03:48:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_products' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_products`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php (181)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:48:46 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_products" for active record class "Products" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Products))
+#1 D:\xampp\htdocs\yii\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Products')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php(181): CActiveDataProvider->__construct('Products', Array)
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionIndex()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/index
+---
+2012/10/16 03:48:48 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_products' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_products`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php (181)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 03:48:48 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_products" for active record class "Products" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Products))
+#1 D:\xampp\htdocs\yii\framework\web\CActiveDataProvider.php(75): CActiveRecord::model('Products')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php(181): CActiveDataProvider->__construct('Products', Array)
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionIndex()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('index')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/i...')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/index
+---
+2012/10/16 03:50:37 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (314)
+2012/10/16 03:50:37 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(314): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(323): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:55:27 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php (37)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php (315)
+2012/10/16 03:55:27 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(37): Category::model()
+#3 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#6 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(315): CController->render('start')
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(324): InstallController->actionInstall()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 03:59:03 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.shop_category' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `shop_category`.
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (7)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php (13)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\category\index.php (5)
+2012/10/16 03:59:03 [error] [exception.CDbException] exception 'CDbException' with message 'The table "shop_category" for active record class "Category" cannot be found in the database.' in D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php:2312
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(388): CActiveRecordMetaData->__construct(Object(Category))
+#1 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(7): CActiveRecord::model('Category')
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\models\Category.php(13): Category::model()
+#3 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\category\index.php(5): Category::getChilds(0)
+#4 D:\xampp\htdocs\yii\framework\web\CBaseController.php(131): require('D:\xampp\htdocs...')
+#5 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', NULL, false)
+#6 D:\xampp\htdocs\yii\framework\web\widgets\CWidget.php(244): CBaseController->renderFile('D:\xampp\htdocs...', NULL, false)
+#7 D:\xampp\htdocs\hotelhub\protected\modules\shop\components\ProductCategoriesWidget.php(12): CWidget->render('application.mod...')
+#8 D:\xampp\htdocs\yii\framework\web\CBaseController.php(174): ProductCategoriesWidget->run()
+#9 D:\xampp\htdocs\hotelhub\protected\modules\shop\views\layouts\shop.php(57): CBaseController->widget('ProductCategori...')
+#10 D:\xampp\htdocs\yii\framework\web\CBaseController.php(127): require('D:\xampp\htdocs...')
+#11 D:\xampp\htdocs\yii\framework\web\CBaseController.php(96): CBaseController->renderInternal('D:\xampp\htdocs...', Array, true)
+#12 D:\xampp\htdocs\yii\framework\web\CController.php(785): CBaseController->renderFile('D:\xampp\htdocs...', Array, true)
+#13 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(315): CController->render('start')
+#14 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\InstallController.php(324): InstallController->actionInstall()
+#15 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): InstallController->actionIndex()
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#17 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#18 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('')
+#20 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/install')
+#21 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#22 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#23 {main}
+REQUEST_URI=/hotelhub/index.php/shop/install
+---
+2012/10/16 04:02:04 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shopshop/index".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shopshop/index')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shopshop/index
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/shop/admin
+---
+2012/10/16 04:02:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shopshop/index".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shopshop/index')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shopshop/index
+---
+2012/10/16 04:02:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "shop/index".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/index')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/shop/index
+---
+2012/10/16 04:04:53 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php:93
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionView()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('view')
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/v...')
+#11 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/view/id/3
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/category/view/id/2
+---
+2012/10/16 04:05:01 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php:93
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionView()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('view')
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/v...')
+#11 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/view/id/3
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/category/view/id/2
+---
+2012/10/16 04:05:28 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php:93
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionView()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('view')
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/v...')
+#11 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/view/id/2
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/category/view/id/1
+---
+2012/10/16 04:07:35 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php:93
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionView()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('view')
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/v...')
+#11 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/view/id/4
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/category/view/id/4
+---
+2012/10/16 05:01:43 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php:93
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionView()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('view')
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/v...')
+#11 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/view/id/4
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/category/view/id/4
+---
+2012/10/16 05:03:13 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php:95
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionView()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('view')
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/v...')
+#11 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/view/id/4
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/category/view/id/4
+---
+2012/10/16 05:03:36 [error] [exception.CHttpException.404] exception 'CHttpException' in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ProductsController.php:95
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ProductsController->actionView()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#2 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#3 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#5 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#8 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('view')
+#10 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('shop/products/v...')
+#11 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#12 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#13 {main}
+REQUEST_URI=/hotelhub/index.php/shop/products/view/id/4
+HTTP_REFERER=http://localhost/hotelhub/index.php/shop/category/view/id/4
+---
+2012/10/16 05:05:49 [error] [php] Undefined variable: img (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:90)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (90)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:07:48 [error] [php] Undefined variable: img (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:90)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (90)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:08:27 [error] [php] Undefined variable: img (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:90)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (90)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:09:12 [error] [php] Undefined variable: img (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:90)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+2012/10/16 05:09:26 [error] [php] Undefined variable: img (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:90)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (90)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:13:03 [error] [php] Undefined variable: img (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:93)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (93)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:13:56 [error] [php] Undefined variable: variation (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:90)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (90)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:14:34 [error] [php] Undefined index: Variations (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:104)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (104)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:15:48 [error] [php] Undefined index: Variations (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:104)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (104)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:18:19 [error] [php] Undefined index: Variations (D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php:104)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(870): ShoppingCartController->renderFile()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(783): ShoppingCartController->renderPartial()
+#2 D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php(11): ShoppingCartController->render()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ShoppingCartController->actionView()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(287): ShoppingCartController->runAction()
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(266): ShoppingCartController->runActionWithFilters()
+#7 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ShoppingCartController->run()
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#9 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#10 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/shoppingCart/view
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\views\shoppingCart\view.php (104)
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ShoppingCartController.php (11)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:19:12 [error] [php] move_uploaded_file(productimages/Penguins.jpg): failed to open stream: No such file or directory (D:\xampp\htdocs\yii\framework\web\CUploadedFile.php:197)
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): ImageController->actionCreate()
+#1 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#2 D:\xampp\htdocs\yii\framework\web\CController.php(287): ImageController->runAction()
+#3 D:\xampp\htdocs\yii\framework\web\CController.php(266): ImageController->runActionWithFilters()
+#4 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): ImageController->run()
+#5 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#6 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#7 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/shop/image/create/product_id/1
+in D:\xampp\htdocs\hotelhub\protected\modules\shop\controllers\ImageController.php (29)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/16 05:53:21 [error] [php] Missing argument 1 for CWidgetFactory::createWidget(), called in D:\xampp\htdocs\hotelhub\protected\controllers\TestController.php on line 2 and defined (D:\xampp\htdocs\yii\framework\web\CWidgetFactory.php:145)
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\models\UserGroupsAccess.php(160): extractControllers()
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\models\UserGroupsUser.php(477): homeList()
+#2 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1803): UserGroupsUser->afterFind()
+#3 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1291): UserGroupsUser->populateRecord()
+#4 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1459): UserGroupsUser->query()
+#5 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\UserGroupsIdentity.php(66): UserGroupsUser->findByAttributes()
+#6 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\models\UserGroupsUser.php(495): UserGroupsIdentity->authenticate()
+#7 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\controllers\UserController.php(445): UserGroupsUser->login()
+#8 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): UserController->actionLogin()
+#9 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#10 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): UserController->runAction()
+#11 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#12 D:\xampp\htdocs\hotelhub\protected\components\Controller.php(43): UserGroupsAccessControl->filter()
+#13 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): UserController->filterUserGroupsAccessControl()
+#14 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#15 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#16 D:\xampp\htdocs\yii\framework\web\CController.php(266): UserController->runActionWithFilters()
+#17 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): UserController->run()
+#18 D:\xampp\htdocs\yii\framework\web\CController.php(753): CWebApplication->runController()
+#19 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\controllers\UGDefaultController.php(17): UGDefaultController->forward()
+#20 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): UGDefaultController->actionIndex()
+#21 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams()
+#22 D:\xampp\htdocs\yii\framework\web\CController.php(287): UGDefaultController->runAction()
+#23 D:\xampp\htdocs\yii\framework\web\CController.php(266): UGDefaultController->runActionWithFilters()
+#24 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): UGDefaultController->run()
+#25 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController()
+#26 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#27 D:\xampp\htdocs\hotelhub\index.php(13): CWebApplication->run()
+REQUEST_URI=/hotelhub/index.php/userGroups
+in D:\xampp\htdocs\hotelhub\protected\controllers\TestController.php (2)
+in D:\xampp\htdocs\hotelhub\protected\modules\usergroups\models\UserGroupsAccess.php (194)
+in D:\xampp\htdocs\hotelhub\protected\modules\usergroups\models\UserGroupsAccess.php (160)
+2012/10/16 06:10:06 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 0)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/16 06:10:23 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 0)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/16 06:11:01 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 2592000)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/16 06:13:38 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 2592000)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/16 06:13:43 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 2592000)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/16 06:13:59 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 0)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/16 06:19:14 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 0)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/16 23:41:45 [error] [exception.CException] exception 'CException' with message 'UserIdentity and its behaviors do not have a method or closure named "getGroup".' in D:\xampp\htdocs\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): CComponent->__call('getGroup', Array)
+#1 D:\xampp\htdocs\hotelhub\protected\modules\usergroups\components\WebUserGroups.php(63): UserIdentity->getGroup()
+#2 D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php(71): WebUserGroups->login(Object(UserIdentity), 0)
+#3 D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php(94): LoginForm->login()
+#4 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): SiteController->actionLogin()
+#5 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 D:\xampp\htdocs\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('login')
+#9 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('site/login')
+#10 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/hotelhub/site/login
+HTTP_REFERER=http://localhost/hotelhub/site/login
+---
+2012/10/17 03:09:13 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.Supplier' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `Supplier`.
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/17 03:10:36 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.Supplier' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `Supplier`.
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/17 03:10:58 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.supplier' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `supplier`.
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/17 03:11:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.user' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `user`.
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/17 03:11:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.supplier' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `supplier`.
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/17 03:12:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'hotelhub.user' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `user`.
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/17 05:24:28 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`hotelhub/gc_code`, CONSTRAINT `gc_code_ibfk_1` FOREIGN KEY (`id_code_type`) REFERENCES `gc_code_type` (`id_code_type`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `gc_code` (`id_code_type`, `code`, `name`, `position`) VALUES (:yp0, :yp1, :yp2, :yp3).
+in D:\xampp\htdocs\hotelhub\protected\controllers\CodeController.php (73)
+in D:\xampp\htdocs\hotelhub\index.php (13)
+2012/10/17 05:24:28 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand failed to execute the SQL statement: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`hotelhub/gc_code`, CONSTRAINT `gc_code_ibfk_1` FOREIGN KEY (`id_code_type`) REFERENCES `gc_code_type` (`id_code_type`) ON DELETE CASCADE ON UPDATE CASCADE). The SQL statement executed was: INSERT INTO `gc_code` (`id_code_type`, `code`, `name`, `position`) VALUES (:yp0, :yp1, :yp2, :yp3)' in D:\xampp\htdocs\yii\framework\db\CDbCommand.php:354
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(1017): CDbCommand->execute()
+#1 D:\xampp\htdocs\yii\framework\db\ar\CActiveRecord.php(796): CActiveRecord->insert(NULL)
+#2 D:\xampp\htdocs\hotelhub\protected\controllers\CodeController.php(73): CActiveRecord->save()
+#3 D:\xampp\htdocs\yii\framework\web\actions\CInlineAction.php(50): CodeController->actionCreate()
+#4 D:\xampp\htdocs\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#5 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(134): CController->runAction(Object(CInlineAction))
+#6 D:\xampp\htdocs\yii\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#7 D:\xampp\htdocs\yii\framework\web\CController.php(1146): CFilter->filter(Object(CFilterChain))
+#8 D:\xampp\htdocs\yii\framework\web\filters\CInlineFilter.php(59): CController->filterAccessControl(Object(CFilterChain))
+#9 D:\xampp\htdocs\yii\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter(Object(CFilterChain))
+#10 D:\xampp\htdocs\yii\framework\web\CController.php(292): CFilterChain->run()
+#11 D:\xampp\htdocs\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('create')
+#13 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('code/create')
+#14 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#15 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#16 {main}
+REQUEST_URI=/hotelhub/index.php/code/create
+HTTP_REFERER=http://localhost/hotelhub/index.php/code/create
+---
+2012/10/17 06:20:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'The system is unable to find the requested action "address".' in D:\xampp\htdocs\yii\framework\web\CController.php:484
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CController.php(271): CController->missingAction('address')
+#1 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(283): CController->run('address')
+#2 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('codeType/addres...')
+#3 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/hotelhub/index.php/codeType/address
+HTTP_REFERER=http://localhost/hotelhub/index.php/codeType/create
+---
+2012/10/18 00:53:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "userGroup".' in D:\xampp\htdocs\yii\framework\web\CWebApplication.php:287
+Stack trace:
+#0 D:\xampp\htdocs\yii\framework\web\CWebApplication.php(142): CWebApplication->runController('userGroup')
+#1 D:\xampp\htdocs\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 D:\xampp\htdocs\hotelhub\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/hotelhub/index.php/userGroup
+---

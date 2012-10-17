@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <buildpath>
-	<buildpathentry external="true" kind="lib" path="D:/APM_Setup/htdocs/yii"/>
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+	<buildpathentry external="true" kind="lib" path="D:/APM_Setup/htdocs/yii"/>
+	<buildpathentry external="true" kind="lib" path="D:/xampp/htdocs/yii"/>
 	<buildpathentry kind="src" path=""/>
+	<buildpathentry external="true" kind="lib" path="D:/xampp/htdocs/yii"/>
 </buildpath>
