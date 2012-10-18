@@ -122,7 +122,13 @@ class AddressController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Address');
+		$model=new Address('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['id_user'])) {
+			$model->attributes = array('id_user'=>$_GET['id_user']);
+		}		
+		//$dataProvider=new CActiveDataProvider('Address');
+		$dataProvider = $model->search();
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

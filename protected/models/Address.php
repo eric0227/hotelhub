@@ -59,7 +59,9 @@ class Address extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_country, alias, lastname, firstname, address1, city, date_add, date_upd', 'required'),
+			//array('id_country, alias, lastname, firstname, address1, city, date_add, date_upd', 'required'),
+			array('id_country, alias, lastname, firstname, address1, city', 'required'),
+			
 			array('active, deleted', 'numerical', 'integerOnly'=>true),
 			array('id_country, id_state, id_user', 'length', 'max'=>10),
 			array('alias, company, lastname, firstname, vat_number', 'length', 'max'=>32),
@@ -156,5 +158,17 @@ class Address extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function beforeSave()
+	{
+		if($this->isNewRecord)
+		{
+			$this->date_add=$this->date_upd=time();
+		} else {
+			$this->date_upd=time();
+		}
+				
+		return parent::beforeSave();
 	}
 }

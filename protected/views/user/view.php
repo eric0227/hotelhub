@@ -21,9 +21,17 @@ $this->menu=array(
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
-		'id_user',
-		'id_group',
-		'id_lang',
+		'id_user',		
+		array(
+			'label'=>'Group',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->group->name), '../group/' . $model->id_group),			
+		),
+		array(
+			'label'=>'Lang',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->lang->name), '../lang/' . $model->id_lang),			
+		),
 		'lastname',
 		'firstname',
 		'email',

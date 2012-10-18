@@ -23,6 +23,7 @@
  */
 class User extends CActiveRecord
 {
+	private static $_items = null;
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -70,7 +71,8 @@ class User extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'addresses' => array(self::HAS_MANY, 'Address', 'id_user'),
-			'idGroup' => array(self::BELONGS_TO, 'Group', 'id_group'),
+			'group' => array(self::BELONGS_TO, 'Group', 'id_group'),
+			'lang' => array(self::BELONGS_TO, 'Lang', 'id_lang'),
 		);
 	}
 
@@ -80,9 +82,9 @@ class User extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_user' => 'Id User',
-			'id_group' => 'Id Group',
-			'id_lang' => 'Id Lang',
+			'id_user' => 'User Id',
+			'id_group' => 'Group',
+			'id_lang' => 'Lang',
 			'lastname' => 'Lastname',
 			'firstname' => 'Firstname',
 			'email' => 'Email',
@@ -92,6 +94,7 @@ class User extends CActiveRecord
 			'birthday' => 'Birthday',
 			'active' => 'Active',
 			'deleted' => 'Deleted',
+			'addresses' => 'Addresses',
 		);
 	}
 
@@ -122,5 +125,27 @@ class User extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function items()
+	{
+		if(self::$_items == null) {
+			self::loadItems();
+		}
+		return self::$_items;
+	}
+	
+	/**
+	 * Loads the lookup items for the specified type from the database.
+	 * @param string the item type
+	 */
+	private static function loadItems()
+	{
+		self::$_items = array();
+		$models=self::model()->findAll();
+	
+		foreach($models as $model) {
+			self::$_items[$model->id_user]=$model->email;
+		}
 	}
 }

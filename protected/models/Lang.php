@@ -15,6 +15,9 @@
  */
 class Lang extends CActiveRecord
 {
+	
+	private static $_items = null;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -103,5 +106,27 @@ class Lang extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function items()
+	{
+		if(self::$_items == null) {
+			self::loadItems();
+		}
+		return self::$_items;
+	}
+	
+	/**
+	 * Loads the lookup items for the specified type from the database.
+	 * @param string the item type
+	 */
+	private static function loadItems()
+	{
+		self::$_items = array();
+		$models=self::model()->findAll();
+	
+		foreach($models as $model) {
+			self::$_items[$model->id_lang]=$model->name;
+		}
 	}
 }

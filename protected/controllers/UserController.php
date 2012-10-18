@@ -28,7 +28,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'getState'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -36,7 +36,7 @@ class UserController extends Controller
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin, delete'),
 				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
@@ -168,4 +168,11 @@ class UserController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function actiongetState($id_country) {
+		$state = State::model()->findAll('id_country = :id_country', array(':id_country' => $id_country));
+		$stateList = CHtml::listData($state, 'id_state', 'name');
+		return $stateList;
+	}
 }
+

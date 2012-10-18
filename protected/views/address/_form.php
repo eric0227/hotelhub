@@ -19,20 +19,36 @@
 		<?php echo $form->labelEx($model,'id_country'); ?>
 		<?php 
 			//echo $form->textField($model,'id_country',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'id_country', Country::items());
+			echo $form->dropDownList(
+				$model,'id_country', Country::items(),
+				array(
+					'empty' => '--please select--',		
+					'ajax' => array(
+						'type' => 'POST',
+						'url' => CController::createUrl('user/getState'),
+						'update' => '#id_state'
+					)
+				)
+			);
 		?>
 		<?php echo $form->error($model,'id_country'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_state'); ?>
-		<?php echo $form->textField($model,'id_state',array('size'=>10,'maxlength'=>10)); ?>
+		<?php 
+			//echo $form->textField($model,'id_state',array('size'=>10,'maxlength'=>10));
+			echo $form->dropDownList($model,'id_state',array());
+		?>
 		<?php echo $form->error($model,'id_state'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_user'); ?>
-		<?php echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10)); ?>
+		<?php 
+			//echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10));
+			echo $form->dropDownList($model,'id_user', User::items());
+		?>
 		<?php echo $form->error($model,'id_user'); ?>
 	</div>
 
@@ -114,6 +130,7 @@
 		<?php echo $form->error($model,'dni'); ?>
 	</div>
 
+<?php /*
 	<div class="row">
 		<?php echo $form->labelEx($model,'date_add'); ?>
 		<?php echo $form->textField($model,'date_add'); ?>
@@ -125,6 +142,7 @@
 		<?php echo $form->textField($model,'date_upd'); ?>
 		<?php echo $form->error($model,'date_upd'); ?>
 	</div>
+*/ ?>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'active'); ?>

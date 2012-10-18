@@ -17,13 +17,19 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_group'); ?>
-		<?php echo $form->textField($model,'id_group',array('size'=>10,'maxlength'=>10)); ?>
+		<?php 
+			//echo $form->textField($model,'id_group',array('size'=>10,'maxlength'=>10));
+			echo $form->dropDownList($model,'id_group', Group::items());
+		?>
 		<?php echo $form->error($model,'id_group'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_lang'); ?>
-		<?php echo $form->textField($model,'id_lang',array('size'=>10,'maxlength'=>10)); ?>
+		<?php 
+			//echo $form->textField($model,'id_lang',array('size'=>10,'maxlength'=>10));
+			echo $form->dropDownList($model,'id_lang', Lang::items());		
+		?>
 		<?php echo $form->error($model,'id_lang'); ?>
 	</div>
 
@@ -79,6 +85,20 @@
 		<?php echo $form->labelEx($model,'deleted'); ?>
 		<?php echo $form->textField($model,'deleted'); ?>
 		<?php echo $form->error($model,'deleted'); ?>
+	</div>
+	
+	<div class="row">	
+		
+		<?php echo $form->labelEx($model,'addresses'); ?>
+		manage
+		
+		<?php 
+			foreach($model->addresses as $address) {
+				echo $address->addressCode->name;
+	
+				echo ',<br>';
+			}
+		?>	
 	</div>
 
 	<div class="row buttons">

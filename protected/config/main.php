@@ -50,10 +50,10 @@ return array(
 */		
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=192.168.1.10;dbname=hotelhub',
+			'connectionString' => 'mysql:host=14.200.134.156;dbname=hotelhub',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'apmsetup',
+			'password' => 'gnaadmin',
 			'charset' => 'utf8',
 		),
 		'errorHandler'=>array(
