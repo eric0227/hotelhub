@@ -19,6 +19,7 @@
  */
 class State extends CActiveRecord
 {
+	private static $_items = array();
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -108,5 +109,41 @@ class State extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function items($id_country)
+	{
+		if(!isset(self::$_items[$id_country]))
+		self::loadItems($id_country);
+		return self::$_items[$id_country];
+	}
+	
+	/**
+	 * Returns the item name for the specified type and code.
+	 * @param string the item type (e.g. 'PostStatus').
+	 * @param integer the item code (corresponding to the 'code' column value)
+	 * @return string the item name for the specified the code. False is returned if the item type or code does not exist.
+	 */
+	public static function item($id_country, $id_state)
+	{
+		if(!isset(self::$_items[$id_country]))
+		self::loadItems($id_country);
+		return isset(self::$_items[$id_country][$id_state]) ? self::$_items[$id_country][$id_state] : false;
+	}
+	
+	/**
+	 * Loads the lookup items for the specified type from the database.
+	 * @param string the item type
+	 */
+	private static function loadItems($id_country)
+	{
+		self::$_items[$id_country]=array();
+		$models=self::model()->findAll(array(
+				'condition'=>'id_country=:id_country',
+				'params'=>array(':id_country'=>$id_country),
+		));
+		foreach($models as $model) {
+			self::$_items[$id_country][$model->id_state]=$model->name;
+		}
 	}
 }

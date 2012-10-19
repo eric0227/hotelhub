@@ -15,19 +15,26 @@ $this->menu=array(
 <h1>Addresses</h1>
 
 <div class="form">
-<?php echo CHtml::beginForm(); ?>
+
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'address-form',
+	'enableAjaxValidation'=>false,
+)); ?>
+
 	<div class="row">
-	<?php echo CHtml::label('User', 'user'); ?>
-	<?php echo CHtml::textField('user', ''); ?>
+	<?php echo CHtml::label('User', 'id_user'); ?>
+	<?php 
+		// echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model,'id_user', User::items(), array('empty' => '-- ALL --'));
+	?>
 	</div>
 	
 <?php
 	echo CHtml::submitButton(
-		''
+		'Search'
 	); 
 ?>
-
-<?php echo CHtml::endForm(); ?>
+<?php $this->endWidget(); ?>
 </div><!-- form -->
 
 <?php $this->widget('zii.widgets.CListView', array(

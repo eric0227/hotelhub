@@ -43,8 +43,9 @@
 	
 	<?php 
 		foreach($data->addresses as $address) {
-			echo $address->addressCode->name;
-
+			//print_r($address);
+			//echo $address->addressCode->name;			
+			echo CHtml::link(CHtml::encode( $address->addressCode->name), array('address/view', 'id'=>$address->id_address));
 			echo ',';
 		}	
 	?>

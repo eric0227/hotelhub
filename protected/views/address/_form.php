@@ -22,11 +22,11 @@
 			echo $form->dropDownList(
 				$model,'id_country', Country::items(),
 				array(
-					'empty' => '--please select--',		
+					'prompt' => '--Please select--',		
 					'ajax' => array(
 						'type' => 'POST',
 						'url' => CController::createUrl('user/getState'),
-						'update' => '#id_state'
+						'update'=>'#' . CHtml::activeId($model, 'id_state')
 					)
 				)
 			);
@@ -38,7 +38,11 @@
 		<?php echo $form->labelEx($model,'id_state'); ?>
 		<?php 
 			//echo $form->textField($model,'id_state',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'id_state',array());
+			$state = array();
+			if(isset($model->id_country)) {
+				$state = State::items($model->id_country);
+			}
+			echo $form->dropDownList($model,'id_state',$state,array('prompt'=>'---Please select---'));
 		?>
 		<?php echo $form->error($model,'id_state'); ?>
 	</div>

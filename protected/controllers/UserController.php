@@ -169,10 +169,23 @@ class UserController extends Controller
 		}
 	}
 	
-	public function actiongetState($id_country) {
-		$state = State::model()->findAll('id_country = :id_country', array(':id_country' => $id_country));
-		$stateList = CHtml::listData($state, 'id_state', 'name');
-		return $stateList;
+	public function actiongetState() {
+		if(isset($_REQUEST['Address']['id_country'])) {		
+			$state = State::model()->findAll('id_country = :id_country', array(':id_country' => $_REQUEST['Address']['id_country']));
+		} else {
+			$state = State::model()->findAll();
+		}
+		
+		$data = CHtml::listData($state, 'id_state', 'name');
+		//print_r($stateList);
+		
+		foreach($data as $value=>$name)
+		{
+			echo CHtml::tag('option',
+			array('value'=>$value),CHtml::encode($name),true);
+		}
+		Yii::app()->end();		
+		//return $data;
 	}
 }
 

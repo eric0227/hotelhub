@@ -94,7 +94,8 @@
 		
 		<?php 
 			foreach($model->addresses as $address) {
-				echo $address->addressCode->name;
+				//print_r($address);
+// 				/echo $address->addressCode->name;
 	
 				echo ',<br>';
 			}

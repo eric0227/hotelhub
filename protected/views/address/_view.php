@@ -6,9 +6,10 @@
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_address')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_address), array('view', 'id'=>$data->id_address)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_address), array('view', 'id'=>$data->id_address)); ?>	
+	(<?php echo $data->addressCode->name ?>)
 	<br />
-
+	
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_country')); ?>:</b>
 	<?php echo CHtml::encode($data->id_country); ?>
 	<br />
