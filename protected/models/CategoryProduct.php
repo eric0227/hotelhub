@@ -1,24 +1,19 @@
 <?php
- 
+
 /**
- * This is the model class for table "gc_group".
+ * This is the model class for table "gc_category_product".
  *
- * The followings are the available columns in table 'gc_group':
- * @property string $id_group
- * @property string $name
- * @property integer $level
- *
- * The followings are the available model relations:
- * @property User[] $users
+ * The followings are the available columns in table 'gc_category_product':
+ * @property string $id_category
+ * @property string $id_product
+ * @property string $position
  */
-class Group extends CActiveRecord
+class CategoryProduct extends CActiveRecord
 {
-	private static $_items = null;
-	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Group the static model class
+	 * @return CategoryProduct the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +25,7 @@ class Group extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_group';
+		return 'gc_category_product';
 	}
 
 	/**
@@ -41,12 +36,11 @@ class Group extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('level', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>128),
+			array('id_category, id_product', 'required'),
+			array('id_category, id_product, position', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_group, name, level', 'safe', 'on'=>'search'),
+			array('id_category, id_product, position', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -58,7 +52,6 @@ class Group extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::HAS_MANY, 'User', 'id_group'),
 		);
 	}
 
@@ -68,9 +61,9 @@ class Group extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_group' => 'Id Group',
-			'name' => 'Name',
-			'level' => 'Level',
+			'id_category' => 'Id Category',
+			'id_product' => 'Id Product',
+			'position' => 'Position',
 		);
 	}
 
@@ -85,34 +78,12 @@ class Group extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_group',$this->id_group,true);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('level',$this->level);
+		$criteria->compare('id_category',$this->id_category,true);
+		$criteria->compare('id_product',$this->id_product,true);
+		$criteria->compare('position',$this->position,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-	
-	public static function items()
-	{
-		if(self::$_items == null) {
-			self::loadItems();
-		}
-		return self::$_items;
-	}
-	
-	/**
-	 * Loads the lookup items for the specified type from the database.
-	 * @param string the item type
-	 */
-	private static function loadItems()
-	{
-		self::$_items = array();
-		$models=self::model()->findAll();
-	
-		foreach($models as $model) {
-			self::$_items[$model->id_group]=$model->name;
-		}
-	}	
 }

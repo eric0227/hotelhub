@@ -41,7 +41,7 @@ class CodeType extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('type, name', 'required'),
-			array('type', 'length', 'max'=>20),
+			array('type', 'length', 'max'=>3),
 			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -71,7 +71,7 @@ class CodeType extends CActiveRecord
 			'name' => 'Name',
 		);
 	}
-
+ 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -100,17 +100,16 @@ class CodeType extends CActiveRecord
 	}
 	
 	/**
-	 * Loads the lookup items for the specified type from the database.
-	 * @param string the item type
-	 */
+	* Loads the lookup items for the specified type from the database.
+	* @param string the item type
+	*/
 	private static function loadItems()
 	{
 		self::$_items = array();
 		$models=self::model()->findAll();
-		
+	
 		foreach($models as $model) {
 			self::$_items[$model->type]=$model->name;
 		}
 	}
-	
 }

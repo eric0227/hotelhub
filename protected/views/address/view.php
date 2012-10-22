@@ -25,6 +25,7 @@ $this->menu=array(
 		'id_country',
 		'id_state',
 		'id_user',
+		'address_code',
 		'alias',
 		'company',
 		'lastname',

@@ -55,6 +55,16 @@
 		?>
 		<?php echo $form->error($model,'id_user'); ?>
 	</div>
+	
+	
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'address_code'); ?>
+		<?php 
+			echo $form->dropDownList($model,'address_code', Code::items(Address::$CODE_TYPE));
+		?>
+		<?php echo $form->error($model,'address_code'); ?>
+	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'alias'); ?>

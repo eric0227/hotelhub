@@ -71,7 +71,7 @@ class CodeController extends Controller
 		{
 			$model->attributes=$_POST['Code'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_code));
+				$this->redirect(array('view','id'=>$model->code));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class CodeController extends Controller
 		{
 			$model->attributes=$_POST['Code'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_code));
+				$this->redirect(array('view','id'=>$model->code));
 		}
 
 		$this->render('update',array(

@@ -1,7 +1,4 @@
 
-DROP TABLE IF EXISTS `gc_code`;
-DROP TABLE IF EXISTS `gc_code_type`;
-
 DROP TABLE IF EXISTS `gc_discount_category`;
 DROP TABLE IF EXISTS `gc_order_discount`;
 DROP TABLE IF EXISTS `gc_discount`;
@@ -23,13 +20,6 @@ DROP TABLE IF EXISTS `gc_cart_product`;
 DROP TABLE IF EXISTS `gc_cart`;
 DROP TABLE IF EXISTS `gc_category_product`;
 
-DROP TABLE IF EXISTS `gc_product_attribute_image`;
-DROP TABLE IF EXISTS `gc_product_attribute_combi`;
-DROP TABLE IF EXISTS `gc_product_attribute_combination`;
-
-DROP TABLE IF EXISTS `gc_attribute_impact`;
-
-DROP TABLE IF EXISTS `gc_product_attribute`;
 DROP TABLE IF EXISTS `gc_product_image`;
 DROP TABLE IF EXISTS `gc_hotel_image`;
 DROP TABLE IF EXISTS `gc_image_type`;
@@ -41,8 +31,10 @@ DROP TABLE IF EXISTS `gc_product`;
 DROP TABLE IF EXISTS `gc_category_group`;
 DROP TABLE IF EXISTS `gc_category_lang`;
 DROP TABLE IF EXISTS `gc_category`;
+
 DROP TABLE IF EXISTS `gc_attribute`;
 DROP TABLE IF EXISTS `gc_attribute_group`;
+
 DROP TABLE IF EXISTS `gc_attachment`;
 DROP TABLE IF EXISTS `gc_timezone`;
 DROP TABLE IF EXISTS `gc_address`;
@@ -61,6 +53,9 @@ DROP TABLE IF EXISTS `gc_country`;
 DROP TABLE IF EXISTS `gc_currency`;
 DROP TABLE IF EXISTS `gc_zone`;
 DROP TABLE IF EXISTS `gc_lang`;
+
+DROP TABLE IF EXISTS `gc_code`;
+DROP TABLE IF EXISTS `gc_code_type`;
 
 CREATE TABLE IF NOT EXISTS `gc_code_type` (  
   `type` char(3) NOT NULL,
@@ -188,7 +183,7 @@ INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`
 (1, 1, 1, 'Admin', 'Admin', 'kyhleem@gmail.com', 'bdf13fac4167a477b4d10d8685405354', 1);
 
 CREATE TABLE IF NOT EXISTS `gc_supplier` (
-  `id_user` int(10) unsigned NOT NULL,
+  `id_supplier` int(10) unsigned NOT NULL,
   `manager_name` varchar(64),
   `manager_email` varchar(128),
 
@@ -210,9 +205,9 @@ CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `room_count` int(10),
   `website` varchar(128),
 
-  PRIMARY KEY (`id_user`),
-  FOREIGN KEY (`id_user`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+  PRIMARY KEY (`id_supplier`),
+  FOREIGN KEY (`id_supplier`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `gc_address` (
@@ -287,21 +282,6 @@ CREATE TABLE IF NOT EXISTS `gc_state` (
   FOREIGN KEY (`id_zone`) REFERENCES `gc_zone`(`id_zone`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-
-CREATE TABLE IF NOT EXISTS `gc_attribute_group` (
-  `id_attribute_group` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(128) NOT NULL,
-  `public_name` varchar(64) NOT NULL,
-  PRIMARY KEY (`id_attribute_group`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `gc_attribute` (
-  `id_attribute` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_attribute_group` int(10) unsigned NOT NULL,
-  `name` varchar(128) NOT NULL,
-  PRIMARY KEY (`id_attribute`),
-  FOREIGN KEY (`id_attribute_group`) REFERENCES `gc_attribute_group`(`id_attribute_group`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_category` (
   `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -397,35 +377,66 @@ CREATE TABLE IF NOT EXISTS `gc_product_lang` (
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `gc_product_attribute` (
-  `id_product_attribute` int(10) unsigned NOT NULL AUTO_INCREMENT,
 
-  `id_product` int(10) unsigned NOT NULL,
-  
-  `reference` varchar(32) DEFAULT NULL,
-  `supplier_reference` varchar(32) DEFAULT NULL,
-  `location` varchar(64) DEFAULT NULL,
-  `ean13` varchar(13) DEFAULT NULL,
-  `upc` varchar(12) DEFAULT NULL,
-  `wholesale_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
-  `price` decimal(20,6) NOT NULL DEFAULT '0.000000',
-  `ecotax` decimal(17,6) NOT NULL DEFAULT '0.000000',
-  `quantity` int(10) NOT NULL DEFAULT '0',
-  `weight` float NOT NULL DEFAULT '0',
-  `unit_price_impact` decimal(17,2) NOT NULL DEFAULT '0.00',
-  `default_on` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `minimal_quantity` int(10) unsigned NOT NULL DEFAULT '1',
-  `date_deal` datetime NOT NULL,
-  PRIMARY KEY (`id_product_attribute`),
 
-  KEY `reference` (`reference`),
-  KEY `supplier_reference` (`supplier_reference`),
-  KEY `product_default` (`id_product`,`default_on`),
-  KEY `id_product_id_product_attribute` (`id_product_attribute`,`id_product`),
-  
-  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE IF NOT EXISTS `gc_attribute_group` (
+  `id_attribute_group` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
 
+  PRIMARY KEY (`id_attribute_group`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `gc_attribute` (
+  `id_attribute` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_attribute_group` int(10) unsigned NOT NULL,
+  
+  `name` varchar(128) NOT NULL,
+  `attr_type` enum('textfield', 'textarea', 'checkbox', 'radiobox')  NOT NULL,
+  `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `position` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  
+  PRIMARY KEY (`id_attribute`),
+  FOREIGN KEY (`id_attribute_group`) REFERENCES `gc_attribute_group`(`id_attribute_group`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `gc_attribute_item` (
+  `id_attribute_item` int(10) unsigned NOT NULL,
+  `id_attribute` int(10) unsigned NOT NULL,
+  `item` varchar(300) NOT NULL,  
+  `position` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  
+  PRIMARY KEY (`id_attribute_item`),
+  FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `gc_product_attribute` (
+  `id_product` int(10) unsigned NOT NULL,
+  `id_attribute` int(10) unsigned NOT NULL,
+     
+  PRIMARY KEY (`id_product`, `id_attribute`),
+  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `gc_product_attribute_value` (
+  `id_product_attribute_value` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_product` int(10) unsigned NOT NULL,
+  `id_attribute` int(10) unsigned NOT NULL,
+  `item_value` varchar(300) NOT NULL,
+  
+  PRIMARY KEY (`id_product_attribute_value`),
+  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `gc_hotel` (
+    `id_hotel` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `id_supplier` int(10) unsigned NOT NULL,
+    
+    PRIMARY KEY (`id_hotel`),    
+    FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `gc_room_type` (
@@ -436,7 +447,10 @@ CREATE TABLE IF NOT EXISTS `gc_room_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_product_room` (
+  `id_product_room` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  
   `id_product` int(10) unsigned NOT NULL,
+  `id_hotel` int(10) unsigned NOT NULL,
   `id_room_type` int(10) unsigned NOT NULL,
 
   `room_type_code` varchar(64),
@@ -450,12 +464,11 @@ CREATE TABLE IF NOT EXISTS `gc_product_room` (
   `guests_tot_room_cap` int(2) unsigned,
   `guests_included_price` int(2) unsigned,
 
-  PRIMARY KEY (`id_product`),
+  PRIMARY KEY (`id_product_room`),
 
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_room_type`) REFERENCES `gc_room_type`(`id_room_type`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE IF NOT EXISTS `gc_attachment` (
   `id_attachment` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -494,30 +507,29 @@ CREATE TABLE IF NOT EXISTS `gc_image` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_hotel_image` (
-  `id_supplier` int(10) unsigned NOT NULL,
-  `id_image` int(10) unsigned NOT NULL,
-
+  `id_image` int(10) unsigned NOT NULL,  
+  `id_hotel` int(10) unsigned NOT NULL,  
   `position` smallint(2) unsigned NOT NULL DEFAULT '0',
   `cover` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
-  PRIMARY KEY (`id_supplier`, `id_image`),
+  PRIMARY KEY (`id_image`),
 
-  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_image`) REFERENCES `gc_image`(`id_image`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+  FOREIGN KEY (`id_image`) REFERENCES `gc_image`(`id_image`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_hotel`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE
+  
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_product_image` (
+  `id_image` int(10) unsigned NOT NULL,  
   `id_product` int(10) unsigned NOT NULL,
-  `id_image` int(10) unsigned NOT NULL,
-
   `position` smallint(2) unsigned NOT NULL DEFAULT '0',
   `cover` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
-  PRIMARY KEY (`id_product`, `id_image`),
+  PRIMARY KEY (`id_image`),
 
-  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_image`) REFERENCES `gc_image`(`id_image`) ON DELETE CASCADE ON UPDATE CASCADE
-);
+  FOREIGN KEY (`id_image`) REFERENCES `gc_image`(`id_image`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE  
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `gc_image_type` (
@@ -584,41 +596,6 @@ CREATE TABLE IF NOT EXISTS `gc_cart_product` (
   FOREIGN KEY (`id_cart`) REFERENCES `gc_cart`(`id_cart`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_product_attribute`) REFERENCES `gc_product_attribute`(`id_product_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `gc_attribute_impact` (
-  `id_attribute_impact` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_product` int(11) unsigned NOT NULL,
-  `id_attribute` int(11) unsigned NOT NULL,
-  `weight` float NOT NULL,
-  `price` decimal(17,2) NOT NULL,
-  PRIMARY KEY (`id_attribute_impact`),
-  UNIQUE KEY `id_product` (`id_product`,`id_attribute`),
-  
-  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
-
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `gc_product_attribute_combi` (
-  `id_attribute` int(10) unsigned NOT NULL,
-  `id_product_attribute` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id_attribute`,`id_product_attribute`),
-  
-  FOREIGN KEY (`id_product_attribute`) REFERENCES `gc_product_attribute`(`id_product_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
-
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `gc_product_attribute_image` (
-  `id_product_attribute` int(10) unsigned NOT NULL,
-  `id_image` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id_product_attribute`,`id_image`),
-  
-  FOREIGN KEY (`id_image`) REFERENCES `gc_image`(`id_image`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

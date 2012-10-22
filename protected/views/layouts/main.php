@@ -32,6 +32,21 @@
 				array('label'=>'Home', 'url'=>array('/site/index')),
 				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array(
+					'label'=>'Manage Model',
+
+					'items'=>array(
+						array('label'=>'Configuration', 'url'=>array('/configuration/index', 'tag'=>'configuration')),
+						array('label'=>'CodeType', 'url'=>array('/codeType/index', 'tag'=>'codeType')),
+						array('label'=>'Code', 'url'=>array('/code/index', 'tag'=>'code')),
+						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
+						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
+						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address')),
+						
+						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),						
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),

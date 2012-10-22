@@ -1,24 +1,24 @@
 <?php
- 
+
 /**
- * This is the model class for table "gc_group".
+ * This is the model class for table "gc_configuration".
  *
- * The followings are the available columns in table 'gc_group':
- * @property string $id_group
+ * The followings are the available columns in table 'gc_configuration':
+ * @property string $id_configuration
  * @property string $name
- * @property integer $level
+ * @property string $value
+ * @property string $date_add
+ * @property string $date_upd
  *
  * The followings are the available model relations:
- * @property User[] $users
+ * @property ConfigurationLang[] $configurationLangs
  */
-class Group extends CActiveRecord
+class Configuration extends CActiveRecord
 {
-	private static $_items = null;
-	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Group the static model class
+	 * @return Configuration the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +30,7 @@ class Group extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_group';
+		return 'gc_configuration';
 	}
 
 	/**
@@ -42,15 +42,15 @@ class Group extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
-			array('level', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>128),
+			array('name', 'length', 'max'=>32),
+			array('value', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_group, name, level', 'safe', 'on'=>'search'),
+			array('id_configuration, name, value, date_add, date_upd', 'safe', 'on'=>'search'),
 		);
 	}
 
-	/**
+	/** 
 	 * @return array relational rules.
 	 */
 	public function relations()
@@ -58,7 +58,7 @@ class Group extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'users' => array(self::HAS_MANY, 'User', 'id_group'),
+			'configurationLangs' => array(self::HAS_MANY, 'ConfigurationLang', 'id_configuration'),
 		);
 	}
 
@@ -68,9 +68,11 @@ class Group extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_group' => 'Id Group',
+			'id_configuration' => 'Id Configuration',
 			'name' => 'Name',
-			'level' => 'Level',
+			'value' => 'Value',
+			'date_add' => 'Date Add',
+			'date_upd' => 'Date Upd',
 		);
 	}
 
@@ -85,34 +87,28 @@ class Group extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_group',$this->id_group,true);
+		$criteria->compare('id_configuration',$this->id_configuration,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('level',$this->level);
+		$criteria->compare('value',$this->value,true);
+		$criteria->compare('date_add',$this->date_add,true);
+		$criteria->compare('date_upd',$this->date_upd,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 	
-	public static function items()
+
+	protected function beforeSave()
 	{
-		if(self::$_items == null) {
-			self::loadItems();
+		if($this->isNewRecord)
+		{
+			$this->date_add=$this->date_upd=time();
+		} else {
+			$this->date_upd=time();
 		}
-		return self::$_items;
+	
+		return parent::beforeSave();
 	}
 	
-	/**
-	 * Loads the lookup items for the specified type from the database.
-	 * @param string the item type
-	 */
-	private static function loadItems()
-	{
-		self::$_items = array();
-		$models=self::model()->findAll();
-	
-		foreach($models as $model) {
-			self::$_items[$model->id_group]=$model->name;
-		}
-	}	
 }

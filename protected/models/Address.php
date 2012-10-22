@@ -25,6 +25,7 @@
  * @property string $date_upd
  * @property integer $active
  * @property integer $deleted
+ * @property string $address_code
  *
  * The followings are the available model relations:
  * @property Country $idCountry
@@ -33,6 +34,8 @@
  */
 class Address extends CActiveRecord
 {
+	public static $CODE_TYPE = '001';
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -59,9 +62,7 @@ class Address extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			//array('id_country, alias, lastname, firstname, address1, city, date_add, date_upd', 'required'),
-			array('id_country, alias, lastname, firstname, address1, city', 'required'),
-			
+			array('id_country, alias, lastname, firstname, address1, city, date_add, date_upd', 'required'),
 			array('active, deleted', 'numerical', 'integerOnly'=>true),
 			array('id_country, id_state, id_user', 'length', 'max'=>10),
 			array('alias, company, lastname, firstname, vat_number', 'length', 'max'=>32),
@@ -69,11 +70,11 @@ class Address extends CActiveRecord
 			array('postcode', 'length', 'max'=>12),
 			array('city', 'length', 'max'=>64),
 			array('phone, phone_mobile, dni', 'length', 'max'=>16),
+			array('address_code', 'length', 'max'=>20),
 			array('other', 'safe'),
-						
-			// The following rule is used by search().
+			// The following rule is used by search(). 
 			// Please remove those attributes that should not be searched.
-			array('id_address, id_country, id_state, id_user, alias, company, lastname, firstname, address1, address2, postcode, city, other, phone, phone_mobile, vat_number, dni, date_add, date_upd, active, deleted', 'safe', 'on'=>'search'),
+			array('id_address, id_country, id_state, id_user, alias, company, lastname, firstname, address1, address2, postcode, city, other, phone, phone_mobile, vat_number, dni, date_add, date_upd, active, deleted, address_code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -119,6 +120,7 @@ class Address extends CActiveRecord
 			'date_upd' => 'Date Upd',
 			'active' => 'Active',
 			'deleted' => 'Deleted',
+			'address_code' => 'Address Code',
 		);
 	}
 
@@ -154,12 +156,13 @@ class Address extends CActiveRecord
 		$criteria->compare('date_upd',$this->date_upd,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('deleted',$this->deleted);
+		$criteria->compare('address_code',$this->address_code,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-	
+		
 	protected function beforeSave()
 	{
 		if($this->isNewRecord)
@@ -168,7 +171,7 @@ class Address extends CActiveRecord
 		} else {
 			$this->date_upd=time();
 		}
-				
+	
 		return parent::beforeSave();
 	}
 }

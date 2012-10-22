@@ -11,19 +11,15 @@
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_code'); ?>
-		<?php echo $form->textField($model,'id_code',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'type'); ?>
-		<?php echo $form->textField($model,'type',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'code'); ?>
 		<?php echo $form->textField($model,'code',array('size'=>20,'maxlength'=>20)); ?>
+	</div>	
+
+	<div class="row">
+		<?php echo $form->label($model,'type'); ?>
+		<?php echo $form->textField($model,'type',array('size'=>20,'maxlength'=>20)); ?>
 	</div>
 
 	<div class="row">

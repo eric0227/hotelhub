@@ -89,17 +89,16 @@
 	
 	<div class="row">	
 		
-		<?php echo $form->labelEx($model,'addresses'); ?>
-		manage
+		<?php echo $form->labelEx($model,'addresses'); ?>		
 		
 		<?php 
-			foreach($model->addresses as $address) {
-				//print_r($address);
-// 				/echo $address->addressCode->name;
-	
-				echo ',<br>';
-			}
-		?>	
+			foreach($model->addresses as $address) {						
+				echo CHtml::link(CHtml::encode( $address->addressCode->name), array('address/view', 'id'=>$address->id_address));
+				echo ',';
+			}	
+		?>
+		<br><br>
+		<?php echo CHtml::link('[Add address]', array('address/index', 'Address[id_user]'=>$model->id_user)); ?>	
 	</div>
 
 	<div class="row buttons">
