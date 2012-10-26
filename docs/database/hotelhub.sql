@@ -82,6 +82,17 @@ INSERT INTO `gc_code` (`code`, `type`, `name`) VALUES
 ('001003', '001', 'Invoice');
 
 
+CREATE TABLE IF NOT EXISTS `gc_service` (
+  `id_service` int(10) unsigned NOT NULL AUTO_INCREMENT,  
+  `name` VARCHAR(128) NOT NULL,
+  PRIMARY KEY (`id_service`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `gc_code` (`code`, `type`, `name`) VALUES
+('001001', '001', 'Default'),
+
+
 CREATE TABLE IF NOT EXISTS `gc_zone` (
   `id_zone` int(10) unsigned NOT NULL AUTO_INCREMENT,
 
@@ -286,8 +297,9 @@ CREATE TABLE IF NOT EXISTS `gc_state` (
 CREATE TABLE IF NOT EXISTS `gc_category` (
   `id_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_parent` int(10) unsigned NOT NULL,
-
-  `level_depth` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `id_service` int(10) unsigned DEFAULT '1',
+  
+  `level_depth` tinyint(3) unsigned NOT NULL DEFAULT '1',
   
   `nleft` int(10) unsigned NOT NULL DEFAULT '0',
   `nright` int(10) unsigned NOT NULL DEFAULT '0',
@@ -298,11 +310,20 @@ CREATE TABLE IF NOT EXISTS `gc_category` (
 
   `position` int(10) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`),
-  FOREIGN KEY (`id_parent`) REFERENCES `gc_category`(`id_parent`) ON DELETE CASCADE ON UPDATE CASCADE,
-
+  FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
   KEY `nleftright` (`nleft`,`nright`)
 
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10;
+
+INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nleft, nright, active, date_add, date_upd )
+VALUES (1, 0, 1, 1, 1, 2, 1, now(), now());
+
+INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nleft, nright, active, date_add, date_upd )
+VALUES (2, 0, 1, 2, 1, 2, 1, now(), now());
+
+INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nleft, nright, active, date_add, date_upd )
+VALUES (3, 0, 1, 3, 1, 2, 1, now(), now());
+
 
 CREATE TABLE IF NOT EXISTS `gc_category_lang` (
   `id_category` int(10) unsigned NOT NULL,
@@ -320,12 +341,17 @@ CREATE TABLE IF NOT EXISTS `gc_category_lang` (
  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `gc_category_group` (
-  `id_category` int(10) unsigned NOT NULL,
-  `id_group` int(10) unsigned NOT NULL,
-  PRIMARY KEY (`id_category`,`id_group`),
+/*
+CREATE TABLE IF NOT EXISTS `gc_category_service` (
+  `id_service` int(10) unsigned NOT NULL,
+  `id_category` int(10) unsigned NOT NULL,  
+  
+  PRIMARY KEY (`id_service`, `id_category`),
+  FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_category`) REFERENCES `gc_category`(`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
+
 
 CREATE TABLE IF NOT EXISTS `gc_product` (
   `id_product` int(10) unsigned NOT NULL AUTO_INCREMENT,

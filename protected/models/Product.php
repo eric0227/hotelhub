@@ -35,8 +35,9 @@
  * @property Attachment[] $gcAttachments
  * @property Attribute[] $gcAttributes
  * @property ProductAttributeValue[] $productAttributeValues
+ * @property ProductImage[] $productImages
  * @property ProductLang[] $productLangs
- * @property ProductRoom $productRoom
+ * @property ProductRoom[] $productRooms
  */
 class Product extends CActiveRecord
 {
@@ -93,8 +94,9 @@ class Product extends CActiveRecord
 			'gcAttachments' => array(self::MANY_MANY, 'Attachment', 'gc_product_attachment(id_product, id_attachment)'),
 			'gcAttributes' => array(self::MANY_MANY, 'Attribute', 'gc_product_attribute(id_product, id_attribute)'),
 			'productAttributeValues' => array(self::HAS_MANY, 'ProductAttributeValue', 'id_product'),
+			'productImages' => array(self::HAS_MANY, 'ProductImage', 'id_product'),
 			'productLangs' => array(self::HAS_MANY, 'ProductLang', 'id_product'),
-			'productRoom' => array(self::HAS_ONE, 'ProductRoom', 'id_product'),
+			'productRooms' => array(self::HAS_MANY, 'ProductRoom', 'id_product'),
 		);
 	}
 

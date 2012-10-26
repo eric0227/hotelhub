@@ -25,6 +25,9 @@ return array(
 			'password'=>'admin123456',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+			'generatorPaths' => array(
+			                        'application.gii'  //nested set  Model and Crud templates
+			),
 		),
 	),
 
@@ -59,22 +62,21 @@ return array(
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
-		),
-/*		
+		),		
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=>'error, warning',
+					'levels'=> 'trace', //'error, warning',
+					'logFile' => 'trace.log'
 				),
 				// uncomment the following to show log messages on web pages
-				array(
-					'class'=>'CWebLogRoute',
-				),
+// 				array(
+// 					'class'=>'CWebLogRoute',
+// 				),
 			),
 		),
-*/
 	),
 
 	// application-level parameters that can be accessed

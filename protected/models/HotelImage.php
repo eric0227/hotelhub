@@ -58,8 +58,9 @@ class HotelImage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idImage' => array(self::BELONGS_TO, 'Image', 'id_image'),
-			'idHotel' => array(self::BELONGS_TO, 'Supplier', 'id_hotel'),
+			'image' => array(self::BELONGS_TO, 'Image', 'id_image'),
+			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_hotel'),
+			'hotel' => array(self::BELONGS_TO, 'Hotel', 'id_hotel'),
 		);
 	}
 

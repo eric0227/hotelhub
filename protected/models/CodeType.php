@@ -96,6 +96,8 @@ class CodeType extends CActiveRecord
 		if(self::$_items == null) {
 			self::loadItems();
 		}
+		Yii::trace(print_r(self::$_items, true));
+		
 		return self::$_items;
 	}
 	
@@ -111,5 +113,6 @@ class CodeType extends CActiveRecord
 		foreach($models as $model) {
 			self::$_items[$model->type]=$model->name;
 		}
+		
 	}
 }

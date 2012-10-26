@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'gc_category':
  * @property string $id_category
  * @property string $id_parent
+ * @property string $id_service
  * @property integer $level_depth
  * @property string $nleft
  * @property string $nright
@@ -17,13 +18,27 @@
  * The followings are the available model relations:
  * @property Category $idParent
  * @property Category[] $categories
- * @property CategoryGroup[] $categoryGroups
  * @property CategoryLang[] $categoryLangs
  * @property Product[] $gcProducts
+ * @property Service[] $gcServices
  * @property Product[] $products
  */
 class Category extends CActiveRecord
 {
+	public function behaviors() {
+		return array(
+			'NestedSetBehavior' => 
+				array(
+					'class'=>'ext.NestedSetBehavior',
+					'leftAttribute'=>'nleft',
+					'rightAttribute'=>'nright',
+					'levelAttribute'=>'level_depth',
+					'rootAttribute'=>'id_service',
+					'hasManyRoots'=>true
+				)
+		);
+	}
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -50,12 +65,12 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_parent, date_add, date_upd', 'required'),
+			array('id_parent, id_service', 'required'),
 			array('level_depth, active', 'numerical', 'integerOnly'=>true),
-			array('id_parent, nleft, nright, position', 'length', 'max'=>10),
+			array('id_parent, id_service, nleft, nright, position', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_category, id_parent, level_depth, nleft, nright, active, date_add, date_upd, position', 'safe', 'on'=>'search'),
+			array('id_category, id_service, id_parent, level_depth, nleft, nright, active, date_add, date_upd, position', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,12 +82,13 @@ class Category extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idParent' => array(self::BELONGS_TO, 'Category', 'id_parent'),
+			'parent' => array(self::BELONGS_TO, 'Category', 'id_parent'),
 			'categories' => array(self::HAS_MANY, 'Category', 'id_parent'),
-			'categoryGroups' => array(self::HAS_MANY, 'CategoryGroup', 'id_category'),
+			'service' => array(self::BELONGS_TO, 'Service', 'id_service'),
 			'categoryLangs' => array(self::HAS_MANY, 'CategoryLang', 'id_category'),
-			'gcProducts' => array(self::MANY_MANY, 'Product', 'gc_category_product(id_category, id_product)'),
-			'products' => array(self::HAS_MANY, 'Product', 'id_category_default'),
+			'products' => array(self::MANY_MANY, 'Product', 'gc_category_product(id_category, id_product)'),
+			'services' => array(self::MANY_MANY, 'Service', 'gc_category_service(id_category, id_service)'),
+			//'products' => array(self::HAS_MANY, 'Product', 'id_category_default'),
 		);
 	}
 
@@ -84,6 +100,7 @@ class Category extends CActiveRecord
 		return array(
 			'id_category' => 'Id Category',
 			'id_parent' => 'Id Parent',
+			'id_service' => 'Id Service',
 			'level_depth' => 'Level Depth',
 			'nleft' => 'Nleft',
 			'nright' => 'Nright',
@@ -106,6 +123,10 @@ class Category extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_category',$this->id_category,true);
+		
+		//$criteria->compare('id_service',$this->id_service,true);
+		$criteria->compare('id_service',Service::getCurrentService(),true);
+		
 		$criteria->compare('id_parent',$this->id_parent,true);
 		$criteria->compare('level_depth',$this->level_depth);
 		$criteria->compare('nleft',$this->nleft,true);
@@ -114,9 +135,66 @@ class Category extends CActiveRecord
 		$criteria->compare('date_add',$this->date_add,true);
 		$criteria->compare('date_upd',$this->date_upd,true);
 		$criteria->compare('position',$this->position,true);
-
+		
+		$criteria->order = 'id_service, nleft';
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+	
+	protected function beforeSave()
+	{
+		if($this->isNewRecord)
+		{
+			$this->date_add=$this->date_upd=time();
+		} else {
+			$this->date_upd=time();
+		}
+		
+		$this->id_service = Service::getCurrentService();
+	
+ 		if($this->id_parent != 0) {
+ 			return parent::beforeSave();
+ 		} else {
+ 			return true;
+ 		}
+	}
+	
+	public function getUnDescendants() {
+		$criteria = new CDbCriteria;
+		$criteria->condition='id_service = :id_service AND (nleft < :nleft OR nright > :nright)';
+		$criteria->params=array(':id_service' => $this->id_service, ':nleft' => $this->nleft, ':nright' => $this->nright);
+		$criteria->order = 'id_service, nleft';
+	
+		return Category::model()->findAll($criteria);
+	}
+	
+	public static function getCategory() {
+		return Category::model()->findByPk(Service::getCurrentService());
+	}
+	
+	public static function getDescendants() {
+		$model = Category::model()->findByPk(Service::getCurrentService());		
+		return $model->descendants()->findAll();
+	}
+	
+	public static function items($without = null) {
+		$_items = array();
+
+		$service = Service::getCurrentService();		
+		$models = self::getDescendants($service);
+		$_items[$service] = $service;
+		
+		foreach($models as $model) {			
+			if($model->id_category != $without) {
+				$_items[$model->id_category] = $model->id_category;
+			}
+		}
+		return $_items;
+	}
+	
 }
+
+
+

@@ -1,4 +1,22 @@
-<?php /* @var $this Controller */ ?>
+
+<?php 
+	$session=new CHttpSession;
+	$session->open();
+	
+	if(isset($session['service'])) {
+		$service = $session['service'];
+	} else {
+		$service = 1;
+	}
+	
+	if(isset($session['lang'])) {
+		$lang = $session['lang'];
+	} else {
+		$lang = 1;
+	}
+	
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -23,7 +41,30 @@
 <div class="container" id="page">
 
 	<div id="header">
-		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+		<div id="logo">
+			<?php echo CHtml::encode(Yii::app()->name); ?>
+		</div>
+		<div>
+			<div style="float:left;">
+			<?php 
+				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/service/change','post');
+				echo CHtml::dropDownList('service', $service, Service::items());
+				echo CHtml::submitButton("Service");
+				echo CHtml::endForm();
+			?>
+			</div>
+			
+			<div style="float:left; padding-left: 20px;">
+			<?php 
+				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post');
+				echo CHtml::dropDownList('lang', $lang, Lang::items());
+				echo CHtml::submitButton("Lang");
+				echo CHtml::endForm();
+			?>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+				
 	</div><!-- header -->
 
 	<div id="mainmenu">
@@ -34,16 +75,29 @@
 				array('label'=>'Contact', 'url'=>array('/site/contact')),
 				array(
 					'label'=>'Manage Model',
+					'url'=>'',
 
 					'items'=>array(
 						array('label'=>'Configuration', 'url'=>array('/configuration/index', 'tag'=>'configuration')),
+						array('label'=>'Lang', 'url'=>array('/lang/index', 'tag'=>'lang')),
 						array('label'=>'CodeType', 'url'=>array('/codeType/index', 'tag'=>'codeType')),
 						array('label'=>'Code', 'url'=>array('/code/index', 'tag'=>'code')),
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
 						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
 						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address')),
 						
-						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),						
+						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service')),
+						
+						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),
+						
+						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),
+						
+						array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),
+						
+						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),
+						
+						array('label'=>'RoomType', 'url'=>array('/roomType/index', 'tag'=>'roomType')),
+						
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

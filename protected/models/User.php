@@ -23,6 +23,11 @@
  */
 class User extends CActiveRecord
 {
+	public static $ADMIN = 1;
+	public static $SUPPLIER = 2;
+	public static $AGNT = 3;
+	public static $CUSTOMER = 4;
+	
 	private static $_items = null;
 	/**
 	 * Returns the static model of the specified AR class.
@@ -127,22 +132,21 @@ class User extends CActiveRecord
 		));
 	}
 	
-	public static function items()
+	public static function items($group = null)
 	{
-		if(self::$_items == null) {
-			self::loadItems();
-		}
+		self::loadItems($group);	
 		return self::$_items;
 	}
 	
-	/**
-	 * Loads the lookup items for the specified type from the database.
-	 * @param string the item type
-	 */
-	private static function loadItems()
+	private static function loadItems($group = null)
 	{
 		self::$_items = array();
-		$models=self::model()->findAll();
+		
+		if(isset($group)) {
+			$models=self::model()->findAll('id_group = :id_group', array(':id_group' => $group));		
+		} else {
+			$models=self::model()->findAll();
+		}
 	
 		foreach($models as $model) {
 			self::$_items[$model->id_user]=$model->email;

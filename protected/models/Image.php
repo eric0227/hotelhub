@@ -56,8 +56,8 @@ class Image extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'hotelImage' => array(self::HAS_ONE, 'HotelImage', 'id_image'),
-			'gcProducts' => array(self::MANY_MANY, 'Product', 'gc_product_image(id_image, id_product)'),
+			//'hotelImage' => array(self::HAS_ONE, 'HotelImage', 'id_image'),
+			//'products' => array(self::MANY_MANY, 'Product', 'gc_product_image(id_image, id_product)'),
 		);
 	}
 

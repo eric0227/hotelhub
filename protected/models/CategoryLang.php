@@ -92,7 +92,6 @@ class CategoryLang extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_category',$this->id_category,true);
@@ -107,5 +106,23 @@ class CategoryLang extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function getLangModels($id = null) {
+		$langModels = array();
+		
+		foreach (Lang::items() as $key => $name) {
+			if(isset($id)) {
+				$model = self::model()->findByPk($id);
+			} else {
+				$model = new CategoryLang();
+			}
+			$model->id_category = $id;
+			$model->id_lang = $key;
+			
+			$langModels[] = $model;
+		}
+		
+		return $langModels;
 	}
 }

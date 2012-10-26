@@ -28,7 +28,7 @@ class LangController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'change'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -167,5 +167,20 @@ class LangController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionChange() {
+		$session=new CHttpSession;
+		$session->open();
+	
+		if(isset($_REQUEST['lang'])) {
+			$lang = $_REQUEST['lang'];
+		} else {
+			$lang = 1;
+		}
+		$session['lang'] = $lang;
+	
+		//$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		$this->redirect(Yii::app()->getRequest()->getUrlReferrer());
 	}
 }

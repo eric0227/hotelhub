@@ -129,4 +129,17 @@ class Lang extends CActiveRecord
 			self::$_items[$model->id_lang]=$model->name;
 		}
 	}
+	
+	public static function getCurrentLang() {
+		$session=new CHttpSession;
+		$session->open();
+	
+		if(isset($session['lang'])) {
+			$lang = $session['lang'];
+		} else {
+			$lang = 1;
+		}
+	
+		return $lang;
+	}
 }
