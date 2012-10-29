@@ -122,9 +122,19 @@ class CodeController extends Controller
 	 */
 	public function actionIndex()
 	{
+		
+		$model=new Code('search');
+	
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_REQUEST['Code'])) {
+			$model->attributes = $_REQUEST['Code'];
+		}
+	
 		$dataProvider=new CActiveDataProvider('Code');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+		$dataProvider = $model->search();
+		$this->render('index', array(
+				'dataProvider'=>$dataProvider,
+				'model' => $model
 		));
 	}
 

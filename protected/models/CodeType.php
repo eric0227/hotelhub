@@ -12,6 +12,9 @@
  */
 class CodeType extends CActiveRecord
 {
+	const ADDRESS = 1;
+	const ROOM = 2;
+	
 	private static $_items = null;
 	
 	/**
@@ -89,6 +92,10 @@ class CodeType extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function addCode($code) {
+		$code.save();		
 	}
 	
 	public static function items()

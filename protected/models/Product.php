@@ -11,18 +11,12 @@
  * @property string $minimal_quantity
  * @property string $price
  * @property string $wholesale_price
- * @property string $additional_shipping_cost
- * @property string $reference
- * @property string $location
  * @property double $width
  * @property double $height
  * @property double $depth
  * @property double $weight
  * @property string $out_of_stock
- * @property integer $customizable
- * @property integer $text_fields
  * @property integer $active
- * @property integer $available_for_order
  * @property string $condition
  * @property integer $show_price
  * @property integer $indexed
@@ -68,16 +62,14 @@ class Product extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('date_add, date_upd', 'required'),
-			array('on_sale, quantity, customizable, text_fields, active, available_for_order, show_price, indexed', 'numerical', 'integerOnly'=>true),
+			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
 			array('id_category_default, minimal_quantity, out_of_stock', 'length', 'max'=>10),
-			array('price, wholesale_price, additional_shipping_cost', 'length', 'max'=>20),
-			array('reference', 'length', 'max'=>32),
-			array('location', 'length', 'max'=>64),
+			array('price, wholesale_price', 'length', 'max'=>20),
 			array('condition', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product, id_category_default, on_sale, quantity, minimal_quantity, price, wholesale_price, additional_shipping_cost, reference, location, width, height, depth, weight, out_of_stock, customizable, text_fields, active, available_for_order, condition, show_price, indexed, date_add, date_upd', 'safe', 'on'=>'search'),
+			array('id_product, id_category_default, on_sale, quantity, minimal_quantity, price, wholesale_price, width, height, depth, weight, out_of_stock, active, condition, show_price, indexed, date_add, date_upd', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -113,18 +105,12 @@ class Product extends CActiveRecord
 			'minimal_quantity' => 'Minimal Quantity',
 			'price' => 'Price',
 			'wholesale_price' => 'Wholesale Price',
-			'additional_shipping_cost' => 'Additional Shipping Cost',
-			'reference' => 'Reference',
-			'location' => 'Location',
 			'width' => 'Width',
 			'height' => 'Height',
 			'depth' => 'Depth',
 			'weight' => 'Weight',
 			'out_of_stock' => 'Out Of Stock',
-			'customizable' => 'Customizable',
-			'text_fields' => 'Text Fields',
 			'active' => 'Active',
-			'available_for_order' => 'Available For Order',
 			'condition' => 'Condition',
 			'show_price' => 'Show Price',
 			'indexed' => 'Indexed',
@@ -151,18 +137,12 @@ class Product extends CActiveRecord
 		$criteria->compare('minimal_quantity',$this->minimal_quantity,true);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('wholesale_price',$this->wholesale_price,true);
-		$criteria->compare('additional_shipping_cost',$this->additional_shipping_cost,true);
-		$criteria->compare('reference',$this->reference,true);
-		$criteria->compare('location',$this->location,true);
 		$criteria->compare('width',$this->width);
 		$criteria->compare('height',$this->height);
 		$criteria->compare('depth',$this->depth);
 		$criteria->compare('weight',$this->weight);
 		$criteria->compare('out_of_stock',$this->out_of_stock,true);
-		$criteria->compare('customizable',$this->customizable);
-		$criteria->compare('text_fields',$this->text_fields);
 		$criteria->compare('active',$this->active);
-		$criteria->compare('available_for_order',$this->available_for_order);
 		$criteria->compare('condition',$this->condition,true);
 		$criteria->compare('show_price',$this->show_price);
 		$criteria->compare('indexed',$this->indexed);

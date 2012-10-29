@@ -22,11 +22,10 @@ $this->menu=array(
 )); ?>
 
 	<div class="row">
-	<?php echo CHtml::label('User', 'id_user'); ?>
-	<?php 
-		// echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10));
-		echo $form->dropDownList($model,'id_user', User::items(), array('empty' => '-- ALL --'));
-	?>
+<?php echo CHtml::label('User', 'id_user'); ?>
+<?php 
+	echo $form->dropDownList($model,'id_user', User::items(), array('empty' => '-- ALL --'));
+?>
 	</div>
 	
 <?php

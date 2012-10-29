@@ -356,23 +356,16 @@ CREATE TABLE IF NOT EXISTS `gc_category_service` (
 CREATE TABLE IF NOT EXISTS `gc_product` (
   `id_product` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_category_default` int(10) unsigned DEFAULT NULL,
-  `on_sale` tinyint(1) unsigned NOT NULL DEFAULT '0',  
+  `on_sale` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `quantity` int(10) NOT NULL DEFAULT '0',
-  `minimal_quantity` int(10) unsigned NOT NULL DEFAULT '1',
   `price` decimal(20,6) NOT NULL DEFAULT '0.000000',
-  `wholesale_price` decimal(20,6) NOT NULL DEFAULT '0.000000',  
-  `additional_shipping_cost` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `reference` varchar(32) DEFAULT NULL,
-  `location` varchar(64) DEFAULT NULL,
+  `wholesale_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
   `width` float NOT NULL DEFAULT '0',
   `height` float NOT NULL DEFAULT '0',
   `depth` float NOT NULL DEFAULT '0',
   `weight` float NOT NULL DEFAULT '0',
-  `out_of_stock` int(10) unsigned NOT NULL DEFAULT '2',  
-  `customizable` tinyint(2) NOT NULL DEFAULT '0',  
-  `text_fields` tinyint(4) NOT NULL DEFAULT '0',
+  `out_of_stock` int(10) unsigned NOT NULL DEFAULT '2',
   `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `available_for_order` tinyint(1) NOT NULL DEFAULT '1',
   `condition` enum('new','used','refurbished') NOT NULL DEFAULT 'new',
   `show_price` tinyint(1) NOT NULL DEFAULT '1',
   `indexed` tinyint(1) NOT NULL DEFAULT '0',
@@ -394,8 +387,6 @@ CREATE TABLE IF NOT EXISTS `gc_product_lang` (
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_title` varchar(128) DEFAULT NULL,
   `name` varchar(128) NOT NULL,
-  `available_now` varchar(255) DEFAULT NULL,
-  `available_later` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_product`,`id_lang`),
   KEY `name` (`name`),
 
@@ -412,6 +403,10 @@ CREATE TABLE IF NOT EXISTS `gc_attribute_group` (
   PRIMARY KEY (`id_attribute_group`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+INSERT INTO gc_attribute_group(`id_attribute_group`, `name`) values 
+('1', 'Room Facilities'),
+('2', 'Supplier Facilities');
+
 CREATE TABLE IF NOT EXISTS `gc_attribute` (
   `id_attribute` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_attribute_group` int(10) unsigned NOT NULL,
@@ -425,8 +420,28 @@ CREATE TABLE IF NOT EXISTS `gc_attribute` (
   FOREIGN KEY (`id_attribute_group`) REFERENCES `gc_attribute_group`(`id_attribute_group`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+INSERT INTO `gc_attribute`(`id_attribute`, `id_attribute_group`,  `name`, `attr_type`) values
+('1','1', 'Room Features', 'checkbox'),
+('2','1', 'Laundry Facilities', 'checkbox'),
+('3','1', 'General Amenities', 'checkbox'),
+('4','1', 'Internet', 'checkbox'),
+('5','1', 'Bathroom Features', 'checkbox'),
+('6','1', 'Climate control', 'checkbox'),
+('7','1', 'Kitchen Features', 'checkbox'),
+('8','1', 'Entertainment', 'checkbox');
+INSERT INTO `gc_attribute`(`id_attribute`, `id_attribute_group`,  `name`, `attr_type`) values
+('9','2', 'Property Features', 'checkbox'),
+('10','2', 'Inhouse dining', 'checkbox'),
+('11','2', 'Swimming pools', 'checkbox'),
+('12','2', 'Car parking', 'checkbox'),
+('13','2', 'Guest services', 'checkbox'),
+('14','2', 'Recreation facilities', 'checkbox'),
+('15','2', 'Miscellaneous', 'checkbox');
+
+
+
 CREATE TABLE IF NOT EXISTS `gc_attribute_item` (
-  `id_attribute_item` int(10) unsigned NOT NULL,
+  `id_attribute_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_attribute` int(10) unsigned NOT NULL,
   `item` varchar(300) NOT NULL,  
   `position` tinyint(1) unsigned NOT NULL DEFAULT '0',
@@ -434,6 +449,124 @@ CREATE TABLE IF NOT EXISTS `gc_attribute_item` (
   PRIMARY KEY (`id_attribute_item`),
   FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
+('1','1', 'Balcony / courtyard'),
+('2','1', 'Desk'),
+('3','1', 'Opening windows'),
+('4','1', 'Non-smoking only'),
+('5','1', 'Non-smoking or smoking rooms on request');
+INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
+('6','2', 'Washing machine'),
+('7','2', 'Dryer'),
+('8','2', 'Iron & ironing board'),
+('9','2', 'Trouser press'),
+('10','2', 'Clothes line / airer');
+INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
+('11','3', 'Hairdryer'),
+('12','3', 'Alarm clock'),
+('13','3', 'Radio'),
+('14','3', 'Bathrobes');
+INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
+('15','4', 'Dial-up'),
+('16','4', 'Broadband'),
+('17','4', 'Wireless / WiFi');
+
+INSERT INTO `gc_attribute_item`(`id_attribute`, `item`) values 
+('5', 'Separate shower & bath'),
+('5', 'Shower over bath'),
+('5', 'Shower'),
+('5', 'Bath'),
+('5', 'In-room spa bath / Jacuzzi'),
+('5', 'Shared bathroom'),
+
+('6', 'Air conditioning'),
+('6', 'Fireplace'),
+('6', 'In-room heater'),
+('6', 'Under-floor heating'),
+('6', 'Ceiling fans'),
+('6', 'Fans'),
+
+('7', 'Full kitchen'),
+('7', 'Kitchenette (basic facilities)'),
+('7', 'Tea/Coffee Making'),
+('7', 'Dishwasher'),
+('7', 'Mini bar'),
+('7', 'Refrigerator - full size'),
+('7', 'Refrigerator - bar size'),
+
+('8', 'TV'),
+('8', 'Satellite / Cable'),
+('8', 'Pay-per-view movies'),
+('8', 'Free in-house movies'),
+('8', 'DVD player'),
+('8', 'CD player'),
+('8', 'Game console');
+
+
+INSERT INTO `gc_attribute_item`(`id_attribute`, `item`) values 
+('9', 'Gay friendly'),
+('9', 'Pets allowed'),
+('9', 'Not suitable for children'),
+('9', 'Non-smoking property'),
+('9', 'Non-smoking floors'),
+
+('10', 'Restaurant/s'),
+('10', 'Café'),
+('10', 'Bar / Lounge'),
+('10', 'Room service - 24hr'),
+('10', 'Room service - limited service'),
+
+('11', 'Indoor pool - heated'),
+('11', 'Indoor pool - unheated'),
+('11', 'Outdoor pool - heated'),
+('11', 'Outdoor pool - unheated'),
+('11', 'Kids pool'),
+('11', 'Swim-up bar'),
+('11', 'Pool bar'),
+
+('12', 'On-site parking'),
+('12', 'On-site undercover parking'),
+('12', 'On-site secure undercover parking'),
+('12', 'Off-site undercover parking'),
+('12', 'Off-site secure undercover parking'),
+('12', 'Street parking'),
+('12', 'Valet parking'),
+
+('13', 'Dry cleaning / laundry service'),
+('13', 'Self service laundry facilities'),
+('13', 'Tour desk'),
+('13', '24 hour front desk'),
+('13', 'Concierge'),
+('13', 'Arrival / Departure lounge'),
+('13', 'Luggage storage'),
+('13', 'Porter/Bell service'),
+
+('14', 'Sauna'),
+('14', 'Spa/Hot tub/Jacuzzi'),
+('14', 'Gym/Fitness room'),
+('14', 'Tennis court'),
+('14', 'Playground'),
+('14', 'Games room'),
+('14', 'Motorised water sports'),
+('14', 'Non-motorised water sports'),
+('14', 'Golf course'),
+('14', 'BBQ facilities'),
+('14', 'Direct beach access'),
+('14', 'Day spa'),
+
+('15', 'Lift/Elevator'),
+('15', 'Interconnecting rooms'),
+('15', 'Business centre'),
+('15', 'Conference/Meeting facilities'),
+('15', 'Vending machines'),
+('15', 'Kids club'),
+('15', 'Ice machine'),
+('15', 'Wheelchair accessible'),
+('15', 'Airport shuttle'),
+('15', 'Wifi access');
+
+
 
 CREATE TABLE IF NOT EXISTS `gc_product_attribute` (
   `id_product` int(10) unsigned NOT NULL,
@@ -464,22 +597,21 @@ CREATE TABLE IF NOT EXISTS `gc_hotel` (
     FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+/*
 CREATE TABLE IF NOT EXISTS `gc_room_type` (
     `id_room_type` int(10) unsigned NOT NULL,
     `name` varchar(100) NOT NULL,
     
     PRIMARY KEY (`id_room_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+*/
 
-CREATE TABLE IF NOT EXISTS `gc_product_room` (
-  `id_product_room` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  
+CREATE TABLE IF NOT EXISTS `gc_room` (
   `id_product` int(10) unsigned NOT NULL,
   `id_hotel` int(10) unsigned NOT NULL,
-  `id_room_type` int(10) unsigned NOT NULL,
+  `room_code` char(6) NOT NULL,
 
-  `room_type_code` varchar(64),
+  `room_type_code` varchar(64) NOT NULL,
   `lead_in_room_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `full_rate` int(10) unsigned NOT NULL DEFAULT '0',
   `min_night_stay`  int(2) unsigned,
@@ -489,12 +621,42 @@ CREATE TABLE IF NOT EXISTS `gc_product_room` (
 
   `guests_tot_room_cap` int(2) unsigned,
   `guests_included_price` int(2) unsigned,
-
-  PRIMARY KEY (`id_product_room`),
+  
+  `children_maxnum` int(2) unsigned,
+  `children_years` int(2) unsigned,
+  `children_extra` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  
+  `adults_maxnum` int(2) unsigned,
+  `adults_extra` decimal(20,6) NOT NULL DEFAULT '0.000000',
+   
+  PRIMARY KEY (`id_product`),
 
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_room_type`) REFERENCES `gc_room_type`(`id_room_type`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`room_code`) REFERENCES `gc_code`(`code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `gc_bedding` (
+	`id_bedding`  int(10) unsigned NOT NULL AUTO_INCREMENT,
+	
+	`gest_num`  int(2) unsigned NOT NULL,
+	`single_num` int(2) unsigned NOT NULL,
+	`double_num` int(2) unsigned NOT NULL,
+	`beddig_desc`  varchar(200),
+	`additional_cost`  decimal(20,6) NOT NULL DEFAULT '0.000000',
+	`cots_available`  int(2) unsigned NOT NULL,
+	
+	PRIMARY KEY (`id_bedding`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `gc_room_bedding` (
+	`id_room` int(10) unsigned NOT NULL,
+	`id_bedding`  int(10) unsigned NOT NULL,
+
+	PRIMARY KEY (`id_room`, `id_bedding`),
+	FOREIGN KEY (`id_room`) REFERENCES `gc_room`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`id_bedding`) REFERENCES `gc_bedding`(`id_bedding`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE IF NOT EXISTS `gc_attachment` (
   `id_attachment` int(10) unsigned NOT NULL AUTO_INCREMENT,
