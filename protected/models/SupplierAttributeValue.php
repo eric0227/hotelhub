@@ -88,31 +88,12 @@ class SupplierAttributeValue extends CActiveRecord
 		));
 	}
 	
-	public function getItems() {
-		$data = array();
-		
-		$values = $this->getValues();
-
-		$index = 0;
-		if($this->attr_type == "checkbox" || $this->attr_type == "radiobox") {
-			foreach($this->attributeItems as $item) {
-				$data[$index] = array('name' => $item->name);				
-				if(count($values) > $index) {
-					$data[$index]['value'] = $values[$index]; 
-				} else {
-					$data[$index]['value'] = '0';
-				}
-				$index++;
-			}
-		}		
-	}
-	
 	public function getValues() {
-		return expload(';', $this->value);
+		return explode(';', $this->value);
 	}
 	
 	public function setValues($values) {
-		$this->value = impload(';', $values);
+		$this->value = implode(';', $values);
 	}
 }
 

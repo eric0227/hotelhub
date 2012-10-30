@@ -19,8 +19,10 @@
  * @property string $accounts_fx
  * @property string $supplier_abn
  * @property string $member_chain_group
+ * @property array  $selectedAttributeItemIds
  * @property integer $room_count
  * @property string $website
+ * @property array  $items
  *
  * The followings are the available model relations:
  * @property Hotel[] $hotels
@@ -78,7 +80,7 @@ class Supplier extends CActiveRecord
 			'hotels' => array(self::HAS_MANY, 'Hotel', 'id_supplier'),
 			'hotelImages' => array(self::HAS_MANY, 'HotelImage', 'id_hotel'),
 			'user' => array(self::BELONGS_TO, 'User', 'id_supplier'),
-			'attributeValues' => array(self::MANY_MANY, 'Attribute', 'gc_supplier_attribute_value(id_supplier, id_attribute)'),
+			'attributeValues' => array(self::HAS_MANY, 'SupplierAttributeValue', 'id_supplier'),
 		);
 	}
 
@@ -141,32 +143,80 @@ class Supplier extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
-	public function getItems($id_attribute) {
-		$data = array();
 		
-		$attribute = Attribute::model()->findByPk($id_attribute);
-		$items = $attribute->attributeItems;
+	public function getSelectedAttributeItemIds() {
+		$result = array();
 		
-		$attributeValues = $this->attributeValues;
-			
-		$index = 0;
-		if($attribute->attr_type == "checkbox" || $attribute->attr_type == "radiobox") {
-			foreach($items as $item) {
-				$data[$index] = array(
-					'name' => $item->name, 
-					'value' => $this->getItemValue($attributeValues, $item->id_attribute)
-				);
-			}
+		foreach($this->attributeValues as $attributeValue) {
+			$result = array_merge($result, $attributeValue->getValues());
 		}
+		return $result;
 	}
 	
-	public function getItemValue($attributeValues, $itemId) {
-		foreach($attributeValues as $attributeValue) {
-			if($attributeValue->id_attribute == $itemId) {
-				return $attributeValue->value;
+	public function beforeSave() {
+		
+		print_r($_POST['Supplier']['selectedAttributeItemIds']);
+		//return false;
+		
+		$command = Yii::app()->db->createCommand();
+		$command->delete('gc_supplier_attribute_value', 'id_supplier=:id_supplier', array(':id_supplier' => $this->id_supplier));
+		
+		$attributeList = Attribute::model()->findAll(
+			"id_attribute_group = :id_attribute_group", 
+			array('id_attribute_group' => AttributeGroup::SUPPLIER)
+		);
+		
+		$attributeValue = array();
+		
+		foreach($attributeList as $attribute) {
+			if(!isset($attributeValue[$attribute->id_attribute])) {
+				$attributeValue[$attribute->id_attribute] = array();
+			}
+			$attributeValue[$attribute->id_attribute] = $this->getSelectedAttributeItemIdsFromAttribute($attribute->id_attribute);
+		}
+		
+		foreach($attributeValue as $id_attribute => $ids) {
+			if(count($ids) == 0) {
+				continue;
+			}
+			$attributeValue=new SupplierAttributeValue();
+			$attributeValue->id_supplier = $this->id_supplier;
+			$attributeValue->id_attribute = $id_attribute;
+			//echo implode(';', $ids);
+			$attributeValue->value = implode(';', $ids);
+			$attributeValue->save();
+		}
+		
+		//print_r($attributeValue);
+	}
+	
+	private $attributeItems = null;
+	public function getSelectedAttributeItemIdsFromAttribute($id_attribute) {
+		$result = array();
+		
+		if($this->attributeItems == null) {
+			$this->attributeItems = AttributeItem::model()->findAll();
+		}
+		
+		foreach($this->attributeItems as $item) {
+			if($item->id_attribute == $id_attribute) {
+				if($this->containAttributeItem($item->id_attribute_item)) {
+					$result[] = $item->id_attribute_item;
+				}
 			}
 		}
-		return '0';
+		
+		return $result;		
+	}
+	
+	public function containAttributeItem($id_attribute_item) {
+		$ids = $_POST['Supplier']['selectedAttributeItemIds'];
+				
+		foreach($ids as $id) {
+			if($id == $id_attribute_item) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

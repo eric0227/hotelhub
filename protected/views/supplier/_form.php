@@ -18,8 +18,7 @@
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_supplier'); ?>
 		<?php 
-			// echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10));
-			
+			//echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10));			
 			echo $form->dropDownList($model,'id_supplier', User::items(User::$SUPPLIER));
 		?>
 		<?php echo $form->error($model,'id_supplier'); ?>
@@ -130,28 +129,55 @@
 			array('id_attribute_group' => AttributeGroup::SUPPLIER)
 		);
 		
+		foreach($attributeList as $attribute) {			
+			echo '<div>';
+			echo '<h4>' . $attribute->name . '</h4>';
+
+			
+			echo $form->checkBoxList($model, 'selectedAttributeItemIds',  
+				CHtml::listData(
+					AttributeItem::model()->findAll(
+						'id_attribute = :id_attribute', 
+						array('id_attribute'=>$attribute->id_attribute)
+					),
+					'id_attribute_item',
+					'item'
+				)
+			);
+			
+			echo '<br>';
+			echo '</div>';
+			break;
+		}
+/*	
 		foreach($attributeList as $attribute) {
 			echo '<div>';
 			echo '	<ul><h4>' . $attribute->name . '</h4></ul>';
-
-			
-						
-			
+		
 			foreach($attribute->attributeItems as $item) {
 				echo '<li>';
 				echo '<input type="checkbox" >';
 				echo $item->item;
-				echo '</li>';				
+				echo '</li>';
 				//echo CHtml::activeCheckBox($item, $item->item);
 				echo '</ul>';
 			}
-			
-			
+				
+			$items = $model->getItems($attribute->id_attribute);
+			print_r($items);
+				
 			echo '</div>';
 			echo '<BR><BR>';
 		}
+*/
 	?>
 	</div>
+	
+	<?php 
+		
+		
+	
+	?>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
