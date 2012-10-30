@@ -40,9 +40,9 @@ class AttributeItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_attribute_item, id_attribute, item', 'required'),
+			array('id_attribute, item', 'required'),
 			array('position', 'numerical', 'integerOnly'=>true),
-			array('id_attribute_item, id_attribute', 'length', 'max'=>10),
+			array('id_attribute', 'length', 'max'=>10),
 			array('item', 'length', 'max'=>300),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

@@ -21,6 +21,12 @@
  * @property string $member_chain_group
  * @property integer $room_count
  * @property string $website
+ *
+ * The followings are the available model relations:
+ * @property Hotel[] $hotels
+ * @property HotelImage[] $hotelImages
+ * @property User $idSupplier
+ * @property Attribute[] $gcAttributes
  */
 class Supplier extends CActiveRecord
 {
@@ -69,7 +75,10 @@ class Supplier extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'hotel' => array(self::HAS_ONE, 'Hotel', 'id_supplier'),
+			'hotels' => array(self::HAS_MANY, 'Hotel', 'id_supplier'),
+			'hotelImages' => array(self::HAS_MANY, 'HotelImage', 'id_hotel'),
+			'user' => array(self::BELONGS_TO, 'User', 'id_supplier'),
+			'attributeValues' => array(self::MANY_MANY, 'Attribute', 'gc_supplier_attribute_value(id_supplier, id_attribute)'),
 		);
 	}
 
@@ -132,5 +141,34 @@ class Supplier extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getItems($id_attribute) {
+		$data = array();
+		
+		$attribute = Attribute::model()->findByPk($id_attribute);
+		$items = $attribute->attributeItems;
+		
+		$attributeValues = $this->attributeValues;
+			
+		$index = 0;
+		if($attribute->attr_type == "checkbox" || $attribute->attr_type == "radiobox") {
+			foreach($items as $item) {
+				$data[$index] = array('name' => $item->name);
+				$values.get
+				
+				if(count($values) > $index) {
+					$data[$index]['value'] = $values[$index];
+				} else {
+					$data[$index]['value'] = '0';
+				}
+				$index++;
+			}
+		}
+	}
+	
+	public function getItemValue($attributeValues, $itemId) {
+		foreach($attributeValues as $attributeValue) {
+			if($attributeValue->id)
+		}
+	}
 }
-

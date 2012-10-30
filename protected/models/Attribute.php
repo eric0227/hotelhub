@@ -15,10 +15,17 @@
  * @property AttributeGroup $idAttributeGroup
  * @property AttributeItem[] $attributeItems
  * @property Product[] $gcProducts
- * @property ProductAttributeValue[] $productAttributeValues
+ * @property Supplier[] $gcSuppliers
  */
 class Attribute extends CActiveRecord
 {
+	public static $TYPE = array(
+			'checkbox'=>'checkbox',
+			'radiobox'=>'radiobox',
+			'textfield'=>'textfield',
+			'textarea'=>'textarea',
+	);
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -64,10 +71,10 @@ class Attribute extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idAttributeGroup' => array(self::BELONGS_TO, 'AttributeGroup', 'id_attribute_group'),
+			'attributeGroup' => array(self::BELONGS_TO, 'AttributeGroup', 'id_attribute_group'),
 			'attributeItems' => array(self::HAS_MANY, 'AttributeItem', 'id_attribute'),
-			'gcProducts' => array(self::MANY_MANY, 'Product', 'gc_product_attribute(id_attribute, id_product)'),
-			'productAttributeValues' => array(self::HAS_MANY, 'ProductAttributeValue', 'id_attribute'),
+			'products' => array(self::MANY_MANY, 'Product', 'gc_product_attribute_value(id_attribute, id_product)'),
+			'suppliers' => array(self::MANY_MANY, 'Supplier', 'gc_supplier_attribute_value(id_attribute, id_supplier)'),
 		);
 	}
 

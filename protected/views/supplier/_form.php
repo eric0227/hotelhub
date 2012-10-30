@@ -120,6 +120,38 @@
 		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>128)); ?>
 		<?php echo $form->error($model,'website'); ?>
 	</div>
+	
+	<h2> Supplier Facilities </h2>
+	
+	<div>
+	<?php			
+		$attributeList = Attribute::model()->findAll(
+			"id_attribute_group = :id_attribute_group", 
+			array('id_attribute_group' => AttributeGroup::SUPPLIER)
+		);
+		
+		foreach($attributeList as $attribute) {
+			echo '<div>';
+			echo '	<ul><h4>' . $attribute->name . '</h4></ul>';
+
+			
+						
+			
+			foreach($attribute->attributeItems as $item) {
+				echo '<li>';
+				echo '<input type="checkbox" >';
+				echo $item->item;
+				echo '</li>';				
+				//echo CHtml::activeCheckBox($item, $item->item);
+				echo '</ul>';
+			}
+			
+			
+			echo '</div>';
+			echo '<BR><BR>';
+		}
+	?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

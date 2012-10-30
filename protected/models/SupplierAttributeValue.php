@@ -1,26 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "gc_attribute_group".
+ * This is the model class for table "gc_supplier_attribute_value".
  *
- * The followings are the available columns in table 'gc_attribute_group':
- * @property string $id_attribute_group
- * @property string $name
- *
- * The followings are the available model relations:
- * @property Attribute[] $attributes
+ * The followings are the available columns in table 'gc_supplier_attribute_value':
+ * @property string $id_supplier
+ * @property string $id_attribute
+ * @property string $value
  */
-class AttributeGroup extends CActiveRecord
+class SupplierAttributeValue extends CActiveRecord
 {
-	const ROOM = '1';
-	const SUPPLIER = '2';
-	 
-	private static $_items = null;
-	 
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return AttributeGroup the static model class
+	 * @return SupplierAttributeValue the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -32,7 +25,7 @@ class AttributeGroup extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_attribute_group';
+		return 'gc_supplier_attribute_value';
 	}
 
 	/**
@@ -43,11 +36,12 @@ class AttributeGroup extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>128),
+			array('id_supplier, id_attribute, value', 'required'),
+			array('id_supplier, id_attribute', 'length', 'max'=>10),
+			array('value', 'length', 'max'=>300),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_attribute_group, name', 'safe', 'on'=>'search'),
+			array('id_supplier, id_attribute, value', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +53,6 @@ class AttributeGroup extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'attributes' => array(self::HAS_MANY, 'Attribute', 'id_attribute_group'),
 		);
 	}
 
@@ -69,8 +62,9 @@ class AttributeGroup extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_attribute_group' => 'Id Attribute Group',
-			'name' => 'Name',
+			'id_supplier' => 'Id Supplier',
+			'id_attribute' => 'Id Attribute',
+			'value' => 'Value',
 		);
 	}
 
@@ -85,40 +79,41 @@ class AttributeGroup extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_attribute_group',$this->id_attribute_group,true);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('id_supplier',$this->id_supplier,true);
+		$criteria->compare('id_attribute',$this->id_attribute,true);
+		$criteria->compare('value',$this->value,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 	
-	public static function items()
-	{
-		if(self::$_items == null) {
-			self::loadItems();
-		}
-		Yii::trace(print_r(self::$_items, true));
-	
-		return self::$_items;
+	public function getItems() {
+		$data = array();
+		
+		$values = $this->getValues();
+
+		$index = 0;
+		if($this->attr_type == "checkbox" || $this->attr_type == "radiobox") {
+			foreach($this->attributeItems as $item) {
+				$data[$index] = array('name' => $item->name);				
+				if(count($values) > $index) {
+					$data[$index]['value'] = $values[$index]; 
+				} else {
+					$data[$index]['value'] = '0';
+				}
+				$index++;
+			}
+		}		
 	}
 	
-	/**
-	 * Loads the lookup items for the specified type from the database.
-	 * @param string the item type
-	 */
-	private static function loadItems()
-	{
-		self::$_items = array();
-		$models=self::model()->findAll();
+	public function getValues() {
+		return expload(';', $this->value);
+	}
 	
-		foreach($models as $model) {
-			self::$_items[$model->id_attribute_group] = $model->name;
-		}
+	public function setValues($values) {
+		$this->value = impload(';', $values);
 	}
 }
 
-
-
-
-
+?>

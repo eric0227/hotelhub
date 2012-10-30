@@ -98,6 +98,12 @@
 						
 						array('label'=>'RoomType', 'url'=>array('/roomType/index', 'tag'=>'roomType')),
 						
+						array('label'=>'AttributeGroup', 'url'=>array('/attributeGroup/index', 'tag'=>'attributeGroup')),
+						
+						array('label'=>'Attribute', 'url'=>array('/attribute/index', 'tag'=>'attribute')),
+						
+						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem')),
+						
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

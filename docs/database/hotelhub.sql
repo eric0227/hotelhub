@@ -567,6 +567,15 @@ INSERT INTO `gc_attribute_item`(`id_attribute`, `item`) values
 ('15', 'Wifi access');
 
 
+CREATE TABLE IF NOT EXISTS `gc_supplier_attribute_value` (
+  `id_supplier` int(10) unsigned NOT NULL,
+  `id_attribute` int(10) unsigned NOT NULL,
+  `value` varchar(300) NOT NULL,
+  
+  PRIMARY KEY (`id_supplier`, `id_attribute`),
+  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_product_attribute` (
   `id_product` int(10) unsigned NOT NULL,
@@ -578,12 +587,11 @@ CREATE TABLE IF NOT EXISTS `gc_product_attribute` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_product_attribute_value` (
-  `id_product_attribute_value` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_product` int(10) unsigned NOT NULL,
   `id_attribute` int(10) unsigned NOT NULL,
-  `item_value` varchar(300) NOT NULL,
+  `value` varchar(300) NOT NULL,
   
-  PRIMARY KEY (`id_product_attribute_value`),
+  PRIMARY KEY (`id_product`, `id_attribute`),
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

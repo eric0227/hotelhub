@@ -33,47 +33,27 @@
 	<?php echo CHtml::encode($data->reservations_email); ?>
 	<br />
 
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('reservations_phone')); ?>:</b>
-	<?php echo CHtml::encode($data->reservations_phone); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('reservations_fx')); ?>:</b>
-	<?php echo CHtml::encode($data->reservations_fx); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('accounts_name')); ?>:</b>
-	<?php echo CHtml::encode($data->accounts_name); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('accounts_email')); ?>:</b>
-	<?php echo CHtml::encode($data->accounts_email); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('accounts_phone')); ?>:</b>
-	<?php echo CHtml::encode($data->accounts_phone); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('accounts_fx')); ?>:</b>
-	<?php echo CHtml::encode($data->accounts_fx); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('supplier_abn')); ?>:</b>
-	<?php echo CHtml::encode($data->supplier_abn); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('member_chain_group')); ?>:</b>
-	<?php echo CHtml::encode($data->member_chain_group); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('room_count')); ?>:</b>
-	<?php echo CHtml::encode($data->room_count); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('website')); ?>:</b>
-	<?php echo CHtml::encode($data->website); ?>
-	<br />
-
-	*/ ?>
-
+	<div>
+	<?php			
+		$attributeList = Attribute::model()->findAll(
+			"id_attribute_group = :id_attribute_group", 
+			array('id_attribute_group' => AttributeGroup::SUPPLIER)
+		);
+		
+		foreach($attributeList as $attribute) {
+			echo '<div>';
+			echo '	<ul>' . $attribute->name . '</ul>';
+			foreach($attribute->attributeItems as $item) {
+				echo '<li>';
+				echo '<input type="checkbox" >';
+				echo $item->item;
+				echo '</li>';				
+				//echo CHtml::activeCheckBox($item, $item->item);
+				echo '</ul>';
+			}
+			echo '</div>';
+			echo '<BR><BR>';
+		}
+	?>
+	</div>
 </div>
