@@ -153,22 +153,20 @@ class Supplier extends CActiveRecord
 		$index = 0;
 		if($attribute->attr_type == "checkbox" || $attribute->attr_type == "radiobox") {
 			foreach($items as $item) {
-				$data[$index] = array('name' => $item->name);
-				$values.get
-				
-				if(count($values) > $index) {
-					$data[$index]['value'] = $values[$index];
-				} else {
-					$data[$index]['value'] = '0';
-				}
-				$index++;
+				$data[$index] = array(
+					'name' => $item->name, 
+					'value' => $this->getItemValue($attributeValues, $item->id_attribute)
+				);
 			}
 		}
 	}
 	
 	public function getItemValue($attributeValues, $itemId) {
 		foreach($attributeValues as $attributeValue) {
-			if($attributeValue->id)
+			if($attributeValue->id_attribute == $itemId) {
+				return $attributeValue->value;
+			}
 		}
+		return '0';
 	}
 }
