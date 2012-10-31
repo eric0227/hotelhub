@@ -17,7 +17,10 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_supplier'); ?>
-		<?php echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10)); ?>
+		<?php 
+			// echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10));
+			echo $form->dropDownList($model,'id_supplier', User::items(User::$SUPPLIER));
+		?>
 		<?php echo $form->error($model,'id_supplier'); ?>
 	</div>
 

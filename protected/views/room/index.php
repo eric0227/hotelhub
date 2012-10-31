@@ -1,18 +1,18 @@
 <?php
-/* @var $this RoomTypeController */
+/* @var $this RoomController */
 /* @var $dataProvider CActiveDataProvider */
 
 $this->breadcrumbs=array(
-	'Room Types',
+	'Rooms',
 );
 
 $this->menu=array(
-	array('label'=>'Create RoomType', 'url'=>array('create')),
-	array('label'=>'Manage RoomType', 'url'=>array('admin')),
+	array('label'=>'Create Room', 'url'=>array('create')),
+	array('label'=>'Manage Room', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Room Types</h1>
+<h1>Rooms</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

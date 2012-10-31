@@ -84,26 +84,16 @@
 						array('label'=>'Code', 'url'=>array('/code/index', 'tag'=>'code')),
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
 						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
-						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address')),
-						
-						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service')),
-						
-						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),
-						
-						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),
-						
-						array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),
-						
-						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),
-						
-						array('label'=>'RoomType', 'url'=>array('/roomType/index', 'tag'=>'roomType')),
-						
-						array('label'=>'AttributeGroup', 'url'=>array('/attributeGroup/index', 'tag'=>'attributeGroup')),
-						
-						array('label'=>'Attribute', 'url'=>array('/attribute/index', 'tag'=>'attribute')),
-						
-						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem')),
-						
+						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address')),						
+						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service')),						
+						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),						
+						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
+						array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),						
+						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),						
+						array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room')),						
+						array('label'=>'AttributeGroup', 'url'=>array('/attributeGroup/index', 'tag'=>'attributeGroup')),						
+						array('label'=>'Attribute', 'url'=>array('/attribute/index', 'tag'=>'attribute')),						
+						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem')),						
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

@@ -1,21 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "gc_room_type".
+ * This is the model class for table "gc_special".
  *
- * The followings are the available columns in table 'gc_room_type':
- * @property string $id_room_type
+ * The followings are the available columns in table 'gc_special':
+ * @property string $id_special
  * @property string $name
  *
  * The followings are the available model relations:
- * @property ProductRoom[] $productRooms
+ * @property ProductDate[] $gcProductDates
  */
-class RoomType extends CActiveRecord
+class Special extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return RoomType the static model class
+	 * @return Special the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +27,7 @@ class RoomType extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_room_type';
+		return 'gc_special';
 	}
 
 	/**
@@ -38,12 +38,11 @@ class RoomType extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_room_type, name', 'required'),
-			array('id_room_type', 'length', 'max'=>10),
-			array('name', 'length', 'max'=>100),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_room_type, name', 'safe', 'on'=>'search'),
+			array('id_special, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -55,7 +54,7 @@ class RoomType extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'productRooms' => array(self::HAS_MANY, 'ProductRoom', 'id_room_type'),
+			'gcProductDates' => array(self::MANY_MANY, 'ProductDate', 'gc_special_prodduct_date(id_special, id_product_date)'),
 		);
 	}
 
@@ -65,7 +64,7 @@ class RoomType extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_room_type' => 'Id Room Type',
+			'id_special' => 'Id Special',
 			'name' => 'Name',
 		);
 	}
@@ -81,7 +80,7 @@ class RoomType extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_room_type',$this->id_room_type,true);
+		$criteria->compare('id_special',$this->id_special,true);
 		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(

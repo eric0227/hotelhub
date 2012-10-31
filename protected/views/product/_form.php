@@ -17,7 +17,10 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'id_category_default'); ?>
-		<?php echo $form->textField($model,'id_category_default',array('size'=>10,'maxlength'=>10)); ?>
+		<?php 
+			// echo $form->textField($model,'id_category_default',array('size'=>10,'maxlength'=>10)); 
+			echo $form->dropDownList($model, 'id_category_default', Category::items());
+		?>
 		<?php echo $form->error($model,'id_category_default'); ?>
 	</div>
 

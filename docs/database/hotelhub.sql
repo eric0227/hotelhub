@@ -355,6 +355,7 @@ CREATE TABLE IF NOT EXISTS `gc_category_service` (
 
 CREATE TABLE IF NOT EXISTS `gc_product` (
   `id_product` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_service` int(10) unsigned NOT NULL,
   `id_category_default` int(10) unsigned DEFAULT NULL,
   `on_sale` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `quantity` int(10) NOT NULL DEFAULT '0',
@@ -374,6 +375,7 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
   PRIMARY KEY (`id_product`),  
   KEY `date_add` (`date_add`),
 
+  FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_category_default`) REFERENCES `gc_category`(`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -394,6 +396,32 @@ CREATE TABLE IF NOT EXISTS `gc_product_lang` (
   
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `gc_special` (
+	`id_special` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	`name` varchar(128) NOT NULL,
+	PRIMARY KEY (`id_special`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `gc_product_date` (
+	`id_product_date` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	`id_product` int(10) unsigned NOT NULL,
+	`on_date` datetime NOT NULL,
+	`price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+	`agent_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+	PRIMARY KEY (`id_product_date`),
+	FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE
+	
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `gc_special_product_date` (
+	`id_special` int(10) unsigned NOT NULL,
+	`id_product_date` int(10) unsigned NOT NULL,
+	
+	PRIMARY KEY (`id_special`, `id_product_date`),
+	
+	FOREIGN KEY (`id_special`) REFERENCES `gc_special`(`id_special`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`id_product_date`) REFERENCES `gc_product_date`(`id_product_date`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `gc_attribute_group` (

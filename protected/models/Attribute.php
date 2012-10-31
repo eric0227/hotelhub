@@ -16,6 +16,7 @@
  * @property AttributeItem[] $attributeItems
  * @property Product[] $gcProducts
  * @property Supplier[] $gcSuppliers
+ * @property array selectedAttributeItemIds
  */
 class Attribute extends CActiveRecord
 {
@@ -116,3 +117,4 @@ class Attribute extends CActiveRecord
 		));
 	}
 }
+

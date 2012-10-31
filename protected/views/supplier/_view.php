@@ -33,27 +33,4 @@
 	<?php echo CHtml::encode($data->reservations_email); ?>
 	<br />
 
-	<div>
-	<?php			
-		$attributeList = Attribute::model()->findAll(
-			"id_attribute_group = :id_attribute_group", 
-			array('id_attribute_group' => AttributeGroup::SUPPLIER)
-		);
-		
-		foreach($attributeList as $attribute) {
-			echo '<div>';
-			echo '	<ul>' . $attribute->name . '</ul>';
-			foreach($attribute->attributeItems as $item) {
-				echo '<li>';
-				echo '<input type="checkbox" >';
-				echo $item->item;
-				echo '</li>';				
-				//echo CHtml::activeCheckBox($item, $item->item);
-				echo '</ul>';
-			}
-			echo '</div>';
-			echo '<BR><BR>';
-		}
-	?>
-	</div>
 </div>

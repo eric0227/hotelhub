@@ -23,9 +23,9 @@
  * @property string $adults_extra
  *
  * The followings are the available model relations:
- * @property Product $idProduct
+ * @property Product $product
  * @property Code $roomCode
- * @property Bedding[] $gcBeddings
+ * @property Bedding[] $beddings
  */
 class Room extends CActiveRecord
 {
@@ -77,9 +77,9 @@ class Room extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
+			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
 			'roomCode' => array(self::BELONGS_TO, 'Code', 'room_code'),
-			'gcBeddings' => array(self::MANY_MANY, 'Bedding', 'gc_room_bedding(id_room, id_bedding)'),
+			'beddings' => array(self::MANY_MANY, 'Bedding', 'gc_room_bedding(id_room, id_bedding)'),
 		);
 	}
 

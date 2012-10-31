@@ -123,7 +123,44 @@
 	<h2> Supplier Facilities </h2>
 	
 	<div>
-	<?php			
+	<?php		
+		$attributeInfos = $model->getAllSttributes();
+		foreach($attributeInfos as $info) {
+			echo '<div>';
+			echo '<h4>' . $info['attribute']->name . '</h4>';
+				
+			echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
+				CHtml::listData(
+					$info['attributeItem'],
+					'id_attribute_item',
+					'item'
+				)
+			);
+			echo '</div>';
+		}
+	
+/*	
+		$attributeInfos = $model->getAllSttributes();		
+		foreach($attributeInfos as $info) {
+			echo '<div>';
+			echo '<h4>' . $info['attribute']->name . '</h4>';
+			
+			$info['attribute']->setSelectedAttributeItemIds($info['selectedAttributeItemIds']);
+			
+			echo $form->checkBoxList($model, 'selectedAttributeItem'.$info['attribute']->id_attribute,
+				CHtml::listData(
+					$info['attributeItem'],
+					'id_attribute_item',
+					'item'
+				)
+			);			
+			echo '</div>';
+		}
+*/		
+		
+		
+		
+/*	
 		$attributeList = Attribute::model()->findAll(
 			"id_attribute_group = :id_attribute_group", 
 			array('id_attribute_group' => AttributeGroup::SUPPLIER)
@@ -149,6 +186,8 @@
 			echo '</div>';
 			break;
 		}
+*/		
+		
 /*	
 		foreach($attributeList as $attribute) {
 			echo '<div>';

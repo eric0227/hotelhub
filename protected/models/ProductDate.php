@@ -1,21 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "gc_hotel".
+ * This is the model class for table "gc_product_date".
  *
- * The followings are the available columns in table 'gc_hotel':
- * @property string $id_hotel
- * @property string $id_supplier
+ * The followings are the available columns in table 'gc_product_date':
+ * @property string $id_product_date
+ * @property string $id_product
+ * @property string $on_date
+ * @property string $price
+ * @property string $agent_price
  *
  * The followings are the available model relations:
- * @property Supplier $idSupplier
+ * @property Product $idProduct
+ * @property Special[] $gcSpecials
  */
-class Hotel extends CActiveRecord
+class ProductDate extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Hotel the static model class
+	 * @return ProductDate the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +31,7 @@ class Hotel extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_hotel';
+		return 'gc_product_date';
 	}
 
 	/**
@@ -38,11 +42,12 @@ class Hotel extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_supplier', 'required'),
-			array('id_supplier', 'length', 'max'=>10),
+			array('id_product, on_date', 'required'),
+			array('id_product', 'length', 'max'=>10),
+			array('price, agent_price', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_hotel, id_supplier', 'safe', 'on'=>'search'),
+			array('id_product_date, id_product, on_date, price, agent_price', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +59,8 @@ class Hotel extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
+			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
+			'gcSpecials' => array(self::MANY_MANY, 'Special', 'gc_special_prodduct_date(id_product_date, id_special)'),
 		);
 	}
 
@@ -64,8 +70,11 @@ class Hotel extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_hotel' => 'Id Hotel',
-			'id_supplier' => 'Id Supplier',
+			'id_product_date' => 'Id Product Date',
+			'id_product' => 'Id Product',
+			'on_date' => 'On Date',
+			'price' => 'Price',
+			'agent_price' => 'Agent Price',
 		);
 	}
 
@@ -80,22 +89,14 @@ class Hotel extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_hotel',$this->id_hotel,true);
-		$criteria->compare('id_supplier',$this->id_supplier,true);
+		$criteria->compare('id_product_date',$this->id_product_date,true);
+		$criteria->compare('id_product',$this->id_product,true);
+		$criteria->compare('on_date',$this->on_date,true);
+		$criteria->compare('price',$this->price,true);
+		$criteria->compare('agent_price',$this->agent_price,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-	
-	public static function items() {
-		$_items = array();
-		
-		$models = Hotel::model()->findAll();
-		
-		foreach($models as $model) {
-			$_items[$model->id_hotel] = $model->id_hotel;
-		}
-		return $_items;
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-class RoomTypeController extends Controller
+class RoomController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,16 +62,16 @@ class RoomTypeController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new RoomType;
+		$model=new Room;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['RoomType']))
+		if(isset($_POST['Room']))
 		{
-			$model->attributes=$_POST['RoomType'];
+			$model->attributes=$_POST['Room'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_room_type));
+				$this->redirect(array('view','id'=>$model->id_product));
 		}
 
 		$this->render('create',array(
@@ -91,11 +91,11 @@ class RoomTypeController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['RoomType']))
+		if(isset($_POST['Room']))
 		{
-			$model->attributes=$_POST['RoomType'];
+			$model->attributes=$_POST['Room'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_room_type));
+				$this->redirect(array('view','id'=>$model->id_product));
 		}
 
 		$this->render('update',array(
@@ -122,7 +122,7 @@ class RoomTypeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('RoomType');
+		$dataProvider=new CActiveDataProvider('Room');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class RoomTypeController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new RoomType('search');
+		$model=new Room('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['RoomType']))
-			$model->attributes=$_GET['RoomType'];
+		if(isset($_GET['Room']))
+			$model->attributes=$_GET['Room'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -150,7 +150,7 @@ class RoomTypeController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=RoomType::model()->findByPk($id);
+		$model=Room::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,7 +162,7 @@ class RoomTypeController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='room-type-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='room-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

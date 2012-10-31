@@ -24,14 +24,14 @@
  * @property string $date_upd
  *
  * The followings are the available model relations:
- * @property Category[] $gcCategories
- * @property Category $idCategoryDefault
- * @property Attachment[] $gcAttachments
- * @property Attribute[] $gcAttributes
- * @property ProductAttributeValue[] $productAttributeValues
+ * @property Category[] $categories
+ * @property Category $categoryDefault
+ * @property Attachment[] $attachments
+ * @property Attribute[] $attributeList
+ * @property ProductDate[] $productDates
  * @property ProductImage[] $productImages
  * @property ProductLang[] $productLangs
- * @property ProductRoom[] $productRooms
+ * @property Room $room
  */
 class Product extends CActiveRecord
 {
@@ -61,7 +61,7 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('date_add, date_upd', 'required'),
+			array('id_category_default', 'required'),
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
 			array('id_category_default, minimal_quantity, out_of_stock', 'length', 'max'=>10),
@@ -81,14 +81,14 @@ class Product extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'gcCategories' => array(self::MANY_MANY, 'Category', 'gc_category_product(id_product, id_category)'),
-			'idCategoryDefault' => array(self::BELONGS_TO, 'Category', 'id_category_default'),
-			'gcAttachments' => array(self::MANY_MANY, 'Attachment', 'gc_product_attachment(id_product, id_attachment)'),
-			'gcAttributes' => array(self::MANY_MANY, 'Attribute', 'gc_product_attribute(id_product, id_attribute)'),
-			'productAttributeValues' => array(self::HAS_MANY, 'ProductAttributeValue', 'id_product'),
+			'categories' => array(self::MANY_MANY, 'Category', 'gc_category_product(id_product, id_category)'),
+			'categoryDefault' => array(self::BELONGS_TO, 'Category', 'id_category_default'),
+			'attachments' => array(self::MANY_MANY, 'Attachment', 'gc_product_attachment(id_product, id_attachment)'),
+			'attributeList' => array(self::MANY_MANY, 'Attribute', 'gc_product_attribute_value(id_product, id_attribute)'),
+			'productDates' => array(self::HAS_MANY, 'ProductDate', 'id_product'),
 			'productImages' => array(self::HAS_MANY, 'ProductImage', 'id_product'),
 			'productLangs' => array(self::HAS_MANY, 'ProductLang', 'id_product'),
-			'productRooms' => array(self::HAS_MANY, 'ProductRoom', 'id_product'),
+			'room' => array(self::HAS_ONE, 'Room', 'id_product'),
 		);
 	}
 
@@ -153,4 +153,32 @@ class Product extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	protected function beforeSave()
+	{
+		if($this->isNewRecord)
+		{
+			$this->date_add=$this->date_upd=time();
+		} else {
+			$this->date_upd=time();
+		}
+		
+		$this->id_service=Service::getCurrentService();
+		
+		return parent::beforeSave();
+	}
+	
+	public static function items() {
+		$_items = array();
+	
+		$service = Service::getCurrentService();
+		$models = Product::model()->findAll('id_service=:id_service', array(':id_service'=>Service::getCurrentService()));
+	
+		foreach($models as $model) {
+			$_items[$model->id_product] = $model->id_product;			
+		}
+		return $_items;
+	}
 }
+
+

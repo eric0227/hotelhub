@@ -83,6 +83,7 @@ class Supplier extends CActiveRecord
 			'attributeValues' => array(self::HAS_MANY, 'SupplierAttributeValue', 'id_supplier'),
 		);
 	}
+	
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -143,19 +144,43 @@ class Supplier extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getAllSttributes() {
+		$result = array(); 
 		
-	public function getSelectedAttributeItemIds() {
+		$attributeList = Attribute::model()->findAll(
+			"id_attribute_group = :id_attribute_group", 
+			array('id_attribute_group' => AttributeGroup::SUPPLIER)
+		);
+		
+		foreach($attributeList as $attribute) {
+			$result[] = array(
+				'attribute'=>$attribute,
+				'attributeItem'=>AttributeItem::model()->findAll(
+						'id_attribute = :id_attribute', 
+						array('id_attribute'=>$attribute->id_attribute)
+				),
+				'selectedAttributeItemIds'=>$this->getSelectedAttributeItemIds($attribute->id_attribute)
+			);
+		}
+		
+		return $result;
+	}
+	
+	public function getSelectedAttributeItemIds($id_attribute = null) {
 		$result = array();
 		
 		foreach($this->attributeValues as $attributeValue) {
-			$result = array_merge($result, $attributeValue->getValues());
+			if($id_attribute == null || $id_attribute == $attributeValue->id_attribute) {
+				$result = array_merge($result, $attributeValue->getValues());
+			}
 		}
 		return $result;
 	}
 	
 	public function beforeSave() {
 		
-		print_r($_POST['Supplier']['selectedAttributeItemIds']);
+		//print_r($_POST['Supplier']['selectedAttributeItemIds']);
 		//return false;
 		
 		$command = Yii::app()->db->createCommand();
@@ -174,6 +199,8 @@ class Supplier extends CActiveRecord
 			}
 			$attributeValue[$attribute->id_attribute] = $this->getSelectedAttributeItemIdsFromAttribute($attribute->id_attribute);
 		}
+		
+		//print_r($attributeValue);
 		
 		foreach($attributeValue as $id_attribute => $ids) {
 			if(count($ids) == 0) {
@@ -210,8 +237,12 @@ class Supplier extends CActiveRecord
 	}
 	
 	public function containAttributeItem($id_attribute_item) {
-		$ids = $_POST['Supplier']['selectedAttributeItemIds'];
-				
+		if(empty($_POST['selectedAttributeItemIds'])) {
+			return false;
+		}
+		
+		$ids = $_POST['selectedAttributeItemIds'];
+		
 		foreach($ids as $id) {
 			if($id == $id_attribute_item) {
 				return true;
@@ -219,4 +250,16 @@ class Supplier extends CActiveRecord
 		}
 		return false;
 	}
+	
+	public static function items() {
+		$_items = array();
+	
+		$models = Supplier::model()->findAll();
+	
+		foreach($models as $model) {
+			$_items[$model->id_supplier] = $model->id_supplier;			
+		}
+		return $_items;
+	}
 }
+
