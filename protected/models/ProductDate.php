@@ -9,6 +9,7 @@
  * @property string $on_date
  * @property string $price
  * @property string $agent_price
+ * @property string $quantity
  *
  * The followings are the available model relations:
  * @property Product $idProduct
@@ -42,12 +43,12 @@ class ProductDate extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_product, on_date', 'required'),
-			array('id_product', 'length', 'max'=>10),
+			array('id_product, on_date, quantity', 'required'),
+			array('id_product, quantity', 'length', 'max'=>10),
 			array('price, agent_price', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product_date, id_product, on_date, price, agent_price', 'safe', 'on'=>'search'),
+			array('id_product_date, id_product, on_date, price, agent_price, quantity', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,7 +61,7 @@ class ProductDate extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'gcSpecials' => array(self::MANY_MANY, 'Special', 'gc_special_prodduct_date(id_product_date, id_special)'),
+			'gcSpecials' => array(self::MANY_MANY, 'Special', 'gc_special_product_date(id_product_date, id_special)'),
 		);
 	}
 
@@ -75,6 +76,7 @@ class ProductDate extends CActiveRecord
 			'on_date' => 'On Date',
 			'price' => 'Price',
 			'agent_price' => 'Agent Price',
+			'quantity' => 'Quantity',
 		);
 	}
 
@@ -94,9 +96,14 @@ class ProductDate extends CActiveRecord
 		$criteria->compare('on_date',$this->on_date,true);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('agent_price',$this->agent_price,true);
+		$criteria->compare('quantity',$this->quantity,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function beforeSave() {		
+		return parent::beforeSave();
 	}
 }

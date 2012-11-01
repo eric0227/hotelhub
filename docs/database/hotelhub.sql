@@ -408,6 +408,7 @@ CREATE TABLE IF NOT EXISTS `gc_product_date` (
 	`on_date` datetime NOT NULL,
 	`price` decimal(20,6) NOT NULL DEFAULT '0.000000',
 	`agent_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+	`quantity` int(10) unsigned NOT NULL,
 	PRIMARY KEY (`id_product_date`),
 	FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE
 	
@@ -673,6 +674,7 @@ CREATE TABLE IF NOT EXISTS `gc_room` (
 
 CREATE TABLE `gc_bedding` (
 	`id_bedding`  int(10) unsigned NOT NULL AUTO_INCREMENT,
+	`id_room` int(10) unsigned NOT NULL,
 	
 	`gest_num`  int(2) unsigned NOT NULL,
 	`single_num` int(2) unsigned NOT NULL,
@@ -681,9 +683,11 @@ CREATE TABLE `gc_bedding` (
 	`additional_cost`  decimal(20,6) NOT NULL DEFAULT '0.000000',
 	`cots_available`  int(2) unsigned NOT NULL,
 	
+	FOREIGN KEY (`id_room`) REFERENCES `gc_room`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (`id_bedding`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+/*
 CREATE TABLE `gc_room_bedding` (
 	`id_room` int(10) unsigned NOT NULL,
 	`id_bedding`  int(10) unsigned NOT NULL,
@@ -692,7 +696,7 @@ CREATE TABLE `gc_room_bedding` (
 	FOREIGN KEY (`id_room`) REFERENCES `gc_room`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (`id_bedding`) REFERENCES `gc_bedding`(`id_bedding`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+*/
 
 CREATE TABLE IF NOT EXISTS `gc_attachment` (
   `id_attachment` int(10) unsigned NOT NULL AUTO_INCREMENT,

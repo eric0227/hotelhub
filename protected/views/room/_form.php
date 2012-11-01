@@ -125,6 +125,25 @@
 		<?php echo $form->textField($model,'adults_extra',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'adults_extra'); ?>
 	</div>
+	
+	<div class="row">
+		<?php 
+			$attributeInfos = $model->getAllSttributes();
+			foreach($attributeInfos as $info) {
+				echo '<div>';
+				echo '<h4>' . $info['attribute']->name . '</h4>';
+					
+				echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
+					CHtml::listData(
+						$info['attributeItem'],
+						'id_attribute_item',
+						'item'
+					)
+				);
+				echo '</div>';
+			}
+		?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

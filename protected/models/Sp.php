@@ -1,19 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "gc_product_attribute_value".
+ * This is the model class for table "gc_special".
  *
- * The followings are the available columns in table 'gc_product_attribute_value':
- * @property string $id_product
- * @property string $id_attribute
- * @property string $value
+ * The followings are the available columns in table 'gc_special':
+ * @property string $id_special
+ * @property string $name
+ *
+ * The followings are the available model relations:
+ * @property ProductDate[] $gcProductDates
  */
-class ProductAttributeValue extends CActiveRecord
+class Sp extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ProductAttributeValue the static model class
+	 * @return Sp the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -25,7 +27,7 @@ class ProductAttributeValue extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_product_attribute_value';
+		return 'gc_special';
 	}
 
 	/**
@@ -36,12 +38,11 @@ class ProductAttributeValue extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_product, id_attribute, value', 'required'),
-			array('id_product, id_attribute', 'length', 'max'=>10),
-			array('value', 'length', 'max'=>300),
+			array('name', 'required'),
+			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product, id_attribute, value', 'safe', 'on'=>'search'),
+			array('id_special, name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,6 +54,7 @@ class ProductAttributeValue extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'gcProductDates' => array(self::MANY_MANY, 'ProductDate', 'gc_special_product_date(id_special, id_product_date)'),
 		);
 	}
 
@@ -62,9 +64,8 @@ class ProductAttributeValue extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_product' => 'Id Product',
-			'id_attribute' => 'Id Attribute',
-			'value' => 'Value',
+			'id_special' => 'Id Special',
+			'name' => 'Name',
 		);
 	}
 
@@ -79,20 +80,11 @@ class ProductAttributeValue extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_product',$this->id_product,true);
-		$criteria->compare('id_attribute',$this->id_attribute,true);
-		$criteria->compare('value',$this->value,true);
+		$criteria->compare('id_special',$this->id_special,true);
+		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
-	}
-	
-	public function getValues() {
-		return explode(';', $this->value);
-	}
-	
-	public function setValues($values) {
-		$this->value = implode(';', $values);
 	}
 }

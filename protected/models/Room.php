@@ -79,7 +79,8 @@ class Room extends CActiveRecord
 		return array(
 			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
 			'roomCode' => array(self::BELONGS_TO, 'Code', 'room_code'),
-			'beddings' => array(self::MANY_MANY, 'Bedding', 'gc_room_bedding(id_room, id_bedding)'),
+			'beddings' => array(self::HAS_MANY, 'Bedding', 'id_room'),
+			'attributeValues' => array(self::HAS_MANY, 'ProductAttributeValue', 'id_product'),
 		);
 	}
 
@@ -142,4 +143,122 @@ class Room extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function getAllSttributes() {
+		$result = array();
+	
+		$attributeList = Attribute::model()->findAll(
+			"id_attribute_group = :id_attribute_group", 
+			array('id_attribute_group' => AttributeGroup::ROOM)
+		);
+	
+		foreach($attributeList as $attribute) {
+			$result[] = array(
+				'attribute'=>$attribute,
+				'attributeItem'=>AttributeItem::model()->findAll(
+					'id_attribute = :id_attribute', 
+					array('id_attribute'=>$attribute->id_attribute)
+				),
+				'selectedAttributeItemIds'=>$this->getSelectedAttributeItemIds($attribute->id_attribute)
+			);
+		}
+	
+		return $result;
+	}
+	
+	public function getSelectedAttributeItemIds($id_attribute = null) {
+		$result = array();
+	
+		foreach($this->attributeValues as $attributeValue) {
+			if($id_attribute == null || $id_attribute == $attributeValue->id_attribute) {
+				$result = array_merge($result, $attributeValue->getValues());
+			}
+		}
+		return $result;
+	}
+	
+	public function beforeSave() {
+	
+		//print_r($_POST['Product']['selectedAttributeItemIds']);
+		//return false;
+	
+		$command = Yii::app()->db->createCommand();
+		$command->delete('gc_product_attribute_value', 'id_product=:id_product', array(':id_product' => $this->id_product));
+	
+		$attributeList = Attribute::model()->findAll(
+				"id_attribute_group = :id_attribute_group", 
+		array('id_attribute_group' => AttributeGroup::ROOM)
+		);
+	
+		$attributeValue = array();
+	
+		foreach($attributeList as $attribute) {
+			if(!isset($attributeValue[$attribute->id_attribute])) {
+				$attributeValue[$attribute->id_attribute] = array();
+			}
+			$attributeValue[$attribute->id_attribute] = $this->getSelectedAttributeItemIdsFromAttribute($attribute->id_attribute);
+		}
+	
+		//print_r($attributeValue);
+	
+		foreach($attributeValue as $id_attribute => $ids) {
+			if(count($ids) == 0) {
+				continue;
+			}
+			$attributeValue=new ProductAttributeValue();
+			$attributeValue->id_product = $this->id_product;
+			$attributeValue->id_attribute = $id_attribute;
+			//echo implode(';', $ids);
+			$attributeValue->value = implode(';', $ids);
+			$attributeValue->save();
+		}
+	
+		//print_r($attributeValue);
+	}
+	
+	private $attributeItems = null;
+	public function getSelectedAttributeItemIdsFromAttribute($id_attribute) {
+		$result = array();
+	
+		if($this->attributeItems == null) {
+			$this->attributeItems = AttributeItem::model()->findAll();
+		}
+	
+		foreach($this->attributeItems as $item) {
+			if($item->id_attribute == $id_attribute) {
+				if($this->containAttributeItem($item->id_attribute_item)) {
+					$result[] = $item->id_attribute_item;
+				}
+			}
+		}
+	
+		return $result;
+	}
+	
+	public function containAttributeItem($id_attribute_item) {
+		if(empty($_POST['selectedAttributeItemIds'])) {
+			return false;
+		}
+	
+		$ids = $_POST['selectedAttributeItemIds'];
+	
+		foreach($ids as $id) {
+			if($id == $id_attribute_item) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public static function items()
+	{
+		$_items = array();
+		$models=self::model()->findAll();
+		
+		foreach($models as $model) {
+			$_items[$model->id_product]=$model->id_product;
+		}
+		return $_items;
+	}
+	
 }
