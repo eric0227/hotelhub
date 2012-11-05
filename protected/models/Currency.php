@@ -114,4 +114,13 @@ class Currency extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public static function items() {
+		$models = self::model()->findAll();
+		
+		foreach($models as $model) {
+			$_items[$model->id_currency] = $model->name;
+		}
+		return $_items;
+	}
 }

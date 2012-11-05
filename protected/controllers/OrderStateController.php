@@ -1,6 +1,6 @@
 <?php
 
-class ProductDateController extends Controller
+class OrderStateController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -28,7 +28,7 @@ class ProductDateController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','prodectDateOptions'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,16 +62,16 @@ class ProductDateController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ProductDate;
+		$model=new OrderState;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ProductDate']))
+		if(isset($_POST['OrderState']))
 		{
-			$model->attributes=$_POST['ProductDate'];
+			$model->attributes=$_POST['OrderState'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_product_date));
+				$this->redirect(array('view','id'=>$model->id_order_state));
 		}
 
 		$this->render('create',array(
@@ -91,11 +91,11 @@ class ProductDateController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ProductDate']))
+		if(isset($_POST['OrderState']))
 		{
-			$model->attributes=$_POST['ProductDate'];
+			$model->attributes=$_POST['OrderState'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_product_date));
+				$this->redirect(array('view','id'=>$model->id_order_state));
 		}
 
 		$this->render('update',array(
@@ -122,7 +122,7 @@ class ProductDateController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ProductDate');
+		$dataProvider=new CActiveDataProvider('OrderState');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +133,10 @@ class ProductDateController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ProductDate('search');
+		$model=new OrderState('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ProductDate']))
-			$model->attributes=$_GET['ProductDate'];
+		if(isset($_GET['OrderState']))
+			$model->attributes=$_GET['OrderState'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -150,7 +150,7 @@ class ProductDateController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ProductDate::model()->findByPk($id);
+		$model=OrderState::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,31 +162,10 @@ class ProductDateController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='product-date-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='order-state-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
-	
-	public function actionProdectDateOptions() {
-		if(isset($_REQUEST['CartProduct']['id_product'])) {		
-			$models = ProductDate::model()->findAll(
-				'id_product = :id_product', 
-				array(':id_product' => $_REQUEST['CartProduct']['id_product'])
-			);
-		} else {
-			$models = ProductDate::model()->findAll();
-		}
-		
-		$data = CHtml::listData($models, 'id_product_date', 'id_product_date');
-		//print_r($stateList);
-		
-		foreach($data as $value=>$name)
-		{
-			echo CHtml::tag('option', array('value'=>$value), CHtml::encode($name), true);
-		}
-		Yii::app()->end();		
-		//return $data;
 	}
 }

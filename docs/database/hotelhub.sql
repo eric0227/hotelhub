@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS `gc_order_history`;
 DROP TABLE IF EXISTS `gc_order_state_lang`;
 DROP TABLE IF EXISTS `gc_order_state`;
 DROP TABLE IF EXISTS `gc_order_detail`;
-DROP TABLE IF EXISTS `gc_orders`;
+DROP TABLE IF EXISTS `gc_order`;
 DROP TABLE IF EXISTS `gc_configuration_lang`;
 DROP TABLE IF EXISTS `gc_configuration`;
 DROP TABLE IF EXISTS `gc_cms_lang`;
@@ -726,7 +726,7 @@ CREATE TABLE IF NOT EXISTS `gc_product_sale` (
   PRIMARY KEY (`id_product`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
+ 
 CREATE TABLE IF NOT EXISTS `gc_image` (
   `id_image` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `image_path` varchar(100) NOT NULL,
@@ -762,7 +762,7 @@ CREATE TABLE IF NOT EXISTS `gc_product_image` (
 
 CREATE TABLE IF NOT EXISTS `gc_image_type` (
   `id_image_type` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(16) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `width` int(10) unsigned NOT NULL,
   `height` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id_image_type`),
@@ -813,17 +813,18 @@ CREATE TABLE IF NOT EXISTS `gc_cart` (
 
 
 CREATE TABLE IF NOT EXISTS `gc_cart_product` (
+  `id_cart_product` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_cart` int(10) unsigned NOT NULL,
   `id_product` int(10) unsigned NOT NULL,
-  `id_product_attribute` int(10) unsigned NOT NULL DEFAULT '0',
+  `id_product_date` int(10) unsigned,
 
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
   `date_add` datetime NOT NULL,
-  PRIMARY KEY (`id_cart`,`id_product`,`id_product_attribute`),
+  PRIMARY KEY (`id_cart_product`),
   
   FOREIGN KEY (`id_cart`) REFERENCES `gc_cart`(`id_cart`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_product_attribute`) REFERENCES `gc_product_attribute`(`id_product_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`id_product_date`) REFERENCES `gc_product_date`(`id_product_date`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -910,8 +911,7 @@ CREATE TABLE IF NOT EXISTS `gc_configuration_lang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-CREATE TABLE IF NOT EXISTS `gc_orders` (
+CREATE TABLE IF NOT EXISTS `gc_order` (
   `id_order` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_lang` int(10) unsigned NOT NULL,
   
@@ -924,24 +924,21 @@ CREATE TABLE IF NOT EXISTS `gc_orders` (
   `secure_key` varchar(32) NOT NULL DEFAULT '-1',
   `payment` varchar(255) NOT NULL,
   `conversion_rate` decimal(13,6) NOT NULL DEFAULT '1.000000',
-  `module` varchar(255) DEFAULT NULL,
-  `recyclable` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  
   `gift` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `gift_message` text,
-  `shipping_number` varchar(32) DEFAULT NULL,
+  `total_products` decimal(17,2) NOT NULL DEFAULT '0.00',
+ 
   `total_discounts` decimal(17,2) NOT NULL DEFAULT '0.00',
   `total_paid` decimal(17,2) NOT NULL DEFAULT '0.00',
+  
   `total_paid_real` decimal(17,2) NOT NULL DEFAULT '0.00',
-  `total_products` decimal(17,2) NOT NULL DEFAULT '0.00',
-  `total_products_wt` decimal(17,2) NOT NULL DEFAULT '0.00',
-  `total_shipping` decimal(17,2) NOT NULL DEFAULT '0.00',
-  `carrier_tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
-  `total_wrapping` decimal(17,2) NOT NULL DEFAULT '0.00',
+   
   `invoice_number` int(10) unsigned NOT NULL DEFAULT '0',
   `delivery_number` int(10) unsigned NOT NULL DEFAULT '0',
   `invoice_date` datetime NOT NULL,
   `delivery_date` datetime NOT NULL,
-  `valid` int(1) unsigned NOT NULL DEFAULT '0',
+
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_order`),
@@ -956,13 +953,13 @@ CREATE TABLE IF NOT EXISTS `gc_orders` (
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-
+/*
 CREATE TABLE IF NOT EXISTS `gc_order_detail` (
   `id_order_detail` int(10) unsigned NOT NULL AUTO_INCREMENT,
   
   `id_order` int(10) unsigned NOT NULL,
   `id_product` int(10) unsigned NOT NULL,
-  `id_product_attribute` int(10) unsigned DEFAULT NULL,
+  `id_product_date` int(10) unsigned DEFAULT NULL,
   
   `product_name` varchar(255) NOT NULL,
   `product_quantity` int(10) unsigned NOT NULL DEFAULT '0',
@@ -990,12 +987,12 @@ CREATE TABLE IF NOT EXISTS `gc_order_detail` (
   `download_deadline` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id_order_detail`),
 
-  FOREIGN KEY (`id_order`) REFERENCES `gc_orders`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_order`) REFERENCES `gc_order`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_product_attribute`) REFERENCES `gc_product_attribute`(`id_product_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`id_product_date`) REFERENCES `gc_product_date`(`id_product_date`) ON DELETE CASCADE ON UPDATE CASCADE
   
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
+*/
 
 CREATE TABLE IF NOT EXISTS `gc_order_state` (
   `id_order_state` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1006,9 +1003,26 @@ CREATE TABLE IF NOT EXISTS `gc_order_state` (
   `hidden` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `logable` tinyint(1) NOT NULL DEFAULT '0',
   `delivery` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(64) NOT NULL,
+  `template` varchar(64) NOT NULL,
   PRIMARY KEY (`id_order_state`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+INSERT INTO `gc_order_state` (`id_order_state`, `invoice`, `send_email`, `color`, `unremovable`, `hidden`, `logable`, `delivery`, `name`, `template`) VALUES
+(1, 0, 1, 'lightblue', 1, 0, 0, 0, 'Awaiting cheque payment', 'cheque'),
+(2, 1, 1, '#DDEEFF', 1, 0, 1, 0, 'Payment accepted', 'payment'),
+(3, 1, 1, '#FFDD99', 1, 0, 1, 1, 'Preparation in progress', 'preparation'),
+(4, 1, 1, '#EEDDFF', 1, 0, 1, 1, 'Shipped', 'shipped'),
+(5, 1, 0, '#DDFFAA', 1, 0, 1, 1, 'Delivered', ''),
+(6, 0, 1, '#DADADA', 1, 0, 0, 0, 'Canceled', 'order_canceled'),
+(7, 1, 1, '#FFFFBB', 1, 0, 0, 0, 'Refund', 'refund'),
+(8, 0, 1, '#FFDFDF', 1, 0, 0, 0, 'Payment error', 'payment_error'),
+(9, 1, 1, '#FFD3D3', 1, 0, 0, 0, 'On backorder', 'outofstock'),
+(10, 0, 1, 'lightblue', 1, 0, 0, 0, 'Awaiting bank wire payment', 'bankwire'),
+(11, 0, 0, 'lightblue', 1, 0, 0, 0, 'Awaiting PayPal payment', ''),
+(12, 1, 0, '#DDEEFF', 1, 0, 1, 0, 'Payment remotely accepted', '');
+
+/*
 CREATE TABLE IF NOT EXISTS `gc_order_state_lang` (
   `id_order_state` int(10) unsigned NOT NULL,
   `id_lang` int(10) unsigned NOT NULL,
@@ -1017,6 +1031,7 @@ CREATE TABLE IF NOT EXISTS `gc_order_state_lang` (
   PRIMARY KEY (`id_order_state`,`id_lang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+*/
 
 CREATE TABLE IF NOT EXISTS `gc_order_history` (
   `id_order_history` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1029,7 +1044,7 @@ CREATE TABLE IF NOT EXISTS `gc_order_history` (
   PRIMARY KEY (`id_order_history`),
 
   FOREIGN KEY (`id_user`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_order`) REFERENCES `gc_orders`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_order`) REFERENCES `gc_order`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_order_state`) REFERENCES `gc_order_state`(`id_order_state`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
@@ -1098,7 +1113,7 @@ CREATE TABLE IF NOT EXISTS `gc_order_discount` (
   `value` decimal(17,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`id_order_discount`),
   
-  FOREIGN KEY (`id_order`) REFERENCES `gc_orders`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_order`) REFERENCES `gc_order`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_discount`) REFERENCES `gc_discount`(`id_discount`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;

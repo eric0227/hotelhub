@@ -34,7 +34,10 @@
  */
 class Address extends CActiveRecord
 {
-	public static $CODE_TYPE = '001';
+	const CODE_TYPE = '001';
+	const DEFAULT_CODE = '001001';
+	const DELIVERY_CODE = '001002';
+	const INVOICE_CODE = '001003';
 	
 	/**
 	 * Returns the static model of the specified AR class.
@@ -62,7 +65,7 @@ class Address extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_country, alias, lastname, firstname, address1, city, date_add, date_upd', 'required'),
+			array('id_country, alias, lastname, firstname, address1, city', 'required'),
 			array('active, deleted', 'numerical', 'integerOnly'=>true),
 			array('id_country, id_state, id_user', 'length', 'max'=>10),
 			array('alias, company, lastname, firstname, vat_number', 'length', 'max'=>32),
@@ -162,7 +165,7 @@ class Address extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-		
+	
 	protected function beforeSave()
 	{
 		if($this->isNewRecord)
@@ -174,4 +177,10 @@ class Address extends CActiveRecord
 	
 		return parent::beforeSave();
 	}
+	
+	public static function getAddress($id_user, $address_code) {
+		return self::model()->find('id_user = :id_user and address_code = :address_code'
+							, array('id_user'=>$id_user, 'address_code'=>$address_code));
+	}
 }
+

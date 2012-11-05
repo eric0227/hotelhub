@@ -1,6 +1,6 @@
 <?php
 
-class ProductDateController extends Controller
+class CartController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -28,7 +28,7 @@ class ProductDateController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','prodectDateOptions'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,21 +62,46 @@ class ProductDateController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ProductDate;
+		$data = array();
+		
+		$model=new Cart;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['ProductDate']))
-		{
-			$model->attributes=$_POST['ProductDate'];
+		
+		if(isset($_REQUEST['yt0']) && $_REQUEST['yt0'] == 'Search') {
+			$id_user = $_POST['Cart']['id_user'];
+			$user = User::model()->findByPk($id_user);
+			
+			$model->id_user = $id_user;
+			
+			$defaultAddress = Address::getAddress($id_user, Address::DEFAULT_CODE);
+			if(isset($defaultAddress)) {
+				$model->id_address_delivery = $defaultAddress->id_address;
+				$model->id_address_invoice = $defaultAddress->id_address;				
+				$data['defaultAddress'] = $defaultAddress;
+			}
+			
+			$deliveryAddress = Address::getAddress($id_user, Address::DELIVERY_CODE);
+			if(isset($deliveryAddress)) {
+				$model->id_address_delivery = $deliveryAddress->id_address;
+				$data['deliveryAddress'] = $deliveryAddress;
+			}
+			
+			$invoiceAddress = Address::getAddress($id_user, Address::INVOICE_CODE);
+			if(isset($invoiceAddress)) {
+				$model->id_address_invoice = $invoiceAddress->id_address;
+				$data['invoiceAddress'] = $invoiceAddress;
+			}
+		} else if(isset($_POST['Cart'])) {
+			$model->attributes=$_POST['Cart'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_product_date));
+				$this->redirect(array('view','id'=>$model->id_cart));
 		}
+		
+		$data['model'] = $model;
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+		$this->render('create', $data);
 	}
 
 	/**
@@ -91,11 +116,11 @@ class ProductDateController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ProductDate']))
+		if(isset($_POST['Cart']))
 		{
-			$model->attributes=$_POST['ProductDate'];
+			$model->attributes=$_POST['Cart'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_product_date));
+				$this->redirect(array('view','id'=>$model->id_cart));
 		}
 
 		$this->render('update',array(
@@ -122,7 +147,7 @@ class ProductDateController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ProductDate');
+		$dataProvider=new CActiveDataProvider('Cart');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +158,10 @@ class ProductDateController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ProductDate('search');
+		$model=new Cart('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ProductDate']))
-			$model->attributes=$_GET['ProductDate'];
+		if(isset($_GET['Cart']))
+			$model->attributes=$_GET['Cart'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -150,7 +175,7 @@ class ProductDateController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ProductDate::model()->findByPk($id);
+		$model=Cart::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,31 +187,10 @@ class ProductDateController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='product-date-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='cart-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
-	
-	public function actionProdectDateOptions() {
-		if(isset($_REQUEST['CartProduct']['id_product'])) {		
-			$models = ProductDate::model()->findAll(
-				'id_product = :id_product', 
-				array(':id_product' => $_REQUEST['CartProduct']['id_product'])
-			);
-		} else {
-			$models = ProductDate::model()->findAll();
-		}
-		
-		$data = CHtml::listData($models, 'id_product_date', 'id_product_date');
-		//print_r($stateList);
-		
-		foreach($data as $value=>$name)
-		{
-			echo CHtml::tag('option', array('value'=>$value), CHtml::encode($name), true);
-		}
-		Yii::app()->end();		
-		//return $data;
 	}
 }

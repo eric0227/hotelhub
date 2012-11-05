@@ -97,6 +97,11 @@
 						array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding')),
 						array('label'=>'Special', 'url'=>array('/special/index', 'tag'=>'special')),
 						array('label'=>'ProductDate', 'url'=>array('/productDate/index', 'tag'=>'productDate')),
+						array('label'=>'Cart', 'url'=>array('/cart/index', 'tag'=>'cart')),
+						array('label'=>'CartProduct', 'url'=>array('/cartProduct/index', 'tag'=>'cartProduct')),
+						array('label'=>'Order', 'url'=>array('/order/index', 'tag'=>'order')),
+						array('label'=>'OrderHistory', 'url'=>array('/orderHistory/index', 'tag'=>'orderHistory')),
+						array('label'=>'OrderState', 'url'=>array('/orderState/index', 'tag'=>'orderState')),						
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

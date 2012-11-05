@@ -171,7 +171,10 @@ class UserController extends Controller
 	
 	public function actiongetState() {
 		if(isset($_REQUEST['Address']['id_country'])) {		
-			$state = State::model()->findAll('id_country = :id_country', array(':id_country' => $_REQUEST['Address']['id_country']));
+			$state = State::model()->findAll(
+				'id_country = :id_country', 
+				array(':id_country' => $_REQUEST['Address']['id_country'])
+			);
 		} else {
 			$state = State::model()->findAll();
 		}

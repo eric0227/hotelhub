@@ -1,27 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "gc_product_date".
+ * This is the model class for table "gc_cart_product".
  *
- * The followings are the available columns in table 'gc_product_date':
- * @property string $id_product_date
+ * The followings are the available columns in table 'gc_cart_product':
+ * @property string $id_cart_product
+ * @property string $id_cart
  * @property string $id_product
- * @property string $on_date
- * @property string $price
- * @property string $agent_price
+ * @property string $id_product_date
  * @property string $quantity
+ * @property string $date_add
  *
  * The followings are the available model relations:
- * @property CartProduct[] $cartProducts
+ * @property Cart $idCart
  * @property Product $idProduct
- * @property Special[] $gcSpecials
+ * @property ProductDate $idProductDate
  */
-class ProductDate extends CActiveRecord
+class CartProduct extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ProductDate the static model class
+	 * @return CartProduct the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -33,7 +33,7 @@ class ProductDate extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_product_date';
+		return 'gc_cart_product';
 	}
 
 	/**
@@ -44,12 +44,11 @@ class ProductDate extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_product, on_date, quantity', 'required'),
-			array('id_product, quantity', 'length', 'max'=>10),
-			array('price, agent_price', 'length', 'max'=>20),
+			array('id_cart, id_product', 'required'),
+			array('id_cart, id_product, id_product_date, quantity', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product_date, id_product, on_date, price, agent_price, quantity', 'safe', 'on'=>'search'),
+			array('id_cart_product, id_cart, id_product, id_product_date, quantity, date_add', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,9 +60,9 @@ class ProductDate extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cartProducts' => array(self::HAS_MANY, 'CartProduct', 'id_product_date'),
+			'idCart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
 			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'gcSpecials' => array(self::MANY_MANY, 'Special', 'gc_special_product_date(id_product_date, id_special)'),
+			'idProductDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
 		);
 	}
 
@@ -73,12 +72,12 @@ class ProductDate extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_product_date' => 'Id Product Date',
+			'id_cart_product' => 'Id Cart Product',
+			'id_cart' => 'Id Cart',
 			'id_product' => 'Id Product',
-			'on_date' => 'On Date',
-			'price' => 'Price',
-			'agent_price' => 'Agent Price',
+			'id_product_date' => 'Id Product Date',
 			'quantity' => 'Quantity',
+			'date_add' => 'Date Add',
 		);
 	}
 
@@ -93,12 +92,12 @@ class ProductDate extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_product_date',$this->id_product_date,true);
+		$criteria->compare('id_cart_product',$this->id_cart_product,true);
+		$criteria->compare('id_cart',$this->id_cart,true);
 		$criteria->compare('id_product',$this->id_product,true);
-		$criteria->compare('on_date',$this->on_date,true);
-		$criteria->compare('price',$this->price,true);
-		$criteria->compare('agent_price',$this->agent_price,true);
+		$criteria->compare('id_product_date',$this->id_product_date,true);
 		$criteria->compare('quantity',$this->quantity,true);
+		$criteria->compare('date_add',$this->date_add,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -106,6 +105,10 @@ class ProductDate extends CActiveRecord
 	}
 	
 	protected function beforeSave() {
+		if($this->isNewRecord) {
+			$this->date_add = time();
+		}
 		return parent::beforeSave();
 	}
 }
+

@@ -23,10 +23,10 @@
  */
 class User extends CActiveRecord
 {
-	public static $ADMIN = 1;
-	public static $SUPPLIER = 2;
-	public static $AGNT = 3;
-	public static $CUSTOMER = 4;
+	const ADMIN = 1;
+	const SUPPLIER = 2;
+	const AGNT = 3;
+	const CUSTOMER = 4;
 	
 	private static $_items = null;
 	/**
