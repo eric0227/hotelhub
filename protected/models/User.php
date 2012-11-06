@@ -132,6 +132,22 @@ class User extends CActiveRecord
 		));
 	}
 	
+	public function isAdmin() {
+		return $this->id_group == self::ADMIN;
+	}
+	
+	public function isSupplier() {
+		return $this->id_group == self::SUPPLIER;
+	}
+	
+	public function isAgent() {
+		return $this->id_group == self::AGNT;
+	}
+	
+	public function isCustomer() {
+		return $this->id_group == self::CUSTOMER;
+	}
+	
 	public static function items($group = null)
 	{
 		self::loadItems($group);	

@@ -12,6 +12,19 @@
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	
+	<div class="row">
+	<?php echo $form->labelEx($model,'id_cart'); ?>
+	<?php 
+		// echo $form->textField($model,'id_cart',array('size'=>10,'maxlength'=>10)); 
+		
+		$cartModels = Cart::model()->findAll('on_order=:on_order', array('on_order'=>'0'));
+		$cartItems = CHtml::listData($cartModels, 'id_cart', 'id_cart');
+		echo $form->dropDownList($model, 'id_cart', $cartItems);
+		echo CHtml::submitButton('Process');
+	?>
+	<?php echo $form->error($model,'id_cart'); ?>
+	</div>
 
 	<?php echo $form->errorSummary($model); ?>
 
@@ -25,12 +38,6 @@
 		<?php echo $form->labelEx($model,'id_user'); ?>
 		<?php echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10)); ?>
 		<?php echo $form->error($model,'id_user'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_cart'); ?>
-		<?php echo $form->textField($model,'id_cart',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'id_cart'); ?>
 	</div>
 
 	<div class="row">
@@ -82,27 +89,27 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'total_products'); ?>
-		<?php echo $form->textField($model,'total_products',array('size'=>17,'maxlength'=>17)); ?>
-		<?php echo $form->error($model,'total_products'); ?>
+		<?php echo $form->labelEx($model,'total_price'); ?>
+		<?php echo $form->textField($model,'total_price',array('size'=>17,'maxlength'=>17)); ?>
+		<?php echo $form->error($model,'total_price'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'total_discounts'); ?>
-		<?php echo $form->textField($model,'total_discounts',array('size'=>17,'maxlength'=>17)); ?>
-		<?php echo $form->error($model,'total_discounts'); ?>
+		<?php echo $form->labelEx($model,'total_agent_price'); ?>
+		<?php echo $form->textField($model,'total_agent_price',array('size'=>17,'maxlength'=>17)); ?>
+		<?php echo $form->error($model,'total_agent_price'); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->labelEx($model,'total_discount'); ?>
+		<?php echo $form->textField($model,'total_discount',array('size'=>17,'maxlength'=>17)); ?>
+		<?php echo $form->error($model,'total_discount'); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'total_paid'); ?>
 		<?php echo $form->textField($model,'total_paid',array('size'=>17,'maxlength'=>17)); ?>
 		<?php echo $form->error($model,'total_paid'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'total_paid_real'); ?>
-		<?php echo $form->textField($model,'total_paid_real',array('size'=>17,'maxlength'=>17)); ?>
-		<?php echo $form->error($model,'total_paid_real'); ?>
 	</div>
 
 	<div class="row">

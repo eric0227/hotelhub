@@ -113,4 +113,14 @@ class OrderState extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public static function items() {
+		$_items = array();
+		
+		$models = self::model()->findAll();
+		foreach($models as $model) {
+			$_items[$model->id_order_state] = $model->name;
+		}
+		return $_items;
+	}
 }

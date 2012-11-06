@@ -14,7 +14,7 @@
  * The followings are the available model relations:
  * @property Cart $idCart
  * @property Product $idProduct
- * @property ProductDate $idProductDate
+ * @property ProductDate $productDate
  */
 class CartProduct extends CActiveRecord
 {
@@ -60,9 +60,9 @@ class CartProduct extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idCart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
-			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'idProductDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
+			'cart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
+			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
+			'productDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
 		);
 	}
 

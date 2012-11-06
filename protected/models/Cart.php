@@ -15,12 +15,13 @@
  * @property string $gift_message
  * @property string $date_add
  * @property string $date_upd
+ * @property string $on_order
  *
  * The followings are the available model relations:
- * @property User $idUser
- * @property Address $idAddressDelivery
- * @property Address $idAddressInvoice
- * @property Currency $idCurrency
+ * @property User $user
+ * @property Address $addressDelivery
+ * @property Address $addressInvoice
+ * @property Currency $currency
  * @property CartProduct[] $cartProducts
  * @property Order[] $orders
  */
@@ -71,10 +72,10 @@ class Cart extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idUser' => array(self::BELONGS_TO, 'User', 'id_user'),
-			'idAddressDelivery' => array(self::BELONGS_TO, 'Address', 'id_address_delivery'),
-			'idAddressInvoice' => array(self::BELONGS_TO, 'Address', 'id_address_invoice'),
-			'idCurrency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
+			'user' => array(self::BELONGS_TO, 'User', 'id_user'),
+			'addressDelivery' => array(self::BELONGS_TO, 'Address', 'id_address_delivery'),
+			'addressInvoice' => array(self::BELONGS_TO, 'Address', 'id_address_invoice'),
+			'currency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
 			'cartProducts' => array(self::HAS_MANY, 'CartProduct', 'id_cart'),
 			'orders' => array(self::HAS_MANY, 'Order', 'id_cart'),
 		);
@@ -97,6 +98,7 @@ class Cart extends CActiveRecord
 			'gift_message' => 'Gift Message',
 			'date_add' => 'Date Add',
 			'date_upd' => 'Date Upd',
+			'on_order' => 'On Order',
 		);
 	}
 
@@ -104,8 +106,7 @@ class Cart extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
-	{
+	public function search() {
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
 
@@ -122,14 +123,14 @@ class Cart extends CActiveRecord
 		$criteria->compare('gift_message',$this->gift_message,true);
 		$criteria->compare('date_add',$this->date_add,true);
 		$criteria->compare('date_upd',$this->date_upd,true);
+		$criteria->compare('on_order',$this->on_order,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
 	
-	protected function beforeSave()
-	{
+	protected function beforeSave() {
 		if($this->isNewRecord)
 		{
 			$this->date_add=$this->date_upd=time();

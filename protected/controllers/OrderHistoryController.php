@@ -1,6 +1,6 @@
 <?php
 
-class OrderController extends Controller
+class OrderHistoryController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -62,37 +62,21 @@ class OrderController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$data = array();
-		
-		$model=new Order;		
+		$model=new OrderHistory;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_REQUEST['yt0']) && $_REQUEST['yt0'] == 'Process') {
-			$id_cart = $_POST['Order']['id_cart'];
-			
-			$model->id_lang=Lang::getCurrentLang();
-				
-			// get Cart
-			$cart = Cart::model()->findByPk($id_cart);
-			$model->id_cart = $id_cart;
-			$model->id_user = $cart->id_user;
-			$model->id_currency = $cart->id_currency;
-			$model->id_address_delivery = $cart->id_address_delivery;
-			$model->id_address_invoice = $cart->id_address_invoice;
-			
-			$model->procOrder();
-		} else if(isset($_POST['Order']))
+		if(isset($_POST['OrderHistory']))
 		{
-			$model->attributes=$_POST['Order'];
+			$model->attributes=$_POST['OrderHistory'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_order));
+				$this->redirect(array('view','id'=>$model->id_order_history));
 		}
 
-		$data['model'] = $model;
-
-		$this->render('create', $data);
+		$this->render('create',array(
+			'model'=>$model,
+		));
 	}
 
 	/**
@@ -107,11 +91,11 @@ class OrderController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Order']))
+		if(isset($_POST['OrderHistory']))
 		{
-			$model->attributes=$_POST['Order'];
+			$model->attributes=$_POST['OrderHistory'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_order));
+				$this->redirect(array('view','id'=>$model->id_order_history));
 		}
 
 		$this->render('update',array(
@@ -138,7 +122,7 @@ class OrderController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Order');
+		$dataProvider=new CActiveDataProvider('OrderHistory');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -149,10 +133,10 @@ class OrderController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Order('search');
+		$model=new OrderHistory('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Order']))
-			$model->attributes=$_GET['Order'];
+		if(isset($_GET['OrderHistory']))
+			$model->attributes=$_GET['OrderHistory'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -166,7 +150,7 @@ class OrderController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Order::model()->findByPk($id);
+		$model=OrderHistory::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -178,7 +162,7 @@ class OrderController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='order-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='order-history-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

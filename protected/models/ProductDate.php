@@ -13,8 +13,8 @@
  *
  * The followings are the available model relations:
  * @property CartProduct[] $cartProducts
- * @property Product $idProduct
- * @property Special[] $gcSpecials
+ * @property Product $product
+ * @property Special[] $specials
  */
 class ProductDate extends CActiveRecord
 {
@@ -62,8 +62,8 @@ class ProductDate extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'cartProducts' => array(self::HAS_MANY, 'CartProduct', 'id_product_date'),
-			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'gcSpecials' => array(self::MANY_MANY, 'Special', 'gc_special_product_date(id_product_date, id_special)'),
+			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
+			'specials' => array(self::MANY_MANY, 'Special', 'gc_special_product_date(id_product_date, id_special)'),
 		);
 	}
 

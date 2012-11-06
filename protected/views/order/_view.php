@@ -54,20 +54,20 @@
 	<?php echo CHtml::encode($data->gift_message); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('total_products')); ?>:</b>
-	<?php echo CHtml::encode($data->total_products); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('total_price')); ?>:</b>
+	<?php echo CHtml::encode($data->total_price); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('total_discounts')); ?>:</b>
-	<?php echo CHtml::encode($data->total_discounts); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('total_agent_price')); ?>:</b>
+	<?php echo CHtml::encode($data->total_agent_price); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('total_discount')); ?>:</b>
+	<?php echo CHtml::encode($data->total_discount); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('total_paid')); ?>:</b>
 	<?php echo CHtml::encode($data->total_paid); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('total_paid_real')); ?>:</b>
-	<?php echo CHtml::encode($data->total_paid_real); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('invoice_number')); ?>:</b>

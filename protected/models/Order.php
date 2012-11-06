@@ -16,21 +16,22 @@
  * @property string $conversion_rate
  * @property integer $gift
  * @property string $gift_message
- * @property string $total_products
- * @property string $total_discounts
+ * @property string $total_price
+ * @property string $total_agent_price
+ * @property string $total_discount
  * @property string $total_paid
- * @property string $total_paid_real
  * @property string $invoice_number
  * @property string $delivery_number
  * @property string $invoice_date
  * @property string $delivery_date
  * @property string $date_add
  * @property string $date_upd
+ * @property string $on_agent
  *
  * The followings are the available model relations:
- * @property User $idUser
- * @property Cart $idCart
- * @property Currency $idCurrency
+ * @property User $user
+ * @property Cart $cart
+ * @property Currency $currency
  * @property OrderHistory[] $orderHistories
  */
 class Order extends CActiveRecord
@@ -61,17 +62,17 @@ class Order extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, payment, invoice_date, delivery_date, date_add, date_upd', 'required'),
+			array('id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, payment', 'required'),
 			array('gift', 'numerical', 'integerOnly'=>true),
 			array('id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, invoice_number, delivery_number', 'length', 'max'=>10),
 			array('secure_key', 'length', 'max'=>32),
 			array('payment', 'length', 'max'=>255),
 			array('conversion_rate', 'length', 'max'=>13),
-			array('total_products, total_discounts, total_paid, total_paid_real', 'length', 'max'=>17),
+			array('total_price, total_agent_price, total_discount, total_paid', 'length', 'max'=>17),
 			array('gift_message', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_order, id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, secure_key, payment, conversion_rate, gift, gift_message, total_products, total_discounts, total_paid, total_paid_real, invoice_number, delivery_number, invoice_date, delivery_date, date_add, date_upd', 'safe', 'on'=>'search'),
+			array('id_order, id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, secure_key, payment, conversion_rate, gift, gift_message, total_price, total_agent_price, total_discount, total_paid, invoice_number, delivery_number, invoice_date, delivery_date, date_add, date_upd', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -83,9 +84,9 @@ class Order extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idUser' => array(self::BELONGS_TO, 'User', 'id_user'),
-			'idCart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
-			'idCurrency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
+			'user' => array(self::BELONGS_TO, 'User', 'id_user'),
+			'cart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
+			'currency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
 			'orderHistories' => array(self::HAS_MANY, 'OrderHistory', 'id_order'),
 		);
 	}
@@ -108,16 +109,17 @@ class Order extends CActiveRecord
 			'conversion_rate' => 'Conversion Rate',
 			'gift' => 'Gift',
 			'gift_message' => 'Gift Message',
-			'total_products' => 'Total Products',
-			'total_discounts' => 'Total Discounts',
+			'total_price' => 'Total Price',
+			'total_agent_price' => 'Total Agent Price',
+			'total_discount' => 'Total Discount',
 			'total_paid' => 'Total Paid',
-			'total_paid_real' => 'Total Paid Real',
 			'invoice_number' => 'Invoice Number',
 			'delivery_number' => 'Delivery Number',
 			'invoice_date' => 'Invoice Date',
 			'delivery_date' => 'Delivery Date',
 			'date_add' => 'Date Add',
 			'date_upd' => 'Date Upd',
+			'on_agent' => 'On Agent',
 		);
 	}
 
@@ -144,19 +146,85 @@ class Order extends CActiveRecord
 		$criteria->compare('conversion_rate',$this->conversion_rate,true);
 		$criteria->compare('gift',$this->gift);
 		$criteria->compare('gift_message',$this->gift_message,true);
-		$criteria->compare('total_products',$this->total_products,true);
-		$criteria->compare('total_discounts',$this->total_discounts,true);
+		$criteria->compare('total_price',$this->total_price,true);
+		$criteria->compare('total_agent_price',$this->total_agent_price,true);
+		$criteria->compare('total_discount',$this->total_discount,true);
 		$criteria->compare('total_paid',$this->total_paid,true);
-		$criteria->compare('total_paid_real',$this->total_paid_real,true);
 		$criteria->compare('invoice_number',$this->invoice_number,true);
 		$criteria->compare('delivery_number',$this->delivery_number,true);
 		$criteria->compare('invoice_date',$this->invoice_date,true);
 		$criteria->compare('delivery_date',$this->delivery_date,true);
 		$criteria->compare('date_add',$this->date_add,true);
 		$criteria->compare('date_upd',$this->date_upd,true);
+		$criteria->compare('on_agent',$this->date_upd,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+	
+	protected function beforeSave() {
+		if($this->isNewRecord)
+		{
+			$this->date_add=$this->date_upd=$this->invoice_date=$this->delivery_date=time();
+			
+			$this->id_lang=Lang::getCurrentLang();
+				
+			// get Cart
+			$cart = Cart::model()->findByPk($this->id_cart);
+			$this->id_currency = $cart->id_currency;
+			$this->id_address_delivery = $cart->id_address_delivery;
+			$this->id_address_invoice = $cart->id_address_invoice;
+			
+			if($this->user->isAgent()) {
+				$this->on_agent = '1';
+			}
+			
+		} else {
+			$this->date_upd=time();
+		}
+	
+		$this->procOrder();
+	
+		return parent::beforeSave();
+	}
+	
+	public function procOrder() {
+
+		$cart = Cart::model()->findByPk($this->id_cart);
+		$cartProducts = $cart->cartProducts;
+				
+		$priceSum = 0;
+		$agentPriceSum = 0;
+		if(isset($cartProducts)) {
+			foreach($cartProducts as $cartProduct) {
+				$product = $cartProduct->product;
+				$productDate = $cartProduct->productDate;
+				
+				if(isset($productDate)) {
+					$priceSum = $priceSum + $productDate->price;
+					$agentPriceSum = $agentPriceSum + $productDate->agent_price;
+				} else {
+					$priceSum = $priceSum + $product->price;
+					$agentPriceSum = $agentPriceSum + $product->agent_price;
+				}
+			}
+		}
+	
+		$this->total_price = $priceSum;
+		$this->total_agent_price = $agentPriceSum;
+		
+		$this->payment = $priceSum;
+	}
+	
+	public static function items() {
+		$_items = array();
+		
+		$models = self::model()->findAll();
+		foreach($models as $model) {
+			$_items[$model->id_order] = $model->id_order;
+		}
+		return $_items;
+	}
+	
 }

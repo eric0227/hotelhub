@@ -72,23 +72,23 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'total_products'); ?>
-		<?php echo $form->textField($model,'total_products',array('size'=>17,'maxlength'=>17)); ?>
+		<?php echo $form->label($model,'total_price'); ?>
+		<?php echo $form->textField($model,'total_price',array('size'=>17,'maxlength'=>17)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'total_discounts'); ?>
-		<?php echo $form->textField($model,'total_discounts',array('size'=>17,'maxlength'=>17)); ?>
+		<?php echo $form->label($model,'total_agent_price'); ?>
+		<?php echo $form->textField($model,'total_agent_price',array('size'=>17,'maxlength'=>17)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'total_discount'); ?>
+		<?php echo $form->textField($model,'total_discount',array('size'=>17,'maxlength'=>17)); ?>
 	</div>
 
 	<div class="row">
 		<?php echo $form->label($model,'total_paid'); ?>
 		<?php echo $form->textField($model,'total_paid',array('size'=>17,'maxlength'=>17)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'total_paid_real'); ?>
-		<?php echo $form->textField($model,'total_paid_real',array('size'=>17,'maxlength'=>17)); ?>
 	</div>
 
 	<div class="row">

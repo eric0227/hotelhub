@@ -360,6 +360,7 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
   `on_sale` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `quantity` int(10) NOT NULL DEFAULT '0',
   `price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `agent_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
   `wholesale_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
   `width` float NOT NULL DEFAULT '0',
   `height` float NOT NULL DEFAULT '0',
@@ -927,13 +928,13 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
   
   `gift` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `gift_message` text,
-  `total_products` decimal(17,2) NOT NULL DEFAULT '0.00',
- 
-  `total_discounts` decimal(17,2) NOT NULL DEFAULT '0.00',
-  `total_paid` decimal(17,2) NOT NULL DEFAULT '0.00',
   
-  `total_paid_real` decimal(17,2) NOT NULL DEFAULT '0.00',
-   
+  `total_price` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `total_agent_price` decimal(17,2) NOT NULL DEFAULT '0.00', 
+ 
+  `total_discount` decimal(17,2) NOT NULL DEFAULT '0.00',
+  `total_paid` decimal(17,2) NOT NULL DEFAULT '0.00',
+ 
   `invoice_number` int(10) unsigned NOT NULL DEFAULT '0',
   `delivery_number` int(10) unsigned NOT NULL DEFAULT '0',
   `invoice_date` datetime NOT NULL,
@@ -941,6 +942,8 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
 
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
+  
+  `on_agent`  tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_order`),
   KEY `invoice_number` (`invoice_number`),
   KEY `id_address_delivery` (`id_address_delivery`),
@@ -1039,6 +1042,7 @@ CREATE TABLE IF NOT EXISTS `gc_order_history` (
   `id_user` int(10) unsigned NOT NULL,
   `id_order` int(10) unsigned NOT NULL,
   `id_order_state` int(10) unsigned NOT NULL,
+  `comment` varchar(300),
 
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id_order_history`),

@@ -9,11 +9,12 @@
  * @property string $id_order
  * @property string $id_order_state
  * @property string $date_add
+ * @property string $comment
  *
  * The followings are the available model relations:
- * @property User $idUser
- * @property Order $idOrder
- * @property OrderState $idOrderState
+ * @property User $user
+ * @property Order $order
+ * @property OrderState $orderState
  */
 class OrderHistory extends CActiveRecord
 {
@@ -43,11 +44,12 @@ class OrderHistory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_user, id_order, id_order_state, date_add', 'required'),
+			array('id_order, id_order_state', 'required'),
 			array('id_user, id_order, id_order_state', 'length', 'max'=>10),
+			array('comment', 'length', 'max'=>300),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_order_history, id_user, id_order, id_order_state, date_add', 'safe', 'on'=>'search'),
+			array('id_order_history, id_user, id_order, id_order_state, date_add, comment', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,9 +61,9 @@ class OrderHistory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idUser' => array(self::BELONGS_TO, 'User', 'id_user'),
-			'idOrder' => array(self::BELONGS_TO, 'Order', 'id_order'),
-			'idOrderState' => array(self::BELONGS_TO, 'OrderState', 'id_order_state'),
+			'user' => array(self::BELONGS_TO, 'User', 'id_user'),
+			'order' => array(self::BELONGS_TO, 'Order', 'id_order'),
+			'orderState' => array(self::BELONGS_TO, 'OrderState', 'id_order_state'),
 		);
 	}
 
@@ -76,6 +78,7 @@ class OrderHistory extends CActiveRecord
 			'id_order' => 'Id Order',
 			'id_order_state' => 'Id Order State',
 			'date_add' => 'Date Add',
+			'comment' => 'Comment',
 		);
 	}
 
@@ -95,9 +98,22 @@ class OrderHistory extends CActiveRecord
 		$criteria->compare('id_order',$this->id_order,true);
 		$criteria->compare('id_order_state',$this->id_order_state,true);
 		$criteria->compare('date_add',$this->date_add,true);
+		$criteria->compare('comment',$this->comment,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function beforeSave() {
+		$order = Order::model()->findByPk($this->id_order);
+		$id_user = $order->id_user;
+		$this->id_user = $id_user;
+		
+		if($this->isNewRecord) {
+			$this->date_add = time();
+		}
+		
+		return parent::beforeSave();
 	}
 }
