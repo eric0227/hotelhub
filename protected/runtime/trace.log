@@ -3521,3 +3521,1542 @@ in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
 in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
 in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
 in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:45:30 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:30 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:30 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:45:30 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:45:30 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:45:32 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.web.filters.CFilterChain] Running filter OrderStateController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.db.ar.CActiveRecord] OrderState.count()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `gc_order_state` `t`
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:45:32 [trace] [system.db.ar.CActiveRecord] OrderState.findAll()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_order_state` `t` LIMIT 10 OFFSET 10
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:45:32 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:45:32 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:45:32 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:45:32 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:45:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:30 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:30 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:30 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:48:30 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:30 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.web.filters.CFilterChain] Running filter OrderStateController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.ar.CActiveRecord] OrderState.count()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `gc_order_state` `t`
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:32 [trace] [system.db.ar.CActiveRecord] OrderState.findAll()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_order_state` `t` LIMIT 10 OFFSET 10
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:32 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:32 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:32 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:31 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:31 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:31 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:48:31 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:31 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.web.filters.CFilterChain] Running filter OrderStateController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:32 [trace] [system.db.ar.CActiveRecord] OrderState.count()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `gc_order_state` `t`
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:32 [trace] [system.db.ar.CActiveRecord] OrderState.findAll()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:32 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_order_state` `t` LIMIT 10
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:33 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:33 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:33 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:33 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:33 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:48:33 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:33 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:33 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:33 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:36 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:36 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:36 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:48:36 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:36 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:37 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.web.filters.CFilterChain] Running filter OrderStateController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.db.ar.CActiveRecord] OrderState.count()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `gc_order_state` `t`
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:37 [trace] [system.db.ar.CActiveRecord] OrderState.findAll()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_order_state` `t` LIMIT 10 OFFSET 10
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+2012/11/07 06:48:37 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:37 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:37 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:37 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:37 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:39 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:39 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:39 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:48:39 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:39 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.web.filters.CFilterChain] Running filter OrderStateController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\models\OrderState.php (30)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (55)
+2012/11/07 06:48:40 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\models\OrderState.php (30)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (55)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\models\OrderState.php (30)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (55)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\models\OrderState.php (30)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (55)
+2012/11/07 06:48:40 [trace] [system.db.ar.CActiveRecord] OrderState.findByPk()
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (55)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_order_state` `t` WHERE `t`.`id_order_state`='11' LIMIT 1
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (55)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (56)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\view.php (32)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (56)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbDetailView.php (38)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\view.php (32)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (56)
+2012/11/07 06:48:40 [trace] [system.CModule] Loading "format" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\view.php (32)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (56)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:40 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:40 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:40 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:40 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:43 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:43 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:43 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:48:43 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:43 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:45 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.web.filters.CFilterChain] Running filter OrderStateController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (79)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:45 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\_form.php (4)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\create.php (15)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (79)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:45 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:45 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:45 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:45 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:45 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (116)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (79)
+2012/11/07 06:48:49 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:49 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:49 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:48:49 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:49 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:48:50 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.web.filters.CFilterChain] Running filter OrderStateController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_order_state`
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (73)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (79)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:48:50 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\_form.php (4)
+in D:\xampp\htdocs\hotelhub\protected\views\orderState\create.php (15)
+in D:\xampp\htdocs\hotelhub\protected\controllers\OrderStateController.php (79)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:48:50 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:48:50 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:48:50 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:48:50 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:52:05 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:05 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:05 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:52:05 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:52:05 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:52:07 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.web.filters.CFilterChain] Running filter GroupController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (125)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\group\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.db.ar.CActiveRecord] Group.count()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\group\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (128)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `gc_group` `t`
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\group\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (128)
+2012/11/07 06:52:07 [trace] [system.db.ar.CActiveRecord] Group.findAll()
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\group\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (128)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_group` `t` LIMIT 10
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbListView.php (37)
+in D:\xampp\htdocs\hotelhub\protected\views\group\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (128)
+2012/11/07 06:52:07 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\group\index.php (17)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (128)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:52:07 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:52:07 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:52:07 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:52:07 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:52:11 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:11 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:11 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:52:11 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:52:11 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.web.filters.CFilterChain] Running filter GroupController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\models\Group.php (25)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (55)
+2012/11/07 06:52:12 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\models\Group.php (25)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (55)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\models\Group.php (25)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (55)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\models\Group.php (25)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (55)
+2012/11/07 06:52:12 [trace] [system.db.ar.CActiveRecord] Group.findByPk()
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (55)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_group` `t` WHERE `t`.`id_group`='1' LIMIT 1
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (153)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (55)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (56)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\group\view.php (25)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (56)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\widgets\TbDetailView.php (38)
+in D:\xampp\htdocs\hotelhub\protected\views\group\view.php (25)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (56)
+2012/11/07 06:52:12 [trace] [system.CModule] Loading "format" application component
+in D:\xampp\htdocs\hotelhub\protected\views\group\view.php (25)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (56)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:52:12 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:52:12 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:52:12 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:52:12 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:52:18 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:18 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:18 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:52:18 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:52:18 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:52:19 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.web.filters.CFilterChain] Running filter GroupController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (79)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:52:19 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\group\_form.php (4)
+in D:\xampp\htdocs\hotelhub\protected\views\group\create.php (15)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (79)
+2012/11/07 06:52:19 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:52:19 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:52:19 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:52:19 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:52:19 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:52:19 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:52:20 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:52:20 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:52:20 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:52:20 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (116)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (79)
+2012/11/07 06:53:26 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:26 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:26 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:53:26 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:53:26 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:53:27 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:27 [trace] [system.web.filters.CFilterChain] Running filter GroupController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:27 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:27 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:27 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:27 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:27 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:28 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:28 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (73)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:28 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (79)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:28 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\group\_form.php (4)
+in D:\xampp\htdocs\hotelhub\protected\views\group\create.php (15)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (79)
+2012/11/07 06:53:28 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:53:28 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:53:28 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:53:28 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:53:28 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:53:28 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:53:28 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:53:28 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:53:28 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:53:45 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:45 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:45 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 06:53:45 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:53:45 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 06:53:46 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.web.filters.CFilterChain] Running filter GroupController.filteraccessControl()
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_group`
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (65)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (73)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (79)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 06:53:46 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\group\_form.php (4)
+in D:\xampp\htdocs\hotelhub\protected\views\group\create.php (15)
+in D:\xampp\htdocs\hotelhub\protected\controllers\GroupController.php (79)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 06:53:46 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 06:53:46 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column2.php (22)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 06:53:46 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 06:53:46 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:29 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:29 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:29 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 22:39:29 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:29 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:30 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:30 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:30 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (2)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:30 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:30 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:30 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:30 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:30 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:30 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:30 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+2012/11/07 22:39:30 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:30 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:30 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:30 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:30 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+2012/11/07 22:39:30 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+2012/11/07 22:39:34 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:34 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:34 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 22:39:34 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:34 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:35 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:35 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:35 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (2)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:35 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:35 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:35 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:35 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:35 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:35 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:35 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+2012/11/07 22:39:35 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:35 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:35 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:35 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:35 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+2012/11/07 22:39:35 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+2012/11/07 22:39:38 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:38 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:38 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 22:39:38 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:38 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:39 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:39 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (98)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:39 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\site\login.php (23)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (98)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:39 [trace] [system.CModule] Loading "coreMessages" application component
+in D:\xampp\htdocs\hotelhub\protected\views\site\login.php (30)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (98)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:39 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:39 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:39 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:39 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:39 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:39 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:39 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+2012/11/07 22:39:39 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:39 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:39 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:39 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:39 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (98)
+2012/11/07 22:39:39 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (98)
+2012/11/07 22:39:41 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:41 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:41 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 22:39:41 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:41 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:42 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:43 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php (71)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (94)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:43 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\protected\models\LoginForm.php (71)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (94)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:43 [trace] [system.CModule] Loading "log" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:43 [trace] [system.CModule] Loading "bootstrap" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:43 [trace] [system.CModule] Loading "clientScript" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (93)
+2012/11/07 22:39:43 [trace] [system.CModule] Loading "assetManager" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:43 [trace] [system.CModule] Loading "request" application component
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (424)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (154)
+in D:\xampp\htdocs\hotelhub\protected\extensions\bootstrap\components\Bootstrap.php (115)
+2012/11/07 22:39:44 [trace] [system.CModule] Loading "urlManager" application component
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:44 [trace] [system.CModule] Loading "themeManager" application component
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:44 [trace] [system.CModule] Loading "widgetFactory" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (2)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+in D:\xampp\htdocs\hotelhub\index.php (15)
+2012/11/07 22:39:44 [trace] [system.CModule] Loading "db" application component
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:44 [trace] [system.db.CDbConnection] Opening DB connection
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:44 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:44 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_service`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (27)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+2012/11/07 22:39:44 [trace] [system.db.ar.CActiveRecord] Service.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:44 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_service` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (113)
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (99)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+2012/11/07 22:39:44 [trace] [application] Array
+(
+    [1] => Hotel
+    [2] => Car
+    [3] => Etc
+)
+
+in D:\xampp\htdocs\hotelhub\protected\models\Service.php (101)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (51)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+2012/11/07 22:39:44 [trace] [system.db.CDbCommand] Querying SQL: SHOW COLUMNS FROM `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:44 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `gc_lang`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (28)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+2012/11/07 22:39:44 [trace] [system.db.ar.CActiveRecord] Lang.findAll()
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:44 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `gc_lang` `t`
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (126)
+in D:\xampp\htdocs\hotelhub\protected\models\Lang.php (114)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (60)
+2012/11/07 22:39:44 [trace] [system.CModule] Loading "user" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
+2012/11/07 22:39:44 [trace] [system.CModule] Loading "session" application component
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\main.php (106)
+in D:\xampp\htdocs\hotelhub\protected\views\layouts\column1.php (6)
+in D:\xampp\htdocs\hotelhub\protected\controllers\SiteController.php (32)
