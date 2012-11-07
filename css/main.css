@@ -179,17 +179,15 @@ div.search-form
 .portlet-decoration
 {
 	padding: 3px 8px;
-	background: #B7D6E7;
-	border-left: 5px solid #6FACCF;
 }
 
 .portlet-title
 {
-	font-size: 12px;
+	font-size: 18px;
 	font-weight: bold;
 	padding: 0;
 	margin: 0;
-	color: #298dcd;
+	color: #43b2e5;
 }
 
 .portlet-content
@@ -197,7 +195,6 @@ div.search-form
 	font-size:0.9em;
 	margin: 0 0 15px 0;
 	padding: 5px 8px;
-	background:#EFFDFF;
 }
 
 .portlet-content ul
@@ -228,20 +225,21 @@ div.search-form
 
 .operations li a
 {
-	font: bold 12px Arial;
-	color: #0066A4;
+	font: 12px Helvetica, Arial, sans-serif;
+	color: #5c5c5c;
+	background: #f1f1f1;
 	display: block;
-	padding: 2px 0 2px 8px;
+	padding: 7px 0 7px 12px;
 	line-height: 15px;
 	text-decoration: none;
-}
-
-.operations li a:visited
-{
-	color: #0066A4;
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	-o-border-radius: 20px;
 }
 
 .operations li a:hover
 {
-	background: #80CFFF;
+	background: #43b2e5;
+	color: #fff;
 }
