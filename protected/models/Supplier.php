@@ -215,6 +215,8 @@ class Supplier extends CActiveRecord
 		}
 		
 		//print_r($attributeValue);
+		
+		return parent::beforeSave();
 	}
 	
 	private $attributeItems = null;

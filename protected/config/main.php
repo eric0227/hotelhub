@@ -6,10 +6,9 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
-	'theme'=>'bootstrap',
 
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Hotel Hub System',
+	'name'=>'Holidoy System',
 
 	// preloading 'log' component
 	'preload'=>array('log','bootstrap'),
@@ -52,11 +51,6 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-/*
-		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-*/		
 		// uncomment the following to use a MySQL database
 		'db'=>array(
 			'connectionString' => 'mysql:host=14.200.134.156;dbname=hotelhub',
