@@ -102,21 +102,35 @@ class OrderController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		$data = array();
 		$model=$this->loadModel($id);
+		$data['model'] = $model;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Order']))
+		if(isset($_REQUEST['yt0']) && $_REQUEST['yt0'] == 'Process') {
+			$id_cart = $_POST['Order']['id_cart'];
+			
+			$model->id_lang=Lang::getCurrentLang();
+				
+			// get Cart
+			$cart = Cart::model()->findByPk($id_cart);
+			$model->id_cart = $id_cart;
+			$model->id_user = $cart->id_user;
+			$model->id_currency = $cart->id_currency;
+			$model->id_address_delivery = $cart->id_address_delivery;
+			$model->id_address_invoice = $cart->id_address_invoice;
+			
+			$model->procOrder();
+		} else if(isset($_POST['Order']))
 		{
 			$model->attributes=$_POST['Order'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_order));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update', $data);
 	}
 
 	/**

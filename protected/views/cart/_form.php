@@ -3,6 +3,12 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
+	<?php 
+		echo $form->dropDownList($model, 'id_user', User::items(User::CUSTOMER));
+		echo CHtml::submitButton('Search');
+		echo $form->error($model,'id_user');
+	?>
+	
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -11,7 +17,14 @@
 
 	<?php echo $form->textFieldRow($model,'id_address_invoice',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'id_currency',array('class'=>'span5','maxlength'=>10)); ?>
+	<div>
+		<?php echo $form->labelEx($model,'id_currency'); ?>
+		<?php 
+			//echo $form->textField($model,'id_currency',array('size'=>10,'maxlength'=>10)); 
+			echo $form->dropDownList($model, 'id_currency', Currency::items());
+		?>
+		<?php echo $form->error($model,'id_currency'); ?>
+	</div>
 
 	<?php echo $form->textFieldRow($model,'id_user',array('class'=>'span5','maxlength'=>10)); ?>
 

@@ -26,3 +26,14 @@ $this->menu=array(
 		'position',
 	),
 )); ?>
+
+<?php
+	if($model->attr_type == "checkbox" || $model->attr_type == "radiobox") { 
+		echo '<h4> Items </h4>';
+		echo '<ul>';
+		foreach($model->attributeItems as $item) {
+			echo '<li>' . $item->item . '</li>';
+		}
+		echo '</ul>';
+	}
+?>

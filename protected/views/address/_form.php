@@ -6,6 +6,50 @@
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
+	
+
+	<?php echo $form->labelEx($model,'id_country'); ?>
+	<?php 
+		//echo $form->textField($model,'id_country',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList(
+			$model,'id_country', Country::items(),
+			array(
+				'prompt' => '--Please select--',		
+				'ajax' => array(
+					'type' => 'POST',
+					'url' => CController::createUrl('user/getState'),
+					'update'=>'#' . CHtml::activeId($model, 'id_state')
+				)
+			)
+		);
+	?>
+	<?php echo $form->error($model,'id_country'); ?>
+
+	
+	<?php echo $form->labelEx($model,'id_state'); ?>
+	<?php 
+		//echo $form->textField($model,'id_state',array('size'=>10,'maxlength'=>10));
+		$state = array();
+		if(isset($model->id_country)) {
+			$state = State::items($model->id_country);
+		}
+		echo $form->dropDownList($model,'id_state',$state,array('prompt'=>'---Please select---'));
+	?>
+	<?php echo $form->error($model,'id_state'); ?>
+
+	<?php echo $form->labelEx($model,'id_user'); ?>
+	<?php 
+		//echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model,'id_user', User::items());
+	?>
+	<?php echo $form->error($model,'id_user'); ?>
+
+	<?php echo $form->labelEx($model,'address_code'); ?>
+	<?php 
+		echo $form->dropDownList($model,'address_code', Code::items(Address::CODE_TYPE));
+	?>
+	<?php echo $form->error($model,'address_code'); ?>
+
 
 	<?php echo $form->textFieldRow($model,'id_country',array('class'=>'span5','maxlength'=>10)); ?>
 
@@ -46,8 +90,6 @@
 	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'deleted',array('class'=>'span5')); ?>
-
-	<?php echo $form->textFieldRow($model,'address_code',array('class'=>'span5','maxlength'=>6)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

@@ -37,9 +37,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php 
+$models = $model->search();
+
+$this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'category-grid',
-	'dataProvider'=>$model->search(),
+	'dataProvider'=>$models,
 	'filter'=>$model,
 	'columns'=>array(
 		'id_category',
@@ -59,3 +62,42 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+
+
+<?php
+
+$items = array(); 
+
+foreach($models->getData() as $item) {
+	//echo $item->id_category;
+	$items[] = array('id' => $item->id_category, 'parent_id' => $item->id_parent, 'name' => $item->id_category);
+}
+
+
+
+$this->widget('ext.treetable.JTreeTable',array(
+    'id'=>'treeTable',
+    'primaryColumn'=>'id',
+    'parentColumn'=>'parent_id',
+    'columns'=>array(
+        'id'=>array(
+            'label'=>'Id',
+            'headerHtmlOptions'=>array('width'=>80),
+            'htmlOptions'=>array('align'=>'center'),
+		),
+        'name'=>'Name',
+	),
+/*	
+    'items'=>array(    
+		array('id'=>1,'parent_id'=>0,'name'=>'test 1'),
+		array('id'=>2,'parent_id'=>1,'name'=>'test 1\'s children 1'),		
+	),
+*/
+	'items' => $items,	
+    'options'=>array(
+        'initialState'=>'expanded',
+	),
+));
+
+?>
+

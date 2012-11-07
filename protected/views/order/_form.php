@@ -4,6 +4,19 @@
 )); ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+	
+	<div>
+	<?php echo $form->labelEx($model,'id_cart'); ?>
+	<?php 
+		// echo $form->textField($model,'id_cart',array('size'=>10,'maxlength'=>10)); 
+		
+		$cartModels = Cart::model()->findAll('on_order=:on_order', array('on_order'=>'0'));
+		$cartItems = CHtml::listData($cartModels, 'id_cart', 'id_cart');
+		echo $form->dropDownList($model, 'id_cart', $cartItems);
+		echo CHtml::submitButton('Process');
+	?>
+	<?php echo $form->error($model,'id_cart'); ?>
+	</div>
 
 	<?php echo $form->errorSummary($model); ?>
 

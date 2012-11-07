@@ -7,11 +7,25 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'id_attribute_group',array('class'=>'span5','maxlength'=>10)); ?>
+
+	<?php echo $form->labelEx($model,'id_attribute_group'); ?>
+	<?php 
+		//echo $form->textField($model,'id_attribute_group',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model,'id_attribute_group', AttributeGroup::items());
+	?>
+	<?php echo $form->error($model,'id_attribute_group'); ?>
+
 
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<?php echo $form->textAreaRow($model,'attr_type',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
+
+	<?php echo $form->labelEx($model,'attr_type'); ?>
+	<?php 
+		// echo $form->textArea($model,'attr_type',array('rows'=>6, 'cols'=>50));
+		echo $form->dropDownList($model,'attr_type', Attribute::$TYPE);
+	?>
+	<?php echo $form->error($model,'attr_type'); ?>
+
 
 	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 

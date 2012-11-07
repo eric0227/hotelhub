@@ -7,11 +7,28 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'id_product',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'id_hotel',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->labelEx($model,'id_product'); ?>
+	<?php 
+		//echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model, 'id_product', Product::items());
+	?>
+	<?php echo $form->error($model,'id_product'); ?>
 
-	<?php echo $form->textFieldRow($model,'room_code',array('class'=>'span5','maxlength'=>6)); ?>
+	<?php echo $form->labelEx($model,'id_hotel'); ?>
+	<?php 
+		//echo $form->textField($model,'id_hotel',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model, 'id_hotel', Hotel::items()); 
+	?>
+	<?php echo $form->error($model,'id_hotel'); ?>
+
+	<?php echo $form->labelEx($model,'room_code'); ?>
+	<?php 
+		//echo $form->textField($model,'room_code',array('size'=>6,'maxlength'=>6));
+		echo $form->dropDownList($model,'room_code', Code::items(CodeType::ROOM)); 
+	?>
+	<?php echo $form->error($model,'room_code'); ?>
+
 
 	<?php echo $form->textFieldRow($model,'room_type_code',array('class'=>'span5','maxlength'=>64)); ?>
 
@@ -40,6 +57,25 @@
 	<?php echo $form->textFieldRow($model,'adults_maxnum',array('class'=>'span5','maxlength'=>2)); ?>
 
 	<?php echo $form->textFieldRow($model,'adults_extra',array('class'=>'span5','maxlength'=>20)); ?>
+	
+	<div>
+		<?php 
+			$attributeInfos = $model->getAllSttributes();
+			foreach($attributeInfos as $info) {
+				echo '<div>';
+				echo '<h4>' . $info['attribute']->name . '</h4>';
+					
+				echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
+					CHtml::listData(
+						$info['attributeItem'],
+						'id_attribute_item',
+						'item'
+					)
+				);
+				echo '</div>';
+			}
+		?>
+	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

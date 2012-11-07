@@ -7,10 +7,14 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'code',array('class'=>'span5','maxlength'=>6)); ?>
-
-	<?php echo $form->textFieldRow($model,'type',array('class'=>'span5','maxlength'=>3)); ?>
-
+	<?php
+		echo $form->labelEx($model,'type');
+		echo $form->dropDownList($model,'type', CodeType::items());
+		echo $form->error($model,'type');
+	?>
+	
+	<?php echo $form->textFieldRow($model,'code',array('class'=>'span5','maxlength'=>6)); ?>	
+	
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>128)); ?>
 
 	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5')); ?>
