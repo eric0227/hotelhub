@@ -1,35 +1,19 @@
-<?php
-/* @var $this GroupController */
-/* @var $model Group */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_group'); ?>
-		<?php echo $form->textField($model,'id_group',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_group',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'level'); ?>
-		<?php echo $form->textField($model,'level'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'level',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

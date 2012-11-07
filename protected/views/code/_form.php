@@ -1,51 +1,26 @@
-<?php
-/* @var $this CodeController */
-/* @var $model Code */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'code-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>		
-		<?php 
-			//echo $form->textField($model,'type',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'type', CodeType::items());
-		?>
-		<?php echo $form->error($model,'type'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'code',array('class'=>'span5','maxlength'=>6)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model,'code',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'code'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'type',array('class'=>'span5','maxlength'=>3)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'position'); ?>
-		<?php echo $form->textField($model,'position'); ?>
-		<?php echo $form->error($model,'position'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

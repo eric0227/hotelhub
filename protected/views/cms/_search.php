@@ -1,40 +1,21 @@
-<?php
-/* @var $this CmsController */
-/* @var $model Cms */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_cms'); ?>
-		<?php echo $form->textField($model,'id_cms',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_cms',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_cms_category'); ?>
-		<?php echo $form->textField($model,'id_cms_category',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_cms_category',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'position'); ?>
-		<?php echo $form->textField($model,'position',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

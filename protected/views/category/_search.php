@@ -1,70 +1,33 @@
-<?php
-/* @var $this CategoryController */
-/* @var $model Category */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_category'); ?>
-		<?php echo $form->textField($model,'id_category',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
-	
-	<div class="row">
-		<?php echo $form->label($model,'id_service'); ?>
-		<?php echo $form->textField($model,'id_service',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_category',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_parent'); ?>
-		<?php echo $form->textField($model,'id_parent',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_parent',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'level_depth'); ?>
-		<?php echo $form->textField($model,'level_depth'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_service',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'nleft'); ?>
-		<?php echo $form->textField($model,'nleft',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'level_depth',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'nright'); ?>
-		<?php echo $form->textField($model,'nright',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'nleft',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'nright',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'date_upd'); ?>
-		<?php echo $form->textField($model,'date_upd'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'position'); ?>
-		<?php echo $form->textField($model,'position',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5','maxlength'=>10)); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

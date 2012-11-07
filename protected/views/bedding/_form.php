@@ -1,69 +1,32 @@
-<?php
-/* @var $this BeddingController */
-/* @var $model Bedding */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'bedding-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_room'); ?>
-		<?php 
-			// echo $form->textField($model,'id_room',array('size'=>10,'maxlength'=>10)); 
-			echo $form->dropDownList($model, 'id_room', Room::items());
-		?>
-		<?php echo $form->error($model,'id_room'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_room',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'gest_num'); ?>
-		<?php echo $form->textField($model,'gest_num',array('size'=>2,'maxlength'=>2)); ?>
-		<?php echo $form->error($model,'gest_num'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'gest_num',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'single_num'); ?>
-		<?php echo $form->textField($model,'single_num',array('size'=>2,'maxlength'=>2)); ?>
-		<?php echo $form->error($model,'single_num'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'single_num',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'double_num'); ?>
-		<?php echo $form->textField($model,'double_num',array('size'=>2,'maxlength'=>2)); ?>
-		<?php echo $form->error($model,'double_num'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'double_num',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'beddig_desc'); ?>
-		<?php echo $form->textField($model,'beddig_desc',array('size'=>60,'maxlength'=>200)); ?>
-		<?php echo $form->error($model,'beddig_desc'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'beddig_desc',array('class'=>'span5','maxlength'=>200)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'additional_cost'); ?>
-		<?php echo $form->textField($model,'additional_cost',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'additional_cost'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'additional_cost',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'cots_available'); ?>
-		<?php echo $form->textField($model,'cots_available',array('size'=>2,'maxlength'=>2)); ?>
-		<?php echo $form->error($model,'cots_available'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'cots_available',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

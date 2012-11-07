@@ -1,48 +1,26 @@
-<?php
-/* @var $this ProductImageController */
-/* @var $model ProductImage */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'product-image-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_image'); ?>
-		<?php echo $form->textField($model,'id_image',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'id_image'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_image',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_product'); ?>
-		<?php echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'id_product'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_product',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'position'); ?>
-		<?php echo $form->textField($model,'position'); ?>
-		<?php echo $form->error($model,'position'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'cover'); ?>
-		<?php echo $form->textField($model,'cover'); ?>
-		<?php echo $form->error($model,'cover'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'cover',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

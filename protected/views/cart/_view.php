@@ -1,12 +1,7 @@
-<?php
-/* @var $this CartController */
-/* @var $data Cart */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_cart')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_cart), array('view', 'id'=>$data->id_cart)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_cart),array('view','id'=>$data->id_cart)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_address_delivery')); ?>:</b>
@@ -48,6 +43,10 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_upd')); ?>:</b>
 	<?php echo CHtml::encode($data->date_upd); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('on_order')); ?>:</b>
+	<?php echo CHtml::encode($data->on_order); ?>
 	<br />
 
 	*/ ?>

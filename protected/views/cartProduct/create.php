@@ -1,15 +1,12 @@
 <?php
-/* @var $this CartProductController */
-/* @var $model CartProduct */
-
 $this->breadcrumbs=array(
 	'Cart Products'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List CartProduct', 'url'=>array('index')),
-	array('label'=>'Manage CartProduct', 'url'=>array('admin')),
+	array('label'=>'List CartProduct','url'=>array('index')),
+	array('label'=>'Manage CartProduct','url'=>array('admin')),
 );
 ?>
 

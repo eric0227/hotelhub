@@ -1,12 +1,7 @@
-<?php
-/* @var $this CmsCategoryController */
-/* @var $data CmsCategory */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_cms_category')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_cms_category), array('view', 'id'=>$data->id_cms_category)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_cms_category),array('view','id'=>$data->id_cms_category)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_parent')); ?>:</b>

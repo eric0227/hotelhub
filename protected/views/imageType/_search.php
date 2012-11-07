@@ -1,40 +1,21 @@
-<?php
-/* @var $this ImageTypeController */
-/* @var $model ImageType */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_image_type'); ?>
-		<?php echo $form->textField($model,'id_image_type',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_image_type',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>16,'maxlength'=>16)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'width'); ?>
-		<?php echo $form->textField($model,'width',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'width',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'height'); ?>
-		<?php echo $form->textField($model,'height',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'height',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

@@ -1,12 +1,7 @@
-<?php
-/* @var $this OrderStateController */
-/* @var $data OrderState */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_order_state')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_order_state), array('view', 'id'=>$data->id_order_state)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_order_state),array('view','id'=>$data->id_order_state)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('invoice')); ?>:</b>

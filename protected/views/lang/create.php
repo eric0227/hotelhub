@@ -1,15 +1,12 @@
 <?php
-/* @var $this LangController */
-/* @var $model Lang */
-
 $this->breadcrumbs=array(
 	'Langs'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Lang', 'url'=>array('index')),
-	array('label'=>'Manage Lang', 'url'=>array('admin')),
+	array('label'=>'List Lang','url'=>array('index')),
+	array('label'=>'Manage Lang','url'=>array('admin')),
 );
 ?>
 

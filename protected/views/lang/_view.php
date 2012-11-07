@@ -1,12 +1,7 @@
-<?php
-/* @var $this LangController */
-/* @var $data Lang */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_lang')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_lang), array('view', 'id'=>$data->id_lang)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_lang),array('view','id'=>$data->id_lang)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>

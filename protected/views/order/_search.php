@@ -1,130 +1,59 @@
-<?php
-/* @var $this OrderController */
-/* @var $model Order */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_order'); ?>
-		<?php echo $form->textField($model,'id_order',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_order',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_lang'); ?>
-		<?php echo $form->textField($model,'id_lang',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_lang',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_user'); ?>
-		<?php echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_user',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_cart'); ?>
-		<?php echo $form->textField($model,'id_cart',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_cart',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_currency'); ?>
-		<?php echo $form->textField($model,'id_currency',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_currency',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_address_delivery'); ?>
-		<?php echo $form->textField($model,'id_address_delivery',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_address_delivery',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_address_invoice'); ?>
-		<?php echo $form->textField($model,'id_address_invoice',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_address_invoice',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'secure_key'); ?>
-		<?php echo $form->textField($model,'secure_key',array('size'=>32,'maxlength'=>32)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'secure_key',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'payment'); ?>
-		<?php echo $form->textField($model,'payment',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'payment',array('class'=>'span5','maxlength'=>255)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'conversion_rate'); ?>
-		<?php echo $form->textField($model,'conversion_rate',array('size'=>13,'maxlength'=>13)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'conversion_rate',array('class'=>'span5','maxlength'=>13)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'gift'); ?>
-		<?php echo $form->textField($model,'gift'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'gift',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'gift_message'); ?>
-		<?php echo $form->textArea($model,'gift_message',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
+	<?php echo $form->textAreaRow($model,'gift_message',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'total_price'); ?>
-		<?php echo $form->textField($model,'total_price',array('size'=>17,'maxlength'=>17)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'total_price',array('class'=>'span5','maxlength'=>17)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'total_agent_price'); ?>
-		<?php echo $form->textField($model,'total_agent_price',array('size'=>17,'maxlength'=>17)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'total_agent_price',array('class'=>'span5','maxlength'=>17)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'total_discount'); ?>
-		<?php echo $form->textField($model,'total_discount',array('size'=>17,'maxlength'=>17)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'total_discount',array('class'=>'span5','maxlength'=>17)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'total_paid'); ?>
-		<?php echo $form->textField($model,'total_paid',array('size'=>17,'maxlength'=>17)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'total_paid',array('class'=>'span5','maxlength'=>17)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'invoice_number'); ?>
-		<?php echo $form->textField($model,'invoice_number',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'invoice_number',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'delivery_number'); ?>
-		<?php echo $form->textField($model,'delivery_number',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'delivery_number',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'invoice_date'); ?>
-		<?php echo $form->textField($model,'invoice_date'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'invoice_date',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'delivery_date'); ?>
-		<?php echo $form->textField($model,'delivery_date'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'delivery_date',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'date_upd'); ?>
-		<?php echo $form->textField($model,'date_upd'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<?php echo $form->textFieldRow($model,'on_agent',array('class'=>'span5')); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

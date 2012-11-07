@@ -1,48 +1,26 @@
-<?php
-/* @var $this ConfigurationController */
-/* @var $model Configuration */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'configuration-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'value'); ?>
-		<?php echo $form->textArea($model,'value',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'value'); ?>
-	</div>
+	<?php echo $form->textAreaRow($model,'value',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-		<?php echo $form->error($model,'date_add'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_upd'); ?>
-		<?php echo $form->textField($model,'date_upd'); ?>
-		<?php echo $form->error($model,'date_upd'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

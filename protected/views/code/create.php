@@ -1,15 +1,12 @@
 <?php
-/* @var $this CodeController */
-/* @var $model Code */
-
 $this->breadcrumbs=array(
 	'Codes'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Code', 'url'=>array('index')),
-	array('label'=>'Manage Code', 'url'=>array('admin')),
+	array('label'=>'List Code','url'=>array('index')),
+	array('label'=>'Manage Code','url'=>array('admin')),
 );
 ?>
 

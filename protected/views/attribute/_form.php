@@ -1,60 +1,28 @@
-<?php
-/* @var $this AttributeController */
-/* @var $model Attribute */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'attribute-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_attribute_group'); ?>
-		<?php 
-			//echo $form->textField($model,'id_attribute_group',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'id_attribute_group', AttributeGroup::items());
-		?>
-		<?php echo $form->error($model,'id_attribute_group'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_attribute_group',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'attr_type'); ?>
-		<?php 
-			// echo $form->textArea($model,'attr_type',array('rows'=>6, 'cols'=>50));
-			echo $form->dropDownList($model,'attr_type', Attribute::$TYPE);
-		?>
-		<?php echo $form->error($model,'attr_type'); ?>
-	</div>
+	<?php echo $form->textAreaRow($model,'attr_type',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-		<?php echo $form->error($model,'active'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'position'); ?>
-		<?php echo $form->textField($model,'position'); ?>
-		<?php echo $form->error($model,'position'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

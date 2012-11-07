@@ -1,105 +1,47 @@
-<?php
-/* @var $this RoomController */
-/* @var $model Room */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_product'); ?>
-		<?php echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_product',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_hotel'); ?>
-		<?php echo $form->textField($model,'id_hotel',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_hotel',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'room_code'); ?>
-		<?php echo $form->textField($model,'room_code',array('size'=>6,'maxlength'=>6)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'room_code',array('class'=>'span5','maxlength'=>6)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'room_type_code'); ?>
-		<?php echo $form->textField($model,'room_type_code',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'room_type_code',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'lead_in_room_type'); ?>
-		<?php echo $form->textField($model,'lead_in_room_type'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'lead_in_room_type',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'full_rate'); ?>
-		<?php echo $form->textField($model,'full_rate',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'full_rate',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'min_night_stay'); ?>
-		<?php echo $form->textField($model,'min_night_stay',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'min_night_stay',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'max_night_stay'); ?>
-		<?php echo $form->textField($model,'max_night_stay',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'max_night_stay',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'room_name'); ?>
-		<?php echo $form->textField($model,'room_name',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'room_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'root_description'); ?>
-		<?php echo $form->textField($model,'root_description',array('size'=>60,'maxlength'=>300)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'root_description',array('class'=>'span5','maxlength'=>300)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'guests_tot_room_cap'); ?>
-		<?php echo $form->textField($model,'guests_tot_room_cap',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'guests_tot_room_cap',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'guests_included_price'); ?>
-		<?php echo $form->textField($model,'guests_included_price',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'guests_included_price',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'children_maxnum'); ?>
-		<?php echo $form->textField($model,'children_maxnum',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'children_maxnum',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'children_years'); ?>
-		<?php echo $form->textField($model,'children_years',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'children_years',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'children_extra'); ?>
-		<?php echo $form->textField($model,'children_extra',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'children_extra',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'adults_maxnum'); ?>
-		<?php echo $form->textField($model,'adults_maxnum',array('size'=>2,'maxlength'=>2)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'adults_maxnum',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'adults_extra'); ?>
-		<?php echo $form->textField($model,'adults_extra',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'adults_extra',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

@@ -1,12 +1,7 @@
-<?php
-/* @var $this OrderController */
-/* @var $data Order */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_order')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_order), array('view', 'id'=>$data->id_order)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_order),array('view','id'=>$data->id_order)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_lang')); ?>:</b>
@@ -92,6 +87,10 @@
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_upd')); ?>:</b>
 	<?php echo CHtml::encode($data->date_upd); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('on_agent')); ?>:</b>
+	<?php echo CHtml::encode($data->on_agent); ?>
 	<br />
 
 	*/ ?>

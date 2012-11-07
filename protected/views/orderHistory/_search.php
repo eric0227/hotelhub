@@ -1,50 +1,25 @@
-<?php
-/* @var $this OrderHistoryController */
-/* @var $model OrderHistory */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_order_history'); ?>
-		<?php echo $form->textField($model,'id_order_history',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_order_history',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_user'); ?>
-		<?php echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_user',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_order'); ?>
-		<?php echo $form->textField($model,'id_order',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_order',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_order_state'); ?>
-		<?php echo $form->textField($model,'id_order_state',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_order_state',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'comment'); ?>
-		<?php echo $form->textField($model,'comment',array('size'=>60,'maxlength'=>300)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'comment',array('class'=>'span5','maxlength'=>300)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

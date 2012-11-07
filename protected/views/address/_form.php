@@ -1,179 +1,60 @@
-<?php
-/* @var $this AddressController */
-/* @var $model Address */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'address-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_country'); ?>
-		<?php 
-			//echo $form->textField($model,'id_country',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList(
-				$model,'id_country', Country::items(),
-				array(
-					'prompt' => '--Please select--',		
-					'ajax' => array(
-						'type' => 'POST',
-						'url' => CController::createUrl('user/getState'),
-						'update'=>'#' . CHtml::activeId($model, 'id_state')
-					)
-				)
-			);
-		?>
-		<?php echo $form->error($model,'id_country'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_country',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_state'); ?>
-		<?php 
-			//echo $form->textField($model,'id_state',array('size'=>10,'maxlength'=>10));
-			$state = array();
-			if(isset($model->id_country)) {
-				$state = State::items($model->id_country);
-			}
-			echo $form->dropDownList($model,'id_state',$state,array('prompt'=>'---Please select---'));
-		?>
-		<?php echo $form->error($model,'id_state'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_state',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_user'); ?>
-		<?php 
-			//echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'id_user', User::items());
-		?>
-		<?php echo $form->error($model,'id_user'); ?>
-	</div>
-	
-	
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'address_code'); ?>
-		<?php 
-			echo $form->dropDownList($model,'address_code', Code::items(Address::CODE_TYPE));
-		?>
-		<?php echo $form->error($model,'address_code'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_user',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'alias'); ?>
-		<?php echo $form->textField($model,'alias',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'alias'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'alias',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'company'); ?>
-		<?php echo $form->textField($model,'company',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'company'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'company',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'lastname'); ?>
-		<?php echo $form->textField($model,'lastname',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'lastname'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'lastname',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'firstname'); ?>
-		<?php echo $form->textField($model,'firstname',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'firstname'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'firstname',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'address1'); ?>
-		<?php echo $form->textField($model,'address1',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'address1'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'address1',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'address2'); ?>
-		<?php echo $form->textField($model,'address2',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'address2'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'address2',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'postcode'); ?>
-		<?php echo $form->textField($model,'postcode',array('size'=>12,'maxlength'=>12)); ?>
-		<?php echo $form->error($model,'postcode'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'postcode',array('class'=>'span5','maxlength'=>12)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'city'); ?>
-		<?php echo $form->textField($model,'city',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'city'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'city',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'other'); ?>
-		<?php echo $form->textArea($model,'other',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'other'); ?>
-	</div>
+	<?php echo $form->textAreaRow($model,'other',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'phone'); ?>
-		<?php echo $form->textField($model,'phone',array('size'=>16,'maxlength'=>16)); ?>
-		<?php echo $form->error($model,'phone'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'phone',array('class'=>'span5','maxlength'=>16)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'phone_mobile'); ?>
-		<?php echo $form->textField($model,'phone_mobile',array('size'=>16,'maxlength'=>16)); ?>
-		<?php echo $form->error($model,'phone_mobile'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'phone_mobile',array('class'=>'span5','maxlength'=>16)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'vat_number'); ?>
-		<?php echo $form->textField($model,'vat_number',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'vat_number'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'vat_number',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'dni'); ?>
-		<?php echo $form->textField($model,'dni',array('size'=>16,'maxlength'=>16)); ?>
-		<?php echo $form->error($model,'dni'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'dni',array('class'=>'span5','maxlength'=>16)); ?>
 
-<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-		<?php echo $form->error($model,'date_add'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_upd'); ?>
-		<?php echo $form->textField($model,'date_upd'); ?>
-		<?php echo $form->error($model,'date_upd'); ?>
-	</div>
-*/ ?>
+	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-		<?php echo $form->error($model,'active'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'deleted'); ?>
-		<?php echo $form->textField($model,'deleted'); ?>
-		<?php echo $form->error($model,'deleted'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'deleted',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<?php echo $form->textFieldRow($model,'address_code',array('class'=>'span5','maxlength'=>6)); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

@@ -1,20 +1,15 @@
-<?php
-/* @var $this CategoryController */
-/* @var $data Category */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_category')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_category), array('view', 'id'=>$data->id_category)); ?>
-	<br />
-	
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_service')); ?>:</b>
-	<?php echo CHtml::encode($data->id_service); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_category),array('view','id'=>$data->id_category)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_parent')); ?>:</b>
 	<?php echo CHtml::encode($data->id_parent); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id_service')); ?>:</b>
+	<?php echo CHtml::encode($data->id_service); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('level_depth')); ?>:</b>
@@ -33,11 +28,11 @@
 	<?php echo CHtml::encode($data->active); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_add')); ?>:</b>
 	<?php echo CHtml::encode($data->date_add); ?>
 	<br />
 
-	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_upd')); ?>:</b>
 	<?php echo CHtml::encode($data->date_upd); ?>
 	<br />

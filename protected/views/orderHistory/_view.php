@@ -1,12 +1,7 @@
-<?php
-/* @var $this OrderHistoryController */
-/* @var $data OrderHistory */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_order_history')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_order_history), array('view', 'id'=>$data->id_order_history)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_order_history),array('view','id'=>$data->id_order_history)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_user')); ?>:</b>

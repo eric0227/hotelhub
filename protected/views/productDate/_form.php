@@ -1,77 +1,28 @@
-<?php
-/* @var $this ProductDateController */
-/* @var $model ProductDate */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'product-date-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_product'); ?>
-		<?php 
-			//echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10)); 
-			echo $form->dropDownList($model, 'id_product', Product::items());
-		?>
-		<?php echo $form->error($model,'id_product'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_product',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'on_date'); ?>
-		<?php 
-			//echo $form->textField($model,'on_date'); 
-			$this->widget('zii.widgets.jui.CJuiDatePicker', array(
-				'model'=>$model,
-			    'name'=>'ProductDate[on_date]',
-				'value'=>(!empty($model->on_date))? substr($model->on_date, 0, 10) : date('Y-m-d'),
-			    'options'=>array(
-			        'showAnim'=>'fold',
-					'mode'=>'datetime',
-					'dateFormat'=>'yy-mm-dd',
-					
-				),
-			    'htmlOptions'=>array(
-			        'style'=>'height:20px;',
-					
-				),
-			));
-			
-			//echo Yii::app()->dateFormatter->formatDateTime('yyyy-MM-dd', $model->on_date) ;
-			//echo substr($model->on_date, 0, 10);
-		?>
-		<?php echo $form->error($model,'on_date'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'on_date',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'price'); ?>
-		<?php echo $form->textField($model,'price',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'price'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'price',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'agent_price'); ?>
-		<?php echo $form->textField($model,'agent_price',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'agent_price'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'agent_price',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'quantity'); ?>
-		<?php echo $form->textField($model,'quantity',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'quantity'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'quantity',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

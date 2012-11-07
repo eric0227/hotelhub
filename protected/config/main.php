@@ -6,6 +6,8 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
+	'theme'=>'bootstrap',
+
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Hotel Hub System',
 
@@ -26,7 +28,7 @@ return array(
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 			'generatorPaths' => array(
-				//'application.gii'  //nested set  Model and Crud templates
+				//'application.gii',  //nested set  Model and Crud templates
 				'bootstrap.gii',
 			),
 		),
@@ -76,9 +78,9 @@ return array(
 					'logFile' => 'trace.log'
 				),
 				// uncomment the following to show log messages on web pages
- 				array(
- 					'class'=>'CWebLogRoute',
- 				),
+//  				array(
+//  					'class'=>'CWebLogRoute',
+//  				),
 			),
 		),
 	),

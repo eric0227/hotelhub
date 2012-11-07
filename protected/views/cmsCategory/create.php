@@ -1,15 +1,12 @@
 <?php
-/* @var $this CmsCategoryController */
-/* @var $model CmsCategory */
-
 $this->breadcrumbs=array(
 	'Cms Categories'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List CmsCategory', 'url'=>array('index')),
-	array('label'=>'Manage CmsCategory', 'url'=>array('admin')),
+	array('label'=>'List CmsCategory','url'=>array('index')),
+	array('label'=>'Manage CmsCategory','url'=>array('admin')),
 );
 ?>
 

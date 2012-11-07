@@ -1,15 +1,12 @@
 <?php
-/* @var $this AttributeItemController */
-/* @var $model AttributeItem */
-
 $this->breadcrumbs=array(
 	'Attribute Items'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List AttributeItem', 'url'=>array('index')),
-	array('label'=>'Manage AttributeItem', 'url'=>array('admin')),
+	array('label'=>'List AttributeItem','url'=>array('index')),
+	array('label'=>'Manage AttributeItem','url'=>array('admin')),
 );
 ?>
 

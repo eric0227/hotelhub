@@ -1,15 +1,12 @@
 <?php
-/* @var $this ImageController */
-/* @var $model Image */
-
 $this->breadcrumbs=array(
 	'Images'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Image', 'url'=>array('index')),
-	array('label'=>'Manage Image', 'url'=>array('admin')),
+	array('label'=>'List Image','url'=>array('index')),
+	array('label'=>'Manage Image','url'=>array('admin')),
 );
 ?>
 

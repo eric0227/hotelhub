@@ -1,12 +1,7 @@
-<?php
-/* @var $this ProductDateController */
-/* @var $data ProductDate */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_product_date')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_product_date), array('view', 'id'=>$data->id_product_date)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_product_date),array('view','id'=>$data->id_product_date)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_product')); ?>:</b>

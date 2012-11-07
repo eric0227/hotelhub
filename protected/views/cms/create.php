@@ -1,15 +1,12 @@
 <?php
-/* @var $this CmsController */
-/* @var $model Cms */
-
 $this->breadcrumbs=array(
 	'Cms'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Cms', 'url'=>array('index')),
-	array('label'=>'Manage Cms', 'url'=>array('admin')),
+	array('label'=>'List Cms','url'=>array('index')),
+	array('label'=>'Manage Cms','url'=>array('admin')),
 );
 ?>
 

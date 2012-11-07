@@ -1,110 +1,40 @@
-<?php
-/* @var $this UserController */
-/* @var $model User */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'user-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_group'); ?>
-		<?php 
-			//echo $form->textField($model,'id_group',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'id_group', Group::items());
-		?>
-		<?php echo $form->error($model,'id_group'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_group',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_lang'); ?>
-		<?php 
-			//echo $form->textField($model,'id_lang',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'id_lang', Lang::items());		
-		?>
-		<?php echo $form->error($model,'id_lang'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_lang',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'lastname'); ?>
-		<?php echo $form->textField($model,'lastname',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'lastname'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'lastname',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'firstname'); ?>
-		<?php echo $form->textField($model,'firstname',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'firstname'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'firstname',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'email'); ?>
-		<?php echo $form->textField($model,'email',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'email'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'passwd'); ?>
-		<?php echo $form->passwordField($model,'passwd',array('size'=>32,'maxlength'=>32)); ?>
-		<?php echo $form->error($model,'passwd'); ?>
-	</div>
+	<?php echo $form->passwordFieldRow($model,'passwd',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'is_guest'); ?>
-		<?php echo $form->textField($model,'is_guest'); ?>
-		<?php echo $form->error($model,'is_guest'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'is_guest',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'note'); ?>
-		<?php echo $form->textArea($model,'note',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'note'); ?>
-	</div>
+	<?php echo $form->textAreaRow($model,'note',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'birthday'); ?>
-		<?php echo $form->textField($model,'birthday'); ?>
-		<?php echo $form->error($model,'birthday'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'birthday',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-		<?php echo $form->error($model,'active'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'deleted'); ?>
-		<?php echo $form->textField($model,'deleted'); ?>
-		<?php echo $form->error($model,'deleted'); ?>
-	</div>
-	
-	<div class="row">	
-		
-		<?php echo $form->labelEx($model,'addresses'); ?>		
-		
-		<?php 
-			foreach($model->addresses as $address) {						
-				echo CHtml::link(CHtml::encode( $address->addressCode->name), array('address/view', 'id'=>$address->id_address));
-				echo ',';
-			}	
-		?>
-		<br><br>
-		<?php echo CHtml::link('[Add address]', array('address/index', 'Address[id_user]'=>$model->id_user)); ?>	
-	</div>
+	<?php echo $form->textFieldRow($model,'deleted',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

@@ -1,12 +1,7 @@
-<?php
-/* @var $this BeddingController */
-/* @var $data Bedding */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_bedding')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_bedding), array('view', 'id'=>$data->id_bedding)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_bedding),array('view','id'=>$data->id_bedding)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_room')); ?>:</b>

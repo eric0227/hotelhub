@@ -1,92 +1,36 @@
-<?php
-/* @var $this CategoryController */
-/* @var $model Category */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'category-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-	
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_parent'); ?>
-		<?php 
-			// echo $form->textField($model,'id_parent',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model,'id_parent', $parentItems);			
-		?>
-		<?php echo $form->error($model,'id_parent'); ?>
-	</div>
 
-<?php /*
-	<div class="row">
-		<?php echo $form->labelEx($model,'level_depth'); ?>
-		<?php echo $form->textField($model,'level_depth'); ?>
-		<?php echo $form->error($model,'level_depth'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_parent',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'nleft'); ?>
-		<?php echo $form->textField($model,'nleft',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'nleft'); ?>
-	</div>
-	<div class="row">
-		<?php echo $form->labelEx($model,'nright'); ?>
-		<?php echo $form->textField($model,'nright',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'nright'); ?>
-	</div>
-*/ ?>
+	<?php echo $form->textFieldRow($model,'id_service',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-		<?php echo $form->error($model,'active'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'level_depth',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-		<?php echo $form->error($model,'date_add'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'nleft',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_upd'); ?>
-		<?php echo $form->textField($model,'date_upd'); ?>
-		<?php echo $form->error($model,'date_upd'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'nright',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'position'); ?>
-		<?php echo $form->textField($model,'position',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'position'); ?>
-	</div>
-	
-	<?php 
-		foreach($langModels as $langModel) {
-			echo '<div class="row">';
-			//echo $form->hiddenField($langModel,'id_lang');
-			echo $form->textField($langModel,'id_lang');
-			
-			echo $form->labelEx($langModel,'name');
-			echo $form->textField($langModel,'name');			
-			echo '</div>';
-		}	
-	?>
-	
-	
-	
-	
+	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
+
+	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
+
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5','maxlength'=>10)); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

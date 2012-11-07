@@ -1,15 +1,12 @@
 <?php
-/* @var $this SpecialController */
-/* @var $model Special */
-
 $this->breadcrumbs=array(
 	'Specials'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List Special', 'url'=>array('index')),
-	array('label'=>'Manage Special', 'url'=>array('admin')),
+	array('label'=>'List Special','url'=>array('index')),
+	array('label'=>'Manage Special','url'=>array('admin')),
 );
 ?>
 

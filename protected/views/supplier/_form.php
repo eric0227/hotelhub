@@ -1,227 +1,52 @@
-<?php
-/* @var $this SupplierController */
-/* @var $model Supplier */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'supplier-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_supplier'); ?>
-		<?php 
-			//echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10));			
-			echo $form->dropDownList($model,'id_supplier', User::items(User::$SUPPLIER));
-		?>
-		<?php echo $form->error($model,'id_supplier'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_supplier',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'manager_name'); ?>
-		<?php echo $form->textField($model,'manager_name',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'manager_name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'manager_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'manager_email'); ?>
-		<?php echo $form->textField($model,'manager_email',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'manager_email'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'manager_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'sales_name'); ?>
-		<?php echo $form->textField($model,'sales_name',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'sales_name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'sales_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'sales_email'); ?>
-		<?php echo $form->textField($model,'sales_email',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'sales_email'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'sales_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'reservations_name'); ?>
-		<?php echo $form->textField($model,'reservations_name',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'reservations_name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'reservations_email'); ?>
-		<?php echo $form->textField($model,'reservations_email',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'reservations_email'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'reservations_phone'); ?>
-		<?php echo $form->textField($model,'reservations_phone',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'reservations_phone'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_phone',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'reservations_fx'); ?>
-		<?php echo $form->textField($model,'reservations_fx',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'reservations_fx'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_fx',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'accounts_name'); ?>
-		<?php echo $form->textField($model,'accounts_name',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'accounts_name'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'accounts_email'); ?>
-		<?php echo $form->textField($model,'accounts_email',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'accounts_email'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'accounts_phone'); ?>
-		<?php echo $form->textField($model,'accounts_phone',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'accounts_phone'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_phone',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'accounts_fx'); ?>
-		<?php echo $form->textField($model,'accounts_fx',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'accounts_fx'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_fx',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'supplier_abn'); ?>
-		<?php echo $form->textField($model,'supplier_abn',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'supplier_abn'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'supplier_abn',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'member_chain_group'); ?>
-		<?php echo $form->textField($model,'member_chain_group',array('size'=>60,'maxlength'=>64)); ?>
-		<?php echo $form->error($model,'member_chain_group'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'member_chain_group',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'room_count'); ?>
-		<?php echo $form->textField($model,'room_count'); ?>
-		<?php echo $form->error($model,'room_count'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'room_count',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'website'); ?>
-		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>128)); ?>
-		<?php echo $form->error($model,'website'); ?>
-	</div>
-	
-	<h2> Supplier Facilities </h2>
-	
-	<div>
-	<?php		
-		$attributeInfos = $model->getAllSttributes();
-		foreach($attributeInfos as $info) {
-			echo '<div>';
-			echo '<h4>' . $info['attribute']->name . '</h4>';
-				
-			echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
-				CHtml::listData(
-					$info['attributeItem'],
-					'id_attribute_item',
-					'item'
-				)
-			);
-			echo '</div>';
-		}
-	
-/*	
-		$attributeInfos = $model->getAllSttributes();		
-		foreach($attributeInfos as $info) {
-			echo '<div>';
-			echo '<h4>' . $info['attribute']->name . '</h4>';
-			
-			$info['attribute']->setSelectedAttributeItemIds($info['selectedAttributeItemIds']);
-			
-			echo $form->checkBoxList($model, 'selectedAttributeItem'.$info['attribute']->id_attribute,
-				CHtml::listData(
-					$info['attributeItem'],
-					'id_attribute_item',
-					'item'
-				)
-			);			
-			echo '</div>';
-		}
-*/		
-		
-		
-		
-/*	
-		$attributeList = Attribute::model()->findAll(
-			"id_attribute_group = :id_attribute_group", 
-			array('id_attribute_group' => AttributeGroup::SUPPLIER)
-		);
-		
-		foreach($attributeList as $attribute) {			
-			echo '<div>';
-			echo '<h4>' . $attribute->name . '</h4>';
+	<?php echo $form->textFieldRow($model,'website',array('class'=>'span5','maxlength'=>128)); ?>
 
-			
-			echo $form->checkBoxList($model, 'selectedAttributeItemIds',  
-				CHtml::listData(
-					AttributeItem::model()->findAll(
-						'id_attribute = :id_attribute', 
-						array('id_attribute'=>$attribute->id_attribute)
-					),
-					'id_attribute_item',
-					'item'
-				)
-			);
-			
-			echo '<br>';
-			echo '</div>';
-			break;
-		}
-*/		
-		
-/*	
-		foreach($attributeList as $attribute) {
-			echo '<div>';
-			echo '	<ul><h4>' . $attribute->name . '</h4></ul>';
-		
-			foreach($attribute->attributeItems as $item) {
-				echo '<li>';
-				echo '<input type="checkbox" >';
-				echo $item->item;
-				echo '</li>';
-				//echo CHtml::activeCheckBox($item, $item->item);
-				echo '</ul>';
-			}
-				
-			$items = $model->getItems($attribute->id_attribute);
-			print_r($items);
-				
-			echo '</div>';
-			echo '<BR><BR>';
-		}
-*/
-	?>
-	</div>
-	
-	<?php 
-		
-		
-	
-	?>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

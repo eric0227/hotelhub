@@ -1,64 +1,28 @@
-<?php
-/* @var $this OrderHistoryController */
-/* @var $model OrderHistory */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'order-history-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-<?php /* ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_user'); ?>
-		<?php echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'id_user'); ?>
-	</div>
-<?php */ ?>
+	<?php echo $form->textFieldRow($model,'id_user',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_order'); ?>
-		<?php 
-			//echo $form->textField($model,'id_order',array('size'=>10,'maxlength'=>10)); 
-			echo $form->dropDownList($model, 'id_order', Order::items());
-		?>
-		<?php echo $form->error($model,'id_order'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_order',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_order_state'); ?>
-		<?php 
-			// echo $form->textField($model,'id_order_state',array('size'=>10,'maxlength'=>10));
-			echo $form->dropDownList($model, 'id_order_state', OrderState::items());
-		?>
-		<?php echo $form->error($model,'id_order_state'); ?>
-	</div>
-	
-<?php /* ?>
-	<div class="row">
-		<?php echo $form->labelEx($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-		<?php echo $form->error($model,'date_add'); ?>
-	</div>
-<?php */ ?>
+	<?php echo $form->textFieldRow($model,'id_order_state',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'comment'); ?>
-		<?php echo $form->textField($model,'comment',array('size'=>60,'maxlength'=>300)); ?>
-		<?php echo $form->error($model,'comment'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<?php echo $form->textFieldRow($model,'comment',array('class'=>'span5','maxlength'=>300)); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

@@ -1,105 +1,47 @@
-<?php
-/* @var $this SupplierController */
-/* @var $model Supplier */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_supplier'); ?>
-		<?php echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_supplier',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'manager_name'); ?>
-		<?php echo $form->textField($model,'manager_name',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'manager_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'manager_email'); ?>
-		<?php echo $form->textField($model,'manager_email',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'manager_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'sales_name'); ?>
-		<?php echo $form->textField($model,'sales_name',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'sales_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'sales_email'); ?>
-		<?php echo $form->textField($model,'sales_email',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'sales_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'reservations_name'); ?>
-		<?php echo $form->textField($model,'reservations_name',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'reservations_email'); ?>
-		<?php echo $form->textField($model,'reservations_email',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'reservations_phone'); ?>
-		<?php echo $form->textField($model,'reservations_phone',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_phone',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'reservations_fx'); ?>
-		<?php echo $form->textField($model,'reservations_fx',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'reservations_fx',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'accounts_name'); ?>
-		<?php echo $form->textField($model,'accounts_name',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'accounts_email'); ?>
-		<?php echo $form->textField($model,'accounts_email',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'accounts_phone'); ?>
-		<?php echo $form->textField($model,'accounts_phone',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_phone',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'accounts_fx'); ?>
-		<?php echo $form->textField($model,'accounts_fx',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'accounts_fx',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'supplier_abn'); ?>
-		<?php echo $form->textField($model,'supplier_abn',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'supplier_abn',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'member_chain_group'); ?>
-		<?php echo $form->textField($model,'member_chain_group',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'member_chain_group',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'room_count'); ?>
-		<?php echo $form->textField($model,'room_count'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'room_count',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'website'); ?>
-		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>128)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'website',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

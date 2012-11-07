@@ -66,7 +66,7 @@
 		</div>
 				
 	</div><!-- header -->
-
+'bootstrap.widgets.BootMenu'
 	<div id="mainmenu">
 		<?php $this->widget('zii.widgets.CMenu',array(
 			'items'=>array(
@@ -121,9 +121,9 @@
 	<div class="clear"></div>
 
 	<div id="footer">
-		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
+		Copyright &copy; <?php echo date('Y'); ?> by Holidoy.<br/>
 		All Rights Reserved.<br/>
-		<?php echo Yii::powered(); ?>
+		Powered by <a href="http://www.gnaemarketing.com.au">Gna eMarketing </a>
 	</div><!-- footer -->
 
 </div><!-- page -->

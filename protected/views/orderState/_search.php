@@ -1,70 +1,33 @@
-<?php
-/* @var $this OrderStateController */
-/* @var $model OrderState */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_order_state'); ?>
-		<?php echo $form->textField($model,'id_order_state',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_order_state',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'invoice'); ?>
-		<?php echo $form->textField($model,'invoice'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'invoice',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'send_email'); ?>
-		<?php echo $form->textField($model,'send_email'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'send_email',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'color'); ?>
-		<?php echo $form->textField($model,'color',array('size'=>32,'maxlength'=>32)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'color',array('class'=>'span5','maxlength'=>32)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'unremovable'); ?>
-		<?php echo $form->textField($model,'unremovable'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'unremovable',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'hidden'); ?>
-		<?php echo $form->textField($model,'hidden'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'hidden',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'logable'); ?>
-		<?php echo $form->textField($model,'logable'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'logable',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'delivery'); ?>
-		<?php echo $form->textField($model,'delivery'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'delivery',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'template'); ?>
-		<?php echo $form->textField($model,'template',array('size'=>60,'maxlength'=>64)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'template',array('class'=>'span5','maxlength'=>64)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

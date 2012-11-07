@@ -1,15 +1,12 @@
 <?php
-/* @var $this AttributeGroupController */
-/* @var $model AttributeGroup */
-
 $this->breadcrumbs=array(
 	'Attribute Groups'=>array('index'),
 	'Create',
 );
 
 $this->menu=array(
-	array('label'=>'List AttributeGroup', 'url'=>array('index')),
-	array('label'=>'Manage AttributeGroup', 'url'=>array('admin')),
+	array('label'=>'List AttributeGroup','url'=>array('index')),
+	array('label'=>'Manage AttributeGroup','url'=>array('admin')),
 );
 ?>
 

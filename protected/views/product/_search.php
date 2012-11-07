@@ -1,110 +1,53 @@
-<?php
-/* @var $this ProductController */
-/* @var $model Product */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_product'); ?>
-		<?php echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_product',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_category_default'); ?>
-		<?php echo $form->textField($model,'id_category_default',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_service',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'on_sale'); ?>
-		<?php echo $form->textField($model,'on_sale'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_category_default',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'quantity'); ?>
-		<?php echo $form->textField($model,'quantity'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'on_sale',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'minimal_quantity'); ?>
-		<?php echo $form->textField($model,'minimal_quantity',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'quantity',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'price'); ?>
-		<?php echo $form->textField($model,'price',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'minimal_quantity',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'wholesale_price'); ?>
-		<?php echo $form->textField($model,'wholesale_price',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'price',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'width'); ?>
-		<?php echo $form->textField($model,'width'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'agent_price',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'height'); ?>
-		<?php echo $form->textField($model,'height'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'wholesale_price',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'depth'); ?>
-		<?php echo $form->textField($model,'depth'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'width',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'weight'); ?>
-		<?php echo $form->textField($model,'weight'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'height',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'out_of_stock'); ?>
-		<?php echo $form->textField($model,'out_of_stock',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'depth',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'active'); ?>
-		<?php echo $form->textField($model,'active'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'weight',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'condition'); ?>
-		<?php echo $form->textField($model,'condition',array('size'=>11,'maxlength'=>11)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'out_of_stock',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'show_price'); ?>
-		<?php echo $form->textField($model,'show_price'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'indexed'); ?>
-		<?php echo $form->textField($model,'indexed'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'condition',array('class'=>'span5','maxlength'=>11)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'date_add'); ?>
-		<?php echo $form->textField($model,'date_add'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'show_price',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'date_upd'); ?>
-		<?php echo $form->textField($model,'date_upd'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'indexed',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
+
+	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
+
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->

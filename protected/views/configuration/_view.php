@@ -1,12 +1,7 @@
-<?php
-/* @var $this ConfigurationController */
-/* @var $data Configuration */
-?>
-
 <div class="view">
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_configuration')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->id_configuration), array('view', 'id'=>$data->id_configuration)); ?>
+	<?php echo CHtml::link(CHtml::encode($data->id_configuration),array('view','id'=>$data->id_configuration)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>

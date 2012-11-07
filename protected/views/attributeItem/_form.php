@@ -1,42 +1,24 @@
-<?php
-/* @var $this AttributeItemController */
-/* @var $model AttributeItem */
-/* @var $form CActiveForm */
-?>
-
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'attribute-item-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'id_attribute'); ?>
-		<?php echo $form->textField($model,'id_attribute',array('size'=>10,'maxlength'=>10)); ?>
-		<?php echo $form->error($model,'id_attribute'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_attribute',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'item'); ?>
-		<?php echo $form->textField($model,'item',array('size'=>60,'maxlength'=>300)); ?>
-		<?php echo $form->error($model,'item'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'item',array('class'=>'span5','maxlength'=>300)); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'position'); ?>
-		<?php echo $form->textField($model,'position'); ?>
-		<?php echo $form->error($model,'position'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5')); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'buttonType'=>'submit',
+			'type'=>'primary',
+			'label'=>$model->isNewRecord ? 'Create' : 'Save',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->

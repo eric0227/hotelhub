@@ -1,50 +1,25 @@
-<?php
-/* @var $this ProductDateController */
-/* @var $model ProductDate */
-/* @var $form CActiveForm */
-?>
-
-<div class="wide form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'action'=>Yii::app()->createUrl($this->route),
 	'method'=>'get',
 )); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_product_date'); ?>
-		<?php echo $form->textField($model,'id_product_date',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_product_date',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'id_product'); ?>
-		<?php echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'id_product',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'on_date'); ?>
-		<?php echo $form->textField($model,'on_date'); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'on_date',array('class'=>'span5')); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'price'); ?>
-		<?php echo $form->textField($model,'price',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'price',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'agent_price'); ?>
-		<?php echo $form->textField($model,'agent_price',array('size'=>20,'maxlength'=>20)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'agent_price',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<div class="row">
-		<?php echo $form->label($model,'quantity'); ?>
-		<?php echo $form->textField($model,'quantity',array('size'=>10,'maxlength'=>10)); ?>
-	</div>
+	<?php echo $form->textFieldRow($model,'quantity',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Search'); ?>
+	<div class="form-actions">
+		<?php $this->widget('bootstrap.widgets.TbButton', array(
+			'type'=>'primary',
+			'label'=>'Search',
+		)); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- search-form -->
