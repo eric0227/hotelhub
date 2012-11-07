@@ -112,20 +112,44 @@ class CartController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		
+		$data = array();
+		$data['model'] = $model;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Cart']))
-		{
+		if(isset($_REQUEST['yt0']) && $_REQUEST['yt0'] == 'Search') {
+			$id_user = $_POST['Cart']['id_user'];
+			$user = User::model()->findByPk($id_user);
+			
+			$model->id_user = $id_user;
+			
+			$defaultAddress = Address::getAddress($id_user, Address::DEFAULT_CODE);
+			if(isset($defaultAddress)) {
+				$model->id_address_delivery = $defaultAddress->id_address;
+				$model->id_address_invoice = $defaultAddress->id_address;				
+				$data['defaultAddress'] = $defaultAddress;
+			}
+			
+			$deliveryAddress = Address::getAddress($id_user, Address::DELIVERY_CODE);
+			if(isset($deliveryAddress)) {
+				$model->id_address_delivery = $deliveryAddress->id_address;
+				$data['deliveryAddress'] = $deliveryAddress;
+			}
+			
+			$invoiceAddress = Address::getAddress($id_user, Address::INVOICE_CODE);
+			if(isset($invoiceAddress)) {
+				$model->id_address_invoice = $invoiceAddress->id_address;
+				$data['invoiceAddress'] = $invoiceAddress;
+			}
+		} else if(isset($_POST['Cart'])) {
 			$model->attributes=$_POST['Cart'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_cart));
 		}
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		$this->render('update', $data);
 	}
 
 	/**

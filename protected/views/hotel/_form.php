@@ -7,7 +7,11 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'id_supplier',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->labelEx($model,'id_supplier'); ?>
+	<?php 
+		echo $form->dropDownList($model,'id_supplier', User::items(User::SUPPLIER));
+	?>
+	<?php echo $form->error($model,'id_supplier'); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

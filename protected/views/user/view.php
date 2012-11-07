@@ -19,8 +19,16 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id_user',
-		'id_group',
-		'id_lang',
+		array(
+			'label'=>'Group',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->group->name), '../group/' . $model->id_group),			
+		),
+		array(
+			'label'=>'Lang',
+			'type'=>'raw',
+			'value'=>CHtml::link(CHtml::encode($model->lang->name), '../lang/' . $model->id_lang),			
+		),
 		'lastname',
 		'firstname',
 		'email',

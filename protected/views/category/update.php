@@ -15,4 +15,11 @@ $this->menu=array(
 
 <h1>Update Category <?php echo $model->id_category; ?></h1>
 
-<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
+<?php 
+	echo $this->renderPartial('_form', 
+		array(
+			'model'=>$model,  
+			'parentItems' => $parentItems
+		)
+	);
+?>

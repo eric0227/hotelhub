@@ -7,8 +7,14 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'id_parent',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->labelEx($model,'id_parent'); ?>
+	<?php 
+		// echo $form->textField($model,'id_parent',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model,'id_parent', $parentItems);			
+	?>
+	<?php echo $form->error($model,'id_parent'); ?>
 
+<?php /*	
 	<?php echo $form->textFieldRow($model,'id_service',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'level_depth',array('class'=>'span5')); ?>
@@ -16,7 +22,8 @@
 	<?php echo $form->textFieldRow($model,'nleft',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'nright',array('class'=>'span5','maxlength'=>10)); ?>
-
+*/ ?>
+	
 	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>

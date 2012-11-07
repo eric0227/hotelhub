@@ -7,9 +7,22 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'id_group',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'id_lang',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->labelEx($model,'id_group'); ?>
+	<?php 
+		//echo $form->textField($model,'id_group',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model,'id_group', Group::items());
+	?>
+	<?php echo $form->error($model,'id_group'); ?>
+
+	<?php echo $form->labelEx($model,'id_lang'); ?>
+	<?php 
+		//echo $form->textField($model,'id_lang',array('size'=>10,'maxlength'=>10));
+		echo $form->dropDownList($model,'id_lang', Lang::items());		
+	?>
+	<?php echo $form->error($model,'id_lang'); ?>
+
+	
 
 	<?php echo $form->textFieldRow($model,'lastname',array('class'=>'span5','maxlength'=>32)); ?>
 

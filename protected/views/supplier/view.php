@@ -37,3 +37,22 @@ $this->menu=array(
 		'website',
 	),
 )); ?>
+
+<div>
+	<?php			
+		$attributeInfos = $model->getAllSttributes();
+		foreach($attributeInfos as $info) {
+			echo '<div>';
+			echo '<h4>' . $info['attribute']->name . '</h4>';
+				
+			echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
+				CHtml::listData(
+					$info['attributeItem'],
+					'id_attribute_item',
+					'item'
+				)
+			);
+			echo '</div>';
+		}
+	?>
+</div>

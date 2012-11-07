@@ -7,11 +7,45 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'id_cart',array('class'=>'span5','maxlength'=>10)); ?>
+	<div>
+		<?php echo $form->labelEx($model,'id_cart'); ?>
+		<?php 
+			//echo $form->textField($model,'id_cart',array('size'=>10,'maxlength'=>10)); 
+			echo $form->dropDownList($model, 'id_cart', Cart::items());
+		?>
+		<?php echo $form->error($model,'id_cart'); ?>
+	</div>
 
-	<?php echo $form->textFieldRow($model,'id_product',array('class'=>'span5','maxlength'=>10)); ?>
+	<div>
+		<?php echo $form->labelEx($model,'id_product'); ?>
+		<?php 
+			//echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10)); 
+			echo $form->dropDownList(
+				$model, 'id_product', Product::items(),
+				array(
+					'prompt' => '--Please select--',		
+					'ajax' => array(
+						'type' => 'POST',
+						'url' => CController::createUrl('productDate/prodectDateOptions'),
+						'update'=>'#' . CHtml::activeId($model, 'id_product_date')
+					)
+				)
+			);
+		?>
+		<?php echo $form->error($model,'id_product'); ?>
+	</div>
 
-	<?php echo $form->textFieldRow($model,'id_product_date',array('class'=>'span5','maxlength'=>10)); ?>
+	<div>
+		<?php echo $form->labelEx($model,'id_product_date'); ?>
+		<?php
+			//echo $form->textField($model,'id_product_date',array('size'=>10,'maxlength'=>10));
+			$productDateList = ProductDate::model()->findAll('id_product = :id_product', array(':id_product'=>$model->id_product));
+			$listData = CHtml::listData($productDateList, 'id_product_date', 'id_product_date');
+		
+			echo $form->dropDownList($model,'id_product_date', $listData);
+		?>
+		<?php echo $form->error($model,'id_product_date'); ?>
+	</div>
 
 	<?php echo $form->textFieldRow($model,'quantity',array('class'=>'span5','maxlength'=>10)); ?>
 

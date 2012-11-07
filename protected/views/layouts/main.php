@@ -1,20 +1,20 @@
 
-<?php 
-	$session=new CHttpSession;
-	$session->open();
-	
-	if(isset($session['service'])) {
-		$service = $session['service'];
-	} else {
-		$service = 1;
-	}
-	
-	if(isset($session['lang'])) {
-		$lang = $session['lang'];
-	} else {
-		$lang = 1;
-	}
-	
+<?php
+$session=new CHttpSession;
+$session->open();
+
+if(isset($session['service'])) {
+	$service = $session['service'];
+} else {
+	$service = 1;
+}
+
+if(isset($session['lang'])) {
+	$lang = $session['lang'];
+} else {
+	$lang = 1;
+}
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -42,14 +42,15 @@
 
 	<div id="header">
 		<div id="logo">
-			<?php echo CHtml::encode(Yii::app()->name); ?>
+			<?php /* echo CHtml::encode(Yii::app()->name); */ ?>
+			Holidoy Admin
 		</div>
 		<div>
 			<div style="float:left;">
 			<?php 
 				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/service/change','post');
 				echo CHtml::dropDownList('service', $service, Service::items());
-				echo CHtml::submitButton("Service");
+				echo CHtml::submitButton("Service", array('class'=>'btn'));
 				echo CHtml::endForm();
 			?>
 			</div>
@@ -58,7 +59,7 @@
 			<?php 
 				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post');
 				echo CHtml::dropDownList('lang', $lang, Lang::items());
-				echo CHtml::submitButton("Lang");
+				echo CHtml::submitButton("Lang", array('class'=>'btn'));
 				echo CHtml::endForm();
 			?>
 			</div>
@@ -66,17 +67,74 @@
 		</div>
 				
 	</div><!-- header -->
-'bootstrap.widgets.BootMenu'
 	<div id="mainmenu">
-		<?php $this->widget('zii.widgets.CMenu',array(
+		<?php $this->widget('bootstrap.widgets.TbMenu',array(
+			'type' => 'tabs',
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/site/index')),
-				array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-				array('label'=>'Contact', 'url'=>array('/site/contact')),
+				array('label'=>'Product', 'url'=>'', 
+					'items'=>array(
+						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
+						array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),						
+						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),						
+						array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room')),	
+						array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding')),
+						array('label'=>'Special', 'url'=>array('/special/index', 'tag'=>'special')),
+						array('label'=>'ProductDate', 'url'=>array('/productDate/index', 'tag'=>'productDate'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Orders', 'url'=>'',
+					'items'=>array(
+						array('label'=>'Orders', 'url'=>array('/order/index', 'tag'=>'order')),
+						array('label'=>'OrderHistory', 'url'=>array('/orderHistory/index', 'tag'=>'orderHistory')),
+						array('label'=>'OrderState', 'url'=>array('/orderState/index', 'tag'=>'orderState'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Cart', 'url'=>'',
+					'items'=>array(
+						array('label'=>'Cart', 'url'=>array('/cart/index', 'tag'=>'cart')),
+						array('label'=>'CartProduct', 'url'=>array('/cartProduct/index', 'tag'=>'cartProduct'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Supplier', 'url'=>'',
+					'items'=>array(
+						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Member', 'url'=>'',
+					'items'=>array(
+						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
+						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Service', 'url'=>'',
+					'items'=>array(
+						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
 				array(
-					'label'=>'Manage Model',
+					'label'=>'Address',
 					'url'=>'',
 
+					'items'=>array(
+						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'CMS', 'url'=>'',
+					'items'=>array(
+						array('label'=>'CMS', 'url'=>array('/cms/index', 'tag'=>'cms')),
+						array('label'=>'CMS Category', 'url'=>array('/cmsCategory/index', 'tag'=>'cms-category'))
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Configuration', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Configuration', 'url'=>array('/configuration/index', 'tag'=>'configuration')),
 						array('label'=>'Lang', 'url'=>array('/lang/index', 'tag'=>'lang')),
@@ -84,24 +142,7 @@
 						array('label'=>'Code', 'url'=>array('/code/index', 'tag'=>'code')),
 						array('label'=>'AttributeGroup', 'url'=>array('/attributeGroup/index', 'tag'=>'attributeGroup')),
 						array('label'=>'Attribute', 'url'=>array('/attribute/index', 'tag'=>'attribute')),
-						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem')),						
-						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
-						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
-						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address')),						
-						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service')),						
-						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),						
-						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
-						array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),						
-						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),						
-						array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room')),	
-						array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding')),
-						array('label'=>'Special', 'url'=>array('/special/index', 'tag'=>'special')),
-						array('label'=>'ProductDate', 'url'=>array('/productDate/index', 'tag'=>'productDate')),
-						array('label'=>'Cart', 'url'=>array('/cart/index', 'tag'=>'cart')),
-						array('label'=>'CartProduct', 'url'=>array('/cartProduct/index', 'tag'=>'cartProduct')),
-						array('label'=>'Order', 'url'=>array('/order/index', 'tag'=>'order')),
-						array('label'=>'OrderHistory', 'url'=>array('/orderHistory/index', 'tag'=>'orderHistory')),
-						array('label'=>'OrderState', 'url'=>array('/orderState/index', 'tag'=>'orderState')),						
+						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

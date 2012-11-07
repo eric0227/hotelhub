@@ -28,27 +28,15 @@
 	<?php echo CHtml::encode($data->passwd); ?>
 	<br />
 
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('is_guest')); ?>:</b>
-	<?php echo CHtml::encode($data->is_guest); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('note')); ?>:</b>
-	<?php echo CHtml::encode($data->note); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('birthday')); ?>:</b>
-	<?php echo CHtml::encode($data->birthday); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('active')); ?>:</b>
-	<?php echo CHtml::encode($data->active); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('deleted')); ?>:</b>
-	<?php echo CHtml::encode($data->deleted); ?>
-	<br />
-
-	*/ ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('addresses')); ?>:</b>
+	
+	<?php 
+		foreach($data->addresses as $address) {
+			//print_r($address);
+			//echo $address->addressCode->name;			
+			echo CHtml::link(CHtml::encode( $address->addressCode->name), array('address/view', 'id'=>$address->id_address));
+			echo ',';
+		}	
+	?>
 
 </div>

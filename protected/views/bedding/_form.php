@@ -7,7 +7,12 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'id_room',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->labelEx($model,'id_room'); ?>
+	<?php 
+		// echo $form->textField($model,'id_room',array('size'=>10,'maxlength'=>10)); 
+		echo $form->dropDownList($model, 'id_room', Room::items());
+	?>
+	<?php echo $form->error($model,'id_room'); ?>
 
 	<?php echo $form->textFieldRow($model,'gest_num',array('class'=>'span5','maxlength'=>2)); ?>
 

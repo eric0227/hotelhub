@@ -7,6 +7,10 @@ body
 	background: #EFEFEF;
 }
 
+select {
+	margin: 5px !important;
+}
+
 #page
 {
 	margin-top: 5px;
@@ -73,11 +77,25 @@ body
 	padding:5px 8px;
 }
 
+#mainmenu ul ul {
+	padding: 3px;
+}
+
+#mainmenu ul li li a {
+	padding: 5px 8px;
+	color: #5c5c5c;
+}
+
 #mainmenu ul li a:hover, #mainmenu ul li.active a
 {
 	color: #6399cd;
 	background-color:#EFF4FA;
 	text-decoration:none;
+}
+
+#mainmenu ul li li a:hover, #mainmenu ul li li.active a
+{
+	color: #fff;	
 }
 
 div.flash-error, div.flash-notice, div.flash-success
