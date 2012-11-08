@@ -14,3 +14,6 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 require_once($yii);
 Yii::createWebApplication($config)->run();
+
+
+// test
