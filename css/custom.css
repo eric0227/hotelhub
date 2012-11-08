@@ -11,7 +11,7 @@ p.label_checkbox_pair {
 	height: 30px;
 }
 
-p.label_checkbox_pair input, select {
+p.label_checkbox_pair input, p.label_checkbox_pair select {
 /*	left: 5px; */
 	position: absolute;
 /*	top: 1px; */
@@ -24,7 +24,7 @@ label.floatleft {
 	width: 200px;
 }
 
-p.label_checkbox_pair label, select {
+p.label_checkbox_pair label, p.label_checkbox_pair select {
 	display: block;
 	margin-left: 20px;
 	width: 200px;
