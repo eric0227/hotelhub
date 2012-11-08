@@ -1,0 +1,40 @@
+
+h4.custom {
+	margin-top: 20px;
+	clear: both;
+}
+
+p.label_checkbox_pair {
+/*	clear: both; */
+	float: left;
+	position: relative;
+	height: 30px;
+}
+
+p.label_checkbox_pair input, select {
+/*	left: 5px; */
+	position: absolute;
+/*	top: 1px; */
+}
+
+label.floatleft {
+	float: left;
+	display: block;
+	margin-left: 20px;
+	width: 200px;
+}
+
+p.label_checkbox_pair label, select {
+	display: block;
+	margin-left: 20px;
+	width: 200px;
+}
+
+.spacer, .cb {
+	clear: both;
+}
+
+p.help-block {
+	padding-bottom: 20px;
+	font-weight: bold;
+}
