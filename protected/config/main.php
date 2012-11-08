@@ -7,6 +7,8 @@
 // CWebApplication properties can be configured here.
 return array(
 
+	'defaultController' => 'index',
+	
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Holidoy System',
 

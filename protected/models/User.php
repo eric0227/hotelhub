@@ -27,6 +27,7 @@ class User extends CActiveRecord
 	const SUPPLIER = 2;
 	const AGNT = 3;
 	const CUSTOMER = 4;
+	const GUEST = 5;
 	
 	private static $_items = null;
 	/**
@@ -146,6 +147,19 @@ class User extends CActiveRecord
 	
 	public function isCustomer() {
 		return $this->id_group == self::CUSTOMER;
+	}
+	
+	public static function getCurrentGroup() {
+		$session=new CHttpSession;
+		$session->open();
+		
+		if(isset($session['group'])) {
+			$group = $session['group'];
+		} else {
+			$group = User::GUEST;
+		}
+		
+		return $group;
 	}
 	
 	public static function items($group = null)

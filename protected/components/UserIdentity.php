@@ -21,6 +21,9 @@ class UserIdentity extends CUserIdentity
 			// username => password
 			'demo'=>'demo',
 			'admin'=>'admin',
+			'supplier'=>'supplier',
+			'agent'=>'agent',
+			'customer'=>'customer',
 		);
 		if(!isset($users[$this->username]))
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
@@ -28,6 +31,20 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
 		else
 			$this->errorCode=self::ERROR_NONE;
+				
+// 		$session=new CHttpSession;
+// 		$session->open();
+		
+// 		if($this->username == 'admin') {
+// 			$session['group'] = User::ADMIN;
+// 		} else if($this->username == 'supplier') {
+// 			$session['group'] = User::SUPPLIER;
+// 		} else if($this->username == 'agent') {
+// 			$session['group'] = User::AGENT;
+// 		} else if($this->username == 'customer') {
+// 			$session['group'] = User::CUSTOMER;
+// 		}
+		
 		return !$this->errorCode;
 	}
 }

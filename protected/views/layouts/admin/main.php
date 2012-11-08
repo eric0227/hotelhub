@@ -71,7 +71,7 @@ if(isset($session['lang'])) {
 		<?php $this->widget('bootstrap.widgets.TbMenu',array(
 			'type' => 'tabs',
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/site/index')),
+				array('label'=>'Home', 'url'=>array('/adm/index')),
 				array('label'=>'Product', 'url'=>'', 
 					'items'=>array(
 						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
@@ -146,8 +146,8 @@ if(isset($session['lang'])) {
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
-				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				array('label'=>'Login', 'url'=>array('/adm/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/adm/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
 	</div><!-- mainmenu -->
