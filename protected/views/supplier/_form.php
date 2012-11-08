@@ -9,7 +9,7 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<?php echo $form->labelEx($model,'id_supplier',
-			array('class' => 'floatleft')); ?>
+			array('class' => 'label_checkbox_pair')); ?>
 	<?php 
 		//echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10));
 		echo $form->dropDownList($model,'id_supplier', User::items(User::SUPPLIER));
