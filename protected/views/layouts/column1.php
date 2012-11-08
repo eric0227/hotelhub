@@ -1,6 +1,12 @@
-<?php /* @var $this Controller */ ?>
-<?php $this->beginContent('//layouts/main'); ?>
-<div id="content">
-	<?php echo $content; ?>
-</div><!-- content -->
-<?php $this->endContent(); ?>
+<?php 
+	// echo User::getCurrentGroup();
+	
+	
+	if(User::getCurrentGroup() == User::ADMIN) {
+		include Yii::app()->basePath .'/views/layouts/admin/column1.php';
+	}
+	
+	if(User::getCurrentGroup() == User::SUPPLIER) {
+		include Yii::app()->basePath .'/views/layouts/supplier/column1.php';
+	}
+?>

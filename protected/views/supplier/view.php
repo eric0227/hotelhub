@@ -43,14 +43,18 @@ $this->menu=array(
 		$attributeInfos = $model->getAllSttributes();
 		foreach($attributeInfos as $info) {
 			echo '<div>';
-			echo '<h4>' . $info['attribute']->name . '</h4>';
+			echo '<h4 class="custom">' . $info['attribute']->name . '</h4>';
 				
 			echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
 				CHtml::listData(
 					$info['attributeItem'],
 					'id_attribute_item',
 					'item'
-				)
+				),
+				array('readonly' => 'readonly',
+				'container' => 'div',
+				'separator' => '',
+				'template' => '<p class="label_checkbox_pair">{input}{label}</p>')
 			);
 			echo '</div>';
 		}

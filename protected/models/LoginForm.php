@@ -69,6 +69,21 @@ class LoginForm extends CFormModel
 		{
 			$duration=$this->rememberMe ? 3600*24*30 : 0; // 30 days
 			Yii::app()->user->login($this->_identity,$duration);
+			
+			
+			$session=new CHttpSession;
+			$session->open();
+			
+			if($this->username == 'admin') {
+				$session['group'] = User::ADMIN;
+			} else if($this->username == 'supplier') {
+				$session['group'] = User::SUPPLIER;
+			} else if($this->username == 'agent') {
+				$session['group'] = User::AGENT;
+			} else if($this->username == 'customer') {
+				$session['group'] = User::CUSTOMER;
+			}
+			
 			return true;
 		}
 		else
