@@ -3,6 +3,6 @@
 	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
 	<buildpathentry external="true" kind="lib" path="D:/APM_Setup/htdocs/yii"/>
 	<buildpathentry external="true" kind="lib" path="D:/xampp/htdocs/yii"/>
+	<buildpathentry external="true" kind="lib" path="C:/xampp/htdocs/yii/framework"/>
 	<buildpathentry kind="src" path=""/>
-	<buildpathentry external="true" kind="lib" path="D:/xampp/htdocs/yii"/>
 </buildpath>

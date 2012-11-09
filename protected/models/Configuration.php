@@ -7,6 +7,8 @@
  * @property string $id_configuration
  * @property string $name
  * @property string $value
+ * @property string $value[1]
+ * @property string $value[2]
  * @property string $date_add
  * @property string $date_upd
  *
@@ -43,7 +45,7 @@ class Configuration extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('name', 'length', 'max'=>32),
-			array('value', 'safe'),
+			//array('value', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id_configuration, name, value, date_add, date_upd', 'safe', 'on'=>'search'),
@@ -98,7 +100,19 @@ class Configuration extends CActiveRecord
 		));
 	}
 	
-
+	public function afterFind() {
+		//$this->value = $this->getValues();
+	}
+	
+	public function getValues() {
+		$data = array();
+		foreach($this->configurationLangs as $item) {
+			
+		}
+		
+		return array('1'=>'eng', '2'=>'kor');
+	}
+	
 	protected function beforeSave()
 	{
 		if($this->isNewRecord)
@@ -107,7 +121,27 @@ class Configuration extends CActiveRecord
 		} else {
 			$this->date_upd=time();
 		}
-	
+		
+		ConfigurationLang::model()->deleteAllByAttributes(array('id_configuration'=>$this->id_configuration));
+		foreach(Lang::items() as $lang => $langName) {
+			if(!isset($this->value[$lang])) {
+				continue;
+			}
+								
+			$model=new ConfigurationLang;
+			$model->id_configuration = $this->id_configuration;
+			$model->id_lang = $lang;
+			$model->value = $this->value[$lang];
+			$model->date_upd=time();
+			$model->save();
+		}
+		
+		if(isset($this->value[Lang::getDefaultLang()])) {
+			$this->value = $this->value[Lang::getDefaultLang()];
+		} else {
+			$this->value = '';
+		}
+		
 		return parent::beforeSave();
 	}
 	

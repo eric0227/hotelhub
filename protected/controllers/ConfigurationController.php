@@ -94,10 +94,15 @@ class ConfigurationController extends Controller
 		if(isset($_POST['Configuration']))
 		{
 			$model->attributes=$_POST['Configuration'];
+			
+			//print_r($model->attributes);
+			
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_configuration));
+		} else {
+			$model->value = $model->getValues();
 		}
-
+		
 		$this->render('update',array(
 			'model'=>$model,
 		));
