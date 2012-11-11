@@ -5,14 +5,21 @@
 )); ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
-
+	<div class="form-actions">
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->labelEx($model,'id_supplier',
-			array('class' => 'label_checkbox_pair')); ?>
+	<?php
+		//echo "<div class='control-group '>";
+		//echo $form->labelEx($model,'id_supplier',
+		//	array('class' => 'control-label'));
+	?>
 	<?php 
 		//echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10));
-		echo $form->dropDownList($model,'id_supplier', User::items(User::SUPPLIER));
+		//echo "	<div class='controls'>";
+		echo $form->dropDownListRow($model,'id_supplier', User::items(User::SUPPLIER),
+			array('class' => 'span5'));
+		//echo "	</div>";
+		//echo "</div>";
 	?>
 	<?php echo $form->error($model,'id_supplier'); ?>
 
@@ -68,11 +75,11 @@
 				'template' => '<p class="label_checkbox_pair">{input}{label}</p>')
 			);
 			echo '</div>';
+			echo '<div class="cb"></div>';
 		}
 	?>
 	</div>
-	<div class="cb"></div>
-	<div class="form-actions">
+	
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',

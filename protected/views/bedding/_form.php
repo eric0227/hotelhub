@@ -1,16 +1,22 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'bedding-form',
 	'enableAjaxValidation'=>false,
+	'type' => 'horizontal',
 )); ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
-
+	<div class="form-actions">
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->labelEx($model,'id_room'); ?>
+	<?php
+		//echo "<div class='control-group '>";
+		//echo $form->labelEx($model,'id_room',
+		//	array('class' => 'control-label'));
+	?>
 	<?php 
 		// echo $form->textField($model,'id_room',array('size'=>10,'maxlength'=>10)); 
-		echo $form->dropDownList($model, 'id_room', Room::items());
+		echo $form->dropDownListRow($model, 'id_room', Room::items(),
+			array('class' => 'span5'));
 	?>
 	<?php echo $form->error($model,'id_room'); ?>
 
@@ -26,7 +32,7 @@
 
 	<?php echo $form->textFieldRow($model,'cots_available',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<div class="form-actions">
+	
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',

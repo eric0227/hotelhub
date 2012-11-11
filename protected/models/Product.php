@@ -8,7 +8,6 @@
  * @property string $id_category_default
  * @property integer $on_sale
  * @property integer $quantity
- * @property string $minimal_quantity
  * @property string $price
  * @property string $wholesale_price
  * @property double $width
@@ -64,12 +63,12 @@ class Product extends CActiveRecord
 			array('id_category_default', 'required'),
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
-			array('id_category_default, minimal_quantity, out_of_stock', 'length', 'max'=>10),
+			array('id_category_default, out_of_stock', 'length', 'max'=>10),
 			array('price, wholesale_price', 'length', 'max'=>20),
 			array('condition', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product, id_category_default, on_sale, quantity, minimal_quantity, price, wholesale_price, width, height, depth, weight, out_of_stock, active, condition, show_price, indexed, date_add, date_upd', 'safe', 'on'=>'search'),
+			array('id_product, id_category_default, on_sale, quantity, price, wholesale_price, width, height, depth, weight, out_of_stock, active, condition, show_price, indexed, date_add, date_upd', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -102,7 +101,6 @@ class Product extends CActiveRecord
 			'id_category_default' => 'Id Category Default',
 			'on_sale' => 'On Sale',
 			'quantity' => 'Quantity',
-			'minimal_quantity' => 'Minimal Quantity',
 			'price' => 'Price',
 			'wholesale_price' => 'Wholesale Price',
 			'width' => 'Width',
@@ -134,7 +132,6 @@ class Product extends CActiveRecord
 		$criteria->compare('id_category_default',$this->id_category_default,true);
 		$criteria->compare('on_sale',$this->on_sale);
 		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('minimal_quantity',$this->minimal_quantity,true);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('wholesale_price',$this->wholesale_price,true);
 		$criteria->compare('width',$this->width);

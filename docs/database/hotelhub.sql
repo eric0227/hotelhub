@@ -89,8 +89,10 @@ CREATE TABLE IF NOT EXISTS `gc_service` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
-INSERT INTO `gc_code` (`code`, `type`, `name`) VALUES
-('001001', '001', 'Default'),
+INSERT INTO `gc_service` (`id_service`, `name`) VALUES
+('1', 'Hotel'),
+('2', 'Car')
+;
 
 
 CREATE TABLE IF NOT EXISTS `gc_zone` (
@@ -542,7 +544,7 @@ INSERT INTO `gc_attribute_item`(`id_attribute`, `item`) values
 ('9', 'Non-smoking floors'),
 
 ('10', 'Restaurant/s'),
-('10', 'Café'),
+('10', 'Cafe'),
 ('10', 'Bar / Lounge'),
 ('10', 'Room service - 24hr'),
 ('10', 'Room service - limited service'),
@@ -730,16 +732,28 @@ CREATE TABLE IF NOT EXISTS `gc_product_sale` (
  
 CREATE TABLE IF NOT EXISTS `gc_image` (
   `id_image` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `image_path` varchar(100) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `image_path` varchar(200) NOT NULL,
   `image_title` varchar(100),
+  `position` smallint(2) unsigned NOT NULL DEFAULT '0',
+  `cover` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_image`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `gc_supplier_image` (
+  `id_image` int(10) unsigned NOT NULL,  
+  `id_supplier` int(10) unsigned NOT NULL,
+
+  PRIMARY KEY (`id_image`),
+
+  FOREIGN KEY (`id_image`) REFERENCES `gc_image`(`id_image`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE  
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+/*
 CREATE TABLE IF NOT EXISTS `gc_hotel_image` (
   `id_image` int(10) unsigned NOT NULL,  
   `id_hotel` int(10) unsigned NOT NULL,  
-  `position` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `cover` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`id_image`),
 
@@ -747,12 +761,11 @@ CREATE TABLE IF NOT EXISTS `gc_hotel_image` (
   FOREIGN KEY (`id_hotel`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE
   
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+*/
 
 CREATE TABLE IF NOT EXISTS `gc_product_image` (
   `id_image` int(10) unsigned NOT NULL,  
   `id_product` int(10) unsigned NOT NULL,
-  `position` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `cover` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`id_image`),
 
@@ -766,6 +779,11 @@ CREATE TABLE IF NOT EXISTS `gc_image_type` (
   `name` varchar(100) NOT NULL,
   `width` int(10) unsigned NOT NULL,
   `height` int(10) unsigned NOT NULL,
+  `quality` int(100) unsigned default 80,
+  `sharpen` int(100) unsigned default 0,
+  `rotate` int(100) default 0,
+  `product` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `supplier` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_image_type`),
   KEY `image_type_name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -774,7 +792,6 @@ INSERT INTO `gc_image_type` (`id_image_type`, `name`, `width`, `height`) VALUES
 (1, 'small', 45, 45),
 (2, 'medium', 80, 80),
 (3, 'large', 300, 183),
-(5, 'category', 210, 128),
 (6, 'home', 210, 128);
 
 

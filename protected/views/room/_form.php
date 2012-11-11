@@ -1,31 +1,56 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'room-form',
 	'enableAjaxValidation'=>false,
+	'type' => 'horizontal',
 )); ?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
-
+	<div class="form-actions">
 	<?php echo $form->errorSummary($model); ?>
 
 
-	<?php echo $form->labelEx($model,'id_product'); ?>
+	<?php
+		//echo "<div class='control-group '>";
+		//echo $form->labelEx($model,'id_product',
+		//	array('class' => 'control-label'));
+	?>
 	<?php 
 		//echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10));
-		echo $form->dropDownList($model, 'id_product', Product::items());
+		//echo "	<div class='controls'>";
+		echo $form->dropDownListRow($model, 'id_product', Product::items(),
+			array('class' => 'span5'));
+		//echo "	</div>";
+		//echo "</div>";
 	?>
 	<?php echo $form->error($model,'id_product'); ?>
 
-	<?php echo $form->labelEx($model,'id_hotel'); ?>
+	<?php
+		echo "<div class='control-group '>";
+		echo $form->labelEx($model,'id_hotel',
+			array('class' => 'control-label'));
+	?>
 	<?php 
 		//echo $form->textField($model,'id_hotel',array('size'=>10,'maxlength'=>10));
-		echo $form->dropDownList($model, 'id_hotel', Hotel::items()); 
+		echo "	<div class='controls'>";
+		echo $form->dropDownList($model, 'id_hotel', Hotel::items(),
+			array('class' => 'span5'));
+		echo "	</div>";
+		echo "</div>";
 	?>
 	<?php echo $form->error($model,'id_hotel'); ?>
 
-	<?php echo $form->labelEx($model,'room_code'); ?>
+	<?php
+		echo "<div class='control-group '>";
+		echo $form->labelEx($model,'room_code',
+			array('class' => 'control-label'));
+	?>
 	<?php 
 		//echo $form->textField($model,'room_code',array('size'=>6,'maxlength'=>6));
-		echo $form->dropDownList($model,'room_code', Code::items(CodeType::ROOM)); 
+		echo "	<div class='controls'>";
+		echo $form->dropDownList($model,'room_code', Code::items(CodeType::ROOM),
+			array('class' => 'span5'));
+		echo "	</div>";
+		echo "</div>";
 	?>
 	<?php echo $form->error($model,'room_code'); ?>
 
@@ -59,25 +84,28 @@
 	<?php echo $form->textFieldRow($model,'adults_extra',array('class'=>'span5','maxlength'=>20)); ?>
 	
 	<div>
-		<?php 
-			$attributeInfos = $model->getAllSttributes();
-			foreach($attributeInfos as $info) {
-				echo '<div>';
-				echo '<h4>' . $info['attribute']->name . '</h4>';
-					
-				echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
-					CHtml::listData(
-						$info['attributeItem'],
-						'id_attribute_item',
-						'item'
-					)
+	<?php 
+		$attributeInfos = $model->getAllSttributes();
+		foreach($attributeInfos as $info) {
+			echo '<div>';
+			echo '<h4 class="custom">' . $info['attribute']->name . '</h4>';
+				
+			echo CHtml::checkBoxList('selectedAttributeItemIds' , $info['selectedAttributeItemIds'],
+				CHtml::listData(
+					$info['attributeItem'],
+					'id_attribute_item',
+					'item'
+				),
+				array('container' => 'span',
+				'separator' => '',
+				'template' => '<p class="label_checkbox_pair">{input}{label}</p>')
 				);
-				echo '</div>';
-			}
-		?>
+			echo '</div>';
+			echo '<div class="cb"></div>';
+		}
+	?>
 	</div>
-
-	<div class="form-actions">
+	
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',
 			'type'=>'primary',

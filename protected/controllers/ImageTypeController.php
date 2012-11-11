@@ -15,7 +15,6 @@ class ImageTypeController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -32,7 +31,7 @@ class ImageTypeController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','resize'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -110,11 +109,17 @@ class ImageTypeController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -167,5 +172,48 @@ class ImageTypeController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionResize() {
+		if(isset($_POST['type']))
+		{
+			$type = $_POST['type'];
+			$id_image_type = $_POST['id_image_type'];
+				
+			$imageType = ImageType::model()->findByPk($id_image_type);
+				
+			$typeImages = null;
+			if($type == ImageC::SUPPLIER_IMAGE) {
+				if($imageType->supplier != 1) {
+					return;
+				}
+				$typeImages = SupplierImage::model()->findAll();
+			} else if($type == ImageC::PRODUCT_IMAGE) {
+				if($imageType->product != 1) {
+					return;
+				}
+				$typeImages = ProductImage::model()->findAll();
+			} else {
+				return;
+			}
+	
+			foreach($typeImages as $supplierImage) {
+				$model = $supplierImage->image;
+	
+				$image = Yii::app()->image->load($model->getRealPath());
+				$image->resize($imageType->width, $imageType->height)->quality($imageType->quality);
+				if($imageType->sharpen > 0) {
+					$image->sharpen($imageType->sharpen);
+				}
+				if($imageType->rotate > 0){
+					$image->rotate($imageType->rotate);
+				}
+				
+				$saveTo = $model->getRealDir() . '/' . $model->id_image . '_' . $imageType->name . '.' . $model->getSubfix();
+				$image->save($saveTo);
+			}
+		}
+	
+		$this->render('resize');
 	}
 }
