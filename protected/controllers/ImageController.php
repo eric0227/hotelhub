@@ -15,7 +15,6 @@ class ImageController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -62,16 +61,26 @@ class ImageController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Image;
+		$model=new ImageC;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Image']))
+		if(isset($_POST['ImageC']))
 		{
-			$model->attributes=$_POST['Image'];
-			if($model->save())
+			$model->attributes=$_POST['ImageC'];			
+			$model->image=CUploadedFile::getInstance($model,'image');
+			
+			if(isset($_POST['type'])) {
+				
+			}
+			
+			if($model->save()) {
+				
+				$model->image->saveAs('path/to/localFile');
+				
 				$this->redirect(array('view','id'=>$model->id_image));
+			}
 		}
 
 		$this->render('create',array(
@@ -91,9 +100,9 @@ class ImageController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Image']))
+		if(isset($_POST['ImageC']))
 		{
-			$model->attributes=$_POST['Image'];
+			$model->attributes=$_POST['ImageC'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_image));
 		}
@@ -110,11 +119,17 @@ class ImageController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -122,7 +137,7 @@ class ImageController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Image');
+		$dataProvider=new CActiveDataProvider('ImageC');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,7 +148,7 @@ class ImageController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Image('search');
+		$model=new ImageC('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Image']))
 			$model->attributes=$_GET['Image'];
@@ -150,7 +165,7 @@ class ImageController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Image::model()->findByPk($id);
+		$model=ImageC::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

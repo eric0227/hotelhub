@@ -19,6 +19,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.helpers.*',
 	),
 
 	'modules'=>array(
@@ -78,6 +79,13 @@ return array(
 //  					'class'=>'CWebLogRoute',
 //  				),
 			),
+		),
+		'image'=>array(
+		    'class'=>'application.extensions.image.CImageComponent',
+		// GD or ImageMagick
+		    'driver'=>'GD',
+		// ImageMagick setup path
+		    'params'=>array('directory'=>'d:/ImageMagick'),
 		),
 	),
 

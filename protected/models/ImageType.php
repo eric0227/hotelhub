@@ -8,9 +8,16 @@
  * @property string $name
  * @property string $width
  * @property string $height
+ * @property string $quality
+ * @property string $sharpen
+ * @property integer $rotate
+ * @property integer $product
+ * @property integer $supplier
  */
 class ImageType extends CActiveRecord
 {
+	private static $_items = null;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -38,11 +45,12 @@ class ImageType extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, width, height', 'required'),
-			array('name', 'length', 'max'=>16),
+			array('rotate, product, supplier', 'numerical', 'integerOnly'=>true),
+			array('name, quality, sharpen', 'length', 'max'=>100),
 			array('width, height', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_image_type, name, width, height', 'safe', 'on'=>'search'),
+			array('id_image_type, name, width, height, quality, sharpen, rotate, product, supplier', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,6 +75,11 @@ class ImageType extends CActiveRecord
 			'name' => 'Name',
 			'width' => 'Width',
 			'height' => 'Height',
+			'quality' => 'Quality',
+			'sharpen' => 'Sharpen',
+			'rotate' => 'Rotate',
+			'product' => 'Product',
+			'supplier' => 'Supplier',
 		);
 	}
 
@@ -85,9 +98,24 @@ class ImageType extends CActiveRecord
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('width',$this->width,true);
 		$criteria->compare('height',$this->height,true);
+		$criteria->compare('quality',$this->quality,true);
+		$criteria->compare('sharpen',$this->sharpen,true);
+		$criteria->compare('rotate',$this->rotate);
+		$criteria->compare('product',$this->product);
+		$criteria->compare('supplier',$this->supplier);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public static function items() {
+		if(self::$_items == null) {
+			$models = ImageType::model()->findAll();
+			foreach($models as $model) {
+				self::$_items[$model->id_image_type] = $model->name;
+			}
+		}
+		return self::$_items;
+	}	
 }

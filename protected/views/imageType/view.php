@@ -22,5 +22,10 @@ $this->menu=array(
 		'name',
 		'width',
 		'height',
+		'quality',
+		'sharpen',
+		'rotate',
+		'product',
+		'supplier',
 	),
 )); ?>

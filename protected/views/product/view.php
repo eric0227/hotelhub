@@ -23,7 +23,6 @@ $this->menu=array(
 		'id_category_default',
 		'on_sale',
 		'quantity',
-		'minimal_quantity',
 		'price',
 		'agent_price',
 		'wholesale_price',
