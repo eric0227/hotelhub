@@ -44,11 +44,11 @@ class CategoryLang extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_category, id_lang, name, link_rewrite', 'required'),
+			array('id_category, id_lang, name', 'required'),
 			array('id_category, id_lang', 'length', 'max'=>10),
 			array('name, link_rewrite, meta_title', 'length', 'max'=>128),
 			array('meta_keywords, meta_description', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('description, description_short', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id_category, id_lang, name, description, link_rewrite, meta_title, meta_keywords, meta_description', 'safe', 'on'=>'search'),

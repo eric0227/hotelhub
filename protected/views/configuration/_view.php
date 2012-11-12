@@ -20,5 +20,8 @@
 	<?php echo CHtml::encode($data->date_upd); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('message')); ?>:</b>
+	<?php echo CHtml::encode($data->message); ?>
+	<br />
 
 </div>

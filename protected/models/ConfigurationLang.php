@@ -6,11 +6,11 @@
  * The followings are the available columns in table 'gc_configuration_lang':
  * @property string $id_configuration
  * @property string $id_lang
- * @property string $value
+ * @property string $message
  * @property string $date_upd
  *
  * The followings are the available model relations:
- * @property Configuration $idConfiguration
+ * @property Configuration $configuration
  */
 class ConfigurationLang extends CActiveRecord
 {
@@ -42,10 +42,10 @@ class ConfigurationLang extends CActiveRecord
 		return array(
 			array('id_configuration, id_lang', 'required'),
 			array('id_configuration, id_lang', 'length', 'max'=>10),
-			array('value, date_upd', 'safe'),
+			array('message, date_upd', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_configuration, id_lang, value, date_upd', 'safe', 'on'=>'search'),
+			array('id_configuration, id_lang, message, date_upd', 'safe', 'on'=>'search'),
 		);
 	}
  
@@ -57,7 +57,7 @@ class ConfigurationLang extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idConfiguration' => array(self::BELONGS_TO, 'Configuration', 'id_configuration'),
+			'configuration' => array(self::BELONGS_TO, 'Configuration', 'id_configuration'),
 		);
 	}
 
@@ -69,7 +69,7 @@ class ConfigurationLang extends CActiveRecord
 		return array(
 			'id_configuration' => 'Id Configuration',
 			'id_lang' => 'Id Lang',
-			'value' => 'Value',
+			'message' => 'Message',
 			'date_upd' => 'Date Upd',
 		);
 	}
@@ -87,7 +87,7 @@ class ConfigurationLang extends CActiveRecord
 
 		$criteria->compare('id_configuration',$this->id_configuration,true);
 		$criteria->compare('id_lang',$this->id_lang,true);
-		$criteria->compare('value',$this->value,true);
+		$criteria->compare('message',$this->message,true);
 		$criteria->compare('date_upd',$this->date_upd,true);
 
 		return new CActiveDataProvider($this, array(

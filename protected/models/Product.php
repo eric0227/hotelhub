@@ -34,6 +34,11 @@
  */
 class Product extends CActiveRecord
 {
+	private $currentLangModel = null;
+	private $description = null;
+	private $description_short = null;
+	private $name = null;
+		
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -151,6 +156,53 @@ class Product extends CActiveRecord
 		));
 	}
 	
+	// 	private $description = null;
+	// 	private $description_short = null;
+	// 	private $name = null;
+	
+	public function getDescription() {
+		if($this->description != null) {
+			return $this->description;
+		}
+		return $this->getCurrentLangField('description');
+	}
+	public function getDescriptionShort() {
+		if($this->description_short != null) {
+			return $this->description_short;
+		}
+		return $this->getCurrentLangField('description_short');
+	}
+	public function getName() {
+		if($this->name != null) {
+			return $this->name;
+		}
+		return $this->getCurrentLangField('name');
+	}
+	
+	private function getCurrentLangField($name) {
+		if($this->currentLangModel == null) {
+			$this->currentLangModel = ProductLang::model()->findByAttributes(array('id_product'=>$this->id_product, 'id_lang'=>Lang::getCurrentLang()));
+		}
+		return $this->currentLangModel->{$name};
+	}
+	
+	public function loadMultiLang() {
+		$mutltiLangModels = ProductLang::model()->findAllByAttributes(array('id_product'=>$this->id_product));
+	
+		$description = array();
+		$description_short = array();
+		$name = array();
+	
+		foreach($mutltiLangModels as $mutltiLangModel) {
+			$description[$mutltiLangModel->id_lang] = $mutltiLangModel->description;
+			$description_short[$mutltiLangModel->id_lang] = $mutltiLangModel->description_short;
+			$name[$mutltiLangModel->id_lang] = $mutltiLangModel->name;
+		}
+		$this->description = $description;
+		$this->description_short = $description_short;
+		$this->name = $name;
+	}	
+	
 	protected function beforeSave()
 	{
 		if($this->isNewRecord)
@@ -172,7 +224,7 @@ class Product extends CActiveRecord
 		$models = Product::model()->findAll('id_service=:id_service', array(':id_service'=>Service::getCurrentService()));
 	
 		foreach($models as $model) {
-			$_items[$model->id_product] = $model->id_product;			
+			$_items[$model->id_product] = $model->name;			
 		}
 		return $_items;
 	}

@@ -3,6 +3,17 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_product')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id_product),array('view','id'=>$data->id_product)); ?>
 	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<?php echo CHtml::encode(CHtml::encode($data->name)); ?>
+	<br />
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description')); ?>:</b>
+	<?php echo CHtml::encode(CHtml::encode($data->description)); ?>
+	<br />
+	<b><?php echo CHtml::encode($data->getAttributeLabel('description_short')); ?>:</b>
+	<?php echo CHtml::encode(CHtml::encode($data->descriptionShort)); ?>
+	<br />
+	
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_service')); ?>:</b>
 	<?php echo CHtml::encode($data->id_service); ?>

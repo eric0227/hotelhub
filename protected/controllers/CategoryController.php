@@ -76,6 +76,8 @@ class CategoryController extends Controller
 			
 			//if($model->save()) {
 			if($model->appendTo($parent)) {
+				$this->setConfigurationLang($model->id_category);
+				
 				$this->redirect(array('view','id'=>$model->id_category));
 			}
 		}
@@ -109,9 +111,13 @@ class CategoryController extends Controller
 					
 			//if($model->save()) {
 			if($model->saveNode(false)) {
+				$this->setConfigurationLang($model->id_category);
+				
 				$this->redirect(array('view','id'=>$model->id_category));
 			}	
 		} else {
+			$model->loadMultiLang();
+						
 			$_items = array();
 			$parentList = $model->getUnDescendants();
 			foreach($parentList as $model) {
@@ -127,6 +133,33 @@ class CategoryController extends Controller
 		
 		$this->render('update', $data);
 	}
+	
+	private function setConfigurationLang($id) {
+	
+		$description = $_POST['Category']['description'];
+		$name = $_POST['Category']['name'];
+	
+		CategoryLang::model()->deleteAllByAttributes(array('id_category'=>$id));
+		foreach(Lang::items() as $lang => $langName) {
+	
+			if(empty($description[$lang])) {
+				$description[$lang] = $description[Lang::getDefaultLang()];
+			}
+			if(empty($name[$lang])) {
+				$name[$lang] = $name[Lang::getDefaultLang()];
+			}
+	
+			$model=new CategoryLang;
+			$model->id_category = $id;
+			$model->id_lang = $lang;
+			$model->description = $description[$lang];
+			$model->name = $name[$lang];
+			$model->save();
+			
+			//print_r($model);
+			//return;
+		}
+	}
 
 	/**
 	 * Deletes a particular model.
@@ -137,6 +170,7 @@ class CategoryController extends Controller
 	{
 		//$this->loadModel($id)->delete();
 		$this->loadModel($id)->deleteNode();
+		CategoryLang::model()->deleteAllByAttributes(array('id_category'=>$this->id_category));
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

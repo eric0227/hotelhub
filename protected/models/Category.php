@@ -25,6 +25,10 @@
  */
 class Category extends CActiveRecord
 {
+	private $currentLangModel = null;
+	private $description = null;
+	private $name = null;
+	
 	public function behaviors() {
 		return array(
 			'NestedSetBehavior' => 
@@ -142,6 +146,45 @@ class Category extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+// 	private $description = null;
+// 	private $name = null;	
+	
+	public function getDescription() {
+		if($this->description != null) {
+			return $this->description;
+		}
+		return $this->getCurrentLangField('description');
+	}
+	public function getName() {
+		if($this->name != null) {
+			return $this->name;
+		}
+		return $this->getCurrentLangField('name');
+	}
+	
+	private function getCurrentLangField($name) {
+		if($this->currentLangModel == null) {
+			$this->currentLangModel = CategoryLang::model()->findByAttributes(array('id_category'=>$this->id_category, 'id_lang'=>Lang::getCurrentLang()));
+		}
+		return $this->currentLangModel->{$name};
+	}
+	
+	public function loadMultiLang() {
+		$mutltiLangModels = CategoryLang::model()->findAllByAttributes(array('id_category'=>$this->id_category));
+	
+		$description = array();
+		$name = array();
+	
+		foreach($mutltiLangModels as $mutltiLangModel) {
+			$description[$mutltiLangModel->id_lang] = $mutltiLangModel->description;
+			$name[$mutltiLangModel->id_lang] = $mutltiLangModel->name;
+		}
+		$this->description = $description;
+		$this->name = $name;
+		
+		print_r($this->id_category);
+	}
 	
 	protected function beforeSave()
 	{
@@ -188,7 +231,7 @@ class Category extends CActiveRecord
 		
 		foreach($models as $model) {			
 			if($model->id_category != $without) {
-				$_items[$model->id_category] = $model->id_category;
+				$_items[$model->id_category] = $model->name;
 			}
 		}
 		return $_items;

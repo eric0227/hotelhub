@@ -533,6 +533,7 @@ class TbActiveForm extends CActiveForm
 				
 				//echo $this->getInputClassName();
 				
+				echo '<div class="multifield" lang="'.$lang.'">';
 				Yii::app()->controller->widget($this->getInputClassName(), array(
 							'type' => $type,
 							'form' => $this,
@@ -543,8 +544,8 @@ class TbActiveForm extends CActiveForm
 							'data' => $data,
 							'htmlOptions' => $htmlOptions,
 				));
+				echo '</div>';
 			}
-			
 		} else {
 		
 			Yii::app()->controller->widget($this->getInputClassName(), array(

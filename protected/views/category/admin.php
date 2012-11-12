@@ -48,6 +48,7 @@ $this->widget('bootstrap.widgets.TbGridView',array(
 		'id_category',
 		'id_parent',
 		'id_service',
+		'name',
 		'level_depth',
 		'nleft',
 		'nright',
@@ -70,7 +71,7 @@ $items = array();
 
 foreach($models->getData() as $item) {
 	//echo $item->id_category;
-	$items[] = array('id' => $item->id_category, 'parent_id' => $item->id_parent, 'name' => $item->id_category);
+	$items[] = array('id' => $item->id_category, 'parent_id' => $item->id_parent, 'name' => $item->name);
 }
 
 

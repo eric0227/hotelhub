@@ -7,8 +7,7 @@
  * @property string $id_configuration
  * @property string $name
  * @property string $value
- * @property string $value[1]
- * @property string $value[2]
+ * @property string $message
  * @property string $date_add
  * @property string $date_upd
  *
@@ -17,6 +16,9 @@
  */
 class Configuration extends CActiveRecord
 {
+	private $currentLangModel = null;	
+	private $message = null;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -99,18 +101,30 @@ class Configuration extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
-	public function afterFind() {
-		//$this->value = $this->getValues();
+		
+	public function getMessage() {
+		if($this->message != null) {
+			return $this->message;
+		}
+		return $this->getCurrentLangField('message');
 	}
 	
-	public function getValues() {
-		$data = array();
-		foreach($this->configurationLangs as $item) {
-			
+	private function getCurrentLangField($name) {
+		if($currentLangModel == null) {
+			$currentLangModel = ConfigurationLang::model()->findByAttributes(array('id_configuration'=>$this->id_configuration, 'id_lang'=>Lang::getCurrentLang()));
 		}
+		return $currentLangModel->{$name};
+	}
+	
+	public function loadMultiLang() {
+		$mutltiLangModels = ConfigurationLang::model()->findAllByAttributes(array('id_configuration'=>$this->id_configuration));
 		
-		return array('1'=>'eng', '2'=>'kor');
+		$message = array();
+		
+		foreach($mutltiLangModels as $mutltiLangModel) {
+			$message[$mutltiLangModel->id_lang] = $mutltiLangModel->message;
+		}	
+		$this->message = $message;
 	}
 	
 	protected function beforeSave()
@@ -121,27 +135,7 @@ class Configuration extends CActiveRecord
 		} else {
 			$this->date_upd=time();
 		}
-		
-		ConfigurationLang::model()->deleteAllByAttributes(array('id_configuration'=>$this->id_configuration));
-		foreach(Lang::items() as $lang => $langName) {
-			if(!isset($this->value[$lang])) {
-				continue;
-			}
-								
-			$model=new ConfigurationLang;
-			$model->id_configuration = $this->id_configuration;
-			$model->id_lang = $lang;
-			$model->value = $this->value[$lang];
-			$model->date_upd=time();
-			$model->save();
-		}
-		
-		if(isset($this->value[Lang::getDefaultLang()])) {
-			$this->value = $this->value[Lang::getDefaultLang()];
-		} else {
-			$this->value = '';
-		}
-		
+
 		return parent::beforeSave();
 	}
 	

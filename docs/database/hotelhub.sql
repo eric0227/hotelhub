@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS `gc_cart`;
 DROP TABLE IF EXISTS `gc_category_product`;
 
 DROP TABLE IF EXISTS `gc_product_image`;
-DROP TABLE IF EXISTS `gc_hotel_image`;
+-- DROP TABLE IF EXISTS `gc_hotel_image`;
 DROP TABLE IF EXISTS `gc_image_type`;
 DROP TABLE IF EXISTS `gc_image`;
 DROP TABLE IF EXISTS `gc_product_sale`;
@@ -64,7 +64,8 @@ CREATE TABLE IF NOT EXISTS `gc_code_type` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `gc_code_type` (`type`, `name`) VALUES
-('001', 'Address Type');
+('001', 'Address Type'),
+('002', 'Room Type');
 
 
 CREATE TABLE IF NOT EXISTS `gc_code` (
@@ -76,10 +77,16 @@ CREATE TABLE IF NOT EXISTS `gc_code` (
   FOREIGN KEY (`type`) REFERENCES `gc_code_type`(`type`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `gc_code` (`code`, `type`, `name`) VALUES
-('001001', '001', 'Default'),
-('001002', '001', 'Delivery'),
-('001003', '001', 'Invoice');
+INSERT INTO `gc_code` (`code`, `type`, `name`, `position`) VALUES
+('001001', '001', 'Default', 0),
+('001002', '001', 'Delivery', 0),
+('001003', '001', 'Invoice', 0),
+('002001', '002', 'Hotel Room', 1),
+('002002', '002', 'Studio', 2),
+('002003', '002', '1 bedroom', 3),
+('002004', '002', '2 bedroom', 4),
+('002005', '002', '3+ bedroom', 5),
+('002006', '002', 'Dorm Room', 6);
 
 
 CREATE TABLE IF NOT EXISTS `gc_service` (
@@ -104,6 +111,17 @@ CREATE TABLE IF NOT EXISTS `gc_zone` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
+INSERT INTO `gc_zone` (`id_zone`, `name`, `active`) VALUES
+(1, 'Europe', 1),
+(2, 'North America', 1),
+(3, 'Asia', 1),
+(4, 'Africa', 1),
+(5, 'Oceania', 1),
+(6, 'South America', 1),
+(7, 'Europe (out E.U)', 1),
+(8, 'Centrale America/Antilla', 1);
+
+
 CREATE TABLE IF NOT EXISTS `gc_currency` (
   `id_currency` int(10) unsigned NOT NULL AUTO_INCREMENT,
 
@@ -119,6 +137,12 @@ CREATE TABLE IF NOT EXISTS `gc_currency` (
   `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_currency`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+INSERT INTO `gc_currency` (`id_currency`, `name`, `iso_code`, `iso_code_num`, `sign`, `blank`, `format`, `decimals`, `conversion_rate`, `deleted`, `active`) VALUES
+(1, 'Dollar', 'AUD', '36', '$', 0, 1, 1, 1.000000, 0, 1),
+(2, 'Dollar', 'USD', '840', '$', 0, 1, 1, 1.051065, 0, 1),
+(3, 'Won', 'KRW', '410', '￦', 0, 1, 0, 120.000000, 0, 1),
+(4, 'Yuan', 'CNY', '156', 'Ұ', 0, 1, 1, 6.740000, 0, 1);
 
 CREATE TABLE IF NOT EXISTS `gc_country` (
   `id_country` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -140,6 +164,8 @@ CREATE TABLE IF NOT EXISTS `gc_country` (
   FOREIGN KEY (`id_zone`) REFERENCES `gc_zone`(`id_zone`) ON DELETE CASCADE ON UPDATE CASCADE
   -- FOREIGN KEY (`id_currency`) REFERENCES `gc_currency`(`id_currency`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
 
 CREATE TABLE IF NOT EXISTS `gc_state` (
   `id_state` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -166,8 +192,10 @@ CREATE TABLE IF NOT EXISTS `gc_group` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `gc_group` (`id_group`, `name`, `level`) VALUES
-(1, 'Administrator', '10'),
-(2, 'Supplier', '5');
+(1, 'Administrator', 10),
+(2, 'Supplier', 5),
+(3, 'Agent', 3),
+(4, 'Customer', 1);
 
 CREATE TABLE IF NOT EXISTS `gc_user` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -192,8 +220,11 @@ CREATE TABLE IF NOT EXISTS `gc_user` (
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`, `email`, `passwd`, `active`) VALUES
-(1, 1, 1, 'Admin', 'Admin', 'kyhleem@gmail.com', 'bdf13fac4167a477b4d10d8685405354', 1);
+INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`, `email`, `passwd`, `is_guest`, `note`, `birthday`, `active`, `deleted`) VALUES
+(1, 1, 1, 'Admin', 'Admin', 'kyhleem@gmail.com', 'bdf13fac4167a477b4d10d8685405354', 0, '', '0000-00-00', 1, 0),
+(2, 2, 1, 'supplier', 'hotel', 'kyhleem@naver.com', 'admin123456', 0, '', '0000-00-00', 0, 0),
+(3, 4, 2, '규형', '이', 'test@naver.com', 'hyoung01', 0, '', '0000-00-00', 0, 0);
+
 
 CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `id_supplier` int(10) unsigned NOT NULL,
@@ -271,7 +302,9 @@ CREATE TABLE IF NOT EXISTS `gc_lang` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `gc_lang` (`id_lang`, `name`, `active`, `iso_code`, `language_code`, `date_format_lite`, `date_format_full`, `is_rtl`) VALUES
-(1, 'English (English)', 1, 'en', 'en-us', 'm/j/Y', 'm/j/Y H:i:s', 0);
+(1, 'English (English)', 1, 'en', 'en-us', 'm/j/Y', 'm/j/Y H:i:s', 0),
+(2, 'Korean', 1, 'kr', 'ko', 'Y-m-d', 'Y-m-d H:i:s', 0),
+(3, 'Chinese-Simplified', 1, 'zh', 'zh', 'Y-m-d', 'Y-m-d H:i:s', 0);
 
 
 CREATE TABLE IF NOT EXISTS `gc_timezone` (
@@ -321,10 +354,8 @@ INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nlef
 VALUES (1, 0, 1, 1, 1, 2, 1, now(), now());
 
 INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nleft, nright, active, date_add, date_upd )
-VALUES (2, 0, 1, 2, 1, 2, 1, now(), now());
+VALUES (2, 0, 2, 2, 1, 2, 1, now(), now());
 
-INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nleft, nright, active, date_add, date_upd )
-VALUES (3, 0, 1, 3, 1, 2, 1, now(), now());
 
 
 CREATE TABLE IF NOT EXISTS `gc_category_lang` (
@@ -332,7 +363,7 @@ CREATE TABLE IF NOT EXISTS `gc_category_lang` (
   `id_lang` int(10) unsigned NOT NULL,
   `name` varchar(128) NOT NULL,
   `description` text,
-  `link_rewrite` varchar(128) NOT NULL,
+  `link_rewrite` varchar(128) DEFAULT NULL,
   `meta_title` varchar(128) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
@@ -358,6 +389,7 @@ CREATE TABLE IF NOT EXISTS `gc_category_service` (
 CREATE TABLE IF NOT EXISTS `gc_product` (
   `id_product` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_service` int(10) unsigned NOT NULL,
+  `id_supplier` int(10) unsigned NOT NULL,
   `id_category_default` int(10) unsigned DEFAULT NULL,
   `on_sale` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `quantity` int(10) NOT NULL DEFAULT '0',
@@ -379,6 +411,7 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
   KEY `date_add` (`date_add`),
 
   FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_category_default`) REFERENCES `gc_category`(`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -387,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `gc_product_lang` (
   `id_lang` int(10) unsigned NOT NULL,
   `description` text,
   `description_short` text,
-  `link_rewrite` varchar(128) NOT NULL,
+  `link_rewrite` varchar(128) DEFAULT NULL,
   `meta_description` varchar(255) DEFAULT NULL,
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_title` varchar(128) DEFAULT NULL,
@@ -404,6 +437,10 @@ CREATE TABLE IF NOT EXISTS `gc_special` (
 	`name` varchar(128) NOT NULL,
 	PRIMARY KEY (`id_special`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `gc_special` (`id_special`, `name`) VALUES
+(1, 'Special A'),
+(2, 'Special B');
 
 CREATE TABLE IF NOT EXISTS `gc_product_date` (
 	`id_product_date` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -482,121 +519,99 @@ CREATE TABLE IF NOT EXISTS `gc_attribute_item` (
   FOREIGN KEY (`id_attribute`) REFERENCES `gc_attribute`(`id_attribute`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
-('1','1', 'Balcony / courtyard'),
-('2','1', 'Desk'),
-('3','1', 'Opening windows'),
-('4','1', 'Non-smoking only'),
-('5','1', 'Non-smoking or smoking rooms on request');
-INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
-('6','2', 'Washing machine'),
-('7','2', 'Dryer'),
-('8','2', 'Iron & ironing board'),
-('9','2', 'Trouser press'),
-('10','2', 'Clothes line / airer');
-INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
-('11','3', 'Hairdryer'),
-('12','3', 'Alarm clock'),
-('13','3', 'Radio'),
-('14','3', 'Bathrobes');
-INSERT INTO `gc_attribute_item`(`id_attribute_item`, `id_attribute`, `item`) values 
-('15','4', 'Dial-up'),
-('16','4', 'Broadband'),
-('17','4', 'Wireless / WiFi');
-
-INSERT INTO `gc_attribute_item`(`id_attribute`, `item`) values 
-('5', 'Separate shower & bath'),
-('5', 'Shower over bath'),
-('5', 'Shower'),
-('5', 'Bath'),
-('5', 'In-room spa bath / Jacuzzi'),
-('5', 'Shared bathroom'),
-
-('6', 'Air conditioning'),
-('6', 'Fireplace'),
-('6', 'In-room heater'),
-('6', 'Under-floor heating'),
-('6', 'Ceiling fans'),
-('6', 'Fans'),
-
-('7', 'Full kitchen'),
-('7', 'Kitchenette (basic facilities)'),
-('7', 'Tea/Coffee Making'),
-('7', 'Dishwasher'),
-('7', 'Mini bar'),
-('7', 'Refrigerator - full size'),
-('7', 'Refrigerator - bar size'),
-
-('8', 'TV'),
-('8', 'Satellite / Cable'),
-('8', 'Pay-per-view movies'),
-('8', 'Free in-house movies'),
-('8', 'DVD player'),
-('8', 'CD player'),
-('8', 'Game console');
-
-
-INSERT INTO `gc_attribute_item`(`id_attribute`, `item`) values 
-('9', 'Gay friendly'),
-('9', 'Pets allowed'),
-('9', 'Not suitable for children'),
-('9', 'Non-smoking property'),
-('9', 'Non-smoking floors'),
-
-('10', 'Restaurant/s'),
-('10', 'Cafe'),
-('10', 'Bar / Lounge'),
-('10', 'Room service - 24hr'),
-('10', 'Room service - limited service'),
-
-('11', 'Indoor pool - heated'),
-('11', 'Indoor pool - unheated'),
-('11', 'Outdoor pool - heated'),
-('11', 'Outdoor pool - unheated'),
-('11', 'Kids pool'),
-('11', 'Swim-up bar'),
-('11', 'Pool bar'),
-
-('12', 'On-site parking'),
-('12', 'On-site undercover parking'),
-('12', 'On-site secure undercover parking'),
-('12', 'Off-site undercover parking'),
-('12', 'Off-site secure undercover parking'),
-('12', 'Street parking'),
-('12', 'Valet parking'),
-
-('13', 'Dry cleaning / laundry service'),
-('13', 'Self service laundry facilities'),
-('13', 'Tour desk'),
-('13', '24 hour front desk'),
-('13', 'Concierge'),
-('13', 'Arrival / Departure lounge'),
-('13', 'Luggage storage'),
-('13', 'Porter/Bell service'),
-
-('14', 'Sauna'),
-('14', 'Spa/Hot tub/Jacuzzi'),
-('14', 'Gym/Fitness room'),
-('14', 'Tennis court'),
-('14', 'Playground'),
-('14', 'Games room'),
-('14', 'Motorised water sports'),
-('14', 'Non-motorised water sports'),
-('14', 'Golf course'),
-('14', 'BBQ facilities'),
-('14', 'Direct beach access'),
-('14', 'Day spa'),
-
-('15', 'Lift/Elevator'),
-('15', 'Interconnecting rooms'),
-('15', 'Business centre'),
-('15', 'Conference/Meeting facilities'),
-('15', 'Vending machines'),
-('15', 'Kids club'),
-('15', 'Ice machine'),
-('15', 'Wheelchair accessible'),
-('15', 'Airport shuttle'),
-('15', 'Wifi access');
+INSERT INTO `gc_attribute_item` (`id_attribute_item`, `id_attribute`, `item`, `position`) VALUES
+(1, 1, 'Balcony / courtyard', 0),
+(2, 1, 'Desk', 0),
+(3, 1, 'Opening windows', 0),
+(4, 1, 'Non-smoking only', 0),
+(5, 1, 'Non-smoking or smoking rooms on request', 0),
+(6, 2, 'Washing machine', 0),
+(7, 2, 'Dryer', 0),
+(8, 2, 'Iron & ironing board', 0),
+(9, 2, 'Trouser press', 0),
+(10, 2, 'Clothes line / airer', 0),
+(11, 3, 'Hairdryer', 0),
+(12, 3, 'Alarm clock', 0),
+(13, 3, 'Radio', 0),
+(14, 3, 'Bathrobes', 0),
+(15, 4, 'Dial-up', 0),
+(16, 4, 'Broadband', 0),
+(17, 4, 'Wireless / WiFi', 0),
+(18, 5, 'Separate shower & bath', 0),
+(19, 5, 'Shower over bath', 0),
+(20, 5, 'Shower', 0),
+(21, 5, 'Bath', 0),
+(22, 5, 'In-room spa bath / Jacuzzi', 0),
+(23, 5, 'Shared bathroom', 0),
+(24, 6, 'Air conditioning', 0),
+(25, 6, 'Fireplace', 0),
+(26, 6, 'In-room heater', 0),
+(27, 6, 'Under-floor heating', 0),
+(28, 6, 'Ceiling fans', 0),
+(29, 6, 'Fans', 0),
+(30, 7, 'Full kitchen', 0),
+(31, 7, 'Kitchenette (basic facilities)', 0),
+(32, 7, 'Tea/Coffee Making', 0),
+(33, 7, 'Dishwasher', 0),
+(34, 7, 'Mini bar', 0),
+(35, 7, 'Refrigerator - full size', 0),
+(36, 7, 'Refrigerator - bar size', 0),
+(37, 8, 'TV', 0),
+(38, 8, 'Satellite / Cable', 0),
+(39, 8, 'Pay-per-view movies', 0),
+(40, 8, 'Free in-house movies', 0),
+(41, 8, 'DVD player', 0),
+(42, 8, 'CD player', 0),
+(43, 8, 'Game console', 0),
+(88, 9, 'Gay friendly', 0),
+(89, 9, 'Pets allowed', 0),
+(90, 9, 'Not suitable for children', 0),
+(91, 9, 'Non-smoking property', 0),
+(92, 9, 'Non-smoking floors', 0),
+(93, 11, 'Indoor pool - heated', 0),
+(94, 11, 'Indoor pool - unheated', 0),
+(95, 11, 'Outdoor pool - heated', 0),
+(96, 11, 'Outdoor pool - unheated', 0),
+(97, 11, 'Kids pool', 0),
+(98, 11, 'Swim-up bar', 0),
+(99, 11, 'Pool bar', 0),
+(100, 12, 'On-site parking', 0),
+(101, 12, 'On-site undercover parking', 0),
+(102, 12, 'On-site secure undercover parking', 0),
+(103, 12, 'Off-site undercover parking', 0),
+(104, 12, 'Off-site secure undercover parking', 0),
+(105, 12, 'Street parking', 0),
+(106, 12, 'Valet parking', 0),
+(107, 13, 'Dry cleaning / laundry service', 0),
+(108, 13, 'Self service laundry facilities', 0),
+(109, 13, 'Tour desk', 0),
+(110, 13, '24 hour front desk', 0),
+(111, 13, 'Concierge', 0),
+(112, 13, 'Arrival / Departure lounge', 0),
+(113, 13, 'Luggage storage', 0),
+(114, 13, 'Porter/Bell service', 0),
+(115, 14, 'Sauna', 0),
+(116, 14, 'Spa/Hot tub/Jacuzzi', 0),
+(117, 14, 'Gym/Fitness room', 0),
+(118, 14, 'Tennis court', 0),
+(119, 14, 'Playground', 0),
+(120, 14, 'Games room', 0),
+(121, 14, 'Motorised water sports', 0),
+(122, 14, 'Non-motorised water sports', 0),
+(123, 14, 'Golf course', 0),
+(124, 14, 'BBQ facilities', 0),
+(125, 14, 'Direct beach access', 0),
+(126, 14, 'Day spa', 0),
+(127, 15, 'Lift/Elevator', 0),
+(128, 15, 'Interconnecting rooms', 0),
+(129, 15, 'Business centre', 0),
+(130, 15, 'Conference/Meeting facilities', 0),
+(131, 15, 'Vending machines', 0),
+(132, 15, 'Kids club', 0),
+(133, 15, 'Ice machine', 0),
+(134, 15, 'Wheelchair accessible', 0),
+(135, 15, 'Airport shuttle', 0),
+(136, 15, 'Wifi access', 0);
 
 
 CREATE TABLE IF NOT EXISTS `gc_supplier_attribute_value` (
@@ -648,7 +663,7 @@ CREATE TABLE IF NOT EXISTS `gc_room_type` (
 
 CREATE TABLE IF NOT EXISTS `gc_room` (
   `id_product` int(10) unsigned NOT NULL,
-  `id_hotel` int(10) unsigned NOT NULL,
+  `id_supplier` int(10) unsigned NOT NULL,
   `room_code` char(6) NOT NULL,
 
   `room_type_code` varchar(64) NOT NULL,
@@ -672,6 +687,7 @@ CREATE TABLE IF NOT EXISTS `gc_room` (
   PRIMARY KEY (`id_product`),
 
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`room_code`) REFERENCES `gc_code`(`code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -920,7 +936,7 @@ CREATE TABLE IF NOT EXISTS `gc_configuration` (
 CREATE TABLE IF NOT EXISTS `gc_configuration_lang` (
   `id_configuration` int(10) unsigned NOT NULL,
   `id_lang` int(10) unsigned NOT NULL,
-  `value` text,
+  `message` text,
   `date_upd` datetime DEFAULT NULL,
   PRIMARY KEY (`id_configuration`,`id_lang`),
 

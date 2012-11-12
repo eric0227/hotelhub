@@ -21,6 +21,7 @@ $this->menu=array(
 		'id_category',
 		'id_parent',
 		'id_service',
+		'name',
 		'level_depth',
 		'nleft',
 		'nright',
