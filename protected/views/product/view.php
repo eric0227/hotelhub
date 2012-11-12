@@ -20,6 +20,7 @@ $this->menu=array(
 	'attributes'=>array(
 		'id_product',
 		'id_service',
+		'id_supplier',
 		'id_category_default',
 		'name',
 		'description',

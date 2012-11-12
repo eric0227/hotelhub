@@ -5,6 +5,8 @@
  *
  * The followings are the available columns in table 'gc_product':
  * @property string $id_product
+ * @property string $id_serivce
+ * @property string $id_supplier
  * @property string $id_category_default
  * @property integer $on_sale
  * @property integer $quantity
@@ -24,6 +26,7 @@
  *
  * The followings are the available model relations:
  * @property Category[] $categories
+ * @property Supplier $supplier
  * @property Category $categoryDefault
  * @property Attachment[] $attachments
  * @property Attribute[] $attributeList
@@ -65,7 +68,7 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_category_default', 'required'),
+			array('id_category_default, id_supplier', 'required'),
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
 			array('id_category_default, out_of_stock', 'length', 'max'=>10),
@@ -103,6 +106,7 @@ class Product extends CActiveRecord
 	{
 		return array(
 			'id_product' => 'Id Product',
+			'id_supplier' => 'Id Supplier',
 			'id_category_default' => 'Id Category Default',
 			'on_sale' => 'On Sale',
 			'quantity' => 'Quantity',
@@ -134,6 +138,7 @@ class Product extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_product',$this->id_product,true);
+		$criteria->compare('id_supplier',$this->id_supplier,true);
 		$criteria->compare('id_category_default',$this->id_category_default,true);
 		$criteria->compare('on_sale',$this->on_sale);
 		$criteria->compare('quantity',$this->quantity);
@@ -221,10 +226,12 @@ class Product extends CActiveRecord
 		$_items = array();
 	
 		$service = Service::getCurrentService();
-		$models = Product::model()->findAll('id_service=:id_service', array(':id_service'=>Service::getCurrentService()));
-	
+		$models = Product::model()->findAllByAttributes(array('id_service'=>Service::getCurrentService()));
+
 		foreach($models as $model) {
-			$_items[$model->id_product] = $model->name;			
+			$_items[$model->id_product] = $model->getName();
+
+			
 		}
 		return $_items;
 	}

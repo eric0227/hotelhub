@@ -829,6 +829,8 @@ CREATE TABLE IF NOT EXISTS `gc_cart` (
   `id_address_invoice` int(10) unsigned NOT NULL,
   `id_currency` int(10) unsigned NOT NULL,
   `id_user` int(10) unsigned NOT NULL,
+  
+  `on_order` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
   `secure_key` varchar(32) NOT NULL DEFAULT '-1',
   `recyclable` tinyint(1) unsigned NOT NULL DEFAULT '1',

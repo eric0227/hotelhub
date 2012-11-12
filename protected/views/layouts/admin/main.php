@@ -120,22 +120,14 @@ if(isset($session['lang'])) {
 				array('label'=>'Member', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
-						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user'))
+						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
+						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
 				array('label'=>'Service', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service'))
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
-				array(
-					'label'=>'Address',
-					'url'=>'',
-
-					'items'=>array(
-						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

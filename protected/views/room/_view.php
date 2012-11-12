@@ -4,8 +4,8 @@
 	<?php echo CHtml::link(CHtml::encode($data->id_product),array('view','id'=>$data->id_product)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('id_hotel')); ?>:</b>
-	<?php echo CHtml::encode($data->id_hotel); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id_supplier')); ?>:</b>
+	<?php echo CHtml::encode($data->id_supplier); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('room_code')); ?>:</b>

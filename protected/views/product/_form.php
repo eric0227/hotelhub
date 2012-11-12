@@ -12,14 +12,16 @@
 	
 	<?php echo $form->errorSummary($model); ?>
 
+	<?php
+		echo $form->dropDownListRow($model, 'id_supplier', Supplier::items(), array('class' => 'span5'));
+	
+	?>
+		
 	<?php		
-		echo $form->dropDownListRow($model, 'id_category_default', Category::items(),
-			array('class' => 'span5'));
+		echo $form->dropDownListRow($model, 'id_category_default', Category::items(),array('class' => 'span5'));
 
 	?>
-	<?php echo $form->error($model,'id_category_default'); ?>
-	
-	
+
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5', 'multilang'=>'1')); ?>
 		
 	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>

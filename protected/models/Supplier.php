@@ -252,6 +252,7 @@ class Supplier extends CActiveRecord
 		}
 		return false;
 	}
+
 	
 	public static function items() {
 		$_items = array();
@@ -259,7 +260,7 @@ class Supplier extends CActiveRecord
 		$models = Supplier::model()->findAll();
 	
 		foreach($models as $model) {
-			$_items[$model->id_supplier] = $model->id_supplier;			
+			$_items[$model->id_supplier] = $model->sales_name;			
 		}
 		return $_items;
 	}
