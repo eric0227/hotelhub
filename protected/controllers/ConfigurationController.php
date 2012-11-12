@@ -70,8 +70,11 @@ class ConfigurationController extends Controller
 		if(isset($_POST['Configuration']))
 		{
 			$model->attributes=$_POST['Configuration'];
-			if($model->save())
+						
+			if($model->save()) {
+				$this->setConfigurationLang($model->id_configuration);
 				$this->redirect(array('view','id'=>$model->id_configuration));
+			}
 		}
 
 		$this->render('create',array(
@@ -94,13 +97,38 @@ class ConfigurationController extends Controller
 		if(isset($_POST['Configuration']))
 		{
 			$model->attributes=$_POST['Configuration'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_configuration));
-		}
 
+			if($model->save()) {
+				$this->setConfigurationLang($model->id_configuration);
+				$this->redirect(array('view','id'=>$model->id_configuration));
+			}
+		} else {
+			$model->loadMultiLang();
+		}
+		
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+	
+	private function setConfigurationLang($id) {
+		
+		$message = $_POST['Configuration']['message'];
+		
+		ConfigurationLang::model()->deleteAllByAttributes(array('id_configuration'=>$id));
+		foreach(Lang::items() as $lang => $langName) {
+		
+			if(empty($message[$lang])) {
+				$message[$lang] = $message[Lang::getDefaultLang()];
+			}
+
+			$model=new ConfigurationLang;
+			$model->id_configuration = $id;
+			$model->id_lang = $lang;
+			$model->message = $message[$lang];
+			$model->date_upd=time();
+			$model->save();
+		}
 	}
 
 	/**
@@ -111,6 +139,7 @@ class ConfigurationController extends Controller
 	public function actionDelete($id)
 	{
 		$this->loadModel($id)->delete();
+		ConfigurationLang::model()->deleteAllByAttributes(array('id_configuration'=>$this->id_configuration));
 
 		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 		if(!isset($_GET['ajax']))

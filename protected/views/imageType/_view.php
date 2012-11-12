@@ -16,5 +16,27 @@
 	<?php echo CHtml::encode($data->height); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('quality')); ?>:</b>
+	<?php echo CHtml::encode($data->quality); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('sharpen')); ?>:</b>
+	<?php echo CHtml::encode($data->sharpen); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('rotate')); ?>:</b>
+	<?php echo CHtml::encode($data->rotate); ?>
+	<br />
+
+	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('product')); ?>:</b>
+	<?php echo CHtml::encode($data->product); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('supplier')); ?>:</b>
+	<?php echo CHtml::encode($data->supplier); ?>
+	<br />
+
+	*/ ?>
 
 </div>

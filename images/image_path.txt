@@ -1,0 +1,2 @@
+1. supplier/(supplier_id)/(image_id)_(small).jpg
+2. product/(product_id)/(image_id)_(small).jpg

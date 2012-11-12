@@ -5,6 +5,8 @@
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
+	<?php $this->widget('MultiLangSelector'); ?>
+	
 	<?php echo $form->errorSummary($model); ?>
 
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>32)); ?>
@@ -13,7 +15,7 @@
 
 	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'message',array('class'=>'span5', 'multilang'=>'1')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

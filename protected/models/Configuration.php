@@ -7,6 +7,7 @@
  * @property string $id_configuration
  * @property string $name
  * @property string $value
+ * @property string $message
  * @property string $date_add
  * @property string $date_upd
  *
@@ -15,6 +16,9 @@
  */
 class Configuration extends CActiveRecord
 {
+	private $currentLangModel = null;	
+	private $message = null;
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -43,7 +47,7 @@ class Configuration extends CActiveRecord
 		return array(
 			array('name', 'required'),
 			array('name', 'length', 'max'=>32),
-			array('value', 'safe'),
+			//array('value', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id_configuration, name, value, date_add, date_upd', 'safe', 'on'=>'search'),
@@ -97,8 +101,32 @@ class Configuration extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+		
+	public function getMessage() {
+		if($this->message != null) {
+			return $this->message;
+		}
+		return $this->getCurrentLangField('message');
+	}
 	
-
+	private function getCurrentLangField($name) {
+		if($currentLangModel == null) {
+			$currentLangModel = ConfigurationLang::model()->findByAttributes(array('id_configuration'=>$this->id_configuration, 'id_lang'=>Lang::getCurrentLang()));
+		}
+		return $currentLangModel->{$name};
+	}
+	
+	public function loadMultiLang() {
+		$mutltiLangModels = ConfigurationLang::model()->findAllByAttributes(array('id_configuration'=>$this->id_configuration));
+		
+		$message = array();
+		
+		foreach($mutltiLangModels as $mutltiLangModel) {
+			$message[$mutltiLangModel->id_lang] = $mutltiLangModel->message;
+		}	
+		$this->message = $message;
+	}
+	
 	protected function beforeSave()
 	{
 		if($this->isNewRecord)
@@ -107,7 +135,7 @@ class Configuration extends CActiveRecord
 		} else {
 			$this->date_upd=time();
 		}
-	
+
 		return parent::beforeSave();
 	}
 	

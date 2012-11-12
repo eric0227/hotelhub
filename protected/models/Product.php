@@ -5,10 +5,11 @@
  *
  * The followings are the available columns in table 'gc_product':
  * @property string $id_product
+ * @property string $id_serivce
+ * @property string $id_supplier
  * @property string $id_category_default
  * @property integer $on_sale
  * @property integer $quantity
- * @property string $minimal_quantity
  * @property string $price
  * @property string $wholesale_price
  * @property double $width
@@ -25,6 +26,7 @@
  *
  * The followings are the available model relations:
  * @property Category[] $categories
+ * @property Supplier $supplier
  * @property Category $categoryDefault
  * @property Attachment[] $attachments
  * @property Attribute[] $attributeList
@@ -35,6 +37,11 @@
  */
 class Product extends CActiveRecord
 {
+	private $currentLangModel = null;
+	private $description = null;
+	private $description_short = null;
+	private $name = null;
+		
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -61,15 +68,15 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_category_default', 'required'),
+			array('id_category_default, id_supplier', 'required'),
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
-			array('id_category_default, minimal_quantity, out_of_stock', 'length', 'max'=>10),
+			array('id_category_default, out_of_stock', 'length', 'max'=>10),
 			array('price, wholesale_price', 'length', 'max'=>20),
 			array('condition', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product, id_category_default, on_sale, quantity, minimal_quantity, price, wholesale_price, width, height, depth, weight, out_of_stock, active, condition, show_price, indexed, date_add, date_upd', 'safe', 'on'=>'search'),
+			array('id_product, id_category_default, on_sale, quantity, price, wholesale_price, width, height, depth, weight, out_of_stock, active, condition, show_price, indexed, date_add, date_upd', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,10 +106,10 @@ class Product extends CActiveRecord
 	{
 		return array(
 			'id_product' => 'Id Product',
+			'id_supplier' => 'Id Supplier',
 			'id_category_default' => 'Id Category Default',
 			'on_sale' => 'On Sale',
 			'quantity' => 'Quantity',
-			'minimal_quantity' => 'Minimal Quantity',
 			'price' => 'Price',
 			'wholesale_price' => 'Wholesale Price',
 			'width' => 'Width',
@@ -131,10 +138,10 @@ class Product extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_product',$this->id_product,true);
+		$criteria->compare('id_supplier',$this->id_supplier,true);
 		$criteria->compare('id_category_default',$this->id_category_default,true);
 		$criteria->compare('on_sale',$this->on_sale);
 		$criteria->compare('quantity',$this->quantity);
-		$criteria->compare('minimal_quantity',$this->minimal_quantity,true);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('wholesale_price',$this->wholesale_price,true);
 		$criteria->compare('width',$this->width);
@@ -154,6 +161,53 @@ class Product extends CActiveRecord
 		));
 	}
 	
+	// 	private $description = null;
+	// 	private $description_short = null;
+	// 	private $name = null;
+	
+	public function getDescription() {
+		if($this->description != null) {
+			return $this->description;
+		}
+		return $this->getCurrentLangField('description');
+	}
+	public function getDescriptionShort() {
+		if($this->description_short != null) {
+			return $this->description_short;
+		}
+		return $this->getCurrentLangField('description_short');
+	}
+	public function getName() {
+		if($this->name != null) {
+			return $this->name;
+		}
+		return $this->getCurrentLangField('name');
+	}
+	
+	private function getCurrentLangField($name) {
+		if($this->currentLangModel == null) {
+			$this->currentLangModel = ProductLang::model()->findByAttributes(array('id_product'=>$this->id_product, 'id_lang'=>Lang::getCurrentLang()));
+		}
+		return $this->currentLangModel->{$name};
+	}
+	
+	public function loadMultiLang() {
+		$mutltiLangModels = ProductLang::model()->findAllByAttributes(array('id_product'=>$this->id_product));
+	
+		$description = array();
+		$description_short = array();
+		$name = array();
+	
+		foreach($mutltiLangModels as $mutltiLangModel) {
+			$description[$mutltiLangModel->id_lang] = $mutltiLangModel->description;
+			$description_short[$mutltiLangModel->id_lang] = $mutltiLangModel->description_short;
+			$name[$mutltiLangModel->id_lang] = $mutltiLangModel->name;
+		}
+		$this->description = $description;
+		$this->description_short = $description_short;
+		$this->name = $name;
+	}	
+	
 	protected function beforeSave()
 	{
 		if($this->isNewRecord)
@@ -172,10 +226,12 @@ class Product extends CActiveRecord
 		$_items = array();
 	
 		$service = Service::getCurrentService();
-		$models = Product::model()->findAll('id_service=:id_service', array(':id_service'=>Service::getCurrentService()));
-	
+		$models = Product::model()->findAllByAttributes(array('id_service'=>Service::getCurrentService()));
+
 		foreach($models as $model) {
-			$_items[$model->id_product] = $model->id_product;			
+			$_items[$model->id_product] = $model->getName();
+
+			
 		}
 		return $_items;
 	}

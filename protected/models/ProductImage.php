@@ -4,10 +4,12 @@
  * This is the model class for table "gc_product_image".
  *
  * The followings are the available columns in table 'gc_product_image':
- * @property string $id_product
  * @property string $id_image
- * @property integer $position
- * @property integer $cover
+ * @property string $id_product
+ *
+ * The followings are the available model relations:
+ * @property Image $image
+ * @property Product $product
  */
 class ProductImage extends CActiveRecord
 {
@@ -37,12 +39,11 @@ class ProductImage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_product, id_image', 'required'),
-			array('position, cover', 'numerical', 'integerOnly'=>true),
-			array('id_product, id_image', 'length', 'max'=>10),
+			array('id_image, id_product', 'required'),
+			array('id_image, id_product', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product, id_image, position, cover', 'safe', 'on'=>'search'),
+			array('id_image, id_product', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,6 +55,8 @@ class ProductImage extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'image' => array(self::BELONGS_TO, 'ImageC', 'id_image'),
+			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
 		);
 	}
 
@@ -63,10 +66,8 @@ class ProductImage extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_product' => 'Id Product',
 			'id_image' => 'Id Image',
-			'position' => 'Position',
-			'cover' => 'Cover',
+			'id_product' => 'Id Product',
 		);
 	}
 
@@ -81,10 +82,8 @@ class ProductImage extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_product',$this->id_product,true);
 		$criteria->compare('id_image',$this->id_image,true);
-		$criteria->compare('position',$this->position);
-		$criteria->compare('cover',$this->cover);
+		$criteria->compare('id_product',$this->id_product,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

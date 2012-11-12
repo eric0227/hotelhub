@@ -6,6 +6,7 @@ $this->breadcrumbs=array(
 $this->menu=array(
 	array('label'=>'Create ImageType','url'=>array('create')),
 	array('label'=>'Manage ImageType','url'=>array('admin')),
+	array('label'=>'Resize Images','url'=>array('resize')),
 );
 ?>
 

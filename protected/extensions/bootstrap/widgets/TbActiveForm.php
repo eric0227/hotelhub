@@ -523,14 +523,40 @@ class TbActiveForm extends CActiveForm
 	public function inputRow($type, $model, $attribute, $data = null, $htmlOptions = array())
 	{
 		ob_start();
-		Yii::app()->controller->widget($this->getInputClassName(), array(
-			'type' => $type,
-			'form' => $this,
-			'model' => $model,
-			'attribute' => $attribute,
-			'data' => $data,
-			'htmlOptions' => $htmlOptions,
-		));
+		
+		if(isset($htmlOptions['multilang'])) {
+
+			$langs = Lang::items();
+			
+			foreach($langs as $lang => $langName) {
+				$htmlOptions['lang'] = $lang;
+				
+				//echo $this->getInputClassName();
+				
+				echo '<div class="multifield" lang="'.$lang.'">';
+				Yii::app()->controller->widget($this->getInputClassName(), array(
+							'type' => $type,
+							'form' => $this,
+							'model' => $model,
+							//'attribute' => $attribute.'_'.$lang,
+							'attribute' => $attribute.'['.$lang.']',
+							//'attribute' => $attribute,
+							'data' => $data,
+							'htmlOptions' => $htmlOptions,
+				));
+				echo '</div>';
+			}
+		} else {
+		
+			Yii::app()->controller->widget($this->getInputClassName(), array(
+				'type' => $type,
+				'form' => $this,
+				'model' => $model,
+				'attribute' => $attribute,
+				'data' => $data,
+				'htmlOptions' => $htmlOptions,
+			));
+		}
 		return ob_get_clean();
 	}
 

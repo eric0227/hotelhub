@@ -142,4 +142,8 @@ class Lang extends CActiveRecord
 	
 		return $lang;
 	}
+	
+	public static function getDefaultLang() {
+		return 1;
+	}
 }

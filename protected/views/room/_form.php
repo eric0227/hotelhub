@@ -9,51 +9,13 @@
 	<?php echo $form->errorSummary($model); ?>
 
 
-	<?php
-		//echo "<div class='control-group '>";
-		//echo $form->labelEx($model,'id_product',
-		//	array('class' => 'control-label'));
-	?>
 	<?php 
-		//echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10));
-		//echo "	<div class='controls'>";
-		echo $form->dropDownListRow($model, 'id_product', Product::items(),
-			array('class' => 'span5'));
-		//echo "	</div>";
-		//echo "</div>";
+		echo $form->dropDownListRow($model, 'id_product', Product::items(), array('class' => 'span5'));
 	?>
-	<?php echo $form->error($model,'id_product'); ?>
 
-	<?php
-		echo "<div class='control-group '>";
-		echo $form->labelEx($model,'id_hotel',
-			array('class' => 'control-label'));
-	?>
 	<?php 
-		//echo $form->textField($model,'id_hotel',array('size'=>10,'maxlength'=>10));
-		echo "	<div class='controls'>";
-		echo $form->dropDownList($model, 'id_hotel', Hotel::items(),
-			array('class' => 'span5'));
-		echo "	</div>";
-		echo "</div>";
+		echo $form->dropDownListRow($model,'room_code', Code::items(CodeType::ROOM), array('class' => 'span5'));
 	?>
-	<?php echo $form->error($model,'id_hotel'); ?>
-
-	<?php
-		echo "<div class='control-group '>";
-		echo $form->labelEx($model,'room_code',
-			array('class' => 'control-label'));
-	?>
-	<?php 
-		//echo $form->textField($model,'room_code',array('size'=>6,'maxlength'=>6));
-		echo "	<div class='controls'>";
-		echo $form->dropDownList($model,'room_code', Code::items(CodeType::ROOM),
-			array('class' => 'span5'));
-		echo "	</div>";
-		echo "</div>";
-	?>
-	<?php echo $form->error($model,'room_code'); ?>
-
 
 	<?php echo $form->textFieldRow($model,'room_type_code',array('class'=>'span5','maxlength'=>64)); ?>
 

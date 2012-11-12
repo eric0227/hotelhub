@@ -6,32 +6,21 @@
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 	<div class="form-actions">
+	
+
+	<?php $this->widget('MultiLangSelector'); ?>
+
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php
-		//echo "<div class='control-group '>";
-		//echo $form->labelEx($model,'id_parent',
-		//	array('class' => 'control-label'));
-	?>
 	<?php 
-		// echo $form->textField($model,'id_parent',array('size'=>10,'maxlength'=>10));
-		//echo "	<div class='controls'>";
 		echo $form->dropDownListRow($model,'id_parent', $parentItems,
 			array('class' => 'span5'));
-		//echo "	</div>";
-		//echo "</div>";
 	?>
 	<?php echo $form->error($model,'id_parent'); ?>
 
-<?php /*	
-	<?php echo $form->textFieldRow($model,'id_service',array('class'=>'span5','maxlength'=>10)); ?>
-
-	<?php echo $form->textFieldRow($model,'level_depth',array('class'=>'span5')); ?>
-
-	<?php echo $form->textFieldRow($model,'nleft',array('class'=>'span5','maxlength'=>10)); ?>
-
-	<?php echo $form->textFieldRow($model,'nright',array('class'=>'span5','maxlength'=>10)); ?>
-*/ ?>
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5', 'multilang'=>'1')); ?>
+	
+	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
 	
 	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 

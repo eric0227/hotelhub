@@ -19,7 +19,7 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id_product',
-		'id_hotel',
+		'id_supplier',
 		'room_code',
 		'room_type_code',
 		'lead_in_room_type',

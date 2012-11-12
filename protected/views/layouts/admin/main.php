@@ -85,6 +85,17 @@ if(isset($session['lang'])) {
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+				array('label'=>'Images', 'url'=>'',
+					'items'=>array(
+						array('label'=>'Image Type', 'url'=>array('/imageType/index', 'tag'=>'imageType')),
+						array('label'=>'Supplier Images', 'url'=>array('/imageSupplier/index', 'type'=>ImageC::SUPPLIER_IMAGE)),
+						array('label'=>'Product Images', 'url'=>array('/imageProduct/index', 'type'=>ImageC::PRODUCT_IMAGE)),
+						
+// 						array('label'=>'Supplier Images', 'url'=>array('/supplierImage/index', 'tag'=>'supplierImage')),
+// 						array('label'=>'Product Images', 'url'=>array('/productImage/index', 'tag'=>'productImage')),
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
 				array('label'=>'Orders', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Orders', 'url'=>array('/order/index', 'tag'=>'order')),
@@ -109,22 +120,14 @@ if(isset($session['lang'])) {
 				array('label'=>'Member', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
-						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user'))
+						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
+						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
 				array('label'=>'Service', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service'))
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
-				array(
-					'label'=>'Address',
-					'url'=>'',
-
-					'items'=>array(
-						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

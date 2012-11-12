@@ -27,7 +27,7 @@ class UserController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','getState'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -172,5 +172,23 @@ class UserController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionGetState() {
+		//print_r( $_POST);
+		if(isset($_REQUEST['Address']['id_country'])) {
+			$state = State::model()->findAllByAttributes(
+				array('id_country' => $_REQUEST['Address']['id_country'])
+			);
+		} else {
+			$state = State::model()->findAll();
+		}
+		$data = CHtml::listData($state, 'id_state', 'name');
+	
+		foreach($data as $value=>$name)
+		{
+			echo CHtml::tag('option', array('value'=>$value), CHtml::encode($name),true);
+		}
+		Yii::app()->end();
 	}
 }

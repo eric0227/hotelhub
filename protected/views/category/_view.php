@@ -11,6 +11,10 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_service')); ?>:</b>
 	<?php echo CHtml::encode($data->id_service); ?>
 	<br />
+	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<?php echo CHtml::encode($data->name); ?>
+	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('level_depth')); ?>:</b>
 	<?php echo CHtml::encode($data->level_depth); ?>
@@ -28,19 +32,5 @@
 	<?php echo CHtml::encode($data->active); ?>
 	<br />
 
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date_add')); ?>:</b>
-	<?php echo CHtml::encode($data->date_add); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('date_upd')); ?>:</b>
-	<?php echo CHtml::encode($data->date_upd); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('position')); ?>:</b>
-	<?php echo CHtml::encode($data->position); ?>
-	<br />
-
-	*/ ?>
 
 </div>

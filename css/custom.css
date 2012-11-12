@@ -54,3 +54,18 @@ select.span5 {
 	margin-left: 180px;
 }
 
+#multilang_selector li {
+	display: inline-block;
+	padding: 2px;
+}
+
+#multilang_selector img {
+	width: 20px;
+	height: 15px;
+}
+
+.multifield {
+	display:none;
+}
+
+

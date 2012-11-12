@@ -47,14 +47,14 @@ class ProductLang extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_product, id_lang, link_rewrite, name', 'required'),
+			array('id_product, id_lang, name', 'required'),
 			array('id_product, id_lang', 'length', 'max'=>10),
 			array('link_rewrite, meta_title, name', 'length', 'max'=>128),
-			array('meta_description, meta_keywords, available_now, available_later', 'length', 'max'=>255),
+			array('meta_description, meta_keywords', 'length', 'max'=>255),
 			array('description, description_short', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product, id_lang, description, description_short, link_rewrite, meta_description, meta_keywords, meta_title, name, available_now, available_later', 'safe', 'on'=>'search'),
+			array('id_product, id_lang, description, description_short, link_rewrite, meta_description, meta_keywords, meta_title, name', 'safe', 'on'=>'search'),
 		);
 	}
 

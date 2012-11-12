@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'gc_room':
  * @property string $id_product
- * @property string $id_hotel
+ * @property string $id_supplier
  * @property string $room_code
  * @property string $room_type_code
  * @property integer $lead_in_room_type
@@ -55,9 +55,9 @@ class Room extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_product, id_hotel, room_code, room_type_code', 'required'),
+			array('id_product, room_code, room_type_code', 'required'),
 			array('lead_in_room_type', 'numerical', 'integerOnly'=>true),
-			array('id_product, id_hotel, full_rate', 'length', 'max'=>10),
+			array('id_product, id_supplier, full_rate', 'length', 'max'=>10),
 			array('room_code', 'length', 'max'=>6),
 			array('room_type_code, room_name', 'length', 'max'=>64),
 			array('min_night_stay, max_night_stay, guests_tot_room_cap, guests_included_price, children_maxnum, children_years, adults_maxnum', 'length', 'max'=>2),
@@ -65,7 +65,7 @@ class Room extends CActiveRecord
 			array('children_extra, adults_extra', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product, id_hotel, room_code, room_type_code, lead_in_room_type, full_rate, min_night_stay, max_night_stay, room_name, root_description, guests_tot_room_cap, guests_included_price, children_maxnum, children_years, children_extra, adults_maxnum, adults_extra', 'safe', 'on'=>'search'),
+			array('id_product, id_supplier, room_code, room_type_code, lead_in_room_type, full_rate, min_night_stay, max_night_stay, room_name, root_description, guests_tot_room_cap, guests_included_price, children_maxnum, children_years, children_extra, adults_maxnum, adults_extra', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,7 +91,7 @@ class Room extends CActiveRecord
 	{
 		return array(
 			'id_product' => 'Id Product',
-			'id_hotel' => 'Id Hotel',
+			'id_supplier' => 'Id Supplier',
 			'room_code' => 'Room Code',
 			'room_type_code' => 'Room Type Code',
 			'lead_in_room_type' => 'Lead In Room Type',
@@ -122,7 +122,7 @@ class Room extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_product',$this->id_product,true);
-		$criteria->compare('id_hotel',$this->id_hotel,true);
+		$criteria->compare('id_supplier',$this->id_supplier,true);
 		$criteria->compare('room_code',$this->room_code,true);
 		$criteria->compare('room_type_code',$this->room_type_code,true);
 		$criteria->compare('lead_in_room_type',$this->lead_in_room_type);
@@ -214,6 +214,11 @@ class Room extends CActiveRecord
 		}
 	
 		//print_r($attributeValue);
+		
+		$product = Product::model()->findByPk($this->id_product);
+		$this->id_supplier = $product->id_supplier;
+		
+		return parent::beforeSave();
 	}
 	
 	private $attributeItems = null;

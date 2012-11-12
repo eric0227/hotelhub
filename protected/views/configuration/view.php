@@ -23,5 +23,6 @@ $this->menu=array(
 		'value',
 		'date_add',
 		'date_upd',
+		'message'
 	),
 )); ?>

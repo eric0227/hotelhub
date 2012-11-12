@@ -23,12 +23,12 @@
 			)
 		);
 	?>
+	
 	<?php echo $form->error($model,'id_country'); ?>
 
 	
 	<?php echo $form->labelEx($model,'id_state'); ?>
-	<?php 
-		//echo $form->textField($model,'id_state',array('size'=>10,'maxlength'=>10));
+	<?php
 		$state = array();
 		if(isset($model->id_country)) {
 			$state = State::items($model->id_country);
@@ -38,8 +38,7 @@
 	<?php echo $form->error($model,'id_state'); ?>
 
 	<?php echo $form->labelEx($model,'id_user'); ?>
-	<?php 
-		//echo $form->textField($model,'id_user',array('size'=>10,'maxlength'=>10));
+	<?php
 		echo $form->dropDownList($model,'id_user', User::items());
 	?>
 	<?php echo $form->error($model,'id_user'); ?>

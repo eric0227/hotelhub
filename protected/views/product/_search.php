@@ -13,8 +13,6 @@
 
 	<?php echo $form->textFieldRow($model,'quantity',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'minimal_quantity',array('class'=>'span5','maxlength'=>10)); ?>
-
 	<?php echo $form->textFieldRow($model,'price',array('class'=>'span5','maxlength'=>20)); ?>
 
 	<?php echo $form->textFieldRow($model,'agent_price',array('class'=>'span5','maxlength'=>20)); ?>

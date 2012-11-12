@@ -78,7 +78,7 @@ class Supplier extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'hotels' => array(self::HAS_MANY, 'Hotel', 'id_supplier'),
-			'hotelImages' => array(self::HAS_MANY, 'HotelImage', 'id_hotel'),
+			'supplierImages' => array(self::HAS_MANY, 'SupplierImage', 'id_supplier'),
 			'user' => array(self::BELONGS_TO, 'User', 'id_supplier'),
 			'attributeValues' => array(self::HAS_MANY, 'SupplierAttributeValue', 'id_supplier'),
 		);
@@ -252,6 +252,7 @@ class Supplier extends CActiveRecord
 		}
 		return false;
 	}
+
 	
 	public static function items() {
 		$_items = array();
@@ -259,7 +260,7 @@ class Supplier extends CActiveRecord
 		$models = Supplier::model()->findAll();
 	
 		foreach($models as $model) {
-			$_items[$model->id_supplier] = $model->id_supplier;			
+			$_items[$model->id_supplier] = $model->sales_name;			
 		}
 		return $_items;
 	}
