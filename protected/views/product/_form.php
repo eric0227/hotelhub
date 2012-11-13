@@ -26,7 +26,7 @@
 		
 	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
 	
-	<?php echo $form->textAreaRow($model,'descriptionShort',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>		
+	<?php echo $form->textAreaRow($model,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>		
 
 	
 	<?php echo $form->textFieldRow($model,'on_sale',array('class'=>'span5')); ?>

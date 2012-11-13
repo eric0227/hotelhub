@@ -165,32 +165,24 @@ class Product extends CActiveRecord
 	// 	private $description_short = null;
 	// 	private $name = null;
 	
-	public function getDescription() {
-		if($this->description != null) {
-			return $this->description;
-		}
-		return $this->getCurrentLangField('description');
+	protected function afterFind() {
+		$langModel = ProductLang::model()->findByAttributes(array('id_product'=>$this->id_product, 'id_lang'=>Lang::getCurrentLang()));
+		
+		$this->name = $langModel->name;
+		$this->description = $langModel->description;
+		$this->description_short = $langModel->description_short;
 	}
-	public function getDescriptionShort() {
-		if($this->description_short != null) {
-			return $this->description_short;
-		}
-		return $this->getCurrentLangField('description_short');
+	
+	public function getDescription() {
+		return $this->description;
+	}
+	public function getDescription_Short() {
+		return $this->description_short;
 	}
 	public function getName() {
-		if($this->name != null) {
-			return $this->name;
-		}
-		return $this->getCurrentLangField('name');
+		return $this->name;
 	}
-	
-	private function getCurrentLangField($name) {
-		if($this->currentLangModel == null) {
-			$this->currentLangModel = ProductLang::model()->findByAttributes(array('id_product'=>$this->id_product, 'id_lang'=>Lang::getCurrentLang()));
-		}
-		return $this->currentLangModel->{$name};
-	}
-	
+		
 	public function loadMultiLang() {
 		$mutltiLangModels = ProductLang::model()->findAllByAttributes(array('id_product'=>$this->id_product));
 	

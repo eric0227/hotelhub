@@ -114,7 +114,7 @@ class ProductController extends Controller
 	private function setProductLang($id) {
 	
 		$description = $_POST['Product']['description'];
-		$descriptionShort = $_POST['Product']['descriptionShort'];
+		$descriptionShort = $_POST['Product']['description_short'];
 		$name = $_POST['Product']['name'];
 	
 		ProductLang::model()->deleteAllByAttributes(array('id_product'=>$id));
