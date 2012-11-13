@@ -74,13 +74,13 @@ class LoginForm extends CFormModel
 			$session=new CHttpSession;
 			$session->open();
 			
-			if($this->username == 'admin') {
+			if($this->username == 'admin@holidoy.com.au') {
 				$session['group'] = User::ADMIN;
-			} else if($this->username == 'supplier') {
+			} else if($this->username == 'supplier@holidoy.com.au') {
 				$session['group'] = User::SUPPLIER;
-			} else if($this->username == 'agent') {
+			} else if($this->username == 'agent@holidoy.com.au') {
 				$session['group'] = User::AGENT;
-			} else if($this->username == 'customer') {
+			} else if($this->username == 'customer@holidoy.com.au') {
 				$session['group'] = User::CUSTOMER;
 			}
 			
