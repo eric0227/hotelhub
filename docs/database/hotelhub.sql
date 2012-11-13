@@ -57,6 +57,13 @@ DROP TABLE IF EXISTS `gc_lang`;
 DROP TABLE IF EXISTS `gc_code`;
 DROP TABLE IF EXISTS `gc_code_type`;
 
+
+-- Added By Chris.
+DROP TABLE IF EXISTS `gc_supplier_lang`;
+
+
+
+
 CREATE TABLE IF NOT EXISTS `gc_code_type` (  
   `type` char(3) NOT NULL,
   `name` VARCHAR(128) NOT NULL,  
@@ -65,7 +72,8 @@ CREATE TABLE IF NOT EXISTS `gc_code_type` (
 
 INSERT INTO `gc_code_type` (`type`, `name`) VALUES
 ('001', 'Address Type'),
-('002', 'Room Type');
+('002', 'Room Type'),
+('003', 'CheckInOut Time Type');
 
 
 CREATE TABLE IF NOT EXISTS `gc_code` (
@@ -86,7 +94,55 @@ INSERT INTO `gc_code` (`code`, `type`, `name`, `position`) VALUES
 ('002003', '002', '1 bedroom', 3),
 ('002004', '002', '2 bedroom', 4),
 ('002005', '002', '3+ bedroom', 5),
-('002006', '002', 'Dorm Room', 6);
+('002006', '002', 'Dorm Room', 6),
+('003001', '003', '00:30', 1),
+('003002', '003', '01:00', 2),
+('003003', '003', '01:30', 3),
+('003004', '003', '02:00', 4),
+('003005', '003', '02:30', 5),
+('003006', '003', '03:00', 6),
+('003007', '003', '03:30', 7),
+('003008', '003', '04:00', 8),
+('003009', '003', '04:30', 9),
+('003010', '003', '05:00', 10),
+('003011', '003', '05:30', 11),
+('003012', '003', '06:00', 12),
+('003013', '003', '06:30', 13),
+('003014', '003', '07:00', 14),
+('003015', '003', '07:30', 15),
+('003016', '003', '08:00', 16),
+('003017', '003', '08:30', 17),
+('003018', '003', '09:00', 18),
+('003019', '003', '09:30', 19),
+('003020', '003', '10:00', 20),
+('003021', '003', '10:30', 21),
+('003022', '003', '11:00', 22),
+('003023', '003', '11:30', 23),
+('003024', '003', '12:00', 24),
+('003025', '003', '12:30', 25),
+('003026', '003', '13:00', 26),
+('003027', '003', '13:30', 27),
+('003028', '003', '14:00', 28),
+('003029', '003', '14:30', 29),
+('003030', '003', '15:00', 30),
+('003031', '003', '15:30', 31),
+('003032', '003', '16:00', 32),
+('003033', '003', '16:30', 33),
+('003034', '003', '17:00', 34),
+('003035', '003', '17:30', 35),
+('003036', '003', '18:00', 36),
+('003037', '003', '18:30', 37),
+('003038', '003', '19:00', 38),
+('003039', '003', '19:30', 39),
+('003040', '003', '20:00', 40),
+('003041', '003', '20:30', 41),
+('003042', '003', '21:00', 42),
+('003043', '003', '21:30', 43),
+('003044', '003', '22:00', 44),
+('003045', '003', '22:30', 45),
+('003046', '003', '23:00', 46),
+('003047', '003', '23:30', 47),
+('003048', '003', '00:00', 48);
 
 
 CREATE TABLE IF NOT EXISTS `gc_service` (
@@ -252,6 +308,29 @@ CREATE TABLE IF NOT EXISTS `gc_supplier` (
   PRIMARY KEY (`id_supplier`),
   FOREIGN KEY (`id_supplier`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
+-- Added By Chris.
+CREATE TABLE IF NOT EXISTS `gc_supplier_lang` (
+  `id_supplier` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `short_promotional_blurb` text,
+  `property_details` text,
+  `business_facilities` text,
+  `checkin_instructions` text,
+  `car_parking` text,
+  `getting_there` text,
+  `things_to_do` text,
+  `link_rewrite` varchar(128) DEFAULT NULL,
+  `meta_title` varchar(128) DEFAULT NULL,
+  `meta_keywords` varchar(255) DEFAULT NULL,
+  `meta_description` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id_supplier`,`id_lang`),
+  
+  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE
+ 
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
 
 
 CREATE TABLE IF NOT EXISTS `gc_address` (

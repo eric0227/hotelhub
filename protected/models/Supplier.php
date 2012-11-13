@@ -32,6 +32,17 @@
  */
 class Supplier extends CActiveRecord
 {
+	// Added By Chris.
+	private $currentLangModel = null;
+	private $short_promotional_blurb = null;
+	private $property_details = null;
+	private $business_facilities = null;
+	private $checkin_instructions = null;
+	private $car_parking = null;
+	private $getting_there = null;
+	private $things_to_do = null;
+	// Added End.
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -178,6 +189,100 @@ class Supplier extends CActiveRecord
 		return $result;
 	}
 	
+	// Added By Chris.
+	public function getShortPromotionalBlurb() {
+		if($this->short_promotional_blurb != null) {
+			return $this->short_promotional_blurb;
+		}
+		return $this->getCurrentLangField('short_promotional_blurb');
+	}
+
+	public function getPropertyDetails() {
+		if($this->property_details != null) {
+			return $this->property_details;
+		}
+		return $this->getCurrentLangField('property_details');
+	}
+
+	public function getBusinessFacilities() {
+		if($this->business_facilities != null) {
+			return $this->business_facilities;
+		}
+		return $this->getCurrentLangField('business_facilities');
+	}
+
+	public function getCheckinInstructions() {
+		if($this->checkin_instructions != null) {
+			return $this->checkin_instructions;
+		}
+		return $this->getCurrentLangField('checkin_instructions');
+	}
+
+	public function getCarParking() {
+		if($this->car_parking != null) {
+			return $this->car_parking;
+		}
+		return $this->getCurrentLangField('car_parking');
+	}
+
+	public function getGettingThere() {
+		if($this->getting_there != null) {
+			return $this->getting_there;
+		}
+		return $this->getCurrentLangField('getting_there');
+	}
+
+	public function getThingsToDo() {
+		if($this->things_to_do != null) {
+			return $this->things_to_do;
+		}
+		return $this->getCurrentLangField('things_to_do');
+	}
+
+	private function getCurrentLangField($name) {
+		if($this->currentLangModel == null) {
+			$this->currentLangModel = SupplierLang::model()->findByAttributes(array('id_supplier'=>$this->id_supplier, 'id_lang'=>Lang::getCurrentLang()));
+/*
+			if($this->currentLangModel == null) {
+				$this->currentLangModel = SupplierLang::model()->findByAttributes(array('id_supplier'=>$this->id_supplier, 'id_lang'=>Lang::getDefaultLang()));
+			}
+*/		}
+		
+		return $this->currentLangModel->{$name};
+	}
+
+	public function loadMultiLang() {
+		$mutltiLangModels = SupplierLang::model()->findAllByAttributes(array('id_supplier'=>$this->id_supplier));
+
+		$short_promotional_blurb = array();
+		$property_details = array();
+		$business_facilities = array();
+		$checkin_instructions = array();
+		$car_parking = array();
+		$getting_there = array();
+		$things_to_do = array();
+
+		foreach($mutltiLangModels as $mutltiLangModel) {
+			$short_promotional_blurb[$mutltiLangModel->id_lang] = $mutltiLangModel->short_promotional_blurb;
+			$property_details[$mutltiLangModel->id_lang] = $mutltiLangModel->property_details;
+			$business_facilities[$mutltiLangModel->id_lang] = $mutltiLangModel->business_facilities;
+			$checkin_instructions[$mutltiLangModel->id_lang] = $mutltiLangModel->checkin_instructions;
+			$car_parking[$mutltiLangModel->id_lang] = $mutltiLangModel->car_parking;
+			$getting_there[$mutltiLangModel->id_lang] = $mutltiLangModel->getting_there;
+			$things_to_do[$mutltiLangModel->id_lang] = $mutltiLangModel->things_to_do;
+		}
+		
+		$this->short_promotional_blurb = $short_promotional_blurb;
+		$this->property_details = $property_details;
+		$this->business_facilities = $business_facilities;
+		$this->checkin_instructions = $checkin_instructions;
+		$this->car_parking = $car_parking;
+		$this->getting_there = $getting_there;
+		$this->things_to_do = $things_to_do;
+	}
+	// Added End.
+	
+
 	public function beforeSave() {
 		
 		//print_r($_POST['Supplier']['selectedAttributeItemIds']);

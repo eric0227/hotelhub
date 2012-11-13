@@ -35,6 +35,7 @@ $this->menu=array(
 		'member_chain_group',
 		'room_count',
 		'website',
+		'shortPromotionalBlurb',
 	),
 )); ?>
 

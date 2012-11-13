@@ -70,8 +70,10 @@ class SupplierController extends Controller
 		if(isset($_POST['Supplier']))
 		{
 			$model->attributes=$_POST['Supplier'];
-			if($model->save())
+			if($model->save()) {
+				$this->setSupplierLang($model->id_supplier);
 				$this->redirect(array('view','id'=>$model->id_supplier));
+			}
 		}
 
 		$this->render('create',array(
@@ -94,8 +96,12 @@ class SupplierController extends Controller
 		if(isset($_POST['Supplier']))
 		{
 			$model->attributes=$_POST['Supplier'];
-			if($model->save())
+			if($model->save()) {
+				$this->setSupplierLang($model->id_supplier);
 				$this->redirect(array('view','id'=>$model->id_supplier));
+			}
+		} else {
+			$model->loadMultiLang();
 		}
 
 		$this->render('update',array(
@@ -169,4 +175,64 @@ class SupplierController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	
+	// Added By Chris.
+	private function setSupplierLang($id) {
+
+		$short_promotional_blurb = $_POST['Supplier']['short_promotional_blurb'];
+		$property_details = $_POST['Supplier']['property_details'];
+		$business_facilities = $_POST['Supplier']['business_facilities'];
+		$checkin_instructions = $_POST['Supplier']['checkin_instructions'];
+		$car_parking = $_POST['Supplier']['car_parking'];
+		$getting_there = $_POST['Supplier']['getting_there'];
+		$things_to_do = $_POST['Supplier']['things_to_do'];
+
+		SupplierLang::model()->deleteAllByAttributes(array('id_supplier'=>$id));
+		foreach(Lang::items() as $lang => $langName) {
+
+			if(empty($short_promotional_blurb[$lang])) {
+				$short_promotional_blurb[$lang] = $short_promotional_blurb[Lang::getDefaultLang()];
+			}
+
+			if(empty($property_details[$lang])) {
+				$property_details[$lang] = $property_details[Lang::getDefaultLang()];
+			}
+
+			if(empty($business_facilities[$lang])) {
+				$business_facilities[$lang] = $business_facilities[Lang::getDefaultLang()];
+			}
+
+			if(empty($checkin_instructions[$lang])) {
+				$checkin_instructions[$lang] = $checkin_instructions[Lang::getDefaultLang()];
+			}
+
+			if(empty($car_parking[$lang])) {
+				$car_parking[$lang] = $car_parking[Lang::getDefaultLang()];
+			}
+
+			if(empty($getting_there[$lang])) {
+				$getting_there[$lang] = $getting_there[Lang::getDefaultLang()];
+			}
+
+			if(empty($things_to_do[$lang])) {
+				$things_to_do[$lang] = $things_to_do[Lang::getDefaultLang()];
+			}
+
+			$model = new SupplierLang();
+			$model->id_supplier = $id;
+			$model->id_lang = $lang;
+
+			$model->short_promotional_blurb = $short_promotional_blurb[$lang];
+			$model->property_details = $property_details[$lang];
+			$model->business_facilities = $business_facilities[$lang];
+			$model->checkin_instructions = $checkin_instructions[$lang];
+			$model->car_parking = $car_parking[$lang];
+			$model->getting_there = $getting_there[$lang];
+			$model->things_to_do = $things_to_do[$lang];
+
+			$model->save();
+		}
+	}
+	// Added End.
 }
