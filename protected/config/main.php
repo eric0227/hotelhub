@@ -10,6 +10,8 @@ return array(
 	'defaultController' => 'index',
 	
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+	
+	
 	'name'=>'Holidoy System',
 
 	// preloading 'log' component
@@ -40,6 +42,7 @@ return array(
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
+			'class' => 'WebUser',
 			'allowAutoLogin'=>true,
 		),
 		'bootstrap'=>array(

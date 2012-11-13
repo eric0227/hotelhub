@@ -7,6 +7,8 @@
  */
 class UserIdentity extends CUserIdentity
 {
+	private $user;
+	
 	/**
 	 * Authenticates a user.
 	 * The example implementation makes sure if the username and password
@@ -17,34 +19,30 @@ class UserIdentity extends CUserIdentity
 	 */
 	public function authenticate()
 	{
-		$users=array(
-			// username => password
-			'demo'=>'demo',
-			'admin'=>'admin',
-			'supplier'=>'supplier',
-			'agent'=>'agent',
-			'customer'=>'customer',
-		);
-		if(!isset($users[$this->username]))
+		$this->user = User::model()->findByAttributes(array("email"=>$this->username));
+		
+		if(!isset($this->user)) {
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
-		else if($users[$this->username]!==$this->password)
+			return false;
+		}
+		
+		$pw1 = $this->user->getInitialPasswd();
+		$pw2 = Yii::app()->user->hashPassword($this->password);
+		
+		if($pw1 !== $pw2) {
 			$this->errorCode=self::ERROR_PASSWORD_INVALID;
-		else
-			$this->errorCode=self::ERROR_NONE;
-				
-// 		$session=new CHttpSession;
-// 		$session->open();
+			return false;
+		}
 		
-// 		if($this->username == 'admin') {
-// 			$session['group'] = User::ADMIN;
-// 		} else if($this->username == 'supplier') {
-// 			$session['group'] = User::SUPPLIER;
-// 		} else if($this->username == 'agent') {
-// 			$session['group'] = User::AGENT;
-// 		} else if($this->username == 'customer') {
-// 			$session['group'] = User::CUSTOMER;
-// 		}
-		
-		return !$this->errorCode;
+		$this->errorCode=self::ERROR_NONE;
+		return true;
+	}
+	
+	public function email() {
+		return $this->username;
+	}
+	
+	public function id() {
+		return $this->id_user;
 	}
 }
