@@ -24,7 +24,7 @@ $this->menu=array(
 		'id_category_default',
 		'name',
 		'description',
-		'descriptionShort',
+		'description_short',
 		'on_sale',
 		'quantity',
 		'price',

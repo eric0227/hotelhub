@@ -106,15 +106,6 @@ if(isset($session['lang'])) {
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
-				array(
-					'label'=>'Address',
-					'url'=>'',
-
-					'items'=>array(
-						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
 				array('label'=>'CMS', 'url'=>'',
 					'items'=>array(
 						array('label'=>'CMS', 'url'=>array('/cms/index', 'tag'=>'cms')),

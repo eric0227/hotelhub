@@ -84,8 +84,8 @@ class CategoryController extends Controller
 		
 		$data['parentItems'] = Category::items();
 		
-		$langModels = CategoryLang::getLangModels();
-		$data['langModels'] = $langModels;
+// 		$langModels = CategoryLang::getLangModels();
+// 		$data['langModels'] = $langModels;
 		
 		$data['model'] = $model;
 		

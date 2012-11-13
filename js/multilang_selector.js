@@ -19,3 +19,4 @@ $(function() {
 function showLangField(lang) {
 	$('.multifield[lang="'+lang+'"]').show();
 }
+

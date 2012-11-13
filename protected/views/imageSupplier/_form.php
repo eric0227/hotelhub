@@ -16,7 +16,9 @@
 	?>	
 	
 	<?php echo $form->textFieldRow($model,'image_title',array('class'=>'span5','maxlength'=>100)); ?>
-
+	
+	<br />
+	
 	<?php 
 		if($model->isNewRecord) {
 			echo $form->fileFieldRow($model,'image',array('class'=>'span5','maxlength'=>100));

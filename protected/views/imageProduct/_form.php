@@ -19,7 +19,7 @@
 		
 	<?php 
 		if($model->isNewRecord) {
-			echo $form->fileFieldRow($model,'image',array('class'=>'span5','maxlength'=>100));
+			echo $form->fileField($model,'image',array('class'=>'span5','maxlength'=>100));
 		}
 	?>
 
