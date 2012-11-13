@@ -108,21 +108,21 @@ class CategoryLang extends CActiveRecord
 		));
 	}
 	
-	public static function getLangModels($id = null) {
-		$langModels = array();
+// 	public static function getLangModels($id = null) {
+// 		$langModels = array();
 		
-		foreach (Lang::items() as $key => $name) {
-			if(isset($id)) {
-				$model = self::model()->findByPk($id);
-			} else {
-				$model = new CategoryLang();
-			}
-			$model->id_category = $id;
-			$model->id_lang = $key;
+// 		foreach (Lang::items() as $key => $name) {
+// 			if(isset($id)) {
+// 				$model = self::model()->findByPk($id);
+// 			} else {
+// 				$model = new CategoryLang();
+// 			}
+// 			$model->id_category = $id;
+// 			$model->id_lang = $key;
 			
-			$langModels[] = $model;
-		}
+// 			$langModels[] = $model;
+// 		}
 		
-		return $langModels;
-	}
+// 		return $langModels;
+// 	}
 }
