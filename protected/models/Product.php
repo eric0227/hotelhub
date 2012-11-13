@@ -37,7 +37,6 @@
  */
 class Product extends CActiveRecord
 {
-	private $currentLangModel = null;
 	private $description = null;
 	private $description_short = null;
 	private $name = null;

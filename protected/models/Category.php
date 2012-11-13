@@ -25,7 +25,6 @@
  */
 class Category extends CActiveRecord
 {
-	private $currentLangModel = null;
 	private $description = null;
 	private $name = null;
 	
@@ -149,25 +148,19 @@ class Category extends CActiveRecord
 
 // 	private $description = null;
 // 	private $name = null;	
+
+	protected function afterFind() {
+		$langModel = CategoryLang::model()->findByAttributes(array('id_category'=>$this->id_category, 'id_lang'=>Lang::getCurrentLang()));
+	
+		$this->name = $langModel->name;
+		$this->description = $langModel->description;
+	}	
 	
 	public function getDescription() {
-		if($this->description != null) {
-			return $this->description;
-		}
-		return $this->getCurrentLangField('description');
+		return $this->description;
 	}
 	public function getName() {
-		if($this->name != null) {
-			return $this->name;
-		}
-		return $this->getCurrentLangField('name');
-	}
-	
-	private function getCurrentLangField($name) {
-		if($this->currentLangModel == null) {
-			$this->currentLangModel = CategoryLang::model()->findByAttributes(array('id_category'=>$this->id_category, 'id_lang'=>Lang::getCurrentLang()));
-		}
-		return $this->currentLangModel->{$name};
+		return $this->name;
 	}
 	
 	public function loadMultiLang() {
@@ -183,7 +176,6 @@ class Category extends CActiveRecord
 		$this->description = $description;
 		$this->name = $name;
 		
-		print_r($this->id_category);
 	}
 	
 	protected function beforeSave()

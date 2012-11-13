@@ -38,11 +38,15 @@ class UserIdentity extends CUserIdentity
 		return true;
 	}
 	
+	public function getUser() {
+		return $this->user;
+	}
+	
 	public function email() {
 		return $this->username;
 	}
 	
-	public function id() {
-		return $this->id_user;
+	public function getId() {
+		return $this->user->id_user;
 	}
 }
