@@ -29,6 +29,10 @@ class User extends CActiveRecord
 	const CUSTOMER = 4;
 	const GUEST = 5;
 	
+	public $repeat_passwd;
+	public $initialPasswd;
+	
+	
 	private static $_items = null;
 	/**
 	 * Returns the static model of the specified AR class.
@@ -56,15 +60,17 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_group, lastname, firstname, email, passwd', 'required'),
+			//array('passwd, repeat_passwd', 'required', 'on'=>'insert'),
+			array('id_group, lastname, firstname, email, passwd, repeat_passwd', 'required'),
 			array('is_guest, active, deleted', 'numerical', 'integerOnly'=>true),
 			array('id_group, id_lang', 'length', 'max'=>10),
-			array('lastname, firstname, passwd', 'length', 'max'=>32),
+			array('lastname, firstname, passwd, repeat_passwd', 'length', 'max'=>32),
 			array('email', 'length', 'max'=>128),
 			array('note, birthday', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id_user, id_group, id_lang, lastname, firstname, email, passwd, is_guest, note, birthday, active, deleted', 'safe', 'on'=>'search'),
+			array('passwd', 'compare', 'compareAttribute'=>'repeat_passwd'),
 		);
 	}
 
@@ -133,6 +139,35 @@ class User extends CActiveRecord
 		));
 	}
 	
+	public function beforeSave()
+	{
+		if ($this->getIsNewRecord())
+        {
+            //creates the password hash from the plaintext password
+            $this->passwd = Yii::app()->user->hashPassword($this->passwd);                         
+        }       
+        else if (!empty($this->passwd)&&!empty($this->repeat_passwd)&&($this->passwd===$this->repeat_passwd)) 
+        //if it's not a new password, save the password only if it not empty and the two passwords match
+        {
+            $this->passwd = Yii::app()->user->hashPassword($this->passwd);
+        }
+        
+        return parent::beforeSave();
+	}
+	
+	public function afterFind()
+	{
+		//reset the password to null because we don't want the hash to be shown.
+		$this->initialPasswd = $this->passwd;
+		$this->passwd = null;
+	
+		parent::afterFind();
+	}
+	
+	public function getInitialPasswd() {
+		return $this->initialPasswd;
+	}
+		
 	public function isAdmin() {
 		return $this->id_group == self::ADMIN;
 	}
@@ -150,6 +185,8 @@ class User extends CActiveRecord
 	}
 	
 	public static function getCurrentGroup() {
+		//return Yii::app()->user->id_group;
+		
 		$session=new CHttpSession;
 		$session->open();
 		
@@ -160,6 +197,7 @@ class User extends CActiveRecord
 		}
 		
 		return $group;
+		
 	}
 	
 	public static function items($group = null)
