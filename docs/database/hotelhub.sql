@@ -304,6 +304,8 @@ CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `member_chain_group`  varchar(64),
   `room_count` int(10),
   `website` varchar(128),
+  `check_in_time` char(6) DEFAULT '003001',
+  `check_out_time` char(6) DEFAULT '003001',
 
   PRIMARY KEY (`id_supplier`),
   FOREIGN KEY (`id_supplier`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE

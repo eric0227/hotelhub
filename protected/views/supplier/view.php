@@ -35,7 +35,13 @@ $this->menu=array(
 		'member_chain_group',
 		'room_count',
 		'website',
-		'shortPromotionalBlurb',
+		'short_promotional_blurb',
+		'property_details',
+		'business_facilities',
+		'checkin_instructions',
+		'car_parking',
+		'getting_there',
+		'things_to_do',
 	),
 )); ?>
 

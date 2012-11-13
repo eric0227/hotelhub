@@ -55,13 +55,19 @@
 		<fieldset>
 			<legend>Website Display Details</legend>
 			<?php $this->widget('MultiLangSelector'); ?>
-			<?php echo $form->textAreaRow($model,'shortPromotionalBlurb',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($model,'propertyDetails',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($model,'businessFacilities',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($model,'checkinInstructions',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($model,'carParking',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($model,'gettingThere',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($model,'thingsToDo',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($model,'short_promotional_blurb',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($model,'property_details',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($model,'business_facilities',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<fieldset>
+				<legend>Check In Details</legend>
+				<?php echo $form->dropDownListRow($model,'check_in_time', Code::items(CodeType::CHECKTINOUT_TIME), array('class' => 'span5')); ?>
+				<?php echo $form->dropDownListRow($model,'check_out_time', Code::items(CodeType::CHECKTINOUT_TIME), array('class' => 'span5')); ?>
+				<?php echo $form->textAreaRow($model,'checkin_instructions',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
+			</fieldset>
+			
+			<?php echo $form->textAreaRow($model,'car_parking',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($model,'getting_there',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($model,'things_to_do',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
 		</fieldset>
 				
 		<fieldset>

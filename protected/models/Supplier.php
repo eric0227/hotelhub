@@ -22,6 +22,8 @@
  * @property array  $selectedAttributeItemIds
  * @property integer $room_count
  * @property string $website
+ * @property string $check_in_time
+ * @property string $check_out_time
  * @property array  $items
  *
  * The followings are the available model relations:
@@ -76,7 +78,7 @@ class Supplier extends CActiveRecord
 			array('manager_email, sales_email, reservations_email, accounts_email, website', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_supplier, manager_name, manager_email, sales_name, sales_email, reservations_name, reservations_email, reservations_phone, reservations_fx, accounts_name, accounts_email, accounts_phone, accounts_fx, supplier_abn, member_chain_group, room_count, website', 'safe', 'on'=>'search'),
+			array('id_supplier, manager_name, manager_email, sales_name, sales_email, reservations_name, reservations_email, reservations_phone, reservations_fx, accounts_name, accounts_email, accounts_phone, accounts_fx, supplier_abn, member_chain_group, room_count, website, check_in_time, check_out_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -119,6 +121,8 @@ class Supplier extends CActiveRecord
 			'member_chain_group' => 'Member Chain Group',
 			'room_count' => 'Room Count',
 			'website' => 'Website',
+			'check_in_time' => 'Check In Time',
+			'check_out_time' => 'Check Out Time',
 		);
 	}
 
@@ -190,53 +194,44 @@ class Supplier extends CActiveRecord
 	}
 	
 	// Added By Chris.
-	public function getShortPromotionalBlurb() {
-		if($this->short_promotional_blurb != null) {
-			return $this->short_promotional_blurb;
-		}
-		return $this->getCurrentLangField('short_promotional_blurb');
+	protected function afterFind() {
+		$langModel = SupplierLang::model()->findByAttributes(array('id_supplier'=>$this->id_supplier, 'id_lang'=>Lang::getCurrentLang()));
+		
+		$this->short_promotional_blurb = $langModel->short_promotional_blurb;
+		$this->property_details = $langModel->property_details;
+		$this->business_facilities = $langModel->business_facilities;
+		$this->checkin_instructions = $langModel->checkin_instructions;
+		$this->car_parking = $langModel->car_parking;
+		$this->getting_there = $langModel->getting_there;
+		$this->things_to_do = $langModel->things_to_do;
+	}
+	
+	public function getShort_Promotional_Blurb() {
+		return $this->short_promotional_blurb;
 	}
 
-	public function getPropertyDetails() {
-		if($this->property_details != null) {
-			return $this->property_details;
-		}
-		return $this->getCurrentLangField('property_details');
+	public function getProperty_Details() {
+		return $this->property_details;
 	}
 
-	public function getBusinessFacilities() {
-		if($this->business_facilities != null) {
-			return $this->business_facilities;
-		}
-		return $this->getCurrentLangField('business_facilities');
+	public function getBusiness_Facilities() {
+		return $this->business_facilities;
 	}
 
-	public function getCheckinInstructions() {
-		if($this->checkin_instructions != null) {
-			return $this->checkin_instructions;
-		}
-		return $this->getCurrentLangField('checkin_instructions');
+	public function getCheckin_Instructions() {
+		return $this->checkin_instructions;
 	}
 
-	public function getCarParking() {
-		if($this->car_parking != null) {
-			return $this->car_parking;
-		}
-		return $this->getCurrentLangField('car_parking');
+	public function getCar_Parking() {
+		return $this->car_parking;
 	}
 
-	public function getGettingThere() {
-		if($this->getting_there != null) {
-			return $this->getting_there;
-		}
-		return $this->getCurrentLangField('getting_there');
+	public function getGetting_There() {
+		return $this->getting_there;
 	}
 
-	public function getThingsToDo() {
-		if($this->things_to_do != null) {
-			return $this->things_to_do;
-		}
-		return $this->getCurrentLangField('things_to_do');
+	public function getThings_To_Do() {
+		return $this->things_to_do;
 	}
 
 	private function getCurrentLangField($name) {
@@ -284,6 +279,12 @@ class Supplier extends CActiveRecord
 	
 
 	public function beforeSave() {
+		
+		
+		//print_r($this->attributes);
+		print_r($_POST);
+		
+		return;
 		
 		//print_r($_POST['Supplier']['selectedAttributeItemIds']);
 		//return false;

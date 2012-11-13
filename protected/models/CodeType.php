@@ -14,6 +14,7 @@ class CodeType extends CActiveRecord
 {
 	const ADDRESS = 1;
 	const ROOM = 2;
+	const CHECKTINOUT_TIME = 3;
 	
 	private static $_items = null;
 	
