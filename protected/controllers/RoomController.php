@@ -169,36 +169,40 @@ class RoomController extends Controller
 		}
 	}
 	
+	private $beddingList = array();
 	public function actionBeddingConfig() {
 		$tot_room_cap = $_POST['Room']['guests_tot_room_cap'];
-		$totalRow = 1;
 		
-		for($i = 2; $i <= $tot_room_cap + 1; $i++) {
-			$totalRow = $i + $totalRow;
+		for($roomCnt = 1; $roomCnt <= $tot_room_cap; $roomCnt++) {
+			$this->appendBedding($roomCnt);
 		}
 		
-		for($ii = 1; $ii < $totalRow; $ii++) {
+		foreach($this->beddingList as $beddingModel) {
 			echo "<tr>";
-			echo "<td>".$ii."</td>";
-			echo "<td>".$ii."</td>";
-			echo "<td>".$ii."</td>";
-			echo "<td>".$ii."</td>";
-			echo "<td>".$ii."</td>";
-			echo "<td>".$ii."</td>";
+			echo "<td>".$beddingModel->getBedImg()."</td>";
+			echo "<td> </td>";
+			echo "<td> </td>";			
+			echo "<td>".$beddingModel->getBedInfo()."</td>";
+			echo "<td> </td>";
+			echo "<td> </td>";			
 			echo "</tr>";
 		}
+		
+		Yii::app()->end();
 	}
 	
-	public function makeBeddingImages($whichRow, $totalRow, $tot_room_cap) {
-		$strBedHtml = "";
-		$strBed_S = "S";
-		$strBed_D = "D";
-		
-		//$strBedHtml .= "<img src=\"".$strBed_S."\" title=\".$strBed_S.\" alt=\".$strBed_S.\" />";
-		$result = $whichRow % 3 + $whichRow / $tot_room_cap;
-		
-		return $result;
-	}
-	
-	
+	private function appendBedding($roomCnt) {
+		for($s = $roomCnt; $s >= 0; $s--) {
+			
+ 			$beddingModel = new Bedding;
+ 			 			
+ 			$beddingModel->bed_num = $roomCnt;
+ 			$beddingModel->single_num = $s;
+ 			$beddingModel->double_num = $roomCnt - $s;
+			
+			$this->beddingList[] = $beddingModel;
+// 			echo $beddingModel->bed_num . '-' . $beddingModel->single_num. '-' . $beddingModel->double_num;
+// 			echo '<br>';
+		}
+	}	
 }

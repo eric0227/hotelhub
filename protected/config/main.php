@@ -36,6 +36,23 @@ return array(
 				'bootstrap.gii',
 			),
 		),
+		
+		'payPal'=>array(
+	        'env'=>'sandbox',
+	        'account'=>array(
+	            'username'=>'kyhlee_1352866061_biz_api1.naver.com',
+	            'password'=>'1352866097',
+	            'signature'=>'ASxPOVx6NciqmI4ApiRbhDpPx-WrAFlZtnMco0qtZy2a61CUg7l0.rnK',
+	            'email'=>'kyhleem@naver.com',
+	            'identityToken'=>'Your PayPal identity token',
+			),
+			'components'=>array(
+				'buttonManager'=>array(
+					//'class'=>'payPal.components.PPDbButtonManager'
+					'class'=>'payPal.components.PPPhpButtonManager',
+				),
+			),
+		),
 	),
 
 	// application components
@@ -88,7 +105,7 @@ return array(
 		// GD or ImageMagick
 		    'driver'=>'GD',
 		// ImageMagick setup path
-		    'params'=>array('directory'=>'d:/ImageMagick'),
+		    'params'=>array('directory'=>'c:/ImageMagick'),
 		),
 	),
 

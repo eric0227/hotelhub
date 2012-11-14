@@ -75,7 +75,7 @@
 			</fieldset>
 		</div>
 		
-		<div>
+		<div id="test">
 		</div>
 		<div>
 		<?php 

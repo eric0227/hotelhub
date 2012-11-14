@@ -6,7 +6,7 @@
  * The followings are the available columns in table 'gc_bedding':
  * @property string $id_bedding
  * @property string $id_room
- * @property string $gest_num
+ * @property string $bed_num
  * @property string $single_num
  * @property string $double_num
  * @property string $beddig_desc
@@ -14,7 +14,7 @@
  * @property string $cots_available
  *
  * The followings are the available model relations:
- * @property Room $idRoom
+ * @property Room $room
  */
 class Bedding extends CActiveRecord
 {
@@ -44,14 +44,14 @@ class Bedding extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_room, gest_num, single_num, double_num, cots_available', 'required'),
+			array('id_room, single_num, double_num, cots_available', 'required'),
 			array('id_room', 'length', 'max'=>10),
-			array('gest_num, single_num, double_num, cots_available', 'length', 'max'=>2),
+			array('bed_num, single_num, double_num, cots_available', 'length', 'max'=>2),
 			array('beddig_desc', 'length', 'max'=>200),
 			array('additional_cost', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_bedding, id_room, gest_num, single_num, double_num, beddig_desc, additional_cost, cots_available', 'safe', 'on'=>'search'),
+			array('id_bedding, id_room, single_num, double_num, beddig_desc, additional_cost, cots_available', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,7 +63,7 @@ class Bedding extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idRoom' => array(self::BELONGS_TO, 'Room', 'id_room'),
+			'room' => array(self::BELONGS_TO, 'Room', 'id_room'),
 		);
 	}
 
@@ -75,7 +75,6 @@ class Bedding extends CActiveRecord
 		return array(
 			'id_bedding' => 'Id Bedding',
 			'id_room' => 'Id Room',
-			'gest_num' => 'Gest Num',
 			'single_num' => 'Single Num',
 			'double_num' => 'Double Num',
 			'beddig_desc' => 'Beddig Desc',
@@ -97,7 +96,6 @@ class Bedding extends CActiveRecord
 
 		$criteria->compare('id_bedding',$this->id_bedding,true);
 		$criteria->compare('id_room',$this->id_room,true);
-		$criteria->compare('gest_num',$this->gest_num,true);
 		$criteria->compare('single_num',$this->single_num,true);
 		$criteria->compare('double_num',$this->double_num,true);
 		$criteria->compare('beddig_desc',$this->beddig_desc,true);
@@ -107,5 +105,22 @@ class Bedding extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public function getBedImg() {
+		$result = "";
+		
+		for($index = 0; $index < $this->single_num; $index++) {
+			$result = $result . " " . 'I'; 
+		}
+		for($index = 0; $index < $this->double_num; $index++) {
+			$result = $result . " " . 'II';
+		}
+		
+		return $result;
+	}
+	
+	public function getBedInfo() {
+		return $this->single_num . ' single bed, ' . $this->double_num . ' double bed';
 	}
 }
