@@ -12,7 +12,7 @@
  * @property Supplier $supplier
  */
 class SupplierImage extends CActiveRecord
-{
+{	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -88,5 +88,10 @@ class SupplierImage extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function items() {
+		$_items = array();
+		return $_items;	
 	}
 }

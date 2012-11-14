@@ -53,6 +53,7 @@ class ImageC extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('image', 'required'),
+			array('id_supplier', 'required'),
 			
 			array('image', 'unsafe'),
 			array('image', 'file', 'types'=>'jpg, gif, png','allowEmpty' => true, 'on' => 'update'),
