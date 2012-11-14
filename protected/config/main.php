@@ -105,7 +105,7 @@ return array(
 		// GD or ImageMagick
 		    'driver'=>'GD',
 		// ImageMagick setup path
-		    'params'=>array('directory'=>'d:/ImageMagick'),
+		    'params'=>array('directory'=>'c:/ImageMagick'),
 		),
 	),
 
