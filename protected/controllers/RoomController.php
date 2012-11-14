@@ -190,9 +190,7 @@ class RoomController extends Controller
 		}
 	}
 */	
-	
-	private $beddingList = array();
-	
+
 	public function actionBeddingConfig() {
 		$tot_room_cap = $_POST['Room']['guests_tot_room_cap'];
 		
@@ -207,7 +205,7 @@ class RoomController extends Controller
 	private $beddingList = array();
 	
 	private function appendBedding($roomCnt) {
-		for($index = 1; $roomCnt + $bedTypeCnt >= $index; $index++) {
+		for($index = 1; $roomCnt + $this->bedTypeCnt >= $index; $index++) {
 			
 			$beddingModel = new Bedding();
 			$beddingModel->guest_num($this->guestNum);
