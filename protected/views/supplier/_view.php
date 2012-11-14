@@ -27,9 +27,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('reservations_email')); ?>:</b>
 	<?php echo CHtml::encode($data->reservations_email); ?>
 	<br />
-	<b><?php echo CHtml::encode($data->getAttributeLabel('short_promotional_blurb')); ?>:</b>
-	<?php echo CHtml::encode($data->short_promotional_blurb); ?>
-	<br />
 
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('reservations_phone')); ?>:</b>

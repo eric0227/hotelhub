@@ -95,7 +95,10 @@ class SupplierController extends Controller
 
 		if(isset($_POST['Supplier']))
 		{
-			$model->attributes=$_POST['Supplier'];
+			/*print_r($_POST);
+			return;*/
+			$model->attributes = $_POST['Supplier'];
+			
 			if($model->save()) {
 				$this->setSupplierLang($model->id_supplier);
 				$this->redirect(array('view','id'=>$model->id_supplier));

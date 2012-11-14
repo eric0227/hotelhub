@@ -38,6 +38,8 @@ $this->menu=array(
 		'short_promotional_blurb',
 		'property_details',
 		'business_facilities',
+		'check_in_time',
+		'check_out_time',
 		'checkin_instructions',
 		'car_parking',
 		'getting_there',

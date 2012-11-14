@@ -74,11 +74,12 @@ class Supplier extends CActiveRecord
 			array('id_supplier', 'required'),
 			array('room_count', 'numerical', 'integerOnly'=>true),
 			array('id_supplier', 'length', 'max'=>10),
+			array('check_in_time, check_out_time', 'length', 'max'=>5),
 			array('manager_name, sales_name, reservations_name, reservations_phone, reservations_fx, accounts_name, accounts_phone, accounts_fx, supplier_abn, member_chain_group', 'length', 'max'=>64),
 			array('manager_email, sales_email, reservations_email, accounts_email, website', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_supplier, manager_name, manager_email, sales_name, sales_email, reservations_name, reservations_email, reservations_phone, reservations_fx, accounts_name, accounts_email, accounts_phone, accounts_fx, supplier_abn, member_chain_group, room_count, website, check_in_time, check_out_time', 'safe', 'on'=>'search'),
+			array('id_supplier, manager_name, manager_email, sales_name, sales_email, reservations_name, reservations_email, reservations_phone, reservations_fx, accounts_name, accounts_email, accounts_phone, accounts_fx, supplier_abn, member_chain_group, room_count, website', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -120,9 +121,9 @@ class Supplier extends CActiveRecord
 			'supplier_abn' => 'Supplier Abn',
 			'member_chain_group' => 'Member Chain Group',
 			'room_count' => 'Room Count',
-			'website' => 'Website',
+			'website' => 'Website',/*
 			'check_in_time' => 'Check In Time',
-			'check_out_time' => 'Check Out Time',
+			'check_out_time' => 'Check Out Time',*/
 		);
 	}
 
@@ -154,6 +155,8 @@ class Supplier extends CActiveRecord
 		$criteria->compare('member_chain_group',$this->member_chain_group,true);
 		$criteria->compare('room_count',$this->room_count);
 		$criteria->compare('website',$this->website,true);
+		$criteria->compare('check_in_time',$this->check_in_time);
+		$criteria->compare('check_out_time',$this->check_out_time);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -282,9 +285,8 @@ class Supplier extends CActiveRecord
 		
 		
 		//print_r($this->attributes);
-		print_r($_POST);
+		//print_r($_POST);
 		
-		return;
 		
 		//print_r($_POST['Supplier']['selectedAttributeItemIds']);
 		//return false;
@@ -368,6 +370,21 @@ class Supplier extends CActiveRecord
 		foreach($models as $model) {
 			$_items[$model->id_supplier] = $model->sales_name;			
 		}
+		return $_items;
+	}
+	
+
+	public static function checkInOutTimeItems() {
+		$_items = array();
+		$seperator = ":";
+		$time = "";
+
+		for($i = 1, $hh = 0; $i < 49; $i++) {
+			($i%2 == 0 ? $hh++ : $hh = $hh);
+			$time = sprintf("%02d", $hh) . $seperator . ($i%2 == 0 && $hh != 0 ? "00" : "30");
+			$_items[$time] = $time;
+		}
+
 		return $_items;
 	}
 }

@@ -14,7 +14,7 @@
  * @property string $cots_available
  *
  * The followings are the available model relations:
- * @property Room $room
+ * @property Room $idRoom
  */
 class Bedding extends CActiveRecord
 {
@@ -63,7 +63,7 @@ class Bedding extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'room' => array(self::BELONGS_TO, 'Room', 'id_room'),
+			'idRoom' => array(self::BELONGS_TO, 'Room', 'id_room'),
 		);
 	}
 

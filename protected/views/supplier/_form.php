@@ -60,8 +60,8 @@
 			<?php echo $form->textAreaRow($model,'business_facilities',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
 			<fieldset>
 				<legend>Check In Details</legend>
-				<?php echo $form->dropDownListRow($model,'check_in_time', Code::items(CodeType::CHECKTINOUT_TIME), array('class' => 'span5')); ?>
-				<?php echo $form->dropDownListRow($model,'check_out_time', Code::items(CodeType::CHECKTINOUT_TIME), array('class' => 'span5')); ?>
+				<?php echo $form->dropDownListRow($model,'check_in_time', Supplier::checkInOutTimeItems(), array('class' => 'span5')); ?>
+				<?php echo $form->dropDownListRow($model,'check_out_time', Supplier::checkInOutTimeItems(), array('class' => 'span5')); ?>
 				<?php echo $form->textAreaRow($model,'checkin_instructions',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
 			</fieldset>
 			
