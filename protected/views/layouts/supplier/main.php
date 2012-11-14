@@ -102,7 +102,8 @@ if(isset($session['lang'])) {
 				),
 				array('label'=>'Supplier', 'url'=>'',
 					'items'=>array(
-						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier'))
+						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),
+						array('label'=>'Supplier Images', 'url'=>array('/imageSupplier/index', 'type'=>ImageC::SUPPLIER_IMAGE)),
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

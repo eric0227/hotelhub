@@ -166,6 +166,13 @@ class Address extends CActiveRecord
 		));
 	}
 	
+	protected function beforeValidate() {
+		if(empty($this->alias)) {
+			$this->alias = $this->address_code;
+		}
+		return parent::beforeValidate();
+	}
+	
 	protected function beforeSave()
 	{
 		if($this->isNewRecord)

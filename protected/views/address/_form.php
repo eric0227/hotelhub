@@ -17,7 +17,7 @@
 				'prompt' => '--Please select--',		
 				'ajax' => array(
 					'type' => 'POST',
-					'url' => CController::createUrl('user/getState'),
+					'url' => CController::createUrl('address/stateOptions'),
 					'update'=>'#' . CHtml::activeId($model, 'id_state')
 				)
 			)
@@ -49,14 +49,7 @@
 	?>
 	<?php echo $form->error($model,'address_code'); ?>
 
-
-	<?php echo $form->textFieldRow($model,'id_country',array('class'=>'span5','maxlength'=>10)); ?>
-
-	<?php echo $form->textFieldRow($model,'id_state',array('class'=>'span5','maxlength'=>10)); ?>
-
-	<?php echo $form->textFieldRow($model,'id_user',array('class'=>'span5','maxlength'=>10)); ?>
-
-	<?php echo $form->textFieldRow($model,'alias',array('class'=>'span5','maxlength'=>32)); ?>
+	<?php //echo $form->textFieldRow($model,'alias',array('class'=>'span5','maxlength'=>32)); ?>
 
 	<?php echo $form->textFieldRow($model,'company',array('class'=>'span5','maxlength'=>32)); ?>
 
