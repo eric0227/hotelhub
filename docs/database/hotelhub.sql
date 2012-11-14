@@ -727,7 +727,9 @@ CREATE TABLE `gc_bedding` (
 	`id_bedding`  int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`id_room` int(10) unsigned NOT NULL,
 	
-	`gest_num`  int(2) unsigned NOT NULL,
+	`guest_num`  int(2) unsigned NOT NULL,
+	`bed_num`  int(2) unsigned NOT NULL,
+	
 	`single_num` int(2) unsigned NOT NULL,
 	`double_num` int(2) unsigned NOT NULL,
 	`beddig_desc`  varchar(200),

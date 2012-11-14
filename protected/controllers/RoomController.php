@@ -169,6 +169,7 @@ class RoomController extends Controller
 		}
 	}
 	
+/*	
 	public function actionBeddingConfig() {
 		$tot_room_cap = $_POST['Room']['guests_tot_room_cap'];
 		$totalRow = 1;
@@ -186,6 +187,38 @@ class RoomController extends Controller
 			echo "<td>".$ii."</td>";
 			echo "<td>".$ii."</td>";
 			echo "</tr>";
+		}
+	}
+*/	
+	
+	private $beddingList = array();
+	
+	public function actionBeddingConfig() {
+		$tot_room_cap = $_POST['Room']['guests_tot_room_cap'];
+		
+		for($roomCnt = 1; $roomCnt <= $tot_room_cap; $roomCnt++) {
+			$this->appendBedding($roomCnt);
+		}
+	}
+	
+	private $guestNum = 1;
+	private $bedTypeCnt = 2;
+	
+	private $beddingList = array();
+	
+	private function appendBedding($roomCnt) {
+		for($index = 1; $roomCnt + $bedTypeCnt >= $index; $index++) {
+			
+			$beddingModel = new Bedding();
+			$beddingModel->guest_num($this->guestNum);
+			$beddingModel->bed_num($roomCnt);
+			
+			$beddingList[$gestNum][] = $beddingModel;
+			
+			$this->guestNum++;
+			
+			echo $beddingModel->$guest_num . '-' . $beddingModel->$bed_num;
+			echo '<br>';
 		}
 	}
 	
