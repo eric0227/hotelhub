@@ -6,11 +6,12 @@ class WebUser extends CWebUser
  
     public function getModel()
     {
-    	echo 'id:'.$this->id;
-    	
         if(!isset($this->id)) $this->model = new User;
-        if($this->model === null)
+        
+        if($this->model === null) {
             $this->model = User::model()->findByPk($this->id);
+        }
+        
         return $this->model;
     }
  

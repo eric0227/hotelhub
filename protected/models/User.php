@@ -19,7 +19,7 @@
  *
  * The followings are the available model relations:
  * @property Address[] $addresses
- * @property Group $idGroup
+ * @property Group $group
  */
 class User extends CActiveRecord
 {
@@ -184,20 +184,12 @@ class User extends CActiveRecord
 		return $this->id_group == self::CUSTOMER;
 	}
 	
+	public function getLevel() {
+		return $this->group->level;
+	}
+	
 	public static function getCurrentGroup() {
-		//return Yii::app()->user->id_group;
-		
-		$session=new CHttpSession;
-		$session->open();
-		
-		if(isset($session['group'])) {
-			$group = $session['group'];
-		} else {
-			$group = User::GUEST;
-		}
-		
-		return $group;
-		
+		return Yii::app()->user->id_group;	
 	}
 	
 	public static function items($group = null)
