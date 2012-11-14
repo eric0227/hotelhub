@@ -32,12 +32,12 @@ class RoomController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('create','update','beddingConfig'),
+				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -168,4 +168,37 @@ class RoomController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+	public function actionBeddingConfig() {
+		$tot_room_cap = $_POST['Room']['guests_tot_room_cap'];
+		$totalRow = 1;
+		
+		for($i = 2; $i <= $tot_room_cap + 1; $i++) {
+			$totalRow = $i + $totalRow;
+		}
+		
+		for($ii = 1; $ii < $totalRow; $ii++) {
+			echo "<tr>";
+			echo "<td>".$ii."</td>";
+			echo "<td>".$ii."</td>";
+			echo "<td>".$ii."</td>";
+			echo "<td>".$ii."</td>";
+			echo "<td>".$ii."</td>";
+			echo "<td>".$ii."</td>";
+			echo "</tr>";
+		}
+	}
+	
+	public function makeBeddingImages($whichRow, $totalRow, $tot_room_cap) {
+		$strBedHtml = "";
+		$strBed_S = "S";
+		$strBed_D = "D";
+		
+		//$strBedHtml .= "<img src=\"".$strBed_S."\" title=\".$strBed_S.\" alt=\".$strBed_S.\" />";
+		$result = $whichRow % 3 + $whichRow / $tot_room_cap;
+		
+		return $result;
+	}
+	
+	
 }

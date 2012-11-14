@@ -100,8 +100,8 @@ class Room extends CActiveRecord
 			'max_night_stay' => 'Max Night Stay',
 			'room_name' => 'Room Name',
 			'root_description' => 'Root Description',
-			'guests_tot_room_cap' => 'Guests Tot Room Cap',
-			'guests_included_price' => 'Guests Included Price',
+			'guests_tot_room_cap' => 'Total Room Capacity',
+			'guests_included_price' => 'Number Included In Price',
 			'children_maxnum' => 'Children Maxnum',
 			'children_years' => 'Children Years',
 			'children_extra' => 'Children Extra',
@@ -263,6 +263,21 @@ class Room extends CActiveRecord
 		foreach($models as $model) {
 			$_items[$model->id_product]=$model->id_product;
 		}
+		return $_items;
+	}
+	
+	public static function numberForSelectItems($start, $end)
+	{
+		$_items = array();
+		
+		if($start == 0 && $end == 0) {
+			return $_items;
+		}
+
+		for($i = $start; $i <= $end; $i++) {
+			$_items[$i] = $i;
+		}
+		
 		return $_items;
 	}
 	

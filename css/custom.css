@@ -105,3 +105,11 @@ fieldset fieldset {
 	border: 1px dashed #C7F39E;
 	text-align: inherit;
 }
+
+.comments {
+	margin: 0 4px;
+	background-color: transparent;
+	color: #0054A6;
+	font-size: 0.8em;
+	text-align: center;
+}
