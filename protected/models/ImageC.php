@@ -171,18 +171,20 @@ class ImageC extends CActiveRecord
 	}
 	
 	protected function afterSave() {
-		if(!empty($this->id_supplier)) {
-			$supplierImage = new SupplierImage();
-			$supplierImage->id_supplier = $this->id_supplier;
-			$supplierImage->id_image = $this->id_image;
-			$supplierImage->save();
-		}
-		
-		if(!empty($this->id_product)) {
-			$productImage = new ProductImage();
-			$productImage->id_product = $this->id_product;
-			$productImage->id_image = $this->id_image;
-			$productImage->save();
+		if($this->isNewRecord) {
+			if(!empty($this->id_supplier)) {
+				$supplierImage = new SupplierImage();
+				$supplierImage->id_supplier = $this->id_supplier;
+				$supplierImage->id_image = $this->id_image;
+				$supplierImage->save();
+			}
+			
+			if(!empty($this->id_product)) {
+				$productImage = new ProductImage();
+				$productImage->id_product = $this->id_product;
+				$productImage->id_image = $this->id_image;
+				$productImage->save();
+			}
 		}
 		
 		return parent::afterSave();

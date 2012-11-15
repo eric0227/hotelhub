@@ -63,6 +63,23 @@ DROP TABLE IF EXISTS `gc_supplier_lang`;
 
 
 
+CREATE TABLE SourceMessage
+(
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    category VARCHAR(32),
+    message TEXT
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+CREATE TABLE Message
+(
+    id INTEGER,
+    language VARCHAR(16),
+    translation TEXT,
+    PRIMARY KEY (id, language),
+    CONSTRAINT FK_Message_SourceMessage FOREIGN KEY (id)
+         REFERENCES SourceMessage (id) ON DELETE CASCADE ON UPDATE RESTRICT
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+
 
 CREATE TABLE IF NOT EXISTS `gc_code_type` (  
   `type` char(3) NOT NULL,
