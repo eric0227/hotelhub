@@ -1,19 +1,8 @@
 
 <?php
-$session=new CHttpSession;
-$session->open();
 
-if(isset($session['service'])) {
-	$service = $session['service'];
-} else {
-	$service = 1;
-}
-
-if(isset($session['lang'])) {
-	$lang = $session['lang'];
-} else {
-	$lang = 1;
-}
+$service = Yii::app()->session->get('service',1);
+$lang = Yii::app()->session->get('lang', 1);
 
 ?>
 

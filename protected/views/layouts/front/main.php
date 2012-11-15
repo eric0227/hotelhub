@@ -1,20 +1,7 @@
 
 <?php
-$session=new CHttpSession;
-$session->open();
-
-if(isset($session['service'])) {
-	$service = $session['service'];
-} else {
-	$service = 1;
-}
-
-if(isset($session['lang'])) {
-	$lang = $session['lang'];
-} else {
-	$lang = 1;
-}
-
+$service = Yii::app()->session->get('service',1);
+$lang = Yii::app()->session->get('lang', 1);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

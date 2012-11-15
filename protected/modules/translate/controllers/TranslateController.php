@@ -40,11 +40,15 @@ class TranslateController extends TranslateBaseController{
 	}
     function actionSet(){
         $translator=TranslateModule::translator();
+        
         if(Yii::app()->getRequest()->getIsPostRequest()){
+        	
             TranslateModule::translator()->setLanguage($_POST[$translator::ID]);
             $this->redirect(Yii::app()->getRequest()->getUrlReferrer());
-        }else
+            
+        } else {
             throw new CHttpException(400);
+        }
     }
     function actionGoogletranslate(){
         if(Yii::app()->getRequest()->getIsPostRequest()){

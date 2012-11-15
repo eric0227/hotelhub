@@ -170,17 +170,13 @@ class LangController extends Controller
 	}
 	
 	public function actionChange() {
-		$session=new CHttpSession;
-		$session->open();
-	
 		if(isset($_REQUEST['lang'])) {
 			$lang = $_REQUEST['lang'];
 		} else {
 			$lang = 1;
 		}
-		$session['lang'] = $lang;
-	
-		//$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		Yii::app()->session->add('lang',$lang);
+		TranslateModule::translator()->setLanguage($this->loadModel($lang)->iso_code);
 		$this->redirect(Yii::app()->getRequest()->getUrlReferrer());
 	}
 }

@@ -131,16 +131,7 @@ class Lang extends CActiveRecord
 	}
 	
 	public static function getCurrentLang() {
-		$session=new CHttpSession;
-		$session->open();
-	
-		if(isset($session['lang'])) {
-			$lang = $session['lang'];
-		} else {
-			$lang = 1;
-		}
-	
-		return $lang;
+		return Yii::app()->session->get('lang','1');
 	}
 	
 	public static function getDefaultLang() {

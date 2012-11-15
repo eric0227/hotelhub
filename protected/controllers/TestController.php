@@ -10,17 +10,13 @@ class TestController extends Controller
 	 */
 	public function actionIndex()
 	{
-		echo Yii::app()->getLanguage();
-		
-		echo Yii::app()->language = 'en';
-		
-		echo Yii::app()->getLanguage();
 		
 		echo Yii::t("test","Message");
 		echo Yii::t("test","001");
 		
 		$translate=Yii::app()->translate;
 		echo $translate->dropdown();
+		
 		if($translate->hasMessages()){
 			//generates a to the page where you translate the missing translations found in this page
 			echo $translate->translateLink('Message');
@@ -30,9 +26,13 @@ class TestController extends Controller
 		
 		echo $translate->editLink('Edit translations page');
 		echo $translate->missingLink('Missing translations page');
+		
+		//Yii::app()->dateFormatter->
+		
+		echo time();
 
 		
-		//$this->render('test');
+		$this->render('test');
 	}
 }
 

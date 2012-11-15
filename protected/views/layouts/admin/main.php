@@ -1,20 +1,8 @@
 
 <?php
-$session=new CHttpSession;
-$session->open();
-
-if(isset($session['service'])) {
-	$service = $session['service'];
-} else {
-	$service = 1;
-}
-
-if(isset($session['lang'])) {
-	$lang = $session['lang'];
-} else {
-	$lang = 1;
-}
-
+$service = Yii::app()->session->get('service',1);
+$lang = Yii::app()->session->get('lang', 1);
+$translate=Yii::app()->translate;
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -133,8 +121,8 @@ if(isset($session['lang'])) {
 				),
 				array('label'=>'CMS', 'url'=>'',
 					'items'=>array(
+						array('label'=>'CMS Category', 'url'=>array('/cmsCategory/index', 'tag'=>'cms-category')),
 						array('label'=>'CMS', 'url'=>array('/cms/index', 'tag'=>'cms')),
-						array('label'=>'CMS Category', 'url'=>array('/cmsCategory/index', 'tag'=>'cms-category'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
@@ -146,7 +134,11 @@ if(isset($session['lang'])) {
 						array('label'=>'Code', 'url'=>array('/code/index', 'tag'=>'code')),
 						array('label'=>'AttributeGroup', 'url'=>array('/attributeGroup/index', 'tag'=>'attributeGroup')),
 						array('label'=>'Attribute', 'url'=>array('/attribute/index', 'tag'=>'attribute')),
-						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem'))
+						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem')),
+						array('label'=>'Edit Translate', 'url'=>array('/translate/edit/admin', 'tag'=>'translateEdit')),
+						array('label'=>'Missing Translate', 'url'=>array('/translate/edit/missing', 'tag'=>'translateMission')),
+						
+						
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
