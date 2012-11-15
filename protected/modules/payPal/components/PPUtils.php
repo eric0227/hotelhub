@@ -85,6 +85,10 @@ class PPUtils
 		curl_setopt($ch, CURLOPT_URL, "$url?$getVars");
 		curl_setopt($ch, CURLOPT_VERBOSE, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		
+		// eric add.
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		
 		$httpResponse = curl_exec($ch);
 
 		$result = null;
@@ -207,6 +211,9 @@ class PPUtils
 		$getStr = self::urlencode($getVars);
 		$getStr = self::implode("&",$getStr);
 		$response = PPUtils::httpGet(self::getUrl(self::NVP), $getStr, true);
+		
+		Yii::trace(print_r($getStr, true));
+		Yii::trace(print_r($response, true));
 
 		// Return false on HTTP error
 		if ($response['status'] === false)

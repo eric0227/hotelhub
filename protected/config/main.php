@@ -15,13 +15,14 @@ return array(
 	'name'=>'Holidoy System',
 
 	// preloading 'log' component
-	'preload'=>array('log','bootstrap'),
+	'preload'=>array('log','bootstrap', 'translate'),
 
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
 		'application.helpers.*',
+		'application.modules.translate.TranslateModule',
 	),
 
 	'modules'=>array(
@@ -44,7 +45,7 @@ return array(
 	            'password'=>'1352866097',
 	            'signature'=>'ASxPOVx6NciqmI4ApiRbhDpPx-WrAFlZtnMco0qtZy2a61CUg7l0.rnK',
 	            'email'=>'kyhleem@naver.com',
-	            'identityToken'=>'Your PayPal identity token',
+	            'identityToken'=>'123456',
 			),
 			'components'=>array(
 				'buttonManager'=>array(
@@ -53,6 +54,8 @@ return array(
 				),
 			),
 		),
+		
+		'translate',
 	),
 
 	// application components
@@ -91,13 +94,13 @@ return array(
 			'routes'=>array(
 				array(
 					'class'=>'CFileLogRoute',
-					'levels'=> 'trace', //'error, warning',
+					'levels'=> 'info, trace, warning, error', //'error, warning',
 					'logFile' => 'trace.log'
 				),
 				// uncomment the following to show log messages on web pages
-//  				array(
-//  					'class'=>'CWebLogRoute',
-//  				),
+ 				array(
+ 					'class'=>'CWebLogRoute',
+ 				),
 			),
 		),
 		'image'=>array(
@@ -106,6 +109,20 @@ return array(
 		    'driver'=>'GD',
 		// ImageMagick setup path
 		    'params'=>array('directory'=>'c:/ImageMagick'),
+		),
+		
+		'messages'=>array(
+			'class'=>'CDbMessageSource',
+			'onMissingTranslation' => array('TranslateModule', 'missingTranslation'),
+		),
+		'translate'=>array(//if you name your component something else change TranslateModule
+			'class'=>'translate.components.MPTranslate',
+			//any avaliable options here
+			'acceptedLanguages'=>array(
+				'en'=>'English',
+		        'ko'=>'Korean',
+				'zh'=>'Chinese-Simplified'
+			),
 		),
 	),
 

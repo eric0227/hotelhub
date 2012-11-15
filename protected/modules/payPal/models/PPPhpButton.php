@@ -86,6 +86,8 @@ class PPPhpButton extends CModel {
 	}
 
 	private static function write() {
+		echo 'write.';
+		
 		$fn = Yii::app()->modulePath."/payPal/data/buttons.php";
 		$content = "<?php\nreturn array(\n";
 		foreach (self::getButtons() as $k => $v) {

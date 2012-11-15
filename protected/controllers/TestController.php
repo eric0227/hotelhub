@@ -2,12 +2,37 @@
 
 class TestController extends Controller
 {
+	
+	//public $layout='//layouts/supplier/column1';
+	
 	/**
 	 * Manages all models.
 	 */
 	public function actionIndex()
 	{
-		$this->render('test');
+		echo Yii::app()->getLanguage();
+		
+		echo Yii::app()->language = 'en';
+		
+		echo Yii::app()->getLanguage();
+		
+		echo Yii::t("test","Message");
+		echo Yii::t("test","001");
+		
+		$translate=Yii::app()->translate;
+		echo $translate->dropdown();
+		if($translate->hasMessages()){
+			//generates a to the page where you translate the missing translations found in this page
+			echo $translate->translateLink('Message');
+			//or a dialog
+			echo $translate->translateDialogLink('Message','Translate page title');
+		}
+		
+		echo $translate->editLink('Edit translations page');
+		echo $translate->missingLink('Missing translations page');
+
+		
+		//$this->render('test');
 	}
 }
 
