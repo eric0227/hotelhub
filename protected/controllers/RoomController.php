@@ -190,8 +190,8 @@ class RoomController extends Controller
 				))."</td>";
 			echo "<td>".CHtml::radioButton('defaultRadio', false, array('id' => 'defaultRadio_'.$iRownum))."</td>";
 			echo "<td>".$beddingModel->getBedInfo()."</td>";
-			echo "<td>".CHtml::textField('additionalcostText', '', array('id' => 'additionalcostText_'.$iRownum, 'class' => 'width100', 'maxlength'=>2))."</td>";
-			echo "<td>"."</td>";
+			echo "<td>".CHtml::textField('additional_cost', '', array('id' => 'additional_cost'.$iRownum, 'class' => 'width100', 'maxlength'=>2))."</td>";
+			echo "<td>".CHtml::dropDownList('cots_available', '', array(0,1,2,3,4,5,6), array('class'=>'width50'))."</td>";
 			echo "</tr>";
 			$iRownum++;
 		}

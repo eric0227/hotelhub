@@ -111,14 +111,15 @@ class Bedding extends CActiveRecord
 		$result = "";
 		$urlSingleBed = "/images/bed-s.gif";
 		$urlDoubleBed = "/images/bed-d.gif";
-		
+
 		for($index = 0; $index < $this->single_num; $index++) {
 			//$result = $result . " " . 'I';
-			$result = $result . "<img src=\"".$urlSingleBed."\" />";
+			$result = $result . CHtml::image($urlSingleBed);
 		}
+		
 		for($index = 0; $index < $this->double_num; $index++) {
 			//$result = $result . " " . 'II';
-			$result = $result . "<img src=\"".$urlDoubleBed."\" />";
+			$result = $result . CHtml::image($urlDoubleBed);
 		}
 		
 		return $result;
