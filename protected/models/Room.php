@@ -269,6 +269,7 @@ class Room extends CActiveRecord
 	public static function numberForSelectItems($start, $end)
 	{
 		$_items = array();
+		$_items[0] = null;
 		
 		if($start == 0 && $end == 0) {
 			return $_items;

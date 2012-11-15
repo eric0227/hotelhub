@@ -28,9 +28,12 @@
  *
  * The followings are the available model relations:
  * @property Hotel[] $hotels
- * @property HotelImage[] $hotelImages
+ * @property Product[] $products
+ * @property Room[] $rooms
  * @property User $idSupplier
  * @property Attribute[] $gcAttributes
+ * @property SupplierImage[] $supplierImages
+ * @property SupplierLang[] $supplierLangs
  */
 class Supplier extends CActiveRecord
 {
@@ -74,12 +77,12 @@ class Supplier extends CActiveRecord
 			array('id_supplier', 'required'),
 			array('room_count', 'numerical', 'integerOnly'=>true),
 			array('id_supplier', 'length', 'max'=>10),
-			array('check_in_time, check_out_time', 'length', 'max'=>5),
 			array('manager_name, sales_name, reservations_name, reservations_phone, reservations_fx, accounts_name, accounts_phone, accounts_fx, supplier_abn, member_chain_group', 'length', 'max'=>64),
 			array('manager_email, sales_email, reservations_email, accounts_email, website', 'length', 'max'=>128),
+			array('check_in_time, check_out_time', 'length', 'max'=>5),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_supplier, manager_name, manager_email, sales_name, sales_email, reservations_name, reservations_email, reservations_phone, reservations_fx, accounts_name, accounts_email, accounts_phone, accounts_fx, supplier_abn, member_chain_group, room_count, website', 'safe', 'on'=>'search'),
+			array('id_supplier, manager_name, manager_email, sales_name, sales_email, reservations_name, reservations_email, reservations_phone, reservations_fx, accounts_name, accounts_email, accounts_phone, accounts_fx, supplier_abn, member_chain_group, room_count, website, check_in_time, check_out_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -92,9 +95,15 @@ class Supplier extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'hotels' => array(self::HAS_MANY, 'Hotel', 'id_supplier'),
-			'supplierImages' => array(self::HAS_MANY, 'SupplierImage', 'id_supplier'),
+			'products' => array(self::HAS_MANY, 'Product', 'id_supplier'),
+			'rooms' => array(self::HAS_MANY, 'Room', 'id_supplier'),
+			'idSupplier' => array(self::BELONGS_TO, 'User', 'id_supplier'),
+			'gcAttributes' => array(self::MANY_MANY, 'Attribute', 'gc_supplier_attribute_value(id_supplier, id_attribute)'),
+			//'supplierImages' => array(self::HAS_MANY, 'SupplierImage', 'id_supplier'),
+			'supplierImages' => array(self::MANY_MANY, 'ImageC', 'gc_supplier_image(id_image, id_supplier)'),
 			'user' => array(self::BELONGS_TO, 'User', 'id_supplier'),
 			'attributeValues' => array(self::HAS_MANY, 'SupplierAttributeValue', 'id_supplier'),
+			'supplierLangs' => array(self::HAS_MANY, 'SupplierLang', 'id_supplier'),
 		);
 	}
 	
@@ -121,9 +130,9 @@ class Supplier extends CActiveRecord
 			'supplier_abn' => 'Supplier Abn',
 			'member_chain_group' => 'Member Chain Group',
 			'room_count' => 'Room Count',
-			'website' => 'Website',/*
+			'website' => 'Website',
 			'check_in_time' => 'Check In Time',
-			'check_out_time' => 'Check Out Time',*/
+			'check_out_time' => 'Check Out Time',
 		);
 	}
 
@@ -155,8 +164,8 @@ class Supplier extends CActiveRecord
 		$criteria->compare('member_chain_group',$this->member_chain_group,true);
 		$criteria->compare('room_count',$this->room_count);
 		$criteria->compare('website',$this->website,true);
-		$criteria->compare('check_in_time',$this->check_in_time);
-		$criteria->compare('check_out_time',$this->check_out_time);
+		$criteria->compare('check_in_time',$this->check_in_time,true);
+		$criteria->compare('check_out_time',$this->check_out_time,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

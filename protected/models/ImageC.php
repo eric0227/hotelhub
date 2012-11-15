@@ -183,4 +183,17 @@ class ImageC extends CActiveRecord
 		SupplierImage::model()->deleteAll('id_image = :id_image', array(':id_image'=>$this->id_image));
 		ProductImage::model()->deleteAll('id_image = :id_image', array(':id_image'=>$this->id_image));
 	}
+	
+
+	public static function items() {
+		$_items = array();
+
+		$models = SupplierImage::model()->findAllByAttributes(array('id_supplier'=>$supplierImage->id_supplier));
+
+		foreach($models as $model) {
+			$_items[$model->id_image] = $model->id_image;
+		}
+		return $_items;
+	}
+
 }

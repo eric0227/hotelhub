@@ -113,3 +113,7 @@ fieldset fieldset {
 	font-size: 0.8em;
 	text-align: center;
 }
+
+.width100 {
+	width: 100px;
+}

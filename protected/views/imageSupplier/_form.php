@@ -13,9 +13,9 @@
 	
 		<?php 
 			if($model->isNewRecord) { 
-				echo CHtml::label('Supplier', 'id_supplier');
-				echo CHtml::dropDownList('id_supplier', null, Supplier::items());
-				//echo $form->dropDownListRow($model, 'id_supplier', SupplierImage::items());
+				//echo CHtml::label('Supplier', 'id_supplier');
+				//echo CHtml::dropDownList('id_supplier', null, Supplier::items());
+				echo $form->dropDownListRow($model, 'id_supplier', SupplierImage::items(), array('class'=>'span5'));
 			}
 		?>
 		

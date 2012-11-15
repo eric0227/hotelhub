@@ -32,7 +32,7 @@ class RoomController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','beddingConfig'),
+				'actions'=>array('create','update','beddingConfig', 'enableConfig'),
 				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -177,15 +177,23 @@ class RoomController extends Controller
 			$this->appendBedding($roomCnt);
 		}
 		
+		$iRownum = 0;
+
 		foreach($this->beddingList as $beddingModel) {
 			echo "<tr>";
 			echo "<td>".$beddingModel->getBedImg()."</td>";
-			echo "<td> </td>";
-			echo "<td> </td>";			
+			echo "<td>".CHtml::checkBox('availableCheck', false,
+						array('id' => 'availableCheck_'.$iRownum,
+							'ajax' => array('type' => 'POST',
+											'url' => CController::createUrl('room/enableConfig'),
+											'update' => '#test')
+				))."</td>";
+			echo "<td>".CHtml::radioButton('defaultRadio', false, array('id' => 'defaultRadio_'.$iRownum))."</td>";
 			echo "<td>".$beddingModel->getBedInfo()."</td>";
-			echo "<td> </td>";
-			echo "<td> </td>";			
+			echo "<td>".CHtml::textField('additionalcostText', '', array('id' => 'additionalcostText_'.$iRownum, 'class' => 'width100', 'maxlength'=>2))."</td>";
+			echo "<td>"."</td>";
 			echo "</tr>";
+			$iRownum++;
 		}
 		
 		Yii::app()->end();
@@ -193,7 +201,6 @@ class RoomController extends Controller
 	
 	private function appendBedding($roomCnt) {
 		for($s = $roomCnt; $s >= 0; $s--) {
-			
  			$beddingModel = new Bedding;
  			 			
  			$beddingModel->bed_num = $roomCnt;
@@ -204,5 +211,40 @@ class RoomController extends Controller
 // 			echo $beddingModel->bed_num . '-' . $beddingModel->single_num. '-' . $beddingModel->double_num;
 // 			echo '<br>';
 		}
-	}	
+	}
+/*
+	public function actionCheckboxlist()
+	{
+		$preSelectedItems = array();
+
+		if(isset($_POST['checkboxlistsubmit']))
+		{
+			if(isset($_POST['myCheckBoxList']))
+			{
+				$message = "You selected: ";
+				$loopCount = 0;
+				$preSelectedItems = array();
+				foreach($_POST['myCheckBoxList'] as $selectedItem)
+				{
+					$message .= strval($selectedItem);
+					if(++$loopCount < count($_POST['myCheckBoxList']))
+					$message .=  " & ";
+					$preSelectedItems[] = $selectedItem;
+				}
+			}
+			else
+			$message = "Nothing Selected.";
+
+			Yii::app()->user->setFlash('selectedValues',$message);
+		}
+
+		$items = array('item1'=>'Item One','item2'=>'Item Two','item3'=>'Item Three');
+		$this->render('checkboxlist', array('select'=>$preSelectedItems, 'data'=>$items));
+	}
+*/
+	public function actionEnableConfig() {
+		echo "1111111111111111123123123123123123123123123";
+		echo "<script>alert('123123123123');</script>";
+		return;
+	}
 }

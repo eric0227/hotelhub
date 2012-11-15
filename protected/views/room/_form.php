@@ -62,12 +62,12 @@
 				<legend>Bedding Configuration</legend>
 				<table>
 					<thead>
-						<th width="20%">Icon Displayed</th>
-						<th width="10%">Available<div class="comments">You may select more than one.</div></th>
-						<th width="10%">Default<div class="comments">Select the standard configuration.</div></th>
-						<th width="20%">Bedding Description<div class="comments">If you wish, you may modify these descriptions to indicate different bed sizes (e.g. king) or bed types (e.g. roll-away, fold-out sofa etc.). Short descriptions will work best.</div></th>
-						<th width="20%">Additional Cost<div class="comments">You may charge extra for configurations other than your default.</div></th>
-						<th width="20%">Cots Available<div class="comments">at an additional cost of ... each per night</div></th>
+						<th width="35%">Icon Displayed</th>
+						<th width="5%">Available<!-- <div class="comments">You may select more than one.</div> --></th>
+						<th width="10%">Default<!-- <div class="comments">Select the standard configuration.</div> --></th>
+						<th width="20%">Bedding Description<!-- <div class="comments">If you wish, you may modify these descriptions to indicate different bed sizes (e.g. king) or bed types (e.g. roll-away, fold-out sofa etc.). Short descriptions will work best.</div> --></th>
+						<th width="10%">Additional Cost($)<!-- <div class="comments">You may charge extra for configurations other than your default.</div> --></th>
+						<th width="20%">Cots Available<!-- <div class="comments">at an additional cost of ... each per night</div> --></th>
 					</thead>
 					<tbody id="bedding">
 					</tbody>
@@ -75,8 +75,8 @@
 			</fieldset>
 		</div>
 		
-		<div id="test">
-		</div>
+		<div id="test"></div>
+
 		<div>
 		<?php 
 			$attributeInfos = $model->getAllSttributes();

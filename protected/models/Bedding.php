@@ -109,18 +109,50 @@ class Bedding extends CActiveRecord
 	
 	public function getBedImg() {
 		$result = "";
+		$urlSingleBed = "/images/bed-s.gif";
+		$urlDoubleBed = "/images/bed-d.gif";
 		
 		for($index = 0; $index < $this->single_num; $index++) {
-			$result = $result . " " . 'I'; 
+			//$result = $result . " " . 'I';
+			$result = $result . "<img src=\"".$urlSingleBed."\" />";
 		}
 		for($index = 0; $index < $this->double_num; $index++) {
-			$result = $result . " " . 'II';
+			//$result = $result . " " . 'II';
+			$result = $result . "<img src=\"".$urlDoubleBed."\" />";
 		}
 		
 		return $result;
 	}
 	
 	public function getBedInfo() {
-		return $this->single_num . ' single bed, ' . $this->double_num . ' double bed';
+		$strResult = "";
+		
+		if($this->single_num != 0 && $this->double_num != 0) {
+			if($this->single_num > 1) {
+				$strResult = $this->single_num . ' singles and ';
+			} else {
+				$strResult = $this->single_num . ' single and ';
+			}
+
+			if($this->double_num > 1) {
+				$strResult = $strResult . $this->double_num . ' doubles';
+			} else {
+				$strResult = $strResult . $this->double_num . ' double';
+			}
+		} else if($this->single_num != 0) {
+			if($this->single_num > 1) {
+				$strResult = $this->single_num . ' singles';
+			} else {
+				$strResult = $this->single_num . ' single';
+			}
+		} else {
+			if($this->double_num > 1) {
+				$strResult = $this->double_num . ' doubles';
+			} else {
+				$strResult = $this->double_num . ' double';
+			}
+		}
+		 
+		return $strResult;
 	}
 }
