@@ -53,7 +53,7 @@ class ImageC extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('image', 'required'),
-			array('id_supplier', 'required'),
+			//array('id_supplier', 'required'),
 			
 			array('image', 'unsafe'),
 			array('image', 'file', 'types'=>'jpg, gif, png','allowEmpty' => true, 'on' => 'update'),
@@ -171,17 +171,28 @@ class ImageC extends CActiveRecord
 	}
 	
 	protected function afterSave() {
-		if($this->id_supplier) {
+		if(!empty($this->id_supplier)) {
 			$supplierImage = new SupplierImage();
 			$supplierImage->id_supplier = $this->id_supplier;
 			$supplierImage->id_image = $this->id_image;
 			$supplierImage->save();
 		}
+		
+		if(!empty($this->id_product)) {
+			$productImage = new ProductImage();
+			$productImage->id_product = $this->id_product;
+			$productImage->id_image = $this->id_image;
+			$productImage->save();
+		}
+		
+		return parent::afterSave();
 	}
 	
 	protected function afterDelete() {
 		SupplierImage::model()->deleteAll('id_image = :id_image', array(':id_image'=>$this->id_image));
 		ProductImage::model()->deleteAll('id_image = :id_image', array(':id_image'=>$this->id_image));
+		
+		return parent::afterDelete();
 	}
 	
 
