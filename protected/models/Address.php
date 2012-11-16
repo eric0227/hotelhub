@@ -95,6 +95,20 @@ class Address extends CActiveRecord
 			'addressCode' => array(self::BELONGS_TO, 'Code', 'address_code'),
 		);
 	}
+	
+	public function scopes() {
+		return array(
+			'defaultAddresses'=>array(
+				'condition'=>"address_code = '".Address::DELIVERY_CODE."'",
+			),
+			'deliveryAddresses'=>array(
+				'condition'=>"address_code = '".Address::DELIVERY_CODE."'",
+			),
+			'invoceAddresses'=>array(
+				'condition'=>"address_code = '".Address::INVOICE_CODE."'",
+			)
+		);
+	}	
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -177,12 +191,46 @@ class Address extends CActiveRecord
 	{
 		if($this->isNewRecord)
 		{
-			$this->date_add=$this->date_upd=time();
+			$this->date_add=$this->date_upd=new CDbExpression('NOW()');
 		} else {
-			$this->date_upd=time();
+			$this->date_upd=new CDbExpression('NOW()');
 		}
 	
 		return parent::beforeSave();
+	}
+	
+	protected function afterSave() {
+/*			
+		if($this->address_code != self::DEFAULT_CODE) {
+			return parent::afterSave();
+		}
+		$addressCodes = Code::items(self::CODE_TYPE);
+		$addresses = Address::model()->findAllByAttributes(array('id_user'=>$this->id_user));
+		
+		foreach($addressCodes as $code => $codeName) {
+			if($code == self::DEFAULT_CODE) {
+				break;
+			}
+			
+			$address = $this->getAddressByType($addresses, $code);
+			if($address == null) {
+				$address = new Address;
+				$address->attributes = $this->attributes;
+				$address->address_code = $code;
+				$address->save();
+			}
+		}
+*/
+		return parent::afterSave();
+	}
+	
+	private function getAddressByType($addresses, $code) {
+		foreach($addresses as $address) {
+			if($address->address_code == $code) {
+				return $address;
+			}
+		}
+		return null;
 	}
 	
 	public static function getAddress($id_user, $address_code) {

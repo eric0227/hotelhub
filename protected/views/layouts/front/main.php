@@ -2,6 +2,7 @@
 <?php
 $service = Yii::app()->session->get('service',1);
 $lang = Yii::app()->session->get('lang', 1);
+$id = Yii::app()->user->id;
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -19,6 +20,7 @@ $lang = Yii::app()->session->get('lang', 1);
 
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/global.css" />
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -53,11 +55,48 @@ $lang = Yii::app()->session->get('lang', 1);
 			<div style="clear:both;"></div>
 		</div>
 	</div><!-- header -->
-
-	<?php echo $content; ?>
-
-	<div class="clear"></div>
-
+	<div id="mainmenu">
+		<?php $this->widget('bootstrap.widgets.TbMenu',array(
+			'type' => 'tabs',
+			'items'=>array(
+				array('label'=>'Home', 'url'=>array('/index')),
+				array('label'=>'Hotel', 'url'=>'', 
+					'items'=>array(			
+						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),						
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Car', 'url'=>'',
+					'items'=>array(			
+						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'My Page', 'url'=>'',
+					'items'=>array(
+						array('label'=>'User', 'url'=>array('/user/'.$id, 'tag'=>'user')),
+						array('label'=>'Cart', 'url'=>array('/cart/index', 'tag'=>'cart')),
+						array('label'=>'Orders', 'url'=>array('/order/index', 'tag'=>'order')),
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				array('label'=>'Login', 'url'=>array('/index/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/index/logout'), 'visible'=>!Yii::app()->user->isGuest)
+			),
+		)); ?>
+	</div><!-- mainmenu -->
+	
+	<div>
+		<div id="center">
+			<?php echo $content; ?>
+			<div class="clear"></div>
+		</div >
+		<div id="righter">
+			cart..
+		</div>
+		<div class="clear"></div>
+	</div>
+	
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by Holidoy.<br/>
 		All Rights Reserved.<br/>
