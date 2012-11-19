@@ -72,7 +72,7 @@ class CartController extends Controller
 		if(isset($_REQUEST['yt0']) && $_REQUEST['yt0'] == 'Search') {
 			$id_user = $_POST['Cart']['id_user'];
 			$user = User::model()->findByPk($id_user);
-			
+
 			$model->id_user = $id_user;
 			
 			$defaultAddress = Address::getAddress($id_user, Address::DEFAULT_CODE);
@@ -98,7 +98,7 @@ class CartController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_cart));
 		}
-		
+
 		$data['model'] = $model;
 
 		$this->render('create', $data);

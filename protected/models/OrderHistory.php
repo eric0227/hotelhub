@@ -111,7 +111,7 @@ class OrderHistory extends CActiveRecord
 		$this->id_user = $id_user;
 		
 		if($this->isNewRecord) {
-			$this->date_add = time();
+			$this->date_add = new CDbExpression('NOW()');
 		}
 		
 		return parent::beforeSave();

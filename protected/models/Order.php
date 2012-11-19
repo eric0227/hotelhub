@@ -166,7 +166,7 @@ class Order extends CActiveRecord
 	protected function beforeSave() {
 		if($this->isNewRecord)
 		{
-			$this->date_add=$this->date_upd=$this->invoice_date=$this->delivery_date=time();
+			$this->date_add=$this->date_upd=$this->invoice_date=$this->delivery_date=new CDbExpression('NOW()');
 			
 			$this->id_lang=Lang::getCurrentLang();
 				
@@ -181,7 +181,7 @@ class Order extends CActiveRecord
 			}
 			
 		} else {
-			$this->date_upd=time();
+			$this->date_upd=new CDbExpression('NOW()');
 		}
 	
 		$this->procOrder();

@@ -19,6 +19,7 @@
  *
  * The followings are the available model relations:
  * @property Address[] $addresses
+ * @property Cart[] $carts
  * @property Group $group
  */
 class User extends CActiveRecord
@@ -85,7 +86,19 @@ class User extends CActiveRecord
 			'addresses' => array(self::HAS_MANY, 'Address', 'id_user'),
 			'group' => array(self::BELONGS_TO, 'Group', 'id_group'),
 			'lang' => array(self::BELONGS_TO, 'Lang', 'id_lang'),
+			'carts' => array(self::HAS_MANY, 'Cart', 'id_user'),
 		);
+	}
+	
+	public function getCart() {
+		// array('id_address_delivery, id_address_invoice, id_currency, id_user', 'required'),
+		$cart = Cart::model()->findByAttributes(array('id_user'=>$this->id_user, 'on_order' => 0));
+		if(!isset($cart)) {
+			$cart = new Cart;
+			$cart->id_user = $this->id_user;
+			$cart->id_currency = Currency::getCurrentCurrency();
+			
+		}
 	}
 
 	/**
@@ -189,7 +202,11 @@ class User extends CActiveRecord
 	}
 	
 	public static function getCurrentGroup() {
-		return Yii::app()->user->id_group;	
+		try {
+			return Yii::app()->user->id_group;
+		}catch (CException $e) {
+			return self::GUEST;
+        }
 	}
 	
 	public static function items($group = null)

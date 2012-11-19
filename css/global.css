@@ -128,3 +128,8 @@ fieldset fieldset {
 #righter {
 	float: right;
 }
+
+.list-selected { background: blue; color: white;}
+
+#find_accommodation .country {float: left; }
+#find_accommodation .destination {float: left; }

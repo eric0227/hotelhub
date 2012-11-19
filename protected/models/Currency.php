@@ -115,6 +115,10 @@ class Currency extends CActiveRecord
 		));
 	}
 	
+	public static function getCurrentCurrency() {
+		return 1;
+	}
+	
 	public static function items() {
 		$models = self::model()->findAll();
 		

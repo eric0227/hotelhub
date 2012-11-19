@@ -28,16 +28,16 @@ class AddressController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','stateOptions'),
+				'actions'=>array('index','view','stateOptions', 'destinationOptions'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -180,14 +180,18 @@ class AddressController extends Controller
 	}
 	
 	public function actionStateOptions() {
-		Yii::trace(print_r($_REQUEST['Address'], true));
+		$id_country = NULL;
 		
 		if(isset($_REQUEST['Address']['id_country'])) {
-			$state = State::model()->findAllByAttributes(
-			array('id_country' => $_REQUEST['Address']['id_country'])
-			);
+			$id_country = $_REQUEST['Address']['id_country'];
+		} else if(isset($_REQUEST['Destination']['id_country'])) {
+			$id_country = $_REQUEST['Destination']['id_country'];
+		} 
+		
+		if($id_country != NULL) {
+			$state = State::model()->findAllByAttributes(array('id_country' => $id_country));
 		} else {
-			$state = State::model()->findAll();
+			$state = array();
 		}
 		$data = CHtml::listData($state, 'id_state', 'name');
 	
@@ -196,5 +200,25 @@ class AddressController extends Controller
 			echo CHtml::tag('option', array('value'=>$value), CHtml::encode($name),true);
 		}
 		Yii::app()->end();
-	}	
+	}
+
+	public function actionDestinationOptions() {
+		$id_country = NULL;
+		$id_state = NULL;
+	
+		if(isset($_REQUEST['Address']['id_country'])) {
+			$id_country = $_REQUEST['Address']['id_country'];
+		}
+		if(isset($_REQUEST['Address']['id_state'])) {
+			$id_state = $_REQUEST['Address']['id_state'];
+		}
+		
+		$data = Destination::items($id_country, $id_state);
+	
+		foreach($data as $value=>$name)
+		{
+			echo CHtml::tag('option', array('value'=>$value), CHtml::encode($name),true);
+		}
+		Yii::app()->end();
+	}
 }

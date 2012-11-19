@@ -23,4 +23,5 @@ class WebTestCase extends CWebTestCase
 		$this->setBrowser('*iexplore');
 		$this->setBrowserUrl(TEST_BASE_URL);
 	}
+	
 }

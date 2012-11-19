@@ -170,15 +170,12 @@ class ServiceController extends Controller
 	}
 	
 	public function actionChange() {
-		$session=new CHttpSession;
-		$session->open();
-		
 		if(isset($_REQUEST['service'])) {
 			$service = $_REQUEST['service'];
 		} else {
 			$service = 1;
 		}
-		$session['service'] = $service;
+		Yii::app()->session->add('service', $service);
 						
 		//$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 		$this->redirect(Yii::app()->getRequest()->getUrlReferrer());

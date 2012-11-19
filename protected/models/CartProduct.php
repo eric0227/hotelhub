@@ -106,7 +106,7 @@ class CartProduct extends CActiveRecord
 	
 	protected function beforeSave() {
 		if($this->isNewRecord) {
-			$this->date_add = time();
+			$this->date_add = new CDbExpression('NOW()');
 		}
 		return parent::beforeSave();
 	}

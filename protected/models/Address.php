@@ -7,6 +7,7 @@
  * @property string $id_address
  * @property string $id_country
  * @property string $id_state
+ * @property string $id_destination
  * @property string $id_user
  * @property string $alias
  * @property string $company
@@ -67,7 +68,7 @@ class Address extends CActiveRecord
 		return array(
 			array('id_country, alias, lastname, firstname, address1, city', 'required'),
 			array('active, deleted', 'numerical', 'integerOnly'=>true),
-			array('id_country, id_state, id_user', 'length', 'max'=>10),
+			array('id_country, id_state, id_destination, id_user', 'length', 'max'=>10),
 			array('alias, company, lastname, firstname, vat_number', 'length', 'max'=>32),
 			array('address1, address2', 'length', 'max'=>128),
 			array('postcode', 'length', 'max'=>12),
@@ -77,7 +78,7 @@ class Address extends CActiveRecord
 			array('other', 'safe'),
 			// The following rule is used by search(). 
 			// Please remove those attributes that should not be searched.
-			array('id_address, id_country, id_state, id_user, alias, company, lastname, firstname, address1, address2, postcode, city, other, phone, phone_mobile, vat_number, dni, date_add, date_upd, active, deleted, address_code', 'safe', 'on'=>'search'),
+			array('id_address, id_country, id_state, id_destination, id_user, alias, company, lastname, firstname, address1, address2, postcode, city, other, phone, phone_mobile, vat_number, dni, date_add, date_upd, active, deleted, address_code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,10 +92,25 @@ class Address extends CActiveRecord
 		return array(
 			'country' => array(self::BELONGS_TO, 'Country', 'id_country'),
 			'state' => array(self::BELONGS_TO, 'State', 'id_state'),
+			'destination' => array(self::BELONGS_TO, 'Destination', 'id_destination'),
 			'user' => array(self::BELONGS_TO, 'User', 'id_user'),
 			'addressCode' => array(self::BELONGS_TO, 'Code', 'address_code'),
 		);
 	}
+	
+	public function scopes() {
+		return array(
+			'defaultAddresses'=>array(
+				'condition'=>"address_code = '".Address::DELIVERY_CODE."'",
+			),
+			'deliveryAddresses'=>array(
+				'condition'=>"address_code = '".Address::DELIVERY_CODE."'",
+			),
+			'invoceAddresses'=>array(
+				'condition'=>"address_code = '".Address::INVOICE_CODE."'",
+			)
+		);
+	}	
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -105,6 +121,7 @@ class Address extends CActiveRecord
 			'id_address' => 'Id Address',
 			'id_country' => 'Id Country',
 			'id_state' => 'Id State',
+			'id_destination' => 'Id Destination',
 			'id_user' => 'Id User',
 			'alias' => 'Alias',
 			'company' => 'Company',
@@ -141,6 +158,7 @@ class Address extends CActiveRecord
 		$criteria->compare('id_address',$this->id_address,true);
 		$criteria->compare('id_country',$this->id_country,true);
 		$criteria->compare('id_state',$this->id_state,true);
+		$criteria->compare('id_destination',$this->id_destination,true);
 		$criteria->compare('id_user',$this->id_user,true);
 		$criteria->compare('alias',$this->alias,true);
 		$criteria->compare('company',$this->company,true);
@@ -177,12 +195,46 @@ class Address extends CActiveRecord
 	{
 		if($this->isNewRecord)
 		{
-			$this->date_add=$this->date_upd=time();
+			$this->date_add=$this->date_upd=new CDbExpression('NOW()');
 		} else {
-			$this->date_upd=time();
+			$this->date_upd=new CDbExpression('NOW()');
 		}
 	
 		return parent::beforeSave();
+	}
+	
+	protected function afterSave() {
+/*			
+		if($this->address_code != self::DEFAULT_CODE) {
+			return parent::afterSave();
+		}
+		$addressCodes = Code::items(self::CODE_TYPE);
+		$addresses = Address::model()->findAllByAttributes(array('id_user'=>$this->id_user));
+		
+		foreach($addressCodes as $code => $codeName) {
+			if($code == self::DEFAULT_CODE) {
+				break;
+			}
+			
+			$address = $this->getAddressByType($addresses, $code);
+			if($address == null) {
+				$address = new Address;
+				$address->attributes = $this->attributes;
+				$address->address_code = $code;
+				$address->save();
+			}
+		}
+*/
+		return parent::afterSave();
+	}
+	
+	private function getAddressByType($addresses, $code) {
+		foreach($addresses as $address) {
+			if($address->address_code == $code) {
+				return $address;
+			}
+		}
+		return null;
 	}
 	
 	public static function getAddress($id_user, $address_code) {

@@ -202,11 +202,40 @@ CREATE TABLE IF NOT EXISTS `gc_state` (
   `tax_behavior` smallint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_state`),
-
+ 
   FOREIGN KEY (`id_zone`) REFERENCES `gc_zone`(`id_zone`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_country`) REFERENCES `gc_country`(`id_country`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `gc_destination` (
+  `id_destination` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  
+  `id_country` int(11) unsigned NOT NULL,
+  `id_state` int(11) unsigned DEFAULT NULL,
+  
+  `name` varchar(120) NOT NULL,
+  
+  `position` int(10) unsigned NOT NULL DEFAULT '0',
+  `active` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_destination`),
+
+  FOREIGN KEY (`id_country`) REFERENCES `gc_country`(`id_country`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_state`) REFERENCES `gc_state`(`id_state`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+/*
+CREATE TABLE IF NOT EXISTS `gc_destination_lang` (
+  `id_destination` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_lang` int(10) unsigned NOT NULL,
+  
+  `name` varchar(64) NOT NULL,
+
+  PRIMARY KEY (`id_state`),
+
+  FOREIGN KEY (`id_destination`) REFERENCES `gc_destination`(`id_destination`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_lang`) REFERENCES `gc_lang`(`id_lang`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+*/
 
 CREATE TABLE IF NOT EXISTS `gc_group` (
   `id_group` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -252,6 +281,7 @@ INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`
 
 CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `id_supplier` int(10) unsigned NOT NULL,
+  
   `manager_name` varchar(64),
   `manager_email` varchar(128),
 
@@ -308,6 +338,8 @@ CREATE TABLE IF NOT EXISTS `gc_address` (
 
   `id_country` int(10) unsigned NOT NULL,
   `id_state` int(10) unsigned DEFAULT NULL,
+  `id_destination` int(10) unsigned DEFAULT NULL,
+  
   `id_user` int(10) unsigned NOT NULL DEFAULT '0',
 
   `address_code` char(6) NOT NULL DEFAULT '001001',
@@ -333,6 +365,7 @@ CREATE TABLE IF NOT EXISTS `gc_address` (
 
   FOREIGN KEY (`id_country`) REFERENCES `gc_country`(`id_country`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_state`) REFERENCES `gc_state`(`id_state`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_destination`) REFERENCES `gc_destination`(`id_destination`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_user`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 

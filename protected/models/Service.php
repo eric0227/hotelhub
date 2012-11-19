@@ -118,16 +118,7 @@ class Service extends CActiveRecord
 	
 	}
 	
-	public static function getCurrentService() {
-		$session=new CHttpSession;
-		$session->open();
-	
-		if(isset($session['service'])) {
-			$service = $session['service'];
-		} else {
-			$service = 1;
-		}
-	
-		return $service;
+	public static function getCurrentService() {		
+		return Yii::app()->session->get('service','1');
 	}
 }

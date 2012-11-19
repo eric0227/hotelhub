@@ -33,9 +33,29 @@
 		if(isset($model->id_country)) {
 			$state = State::items($model->id_country);
 		}
-		echo $form->dropDownList($model,'id_state',$state,array('prompt'=>'---Please select---'));
+		echo $form->dropDownList($model,'id_state',$state,
+			array(
+				'prompt'=>'---Please select---',
+				'ajax' => array(
+					'type' => 'POST',
+					'url' => CController::createUrl('address/destinationOptions'),
+					'update'=>'#' . CHtml::activeId($model, 'id_destination')
+				)
+			)
+		);
 	?>
 	<?php echo $form->error($model,'id_state'); ?>
+	
+	<?php echo $form->labelEx($model,'id_destination'); ?>
+		<?php
+			$destination = array();
+			if(isset($model->id_country)) {
+				$destination = Destination::items($model->id_country, $model->id_state);
+			}
+			echo $form->dropDownList($model,'id_destination',$destination,array('prompt'=>'---Please select---'));
+		?>
+	<?php echo $form->error($model,'id_destination'); ?>
+		
 
 	<?php echo $form->labelEx($model,'id_user'); ?>
 	<?php

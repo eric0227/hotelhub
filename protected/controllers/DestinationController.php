@@ -1,6 +1,6 @@
 <?php
 
-class LangController extends Controller
+class DestinationController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -15,7 +15,6 @@ class LangController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -28,7 +27,7 @@ class LangController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'change'),
+				'actions'=>array('index','view','ajaxList'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -62,16 +61,16 @@ class LangController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Lang;
+		$model=new Destination;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Lang']))
+		if(isset($_POST['Destination']))
 		{
-			$model->attributes=$_POST['Lang'];
+			$model->attributes=$_POST['Destination'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_lang));
+				$this->redirect(array('view','id'=>$model->id_destination));
 		}
 
 		$this->render('create',array(
@@ -91,11 +90,11 @@ class LangController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Lang']))
+		if(isset($_POST['Destination']))
 		{
-			$model->attributes=$_POST['Lang'];
+			$model->attributes=$_POST['Destination'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_lang));
+				$this->redirect(array('view','id'=>$model->id_destination));
 		}
 
 		$this->render('update',array(
@@ -110,11 +109,17 @@ class LangController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -122,7 +127,7 @@ class LangController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Lang');
+		$dataProvider=new CActiveDataProvider('Destination');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +138,10 @@ class LangController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Lang('search');
+		$model=new Destination('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Lang']))
-			$model->attributes=$_GET['Lang'];
+		if(isset($_GET['Destination']))
+			$model->attributes=$_GET['Destination'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -150,7 +155,7 @@ class LangController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Lang::model()->findByPk($id);
+		$model=Destination::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,21 +167,19 @@ class LangController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='lang-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='destination-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
 	}
 	
-	public function actionChange() {
-		if(isset($_REQUEST['lang'])) {
-			$lang = $_REQUEST['lang'];
-		} else {
-			$lang = 1;
+	public function actionAjaxList() {
+		$items = Destination::items($_REQUEST['id_country'], $_REQUEST['id_state']);
+		foreach($items as $value => $name) {
+			echo '<li data="'.$value.'" >'.$name.'</li>';
 		}
-		Yii::app()->session->add('lang',$lang);
-		TranslateModule::translator()->setLanguage($this->loadModel($lang)->iso_code);
-		$this->redirect(Yii::app()->getRequest()->getUrlReferrer());
+		
+		Yii::app()->end();
 	}
 }
