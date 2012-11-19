@@ -27,7 +27,7 @@ class DestinationController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','ajaxList'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -172,5 +172,14 @@ class DestinationController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionAjaxList() {
+		$items = Destination::items($_REQUEST['id_country'], $_REQUEST['id_state']);
+		foreach($items as $value => $name) {
+			echo '<li data="'.$value.'" >'.$name.'</li>';
+		}
+		
+		Yii::app()->end();
 	}
 }
