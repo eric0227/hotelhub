@@ -1,6 +1,6 @@
 <?php
 
-class AddressController extends Controller
+class DestinationController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -15,7 +15,6 @@ class AddressController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -28,16 +27,16 @@ class AddressController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','stateOptions', 'destinationOptions'),
+				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'expression' => "Yii::app()->user->getLevel() >= 10",
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'expression' => "Yii::app()->user->getLevel() >= 10",
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,16 +61,16 @@ class AddressController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Address;
+		$model=new Destination;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Address']))
+		if(isset($_POST['Destination']))
 		{
-			$model->attributes=$_POST['Address'];
+			$model->attributes=$_POST['Destination'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_address));
+				$this->redirect(array('view','id'=>$model->id_destination));
 		}
 
 		$this->render('create',array(
@@ -91,11 +90,11 @@ class AddressController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Address']))
+		if(isset($_POST['Destination']))
 		{
-			$model->attributes=$_POST['Address'];
+			$model->attributes=$_POST['Destination'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_address));
+				$this->redirect(array('view','id'=>$model->id_destination));
 		}
 
 		$this->render('update',array(
@@ -110,11 +109,17 @@ class AddressController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -122,19 +127,9 @@ class AddressController extends Controller
 	 */
 	public function actionIndex()
 	{
-	
-		$model=new Address('search');
-		
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_REQUEST['Address'])) {
-			$model->attributes = $_REQUEST['Address'];
-		}
-
-		$dataProvider=new CActiveDataProvider('Address');
-		$dataProvider = $model->search();
-		$this->render('index', array(
+		$dataProvider=new CActiveDataProvider('Destination');
+		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
-			'model' => $model
 		));
 	}
 
@@ -143,10 +138,10 @@ class AddressController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Address('search');
+		$model=new Destination('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Address']))
-			$model->attributes=$_GET['Address'];
+		if(isset($_GET['Destination']))
+			$model->attributes=$_GET['Destination'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -160,7 +155,7 @@ class AddressController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Address::model()->findByPk($id);
+		$model=Destination::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -172,53 +167,10 @@ class AddressController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='address-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='destination-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
-	}
-	
-	public function actionStateOptions() {
-		$id_country = NULL;
-		
-		if(isset($_REQUEST['Address']['id_country'])) {
-			$id_country = $_REQUEST['Address']['id_country'];
-		} else if(isset($_REQUEST['Destination']['id_country'])) {
-			$id_country = $_REQUEST['Destination']['id_country'];
-		} 
-		
-		if($id_country != NULL) {
-			$state = State::model()->findAllByAttributes(array('id_country' => $id_country));
-		} else {
-			$state = array();
-		}
-		$data = CHtml::listData($state, 'id_state', 'name');
-	
-		foreach($data as $value=>$name)
-		{
-			echo CHtml::tag('option', array('value'=>$value), CHtml::encode($name),true);
-		}
-		Yii::app()->end();
-	}
-
-	public function actionDestinationOptions() {
-		$id_country = NULL;
-		$id_state = NULL;
-	
-		if(isset($_REQUEST['Address']['id_country'])) {
-			$id_country = $_REQUEST['Address']['id_country'];
-		}
-		if(isset($_REQUEST['Address']['id_state'])) {
-			$id_state = $_REQUEST['Address']['id_state'];
-		}
-		
-		$data = Destination::items($id_country, $id_state);
-	
-		foreach($data as $value=>$name)
-		{
-			echo CHtml::tag('option', array('value'=>$value), CHtml::encode($name),true);
-		}
-		Yii::app()->end();
 	}
 }

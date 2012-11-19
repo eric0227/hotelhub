@@ -109,6 +109,7 @@ $translate=Yii::app()->translate;
 					'items'=>array(
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
 						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
+						array('label'=>'Destination', 'url'=>array('/destination/index', 'tag'=>'destination')),
 						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
