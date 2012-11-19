@@ -60,18 +60,7 @@ $id = Yii::app()->user->id;
 			'type' => 'tabs',
 			'items'=>array(
 				array('label'=>'Home', 'url'=>array('/index')),
-				array('label'=>'Hotel', 'url'=>'', 
-					'items'=>array(			
-						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),						
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
-				array('label'=>'Car', 'url'=>'',
-					'items'=>array(			
-						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
+				array('label'=>'Hotel', 'url'=>array('/frontHotel'), 'tag'=>'product'),
 				array('label'=>'My Page', 'url'=>'',
 					'items'=>array(
 						array('label'=>'User', 'url'=>array('/user/'.$id, 'tag'=>'user')),
