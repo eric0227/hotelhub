@@ -221,8 +221,6 @@ class Product extends CActiveRecord
 
 		foreach($models as $model) {
 			$_items[$model->id_product] = $model->getName();
-
-			
 		}
 		return $_items;
 	}

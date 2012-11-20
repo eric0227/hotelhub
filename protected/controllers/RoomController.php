@@ -72,7 +72,6 @@ class RoomController extends Controller
 			$model->attributes=$_POST['Room'];
 			if($model->save()) {
 				$this->saveBedding($model);
-				
 				$this->redirect(array('view','id'=>$model->id_product));
 			}
 		}
@@ -99,7 +98,6 @@ class RoomController extends Controller
 			$model->attributes=$_POST['Room'];
 			if($model->save()) {
 				$this->saveBedding($model);
-				return;
 				$this->redirect(array('view','id'=>$model->id_product));
 			}
 		}
@@ -118,6 +116,7 @@ class RoomController extends Controller
 
 		$this->deleteBedding($model);
 		
+		$id_bedding_default = NULL;
 		foreach($beddingList as $index => $bedding) {						 
 			if(!isset($bedding['chk']) || $bedding['chk'] != 1) {
 				continue;
@@ -135,28 +134,29 @@ class RoomController extends Controller
 			$beddigModel->single_num = $bedding['single_num'];
 			$beddigModel->double_num = $bedding['double_num'];
 			$beddigModel->beddig_desc = $bedding['beddig_desc'];
+			$beddigModel->additional_cost = $bedding['additional_cost'];
 			$beddigModel->cots_available = $bedding['cots_available'];
+			$beddigModel->active = 1;
+			$beddigModel->deleted = 0;
+			
+			if($_POST['on_default'] == $index) {
+				$beddigModel->on_default = 1;
+				
+			}
+			
 			$beddigModel->save();
-
-			if(isset($bedding['default'])) {
-				$model->id_bedding_default = $bedding['default'];
-				$model->save();
+			
+			if($_POST['on_default'] == $index) {
+				$id_bedding_default = $beddigModel->id_bedding;
 			}
 		}
+		
+		$model->id_bedding_default = $id_bedding_default;
+		$model->save();
 	}
 	
 	private function deleteBedding($model) {
-		$beddingList = $_POST['Bedding'];
-		$ids = array();
-		foreach($beddingList as $index => $bedding) {
-			if(!isset($bedding['chk']) || $bedding['chk'] != 1) {
-				continue;
-			}
-			$ids[] = $index;
-		}
-		
-		Bedding::model()->deleteAll('id_room = :id_room and bed_index not in (:bed_indexs)'
-			, array(':id_room'=>$model->id_product, ':bed_indexs'=> implode(',', $ids)));
+		Bedding::model()->updateAll(array('deleted'=>1, 'active'=>0, 'on_default'=>0), 'id_room = :id_room', array(':id_room'=>$model->id_product));
 	}
 
 	/**
@@ -226,7 +226,7 @@ class RoomController extends Controller
 	}
 	
 	private $beddingList = array();
-	public function actionBeddingConfig() {
+	public function actionBeddingConfig() {		
 		$id_product = $_POST['Room']['id_product'];
 		$tot_room_cap = $_POST['Room']['guests_tot_room_cap'];
 		
@@ -236,12 +236,16 @@ class RoomController extends Controller
 		
 		$id_bedding_default = null;
 		if(isset($id_product)) {
-			$room = $this->loadModel($id_product);
-			$id_bedding_default = $room->id_bedding_default;
+			$room = $model=Room::model()->findByPk($id_product);
+			if($room != null) {
+				$id_bedding_default = $room->id_bedding_default;
+			}
 		}
 		
 		$bed_index = 0;
 		foreach($this->beddingList as $beddingModel) {
+			
+			//Yii::trace(print_r($beddingModel, true));
 			
 			echo "<tr>";
 			echo "<td>";
@@ -252,10 +256,10 @@ class RoomController extends Controller
 			echo CHtml::hiddenField('Bedding['.$bed_index.'][single_num]', $beddingModel->single_num);
 			echo CHtml::hiddenField('Bedding['.$bed_index.'][double_num]', $beddingModel->double_num);
 			echo " ".$beddingModel->getBedImg()."</td>";
-			echo "<td>".CHtml::checkBox('Bedding['.$bed_index.'][chk]', isset($beddingModel->id_bedding), array('id' => 'Bedding_'.$bed_index.'_index'))."</td>";
-			echo "<td>".CHtml::radioButton('Bedding['.$bed_index.'][default]', $id_bedding_default == $beddingModel->id_bedding, array('id' => 'Bedding_'.$bed_index.'_default'))."</td>";
+			echo "<td>".CHtml::checkBox('Bedding['.$bed_index.'][chk]', $beddingModel->active == 1, array('id' => 'Bedding_'.$bed_index.'_index'))."</td>";
+			echo "<td>".CHtml::radioButton('on_default', $beddingModel->on_default == 1 , array('value' => $bed_index))."</td>";
 			echo "<td>".$beddingModel->getBedInfo()."</td>";
-			echo "<td>".CHtml::textField('Bedding['.$bed_index.'][additional_cost]', isset($beddingModel->default)? $beddingModel->default : '', array('class' => 'width100', 'maxlength'=>2))."</td>";
+			echo "<td>".CHtml::textField('Bedding['.$bed_index.'][additional_cost]', isset($beddingModel->additional_cost)? $beddingModel->additional_cost : '', array('class' => 'width100', 'maxlength'=>2))."</td>";
 			echo "<td>".CHtml::dropDownList('Bedding['.$bed_index.'][cots_available]', isset($beddingModel->cots_available)? $beddingModel->cots_available : '', array(0,1,2,3,4,5,6), array('class'=>'width50'))."</td>";
 			echo "</tr>";
 			$bed_index++;

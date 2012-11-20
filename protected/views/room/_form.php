@@ -10,7 +10,28 @@
 		<legend>New Room</legend>
 		<fieldset>
 			<legend>Basic Information</legend>
-			<?php echo $form->dropDownListRow($model, 'id_product', Product::items(), array('class' => 'span5')); ?>
+			<?php
+				if($model->isNewRecord) {
+					$command = Yii::app()->db->createCommand();
+					$command->select('a.id_product')->from('gc_product as a');
+					$command->join('gc_room as b', 'a.id_product <> b.id_product');
+					$rows = $command->queryAll();
+					print_r($items);
+					$items = array();
+					foreach($rows as $row) {
+						$items[$row[id_product]] = $row[id_product];
+					}
+					
+					echo $form->dropDownListRow($model, 'id_product', $items, array('class' => 'span5'));
+					
+				} else {
+					echo $form->textFieldRow($model, 'id_product', array('class' => 'span5'));
+				}
+				
+			?>
+			<?php //echo $form->dropDownListRow($model, 'id_product', Product::items(), array('class' => 'span5')); ?>
+			<?php  ?>
+				
 			<?php echo $form->dropDownListRow($model,'room_code', Code::items(CodeType::ROOM), array('class' => 'span5')); ?>
 			<?php echo $form->textFieldRow($model,'room_type_code',array('class'=>'span5','maxlength'=>64)); ?>
 			<?php echo $form->textFieldRow($model,'lead_in_room_type',array('class'=>'span5')); ?>
@@ -25,9 +46,9 @@
 		</fieldset>
 		
 		<script> 
-
 			$(function() {
 				$('#Room_guests_tot_room_cap').on('change', function() {
+										
 					var cnt = $(this).val();
 					var strHtml = "";
 					for(var i = 1; i <= cnt; i++) {
@@ -36,6 +57,16 @@
 
 					$('#Room_guests_included_price').html(strHtml);
 				});
+
+	<?php if($model->isNewRecord == false) { ?>
+				setTimeout(
+					function() {
+						$('#Room_guests_tot_room_cap').trigger('change');
+					},
+					1000
+				);
+	<?php } ?>			
+				
 			});
 			
 		</script>
@@ -107,5 +138,9 @@
 			'label'=>$model->isNewRecord ? 'Create' : 'Save',
 		)); ?>
 	</div>
+	
+<?php
+	
+?>	
 
 <?php $this->endWidget(); ?>
