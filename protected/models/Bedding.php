@@ -44,9 +44,9 @@ class Bedding extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_room, single_num, double_num, cots_available', 'required'),
+			array('id_room, single_num, double_num, bed_index, cots_available', 'required'),
 			array('id_room', 'length', 'max'=>10),
-			array('bed_num, single_num, double_num, cots_available', 'length', 'max'=>2),
+			array('bed_num, single_num, double_num, bed_index, cots_available', 'length', 'max'=>2),
 			array('beddig_desc', 'length', 'max'=>200),
 			array('additional_cost', 'length', 'max'=>20),
 			// The following rule is used by search().
@@ -109,8 +109,8 @@ class Bedding extends CActiveRecord
 	
 	public function getBedImg() {
 		$result = "";
-		$urlSingleBed = "/images/bed-s.gif";
-		$urlDoubleBed = "/images/bed-d.gif";
+		$urlSingleBed = Yii::app()->request->baseUrl . "/images/bed-s.gif";
+		$urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 
 		for($index = 0; $index < $this->single_num; $index++) {
 			//$result = $result . " " . 'I';

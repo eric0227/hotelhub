@@ -21,11 +21,13 @@
  * @property string $children_extra
  * @property string $adults_maxnum
  * @property string $adults_extra
+ * @property string id_bedding_default
  *
  * The followings are the available model relations:
  * @property Product $product
  * @property Code $roomCode
  * @property Bedding[] $beddings
+ * @property Bedding bedding_default
  */
 class Room extends CActiveRecord
 {
@@ -57,7 +59,7 @@ class Room extends CActiveRecord
 		return array(
 			array('id_product, room_code, room_type_code', 'required'),
 			array('lead_in_room_type', 'numerical', 'integerOnly'=>true),
-			array('id_product, id_supplier, full_rate', 'length', 'max'=>10),
+			array('id_product, id_supplier, id_bedding_default, full_rate', 'length', 'max'=>10),
 			array('room_code', 'length', 'max'=>6),
 			array('room_type_code, room_name', 'length', 'max'=>64),
 			array('min_night_stay, max_night_stay, guests_tot_room_cap, guests_included_price, children_maxnum, children_years, adults_maxnum', 'length', 'max'=>2),
@@ -81,6 +83,7 @@ class Room extends CActiveRecord
 			'roomCode' => array(self::BELONGS_TO, 'Code', 'room_code'),
 			'beddings' => array(self::HAS_MANY, 'Bedding', 'id_room'),
 			'attributeValues' => array(self::HAS_MANY, 'ProductAttributeValue', 'id_product'),
+			'bedding_default' => array(self::BELONGS_TO, 'Bedding', 'id_bedding_default'),
 		);
 	}
 

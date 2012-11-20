@@ -70,8 +70,11 @@ class RoomController extends Controller
 		if(isset($_POST['Room']))
 		{
 			$model->attributes=$_POST['Room'];
-			if($model->save())
+			if($model->save()) {
+				$this->saveBedding($model);
+				
 				$this->redirect(array('view','id'=>$model->id_product));
+			}
 		}
 
 		$this->render('create',array(
@@ -94,13 +97,66 @@ class RoomController extends Controller
 		if(isset($_POST['Room']))
 		{
 			$model->attributes=$_POST['Room'];
-			if($model->save())
+			if($model->save()) {
+				$this->saveBedding($model);
+				return;
 				$this->redirect(array('view','id'=>$model->id_product));
+			}
 		}
 
 		$this->render('update',array(
 			'model'=>$model,
 		));
+	}
+	
+	private function saveBedding($model) {
+		$beddingList = $_POST['Bedding'];
+		
+		if(!isset($beddingList)) {
+			return;
+		}
+
+		$this->deleteBedding($model);
+		
+		foreach($beddingList as $index => $bedding) {						 
+			if(!isset($bedding['chk']) || $bedding['chk'] != 1) {
+				continue;
+			}
+			Yii::trace(print_r($bedding, true));
+					
+			if(isset($bedding['id_bedding'])) {
+				$beddigModel = Bedding::model()->findByPk($bedding['id_bedding']);
+			} else {
+				$beddigModel = new Bedding;
+			}
+			$beddigModel->id_room = $model->id_product;
+			$beddigModel->bed_index = $index;
+			$beddigModel->bed_num = $bedding['bed_num'];
+			$beddigModel->single_num = $bedding['single_num'];
+			$beddigModel->double_num = $bedding['double_num'];
+			$beddigModel->beddig_desc = $bedding['beddig_desc'];
+			$beddigModel->cots_available = $bedding['cots_available'];
+			$beddigModel->save();
+
+			if(isset($bedding['default'])) {
+				$model->id_bedding_default = $bedding['default'];
+				$model->save();
+			}
+		}
+	}
+	
+	private function deleteBedding($model) {
+		$beddingList = $_POST['Bedding'];
+		$ids = array();
+		foreach($beddingList as $index => $bedding) {
+			if(!isset($bedding['chk']) || $bedding['chk'] != 1) {
+				continue;
+			}
+			$ids[] = $index;
+		}
+		
+		Bedding::model()->deleteAll('id_room = :id_room and bed_index not in (:bed_indexs)'
+			, array(':id_room'=>$model->id_product, ':bed_indexs'=> implode(',', $ids)));
 	}
 
 	/**
@@ -171,45 +227,53 @@ class RoomController extends Controller
 	
 	private $beddingList = array();
 	public function actionBeddingConfig() {
+		$id_product = $_POST['Room']['id_product'];
 		$tot_room_cap = $_POST['Room']['guests_tot_room_cap'];
 		
 		for($roomCnt = 1; $roomCnt <= $tot_room_cap; $roomCnt++) {
-			$this->appendBedding($roomCnt);
+			$this->makeBedding($id_product, $roomCnt);
 		}
 		
-		$iRownum = 0;
-
+		$id_bedding_default = null;
+		if(isset($id_product)) {
+			$room = $this->loadModel($id_product);
+			$id_bedding_default = $room->id_bedding_default;
+		}
+		
+		$bed_index = 0;
 		foreach($this->beddingList as $beddingModel) {
+			
 			echo "<tr>";
-			echo "<td>".$beddingModel->getBedImg()."</td>";
-			echo "<td>".CHtml::checkBox('availableCheck', false,
-						array('id' => 'availableCheck_'.$iRownum,
-							'ajax' => array('type' => 'POST',
-											'url' => CController::createUrl('room/enableConfig'),
-											'update' => '#test')
-				))."</td>";
-			echo "<td>".CHtml::radioButton('defaultRadio', false, array('id' => 'defaultRadio_'.$iRownum))."</td>";
+			echo "<td>";
+			if(isset($beddingModel->id_bedding)) {
+				echo CHtml::hiddenField('Bedding['.$bed_index.'][id_bedding]', $beddingModel->id_bedding);
+			}
+			echo CHtml::hiddenField('Bedding['.$bed_index.'][bed_num]', $beddingModel->bed_num);
+			echo CHtml::hiddenField('Bedding['.$bed_index.'][single_num]', $beddingModel->single_num);
+			echo CHtml::hiddenField('Bedding['.$bed_index.'][double_num]', $beddingModel->double_num);
+			echo " ".$beddingModel->getBedImg()."</td>";
+			echo "<td>".CHtml::checkBox('Bedding['.$bed_index.'][chk]', isset($beddingModel->id_bedding), array('id' => 'Bedding_'.$bed_index.'_index'))."</td>";
+			echo "<td>".CHtml::radioButton('Bedding['.$bed_index.'][default]', $id_bedding_default == $beddingModel->id_bedding, array('id' => 'Bedding_'.$bed_index.'_default'))."</td>";
 			echo "<td>".$beddingModel->getBedInfo()."</td>";
-			echo "<td>".CHtml::textField('additional_cost', '', array('id' => 'additional_cost'.$iRownum, 'class' => 'width100', 'maxlength'=>2))."</td>";
-			echo "<td>".CHtml::dropDownList('cots_available', '', array(0,1,2,3,4,5,6), array('class'=>'width50'))."</td>";
+			echo "<td>".CHtml::textField('Bedding['.$bed_index.'][additional_cost]', isset($beddingModel->default)? $beddingModel->default : '', array('class' => 'width100', 'maxlength'=>2))."</td>";
+			echo "<td>".CHtml::dropDownList('Bedding['.$bed_index.'][cots_available]', isset($beddingModel->cots_available)? $beddingModel->cots_available : '', array(0,1,2,3,4,5,6), array('class'=>'width50'))."</td>";
 			echo "</tr>";
-			$iRownum++;
+			$bed_index++;
 		}
 		
 		Yii::app()->end();
 	}
 	
-	private function appendBedding($roomCnt) {
+	private function makeBedding($id_product, $roomCnt) {
 		for($s = $roomCnt; $s >= 0; $s--) {
- 			$beddingModel = new Bedding;
- 			 			
- 			$beddingModel->bed_num = $roomCnt;
- 			$beddingModel->single_num = $s;
- 			$beddingModel->double_num = $roomCnt - $s;
-			
+			$beddingModel = Bedding::model()->findByAttributes(array('id_room' => $id_product, 'bed_num' => $roomCnt, 'single_num' => $s));
+			if(!isset($beddingModel)) {
+	 			$beddingModel = new Bedding;		
+	 			$beddingModel->bed_num = $roomCnt;
+	 			$beddingModel->single_num = $s;
+	 			$beddingModel->double_num = $roomCnt - $s;
+			}
 			$this->beddingList[] = $beddingModel;
-// 			echo $beddingModel->bed_num . '-' . $beddingModel->single_num. '-' . $beddingModel->double_num;
-// 			echo '<br>';
 		}
 	}
 /*

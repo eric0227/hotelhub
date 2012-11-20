@@ -8,10 +8,6 @@
 	<?php echo CHtml::encode($data->id_room); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('gest_num')); ?>:</b>
-	<?php echo CHtml::encode($data->gest_num); ?>
-	<br />
-
 	<b><?php echo CHtml::encode($data->getAttributeLabel('single_num')); ?>:</b>
 	<?php echo CHtml::encode($data->single_num); ?>
 	<br />
