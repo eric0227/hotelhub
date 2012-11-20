@@ -165,8 +165,8 @@ CREATE TABLE IF NOT EXISTS `gc_currency` (
 INSERT INTO `gc_currency` (`id_currency`, `name`, `iso_code`, `iso_code_num`, `sign`, `blank`, `format`, `decimals`, `conversion_rate`, `deleted`, `active`) VALUES
 (1, 'Dollar', 'AUD', '36', '$', 0, 1, 1, 1.000000, 0, 1),
 (2, 'Dollar', 'USD', '840', '$', 0, 1, 1, 1.051065, 0, 1),
-(3, 'Won', 'KRW', '410', '￦', 0, 1, 0, 120.000000, 0, 1),
-(4, 'Yuan', 'CNY', '156', 'Ұ', 0, 1, 1, 6.740000, 0, 1);
+(3, 'Won', 'KRW', '410', '챦쩔짝', 0, 1, 0, 120.000000, 0, 1),
+(4, 'Yuan', 'CNY', '156', '횘째', 0, 1, 1, 6.740000, 0, 1);
 
 CREATE TABLE IF NOT EXISTS `gc_country` (
   `id_country` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -276,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `gc_user` (
 INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`, `email`, `passwd`, `is_guest`, `note`, `birthday`, `active`, `deleted`) VALUES
 (1, 1, 1, 'Admin', 'Admin', 'kyhleem@gmail.com', 'bdf13fac4167a477b4d10d8685405354', 0, '', '0000-00-00', 1, 0),
 (2, 2, 1, 'supplier', 'hotel', 'kyhleem@naver.com', 'admin123456', 0, '', '0000-00-00', 0, 0),
-(3, 4, 2, '규형', '이', 'test@naver.com', 'hyoung01', 0, '', '0000-00-00', 0, 0);
+(3, 4, 2, '챗쨌흹챠���, '챙占승�, 'test@naver.com', 'hyoung01', 0, '', '0000-00-00', 0, 0);
 
 
 CREATE TABLE IF NOT EXISTS `gc_supplier` (
@@ -746,6 +746,7 @@ CREATE TABLE IF NOT EXISTS `gc_room_type` (
 CREATE TABLE IF NOT EXISTS `gc_room` (
   `id_product` int(10) unsigned NOT NULL,
   `id_supplier` int(10) unsigned NOT NULL,
+  `id_bedding_default` int(10) unsigned DEFAULT NULL,
   `room_code` char(6) NOT NULL,
 
   `room_type_code` varchar(64) NOT NULL,
@@ -770,12 +771,15 @@ CREATE TABLE IF NOT EXISTS `gc_room` (
 
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
+  -- FOREIGN KEY (`id_bedding_default`) REFERENCES `gc_bedding`(`id_bedding`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`room_code`) REFERENCES `gc_code`(`code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `gc_bedding` (
 	`id_bedding`  int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`id_room` int(10) unsigned NOT NULL,
+
+	`bed_index` int(2) unsigned NOT NULL,
 	
 	`bed_num`  int(2) unsigned NOT NULL,
 	
@@ -784,6 +788,10 @@ CREATE TABLE `gc_bedding` (
 	`beddig_desc`  varchar(200),
 	`additional_cost`  decimal(20,6) NOT NULL DEFAULT '0.000000',
 	`cots_available`  int(2) unsigned NOT NULL,
+	
+	`on_default` tinyint(1) NOT NULL DEFAULT '0',
+	`active` tinyint(1) NOT NULL DEFAULT '0',
+	`deleted` tinyint(1) NOT NULL DEFAULT '0',
 	
 	FOREIGN KEY (`id_room`) REFERENCES `gc_room`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
 	PRIMARY KEY (`id_bedding`)

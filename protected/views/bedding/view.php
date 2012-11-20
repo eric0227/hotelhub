@@ -20,7 +20,6 @@ $this->menu=array(
 	'attributes'=>array(
 		'id_bedding',
 		'id_room',
-		'gest_num',
 		'single_num',
 		'double_num',
 		'beddig_desc',

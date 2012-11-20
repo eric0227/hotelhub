@@ -12,6 +12,9 @@
  * @property string $beddig_desc
  * @property string $additional_cost
  * @property string $cots_available
+ * @property string $deleted
+ * @property string $active 
+ * @property string $on_default
  *
  * The followings are the available model relations:
  * @property Room $room
@@ -44,9 +47,10 @@ class Bedding extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_room, single_num, double_num, cots_available', 'required'),
+			array('id_room, single_num, double_num, bed_index, cots_available', 'required'),
 			array('id_room', 'length', 'max'=>10),
-			array('bed_num, single_num, double_num, cots_available', 'length', 'max'=>2),
+			array('bed_num, single_num, double_num, bed_index, cots_available', 'length', 'max'=>2),
+			array('deleted, on_default, active', 'length', 'max'=>1),
 			array('beddig_desc', 'length', 'max'=>200),
 			array('additional_cost', 'length', 'max'=>20),
 			// The following rule is used by search().
@@ -101,6 +105,10 @@ class Bedding extends CActiveRecord
 		$criteria->compare('beddig_desc',$this->beddig_desc,true);
 		$criteria->compare('additional_cost',$this->additional_cost,true);
 		$criteria->compare('cots_available',$this->cots_available,true);
+		
+		$criteria->compare('deleted',$this->deleted,true);
+		$criteria->compare('active',$this->deleted,true);
+		$criteria->compare('on_default',$this->on_default,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -109,8 +117,8 @@ class Bedding extends CActiveRecord
 	
 	public function getBedImg() {
 		$result = "";
-		$urlSingleBed = "/images/bed-s.gif";
-		$urlDoubleBed = "/images/bed-d.gif";
+		$urlSingleBed = Yii::app()->request->baseUrl . "/images/bed-s.gif";
+		$urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 
 		for($index = 0; $index < $this->single_num; $index++) {
 			//$result = $result . " " . 'I';

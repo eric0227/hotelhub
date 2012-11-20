@@ -16,12 +16,6 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'gest_num'); ?>
-		<?php echo $form->textField($model,'gest_num',array('size'=>2,'maxlength'=>2)); ?>
-		<?php echo $form->error($model,'gest_num'); ?>
-	</div>
-
-	<div class="row">
 		<?php echo $form->labelEx($model,'single_num'); ?>
 		<?php echo $form->textField($model,'single_num',array('size'=>2,'maxlength'=>2)); ?>
 		<?php echo $form->error($model,'single_num'); ?>
