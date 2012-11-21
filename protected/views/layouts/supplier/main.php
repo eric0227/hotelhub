@@ -96,6 +96,7 @@ $lang = Yii::app()->session->get('lang', 1);
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+				array('label'=>'Guest List', 'url'=>array('/stat/guestList'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'CMS', 'url'=>'',
 					'items'=>array(
 						array('label'=>'CMS', 'url'=>array('/cms/index', 'tag'=>'cms')),
