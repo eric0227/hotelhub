@@ -8,6 +8,24 @@ h4.custom {
 	clear: both;
 }
 
+h4.blue {
+	color: #55a3d1;
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+div.h4_blue {
+	float: left;
+	position: relative;
+}
+
+div.blue_line {
+	float: left;
+	position: relative;
+	border-top: 2px solid #55a3d1;
+	width: 50%;
+}
+
 p.label_checkbox_pair {
 /*	clear: both; */
 	float: left;
@@ -128,3 +146,91 @@ fieldset fieldset {
 #righter {
 	float: right;
 }
+
+.fullwidth {
+	width: 100%;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.supplier_details div.tap_area {
+	border: 1px solid #d6d6d6;
+	float: left;
+	position: relative;
+	padding: 5px 5px;
+	clear: both;
+}
+
+.supplier_details div.button_area {
+	float: right;
+	position: relative;
+}
+
+.supplier_details div.calendar_nav_area {
+	float: right;
+	position: relative;
+	margin-left: 20px;
+}
+
+.supplier_details div.details_area {
+	width: 100%;
+	float: left;
+	position: relative;
+	margin-top: -1px;
+	margin-bottom: 20px;
+}
+
+th.dateHeading {
+	background-color: #2d7ebd;
+	font-weight: lighter;
+	text-align: center;
+	color: #fff;
+	border: 1px solid #d6d6d6;
+}
+
+th.weekends {
+	background-color: #59a1d3;
+	font-weight: lighter;
+	text-align: center;
+	color: #fff;
+	border: 1px solid #d6d6d6;
+}
+
+th.dateHeading span {
+	font-size: 0.67em;
+	font-weight: lighter;
+	text-align: center;
+}
+
+td.white {
+	font-size: 0.67em;
+	font-weight: lighter;
+	text-align: center;
+	border: 1px solid #d6d6d6;
+}
+
+td.green {
+	font-size: 0.67em;
+	font-weight: lighter;
+	text-align: center;
+	background-color: #eef8d5;
+	border: 1px solid #d6d6d6;
+}
+
+.month_navi span {
+	
+}
+
+.selected_month {
+	background-color: #2c7cb7;
+	color: white;
+}
+
+.button {
+	float: left;
+	position: relative;
+	margin-right: 20px;
+	margin-bottom: 20px;
+}
+
+
