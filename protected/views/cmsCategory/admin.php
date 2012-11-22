@@ -45,10 +45,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id_cms_category',
 		'id_parent',
 		'level_depth',
+		'nleft',
+		'nright',
 		'active',
+		/*
 		'date_add',
 		'date_upd',
-		/*
 		'position',
 		*/
 		array(

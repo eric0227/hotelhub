@@ -12,8 +12,8 @@ class TestController extends Controller
 	{
 		
 		echo Yii::t("test","Message");
-		echo Yii::t("test","001");
-		
+		echo Yii::t("test","You fdsafds");
+
 		$translate=Yii::app()->translate;
 		echo $translate->dropdown();
 		

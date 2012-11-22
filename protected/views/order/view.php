@@ -10,6 +10,7 @@ $this->menu=array(
 	array('label'=>'Update Order','url'=>array('update','id'=>$model->id_order)),
 	array('label'=>'Delete Order','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_order),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Order','url'=>array('admin')),
+	array('label'=>'Order History','url'=>array('orderHistory','id'=>$model->id_order)),
 );
 ?>
 
@@ -43,3 +44,27 @@ $this->menu=array(
 		'on_agent',
 	),
 )); ?>
+
+
+<div>
+	<h4>Order History</h4>
+	<div class="view">
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>State</th>
+				<th>Comment</th>
+			</tr>	
+	<?php 
+		$orderHistories = $model->orderHistories;
+		foreach($orderHistories as $orderHistory) {
+			echo "<tr>";
+			echo "	<td>{$orderHistory->date_add}</td>";
+			echo "	<td>{$orderHistory->orderState->name}</td>";
+			echo "	<td>{$orderHistory->comment}</td>";
+			echo "</tr>";			
+		}
+	?>
+	</table>
+	</div>
+</div>

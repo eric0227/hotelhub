@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS `gc_discount_lang`;
 DROP TABLE IF EXISTS `gc_order_history`;
 DROP TABLE IF EXISTS `gc_order_state_lang`;
 DROP TABLE IF EXISTS `gc_order_state`;
-DROP TABLE IF EXISTS `gc_order_detail`;
+DROP TABLE IF EXISTS `gc_order_item`;
 DROP TABLE IF EXISTS `gc_order`;
 DROP TABLE IF EXISTS `gc_configuration_lang`;
 DROP TABLE IF EXISTS `gc_configuration`;
@@ -531,7 +531,9 @@ CREATE TABLE IF NOT EXISTS `gc_product_date` (
 	`price` decimal(20,6) NOT NULL DEFAULT '0.000000',
 	`agent_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
 	`quantity` int(10) unsigned NOT NULL,
+	`active` tinyint(1) unsigned NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id_product_date`),
+	UNIQUE (id_product, on_date),
 	FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE
 	
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -960,6 +962,8 @@ CREATE TABLE IF NOT EXISTS `gc_cms_category` (
   `id_cms_category` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_parent` int(10) unsigned NOT NULL,
   `level_depth` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `nleft` int(10) unsigned NOT NULL DEFAULT '0',
+  `nright` int(10) unsigned NOT NULL DEFAULT '0',
   `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
@@ -969,6 +973,10 @@ CREATE TABLE IF NOT EXISTS `gc_cms_category` (
   FOREIGN KEY (`id_parent`) REFERENCES `gc_cms_category`(`id_cms_category`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+
+SELECT * FROM `gc_cms_category` WHERE 1
+INSERT INTO `gc_cms_category`(`id_cms_category`, `id_parent`, `level_depth`, `nleft`, `nright`, `active`, `date_add`, `date_upd`, `position`)
+values ('1', '0', '1', '1', '2', '1', now(), now(), 0 );
 
 CREATE TABLE IF NOT EXISTS `gc_cms_category_lang` (
   `id_cms_category` int(10) unsigned NOT NULL,
@@ -1047,6 +1055,7 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
   `id_currency` int(10) unsigned NOT NULL,
   `id_address_delivery` int(10) unsigned NOT NULL,
   `id_address_invoice` int(10) unsigned NOT NULL,
+  `id_order_state` int(10) unsigned NOT NULL DEFAULT '1',
 
   `secure_key` varchar(32) NOT NULL DEFAULT '-1',
   `payment` varchar(255) NOT NULL,
@@ -1082,46 +1091,50 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-/*
-CREATE TABLE IF NOT EXISTS `gc_order_detail` (
-  `id_order_detail` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `gc_order_item` (
+  `id_order_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
   
   `id_order` int(10) unsigned NOT NULL,
+  `id_service` int(10) unsigned NOT NULL,
+ 
+  `id_supplier` int(10) unsigned NOT NULL,
   `id_product` int(10) unsigned NOT NULL,
   `id_product_date` int(10) unsigned DEFAULT NULL,
+  `on_date` datetime DEFAULT NULL,
+  
+  `order_item_name` varchar(255) NOT NULL,
   
   `product_name` varchar(255) NOT NULL,
   `product_quantity` int(10) unsigned NOT NULL DEFAULT '0',
   `product_quantity_in_stock` int(10) NOT NULL DEFAULT '0',
-  `product_quantity_refunded` int(10) unsigned NOT NULL DEFAULT '0',
-  `product_quantity_return` int(10) unsigned NOT NULL DEFAULT '0',
-  `product_quantity_reinjected` int(10) unsigned NOT NULL DEFAULT '0',
-  `product_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  
+  `on_refunded` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `on_return` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  
+  `quantity_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `agent_quantity_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  
   `reduction_percent` decimal(10,2) NOT NULL DEFAULT '0.00',
   `reduction_amount` decimal(20,6) NOT NULL DEFAULT '0.000000',
-  `group_reduction` decimal(10,2) NOT NULL DEFAULT '0.00',
   `product_quantity_discount` decimal(20,6) NOT NULL DEFAULT '0.000000',
-  `product_ean13` varchar(13) DEFAULT NULL,
-  `product_upc` varchar(12) DEFAULT NULL,
-  `product_reference` varchar(32) DEFAULT NULL,
-  `product_supplier_reference` varchar(32) DEFAULT NULL,
+  
+  `total_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `agent_total_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  
   `product_weight` float NOT NULL,
   `tax_name` varchar(16) NOT NULL,
   `tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
-  `ecotax` decimal(21,6) NOT NULL DEFAULT '0.000000',
-  `ecotax_tax_rate` decimal(5,3) NOT NULL DEFAULT '0.000',
   `discount_quantity_applied` tinyint(1) NOT NULL DEFAULT '0',
-  `download_hash` varchar(255) DEFAULT NULL,
-  `download_nb` int(10) unsigned DEFAULT '0',
-  `download_deadline` datetime DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id_order_detail`),
+
+  PRIMARY KEY (`id_order_item`),
 
   FOREIGN KEY (`id_order`) REFERENCES `gc_order`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_product_date`) REFERENCES `gc_product_date`(`id_product_date`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`),
+  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`),
+  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`),
+  FOREIGN KEY (`id_product_date`) REFERENCES `gc_product_date`(`id_product_date`)
   
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-*/
 
 CREATE TABLE IF NOT EXISTS `gc_order_state` (
   `id_order_state` int(10) unsigned NOT NULL AUTO_INCREMENT,

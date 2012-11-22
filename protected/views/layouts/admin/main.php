@@ -86,7 +86,8 @@ $translate=Yii::app()->translate;
 				),
 				array('label'=>'Orders', 'url'=>'',
 					'items'=>array(
-						array('label'=>'Orders', 'url'=>array('/order/index', 'tag'=>'order')),
+						array('label'=>'Order', 'url'=>array('/order/index', 'tag'=>'order')),
+						array('label'=>'OrderItem', 'url'=>array('/orderItem/index', 'tag'=>'orderItem')),
 						array('label'=>'OrderHistory', 'url'=>array('/orderHistory/index', 'tag'=>'orderHistory')),
 						array('label'=>'OrderState', 'url'=>array('/orderState/index', 'tag'=>'orderState'))
 					),

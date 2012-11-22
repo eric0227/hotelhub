@@ -39,7 +39,7 @@
 	));	
 ?>	
 
-<?php echo $form->dropDownListRow($model, 'room_type', StatSearchForm::getRoomType(Yii::app()->user->id), array('prompt'=>'ALL')); ?>
+<?php echo $form->dropDownListRow($model, 'room_name', StatSearchForm::getRoomName(Yii::app()->user->id), array('prompt'=>'ALL')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

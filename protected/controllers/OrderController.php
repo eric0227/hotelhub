@@ -32,12 +32,12 @@ class OrderController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('create','update', 'orderHistory'),
+				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -197,5 +197,36 @@ class OrderController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionOrderHistory($id)
+	{
+		$order=Order::model()->findByPk($id);
+		$orderState = $order->orderState;
+				
+		$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$id, 'id_order_state'=>$order->id_order_state));
+
+		if(isset($_POST['OrderHistory']))
+		{
+			$id_order_state = $_POST['OrderHistory']['id_order_state'];
+			if($id_order_state != $order->id_order_state) {
+				$orderHistory = new OrderHistory;
+				$orderHistory->id_order = $id;
+			}
+			
+			$orderHistory->attributes=$_POST['OrderHistory'];
+			$orderHistory->save();
+			
+			$order->id_order_state = $orderHistory->id_order_state;
+			$order->save();
+
+		} else {
+			$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$id, 'id_order_state'=>$order->id_order_state));
+		}
+				
+		$this->render('orderHistory',array(
+				'order'=>$order,
+				'model'=>$orderHistory,
+		));
 	}
 }

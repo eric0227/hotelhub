@@ -43,29 +43,30 @@ class StatController extends Controller
 		$model = new StatSearchForm('guestSearch');
 		$model->attributes = $_POST['StatSearchForm'];
 		
-		$where = array('and');
+		$where = array();
 		if(!empty($model->from_date)) {
 			$model->from_date = $model->from_date . ' 00:00:00';
-			$where[] = "date_add >= '{$model->from_date}'";
+			$where[] = "o.date_add >= '{$model->from_date}'";
 		}
 		if(!empty($model->to_date)) {
 			$model->to_date = $model->to_date . ' 23:59:59';
-			$where[] = "date_add <= '{$model->to_date}'";
+			$where[] = "o.date_add <= '{$model->to_date}'";
 		}
-		if(!empty($model->room_type)) {
-			$where[] = "room_type = '{$model->room_type}'";
+		if(!empty($model->room_name)) {
+			$where[] = "r.room_name = '{$model->room_name}'";
 		}
 		//var_dump($model->attributes);
 		
-		$sql = 'SELECT o.id_order, o.total_price, u.lastname, u.firstname, r.room_name
-				FROM gc_order o, gc_cart c, gc_cart_product cp, gc_product_date pd, gc_user u, gc_room r, gc_product p, gc_supplier s
-				WHERE o.id_cart = c.id_cart
-				AND c.id_cart = cp.id_cart
-				AND cp.id_product_date = pd.id_product_date
-				AND pd.id_product = r.id_product
-				AND pd.id_product = p.id_product
+		$sql = "select o.id_order, o.total_price, concat(u.lastname, ' ', u.firstname) username, oi.product_name, min(oi.on_date) checkin , max(oi.on_date) checkout, r.room_name
+				FROM gc_order o, gc_order_item oi, gc_user u, gc_supplier s, gc_product p, gc_room r
+				WHERE o.id_order = oi.id_order
 				AND o.id_user = u.id_user
-				AND p.id_supplier = s.id_supplier';
+				AND p.id_supplier = s.id_supplier
+				AND p.id_product = oi.id_product
+				AND p.id_product = r.id_product";
+		if(count($where) > 0) {
+			$sql = $sql . ' AND ' . implode(' AND ', $where);
+		}
 		
 		$command = Yii::app()->db->createCommand($sql);
 		
@@ -73,7 +74,7 @@ class StatController extends Controller
 		//echo $command->getWhere();
 		
 		$rowData = $command->queryAll();
-		var_dump($rowData);
+		//var_dump($rowData);
 		
 		$dataProvider=new CArrayDataProvider($rowData);
 

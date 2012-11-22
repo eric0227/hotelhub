@@ -11,6 +11,10 @@
 
 	<?php echo $form->textFieldRow($model,'level_depth',array('class'=>'span5')); ?>
 
+	<?php echo $form->textFieldRow($model,'nleft',array('class'=>'span5','maxlength'=>10)); ?>
+
+	<?php echo $form->textFieldRow($model,'nright',array('class'=>'span5','maxlength'=>10)); ?>
+
 	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>

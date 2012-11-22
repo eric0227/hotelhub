@@ -75,6 +75,7 @@ class OrderState extends CActiveRecord
 	{
 		return array(
 			'id_order_state' => 'Id Order State',
+			'name' => 'Name',
 			'invoice' => 'Invoice',
 			'send_email' => 'Send Email',
 			'color' => 'Color',
@@ -82,7 +83,6 @@ class OrderState extends CActiveRecord
 			'hidden' => 'Hidden',
 			'logable' => 'Logable',
 			'delivery' => 'Delivery',
-			'name' => 'Name',
 			'template' => 'Template',
 		);
 	}

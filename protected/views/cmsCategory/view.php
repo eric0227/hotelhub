@@ -21,6 +21,8 @@ $this->menu=array(
 		'id_cms_category',
 		'id_parent',
 		'level_depth',
+		'nleft',
+		'nright',
 		'active',
 		'date_add',
 		'date_upd',

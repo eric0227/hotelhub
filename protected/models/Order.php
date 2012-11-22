@@ -27,12 +27,14 @@
  * @property string $date_add
  * @property string $date_upd
  * @property string $on_agent
+ * @property string $id_order_state
  *
  * The followings are the available model relations:
  * @property User $user
  * @property Cart $cart
  * @property Currency $currency
  * @property OrderHistory[] $orderHistories
+ * @property OrderSate $orderState
  */
 class Order extends CActiveRecord
 {
@@ -64,7 +66,7 @@ class Order extends CActiveRecord
 		return array(
 			array('id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, payment', 'required'),
 			array('gift', 'numerical', 'integerOnly'=>true),
-			array('id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, invoice_number, delivery_number', 'length', 'max'=>10),
+			array('id_lang, id_user, id_cart, id_currency, id_address_delivery, id_address_invoice, invoice_number, delivery_number, id_order_state', 'length', 'max'=>10),
 			array('secure_key', 'length', 'max'=>32),
 			array('payment', 'length', 'max'=>255),
 			array('conversion_rate', 'length', 'max'=>13),
@@ -87,9 +89,13 @@ class Order extends CActiveRecord
 			'user' => array(self::BELONGS_TO, 'User', 'id_user'),
 			'cart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
 			'currency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
-			'orderHistories' => array(self::HAS_MANY, 'OrderHistory', 'id_order'),
+			'orderHistories' => array(self::HAS_MANY, 'OrderHistory', 'id_order',
+									'order'=>'orderHistories.date_add DESC'),
+			'orderState' => array(self::BELONGS_TO, 'OrderState', 'id_order_state'),
 		);
 	}
+	
+	
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -120,6 +126,7 @@ class Order extends CActiveRecord
 			'date_add' => 'Date Add',
 			'date_upd' => 'Date Upd',
 			'on_agent' => 'On Agent',
+			'id_order_state' => 'Order State',
 		);
 	}
 
@@ -189,6 +196,20 @@ class Order extends CActiveRecord
 		return parent::beforeSave();
 	}
 	
+	protected function afterSave() {
+		$this->procOrderItem();
+		
+		$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$this->id_order, 'id_order_state'=>$this->id_order_state));
+		if(!isset($orderHistory)) {
+			$orderHistory = new OrderHistory;
+			$orderHistory->id_order = $this->id_order;
+			$orderHistory->id_order_state = $this->id_order_state;
+			$orderHistory->id_user = $this->id_user;
+			$orderHistory->save();
+		}		
+		return parent::afterSave();
+	}
+	
 	public function procOrder() {
 
 		$cart = Cart::model()->findByPk($this->id_cart);
@@ -208,6 +229,7 @@ class Order extends CActiveRecord
 					$priceSum = $priceSum + $product->price;
 					$agentPriceSum = $agentPriceSum + $product->agent_price;
 				}
+
 			}
 		}
 	
@@ -215,6 +237,60 @@ class Order extends CActiveRecord
 		$this->total_agent_price = $agentPriceSum;
 		
 		$this->payment = $priceSum;
+	}
+	
+	private function procOrderItem() {
+		$cart = Cart::model()->findByPk($this->id_cart);
+		$cartProducts = $cart->cartProducts;
+		if(isset($cartProducts)) {
+			foreach($cartProducts as $cartProduct) {
+				$orderItem = $this->saveOrderItem($cart, $cartProduct);
+			}
+		}
+	}
+	
+	private function saveOrderItem($cart, $cartProduct) {
+		$product = $cartProduct->product;
+		$productDate = $cartProduct->productDate;
+		
+		$kinds = array();
+		$kinds['id_order'] = $this->id_order;
+		$kinds['id_product'] = $product->id_product;
+		if(isset($productDate)) {
+			$kinds['id_product_date'] = $productDate->id_product_date;
+		}
+		
+		$orderItem = OrderItem::model()->findByAttributes($kinds);
+		if(!isset($orderItem)) {
+			$orderItem = new OrderItem;
+		}		
+		
+		$orderItem->id_order = $this->id_order;
+		$orderItem->id_service = $product->id_service;
+		$orderItem->id_supplier = $product->id_supplier;
+		$orderItem->id_product = $product->id_product;
+		$orderItem->order_item_name = $product->getName();
+		$orderItem->product_name = $product->getName();
+		
+		if(isset($productDate)) {
+			$orderItem->id_product_date = $productDate->id_product_date;
+			$orderItem->quantity_price = $productDate->price;
+			$orderItem->agent_quantity_price = $productDate->agent_price;
+			$orderItem->on_date = $productDate->on_date;
+		} else {
+			$orderItem->quantity_price = $product->price;
+			$orderItem->agent_quantity_price = $product->agent_price;
+		}
+		$orderItem->product_quantity = $cartProduct->quantity;
+		
+		$orderItem->total_price = $orderItem->product_quantity * $orderItem->quantity_price;
+		$orderItem->agent_total_price = $orderItem->product_quantity * $orderItem->agent_quantity_price;
+		$orderItem->tax_name = 'default';
+		$orderItem->product_weight = 0;
+		
+		print_r($orderItem->attributes, true);
+		
+		$orderItem->save();
 	}
 	
 	public static function items() {

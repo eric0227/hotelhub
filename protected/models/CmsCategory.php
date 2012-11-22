@@ -7,6 +7,8 @@
  * @property string $id_cms_category
  * @property string $id_parent
  * @property integer $level_depth
+ * @property string $nleft
+ * @property string $nright
  * @property integer $active
  * @property string $date_add
  * @property string $date_upd
@@ -48,10 +50,10 @@ class CmsCategory extends CActiveRecord
 		return array(
 			array('id_parent, date_add, date_upd', 'required'),
 			array('level_depth, active', 'numerical', 'integerOnly'=>true),
-			array('id_parent, position', 'length', 'max'=>10),
+			array('id_parent, nleft, nright, position', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_cms_category, id_parent, level_depth, active, date_add, date_upd, position', 'safe', 'on'=>'search'),
+			array('id_cms_category, id_parent, level_depth, nleft, nright, active, date_add, date_upd, position', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,6 +81,8 @@ class CmsCategory extends CActiveRecord
 			'id_cms_category' => 'Id Cms Category',
 			'id_parent' => 'Id Parent',
 			'level_depth' => 'Level Depth',
+			'nleft' => 'Nleft',
+			'nright' => 'Nright',
 			'active' => 'Active',
 			'date_add' => 'Date Add',
 			'date_upd' => 'Date Upd',
@@ -100,6 +104,8 @@ class CmsCategory extends CActiveRecord
 		$criteria->compare('id_cms_category',$this->id_cms_category,true);
 		$criteria->compare('id_parent',$this->id_parent,true);
 		$criteria->compare('level_depth',$this->level_depth);
+		$criteria->compare('nleft',$this->nleft,true);
+		$criteria->compare('nright',$this->nright,true);
 		$criteria->compare('active',$this->active);
 		$criteria->compare('date_add',$this->date_add,true);
 		$criteria->compare('date_upd',$this->date_upd,true);

@@ -33,11 +33,11 @@ class OrderStateController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),

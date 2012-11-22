@@ -9,7 +9,7 @@ class StatSearchForm extends CFormModel
 {
 	public $from_date;
 	public $to_date;
-	public $room_type;
+	public $room_name;
 
 	/**
 	 * Declares the validation rules.
@@ -20,7 +20,7 @@ class StatSearchForm extends CFormModel
 	{
 		return array(
 			array('from_date, to_date', 'length', 'max'=>10),
-			array('room_type', 'length', 'max'=>20),
+			array('room_name', 'length', 'max'=>100),
 			array('from_date, to_date', 'checkSearchDate', 'on'=>'guestSearch'),
 		);
 	}
@@ -33,7 +33,7 @@ class StatSearchForm extends CFormModel
 		return array(
 			'from_date'=>'From Date',
 			'to_date'=>'To Date',
-			'room_type'=>'RoomType',
+			'room_name'=>'RoomName',
 		);
 	}
 	
@@ -41,7 +41,7 @@ class StatSearchForm extends CFormModel
 		return true;
 	}
 	
-	public static function getRoomType($id_supplier) {
+	public static function getRoomName($id_supplier) {
 		$command = Yii::app()->db->createCommand()->selectDistinct('room_name');
 		$command->from('gc_room');
 		if(isset($id_supplier)) {

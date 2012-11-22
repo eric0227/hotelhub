@@ -12,6 +12,14 @@
 	<?php echo CHtml::encode($data->level_depth); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('nleft')); ?>:</b>
+	<?php echo CHtml::encode($data->nleft); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('nright')); ?>:</b>
+	<?php echo CHtml::encode($data->nright); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('active')); ?>:</b>
 	<?php echo CHtml::encode($data->active); ?>
 	<br />
@@ -20,6 +28,7 @@
 	<?php echo CHtml::encode($data->date_add); ?>
 	<br />
 
+	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_upd')); ?>:</b>
 	<?php echo CHtml::encode($data->date_upd); ?>
 	<br />
@@ -28,5 +37,6 @@
 	<?php echo CHtml::encode($data->position); ?>
 	<br />
 
+	*/ ?>
 
 </div>
