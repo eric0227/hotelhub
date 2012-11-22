@@ -11,22 +11,47 @@ $this->menu=array(
 ?>
 <script> 
 	$(function() {
-		$('.month_navi').on('click', function() {
-			//alert($(this).attr("year")+"-"+$(this).attr("month"));
-			//$.get("./index.php", { year: $(this).attr("year"), month: $(this).attr("month") } );
-			//var cnt = $(this).val();
-			//var strHtml = "";
-			//for(var i = 1; i <= cnt; i++) {
-			//	strHtml += "<option value=\"" + i + "\">" + i + "</option>";
-			//}
+		$('.active').on('click', function() {
+			//var selected = new Array();
+			var selected = {};
+			$("input:checked").each(function() {
+				//selected.push($(this).attr("id_product_date"));
+				selected['id_product_date'+"["+$(this).attr("id_product_date")+"]"] = $(this).attr("id_product_date");
+			});
+			
+			$.ajax({type:"POST",url: <?php echo "'".Yii::app()->request->baseUrl."'"; ?> + "/productDate/Active",data: selected,
+				   success:function(data){
+					   selected = null;
+					   alert("success");
+					   location.reload();
+				   }
+				 });
+		});
 
-			//$('#Room_guests_included_price').html(strHtml);
+		$('.inactive').on('click', function() {
+			//var selected = new Array();
+			var selected = {};
+			$("input:checked").each(function() {
+				//selected.push($(this).attr("id_product_date"));
+				selected['id_product_date'+"["+$(this).attr("id_product_date")+"]"] = $(this).attr("id_product_date");
+			});
+			
+			$.ajax({type:"POST",url: <?php echo "'".Yii::app()->request->baseUrl."'"; ?> + "/productDate/Inactive",data: selected,
+				   success:function(data){
+					   selected = null;
+					   alert("success");
+					   location.reload();
+				   }
+				 });
 		});
 	});
 </script>
+<form>
 <div>
-	<div class="button">ADD NEW ROOM</div>
-	<div class="button">ADD IMAGE</div>
+	<a href="<?php echo CController::createUrl('room/create'); ?>"><div class="button" id="add_new_room"></div></a>
+	<a href="<?php echo CController::createUrl('imageSupplier/create'); ?>"><div class="button" id="add_image"></div></a>
+	<a href=""><div class="button active" active="1" id="btn_blank">START SELL</div></a>
+	<a href=""><div class="button inactive" active="0" id="btn_blank">STOP SELL</div></a>
 </div>
 <div class="cb"></div>
 
@@ -43,8 +68,12 @@ $this->menu=array(
 	</div>
 	<div class="blue_line">
 	</div>
+	<div class="cb"></div>
 	<div class="tap_area">
-		STANDARD ROOM
+		<?php
+			$code = Code::model()->findByPk($model->room_code);
+			echo $code->name;
+		?>
 	</div>
 	<div class="calendar_nav_area">
 		<span>
@@ -88,17 +117,20 @@ $this->menu=array(
 		</span>
 	</div>
 	<div class="button_area">
-		Add Image | Delete
+		<?php echo CHtml::link('Edit Price', '/supplier/roomdates_editor/'.$model->id_product); ?>
 	</div>
+	<div class="cb"></div>
 	<div class="details_area">
+		<!-- 1~15 of Month -->
 		<table>
 			<thead>
 				<?php
 					//$year = "2012";
 					//$month = "12";
 					//echo $selected_month.".".$selected_year;
-					$lastday = date('t',strtotime($selected_month.'/1/'.$selected_year));
+					$lastday = 16;//date('t',strtotime($selected_month.'/1/'.$selected_year));
 					$date = "";
+					echo "<th class=\"dateHeading\"></th>";
 					for($i = 1; $i <= $lastday; $i++) {
 						$date = date('D', mktime(0, 0, 0, $selected_month, $i, $selected_year));
 						if($date == "Sat" || $date == "Sun") {
@@ -112,42 +144,255 @@ $this->menu=array(
 			<tbody>
 				<tr>
 					<?php
+						echo "<td class=\"tipcolumn\">Price</td>";
+					
+						$fromdate = date('Y-m-d', mktime(0, 0, 0, $selected_month, 1, $selected_year));
+						$todate = date('Y-m-d', mktime(0, 0, 0, $selected_month, 31, $selected_year));
+						$product_date_items = ProductDate::model()->findAll(array("condition"=>"id_product=".$model->id_product
+							." AND on_date BETWEEN '".$fromdate."' AND '".$todate."'"));
+						
 						for($i = 1; $i <= $lastday; $i++) {
-							$date = date('D', mktime(0, 0, 0, $selected_month, $i, $selected_year));
-							echo "<td class=\"white\">".($i)."</td>";
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+							
+							$colour_class = "white";
+							if($result->active == "0") {
+								$colour_class = "inactive";
+							}
+							
+							if($result->price != "") {
+								echo "<td class=\"".$colour_class."\">".(number_format($result->price, 2))."</td>";
+							} else {
+								echo "<td class=\"".$colour_class."\"></td>";
+							}
 						}
 					?>
 				</tr>
 				<tr>
 					<?php
+						echo "<td class=\"tipcolumn\">Agent<br>Price</td>";
+						
 						for($i = 1; $i <= $lastday; $i++) {
-							$date = date('D', mktime(0, 0, 0, $selected_month, $i, $selected_year));
-							echo "<td class=\"green\">".($i)."</td>";
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+								
+							$colour_class = "green";
+							if($result->active == "0") {
+								$colour_class = "inactive";
+							}
+							
+							if($result->agent_price != "") {
+								echo "<td class=\"".$colour_class."\">".(number_format($result->agent_price, 2))."</td>";
+							} else {
+								echo "<td class=\"".$colour_class."\"></td>";
+							}
 						}
 					?>
 				</tr>
 				<tr>
 					<?php
+						echo "<td class=\"tipcolumn\">Quantity</td>";
+						
 						for($i = 1; $i <= $lastday; $i++) {
-							$date = date('D', mktime(0, 0, 0, $selected_month, $i, $selected_year));
-							echo "<td class=\"green\">".($i)."</td>";
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+							
+							$colour_class = "green";
+							if($result->active == "0") {
+								$colour_class = "inactive";
+							}
+							
+							if($result->quantity != "") {
+								echo "<td class=\"".$colour_class."\">".($result->quantity)."</td>";
+							} else {
+								echo "<td class=\"".$colour_class."\"></td>";
+							}
 						}
 					?>
 				</tr>
 				<tr>
 					<?php
+						echo "<td class=\"tipcolumn\"></td>";
+						
 						for($i = 1; $i <= $lastday; $i++) {
-							echo "<td class=\"white\">".CHtml::checkBox($i)."</td>";
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+							
+							if($result->id_product_date != "") {
+								echo "<td class=\"white\">".CHtml::checkBox('id_product_date[]', false, array('class'=>'activecheckbox','id_product_date'=>$result->id_product_date,'date'=>$date))."</td>";
+							} else {
+								echo "<td class=\"white\">".CHtml::checkBox('id_product_date[]', false, array('class'=>'activecheckbox','id_product_date'=>0,'date'=>$date))."</td>";
+							}
+						}
+					?>
+				</tr>
+			</tbody>
+		</table>
+		
+		<!-- 17~last day of Month -->
+		<table>
+			<thead>
+				<?php
+					//$year = "2012";
+					//$month = "12";
+					//echo $selected_month.".".$selected_year;
+					$lastday = date('t',strtotime($selected_month.'/1/'.$selected_year));
+					$date = "";
+					echo "<th class=\"dateHeading\"></th>";
+					for($i = 17; $i <= $lastday; $i++) {
+						$date = date('D', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+						if($date == "Sat" || $date == "Sun") {
+							echo "<th class=\"dateHeading weekends\"><span>	".$date."</span><br/>".($i)."</th>";
+						} else {
+							echo "<th class=\"dateHeading\"><span>	".$date."</span><br/>".($i)."</th>";
+						}
+					}
+				?>
+			</thead>
+			<tbody>
+				<tr>
+					<?php
+						echo "<td class=\"tipcolumn\">Price</td>";
+						
+						$fromdate = date('Y-m-d', mktime(0, 0, 0, $selected_month, 1, $selected_year));
+						$todate = date('Y-m-d', mktime(0, 0, 0, $selected_month, 31, $selected_year));
+						$product_date_items = ProductDate::model()->findAll(array("condition"=>"id_product=".$model->id_product
+							." AND on_date BETWEEN '".$fromdate."' AND '".$todate."'"));
+						
+						for($i = 17; $i <= $lastday; $i++) {
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+							
+							$colour_class = "white";
+							if($result->active == "0") {
+							$colour_class = "inactive";
+							}
+
+							if($result->price != "") {
+								echo "<td class=\"".$colour_class."\">".(number_format($result->price, 2))."</td>";
+							} else {
+								echo "<td class=\"".$colour_class."\"></td>";
+							}
+						}
+					?>
+				</tr>
+				<tr>
+					<?php
+						echo "<td class=\"tipcolumn\">Agent<br>Price</td>";
+						
+						for($i = 17; $i <= $lastday; $i++) {
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+							
+							$colour_class = "green";
+							if($result->active == "0") {
+								$colour_class = "inactive";
+							}
+
+							if($result->agent_price != "") {
+								echo "<td class=\"".$colour_class."\">".(number_format($result->agent_price, 2))."</td>";
+							} else {
+								echo "<td class=\"".$colour_class."\"></td>";
+							}
+						}
+					?>
+				</tr>
+				<tr>
+					<?php
+						echo "<td class=\"tipcolumn\">Quantity</td>";
+						
+						for($i = 17; $i <= $lastday; $i++) {
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+							
+							$colour_class = "green";
+							if($result->active == "0") {
+								$colour_class = "inactive";
+							}
+
+							if($result->quantity != "") {
+								echo "<td class=\"".$colour_class."\">".($result->quantity)."</td>";
+							} else {
+								echo "<td class=\"".$colour_class."\"></td>";
+							}
+						}
+					?>
+				</tr>
+				<tr>
+					<?php
+						echo "<td class=\"tipcolumn\"></td>";
+						
+						for($i = 17; $i <= $lastday; $i++) {
+							$date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $selected_month, $i, $selected_year));
+							$result = "";
+							foreach($product_date_items as $product_date_item) {
+								if($product_date_item->on_date == $date) {
+									$result = $product_date_item;
+								}
+							}
+							
+							if($result->id_product_date != "") {
+								echo "<td class=\"white\">".CHtml::checkBox('id_product_date[]', false, array('class'=>'activecheckbox',id_product_date=>$result->id_product_date,'date'=>$date))."</td>";
+							} else {
+								echo "<td class=\"white\">".CHtml::checkBox('id_product_date[]', false, array('class'=>'activecheckbox','id_product_date'=>0,'date'=>$date))."</td>";
+							}
 						}
 					?>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	<div class="cb"></div>
+	<div class="imagelist">
 	<?php
-		} 
+		$imgModels = $supplier->supplierImages;
+		//print_r($imgModels);
+		foreach ($imgModels as $imgModel) {
+			echo CHtml::image($imgModel->image_path."/".$imgModel->id_image."_medium.jpg");
+		}
+	?>
+	</div>
+	<div class="cb"></div>
+	<?php
+		}
 	?>
 </div>
+</form>
 <?php
 /* 
 $this->widget('bootstrap.widgets.TbListView',array(

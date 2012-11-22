@@ -10,7 +10,7 @@ h4.custom {
 
 h4.blue {
 	color: #55a3d1;
-	margin-top: 0px;
+	margin-top: 20px;
 	padding-top: 0px;
 }
 
@@ -21,9 +21,11 @@ div.h4_blue {
 
 div.blue_line {
 	float: left;
+	margin-top: 20px;
 	position: relative;
 	border-top: 2px solid #55a3d1;
-	width: 50%;
+	width: 60%;
+	display: none;
 }
 
 p.label_checkbox_pair {
@@ -159,6 +161,10 @@ fieldset fieldset {
 	position: relative;
 	padding: 5px 5px;
 	clear: both;
+	min-width: 150px;
+	text-align: center;
+	background-color: #fafafa;
+	font-weight: 700;
 }
 
 .supplier_details div.button_area {
@@ -173,7 +179,7 @@ fieldset fieldset {
 }
 
 .supplier_details div.details_area {
-	width: 100%;
+	width: 985px;
 	float: left;
 	position: relative;
 	margin-top: -1px;
@@ -186,6 +192,7 @@ th.dateHeading {
 	text-align: center;
 	color: #fff;
 	border: 1px solid #d6d6d6;
+	line-height: 1em;
 }
 
 th.weekends {
@@ -197,28 +204,46 @@ th.weekends {
 }
 
 th.dateHeading span {
-	font-size: 0.67em;
+	font-size: 1em;
 	font-weight: lighter;
 	text-align: center;
 }
 
+td.inactive {
+	font-size: 1em;
+	font-weight: lighter;
+	text-align: center;
+	background-color: #eaeaea;
+	border: 1px solid #d3d3d3;
+}
+
 td.white {
-	font-size: 0.67em;
+	font-size: 1em;
 	font-weight: lighter;
 	text-align: center;
 	border: 1px solid #d6d6d6;
 }
 
 td.green {
-	font-size: 0.67em;
+	font-size: 1em;
 	font-weight: lighter;
 	text-align: center;
 	background-color: #eef8d5;
 	border: 1px solid #d6d6d6;
 }
 
-.month_navi span {
-	
+td.tipcolumn {
+	font-size: 0.8em;
+	font-weight: normal;
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #d6d6d6;
+	line-height: 1em;
+}
+
+a.month_navi {
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .selected_month {
@@ -233,4 +258,39 @@ td.green {
 	margin-bottom: 20px;
 }
 
+.details_area tbody tr {
+	height: 30px;
+}
 
+.details_area tbody td {
+	width: 30px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+#add_new_room {
+	background-image: url(../images/btn_add_new_room.jpg);
+	width: 133px;
+	height: 30px;
+}
+
+#add_image {
+	background-image: url(../images/btn_add_image.jpg);
+	width: 105px;
+	height: 32px;
+}
+
+#btn_blank {
+	background-image: url(../images/btn_blank_image.jpg);
+	width: 133px;
+	height: 30px;
+}
+
+.imagelist img {
+	margin-right: 10px;
+}
+
+.imagelist {
+	margin-top: -20px;
+	margin-bottom: 20px;
+}

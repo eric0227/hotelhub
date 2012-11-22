@@ -32,12 +32,12 @@ class ProductDateController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'actions'=>array('create','update','active','inactive'),
+				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -188,5 +188,31 @@ class ProductDateController extends Controller
 		}
 		Yii::app()->end();		
 		//return $data;
+	}
+	
+	public function actionActive()
+	{
+		if(isset($_POST['id_product_date']))
+		{
+			foreach ($_POST['id_product_date'] as $id) {
+				$model = $this->loadModel($id);
+				$model->active = "1";
+				$model->save();
+			}
+		}
+		Yii::app()->end();
+	}
+	
+	public function actionInactive()
+	{
+		if(isset($_POST['id_product_date']))
+		{
+			foreach ($_POST['id_product_date'] as $id) {
+				$model = $this->loadModel($id);
+				$model->active = "0";
+				$model->save();
+			}
+		}
+		Yii::app()->end();
 	}
 }
