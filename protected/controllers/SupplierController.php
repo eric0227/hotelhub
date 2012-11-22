@@ -133,8 +133,11 @@ class SupplierController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('Supplier');
 		
+		$supplier = $this->loadModel(Yii::app()->user->id);
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'supplier'=>$supplier
 		));
 	}
 
