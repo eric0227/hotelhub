@@ -32,7 +32,7 @@ class SupplierController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','roomdates_editor'),
 				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -240,5 +240,15 @@ class SupplierController extends Controller
 			$model->save();
 		}
 	}
+
+	public function actionRoomdates_editor($id)
+	{
+		$productdates = ProductDate::model()->findAllByAttributes(array("id_product" => $id));
+		
+		$this->render('roomdates_editor',array(
+			'productdates'=>$productdates
+		));
+	}
+
 	// Added End.
 }

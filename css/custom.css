@@ -170,7 +170,6 @@ fieldset fieldset {
 .supplier_details div.button_area {
 	float: right;
 	position: relative;
-	display: none;
 }
 
 .supplier_details div.calendar_nav_area {
