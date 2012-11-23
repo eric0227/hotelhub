@@ -129,6 +129,63 @@ fieldset fieldset {
 	float: right;
 }
 
+/* Defines icon sets */
+.sns_icon {
+	display: inline-block;
+	width: 29px;
+	height: 29px;
+	text-indent: -9999em;
+	background: url(../images/front/sns_icon.png) no-repeat;
+}
+
+.sns_icon.facebook {
+	background-position: 0px 0px;
+}
+
+.sns_icon.twitter {
+	background-position: 0px -31px;
+}
+
+.sns_icon.googleplus {
+	background-position: 0px -62px;
+}
+
+.sns_icon.youtube {
+	background-position: 0px -92px;
+}
+
+/* Define selecting country icon sets */
+.select_country_icon {
+	width: 27px;
+	height: 32px;
+	text-intent: -9999em;
+	background: url(../images/selecting_country_arrow_iconset.png) no-repeat;
+}
+
+.select_country_icon .left_icon {
+	background-position: 33px 0px;
+}
+
+.select_country_icon .left_icon:hover {
+	background-position: 33px 38px;
+}
+
+.select_country_icon .left_icon:active {
+	background-position: 33px 76px;
+}
+
+.select_country_icon .right_icon {
+	background-position: 0px 0px;
+}
+
+.select_country_icon .right_icon:hover {
+	background-position: 0px 38px;
+}
+
+.select_country_icon .right_icon:active {
+	background-position: 9px 76px;
+}
+
 .list-selected { background: blue; color: white;}
 
 #find_accommodation .country {float: left; }
