@@ -3,7 +3,7 @@
 class IndexController extends FrontController
 {
 	
-	public $layout='//layouts/front/column1';
+	public $layout='//layouts/front/main';
 	/**
 	 * Declares class-based actions.
 	 */
