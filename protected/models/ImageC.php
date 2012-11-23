@@ -112,6 +112,10 @@ class ImageC extends CActiveRecord
 		$criteria->compare('image_title',$this->image_title,true);
 		$criteria->compare('position',$this->position);
 		$criteria->compare('cover',$this->cover);
+		
+		if(!Yii::app()->user->isAdmin()) {
+			$criteria->join = 'INNER JOIN gc_supplier_image a ON a.id_image = t.id_image';
+		}
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

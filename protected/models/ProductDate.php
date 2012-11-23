@@ -112,4 +112,18 @@ class ProductDate extends CActiveRecord
 	protected function beforeSave() {
 		return parent::beforeSave();
 	}
+	
+	protected function afterSave() {
+		if(isset($_POST['Special'])) {
+			SpecialProductDate::model()->deleteAllByAttributes(array('id_product_date'=>$this->id_product_date));
+			
+			foreach($_POST['Special'] as $id_special) {
+				$specialProductDate = new SpecialProductDate;
+				$specialProductDate->id_special = $id_special;
+				$specialProductDate->id_product_date = $this->id_product_date;
+				$specialProductDate->save();
+			}
+		}
+		return parent::afterSave();
+	}
 }

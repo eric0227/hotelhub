@@ -73,6 +73,8 @@ class ProductDateController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_product_date));
 		}
+		
+		
 
 		$this->render('create',array(
 			'model'=>$model,
@@ -97,9 +99,10 @@ class ProductDateController extends Controller
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_product_date));
 		}
-
+		
 		$this->render('update',array(
 			'model'=>$model,
+			'specialList'=>$specialList
 		));
 	}
 

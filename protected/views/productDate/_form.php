@@ -47,6 +47,17 @@
 	<?php echo $form->textFieldRow($model,'agent_price',array('class'=>'span5','maxlength'=>20)); ?>
 
 	<?php echo $form->textFieldRow($model,'quantity',array('class'=>'span5','maxlength'=>10)); ?>
+	
+	<div>
+		<h4>Special Deal</h4>
+		<div>
+			<?php 
+				$specialList = Special::model()->findAll();
+				$specialValues = array_keys(CHtml::listData($model->specials, 'id_special', 'name'));
+				echo CHtml::checkBoxList('Special', $specialValues, CHtml::listData($specialList, 'id_special', 'name'), array('template' => '<div>{input} {label}</div>', 'separator' => '', 'checkAll' => 'Check all'));
+			?>
+		</div>
+	</div>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

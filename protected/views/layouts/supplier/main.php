@@ -61,15 +61,26 @@ $lang = Yii::app()->session->get('lang', 1);
 		<?php $this->widget('bootstrap.widgets.TbMenu',array(
 			'type' => 'tabs',
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/sup/index')),
+				array('label'=>'Home', 'url'=>array('/supplier/index')),
+				
+				array('label'=>'Supplier', 'url'=>'',
+					'items'=>array(
+						//array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),
+						array('label'=>'Supplier Update', 'url'=>array('/supplier/update/'. Yii::app()->user->id)),
+						array('label'=>'Supplier Images', 'url'=>array('/imageSupplier/index', 'type'=>ImageC::SUPPLIER_IMAGE)),
+					),
+					'visible'=>!Yii::app()->user->isGuest
+				),
+				
 				array('label'=>'Product', 'url'=>'', 
 					'items'=>array(
-						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
-						array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),						
-						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),						
+						//array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
+						//array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),						
+						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),
+						array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct')),
 						array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room')),	
 						array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding')),
-						array('label'=>'Special', 'url'=>array('/special/index', 'tag'=>'special')),
+						//array('label'=>'Special', 'url'=>array('/special/index', 'tag'=>'special')),
 						array('label'=>'ProductDate', 'url'=>array('/productDate/index', 'tag'=>'productDate'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
@@ -77,26 +88,13 @@ $lang = Yii::app()->session->get('lang', 1);
 				array('label'=>'Orders', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Orders', 'url'=>array('/order/index', 'tag'=>'order')),
-						array('label'=>'OrderItem', 'url'=>array('/orderItem/index', 'tag'=>'orderItem')),
-						array('label'=>'OrderHistory', 'url'=>array('/orderHistory/index', 'tag'=>'orderHistory')),
-						array('label'=>'OrderState', 'url'=>array('/orderState/index', 'tag'=>'orderState'))
+						//array('label'=>'OrderItem', 'url'=>array('/orderItem/index', 'tag'=>'orderItem')),
+						//array('label'=>'OrderHistory', 'url'=>array('/orderHistory/index', 'tag'=>'orderHistory')),
+						//array('label'=>'OrderState', 'url'=>array('/orderState/index', 'tag'=>'orderState'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
-				array('label'=>'Cart', 'url'=>'',
-					'items'=>array(
-						array('label'=>'Cart', 'url'=>array('/cart/index', 'tag'=>'cart')),
-						array('label'=>'CartProduct', 'url'=>array('/cartProduct/index', 'tag'=>'cartProduct'))
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
-				array('label'=>'Supplier', 'url'=>'',
-					'items'=>array(
-						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),
-						array('label'=>'Supplier Images', 'url'=>array('/imageSupplier/index', 'type'=>ImageC::SUPPLIER_IMAGE)),
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
+				
 				array('label'=>'Guest List', 'url'=>array('/stat/guestList'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'CMS', 'url'=>'',
 					'items'=>array(

@@ -1,6 +1,6 @@
 <?php
 
-class ImageSupplierController extends Controller
+class OrderItemController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -15,6 +15,7 @@ class ImageSupplierController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -32,11 +33,11 @@ class ImageSupplierController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'expression' => "Yii::app()->user->getLevel() >= 5",
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'expression' => "Yii::app()->user->getLevel() >= 5",
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -61,57 +62,23 @@ class ImageSupplierController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ImageC;
+		$model=new OrderItem;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ImageC']) && isset($_POST['id_supplier']))
+		if(isset($_POST['OrderItem']))
 		{
-			$model->attributes=$_POST['ImageC'];						
-			$model->image=CUploadedFile::getInstance($model,'image');			
-			
-			$id_supplier = $_POST['id_supplier'];
-			$model->setIdSupplier($id_supplier);
-			
-			$model->image_path = '/images/supplier/'.$id_supplier.'';
-
-			$realDir = $model->getRealDir();
-			if(!is_dir($realDir)) {
-				@mkdir($realDir, 0777);
-			}
-			
-			if($model->save()) {
-				$filename = $model->getRealName();
-				$model->image->saveAs($model->getRealPath());
-				
-				
-				$imageTypeList = ImageType::model()->findAll();
-				foreach($imageTypeList as $imageType) {
-
-					$image = Yii::app()->image->load($model->getRealPath());
-					$image->resize($imageType->width, $imageType->height)->quality($imageType->quality);
-					if($imageType->sharpen > 0) {
-						$image->sharpen($imageType->sharpen);
-					}
-					if($imageType->rotate > 0){
-						$image->rotate($imageType->rotate);
-					}			
-					$saveTo = $model->getRealDir() . '/' . $model->id_image . '_' . $imageType->name . '.' . $model->getSubfix();
-// 					echo $saveTo;
-
-					$image->save($saveTo);
-				}
-				
-				$this->redirect(array('view','id'=>$model->id_image));
-			}
+			$model->attributes=$_POST['OrderItem'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id_order_item));
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
 		));
 	}
-	
+
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
@@ -124,13 +91,11 @@ class ImageSupplierController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ImageC']))
+		if(isset($_POST['OrderItem']))
 		{
-			$model->attributes=$_POST['ImageC'];
-			
-			if($model->save()) {
-				$this->redirect(array('view','id'=>$model->id_image));
-			}
+			$model->attributes=$_POST['OrderItem'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->id_order_item));
 		}
 
 		$this->render('update',array(
@@ -145,17 +110,11 @@ class ImageSupplierController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+		$this->loadModel($id)->delete();
 
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
@@ -163,12 +122,7 @@ class ImageSupplierController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('ImageC');
-		if(!Yii::app()->user->isAdmin()) {
-			$dataProvider->criteria = array(
-				'join' => 'INNER JOIN gc_supplier_image a ON a.id_image = t.id_image'
-			);
-		}
+		$dataProvider=new CActiveDataProvider('OrderItem');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -179,10 +133,10 @@ class ImageSupplierController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new ImageC('search');
+		$model=new OrderItem('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Image']))
-			$model->attributes=$_GET['Image'];
+		if(isset($_GET['OrderItem']))
+			$model->attributes=$_GET['OrderItem'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -196,7 +150,7 @@ class ImageSupplierController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ImageC::model()->findByPk($id);
+		$model=OrderItem::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -208,7 +162,7 @@ class ImageSupplierController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='image-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='order-item-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

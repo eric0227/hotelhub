@@ -8,19 +8,14 @@
 		<legend>Details</legend>
 		<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 		<?php echo $form->errorSummary($model); ?>
-	
-		<?php
-			//echo "<div class='control-group '>";
-			//echo $form->labelEx($model,'id_supplier',
-			//	array('class' => 'control-label'));
-		?>
+
 		<?php 
-			//echo $form->textField($model,'id_supplier',array('size'=>10,'maxlength'=>10));
-			//echo "	<div class='controls'>";
-			echo $form->dropDownListRow($model,'id_supplier', User::items(User::SUPPLIER),
-				array('class' => 'span5'));
-			//echo "	</div>";
-			//echo "</div>";
+			if(Yii::app()->user->isAdmin()) {
+				echo $form->dropDownListRow($model,'id_supplier', User::items(User::SUPPLIER),
+					array('class' => 'span5'));
+			} else {
+				echo $form->hiddenField($model,'id_supplier',array('class'=>'span5','maxlength'=>64));
+			}
 		?>
 		<?php echo $form->error($model,'id_supplier'); ?>
 	

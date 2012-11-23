@@ -13,13 +13,16 @@
 	
 		<?php 
 			if($model->isNewRecord) { 
-				echo CHtml::label('Supplier', 'id_supplier');
-				echo CHtml::dropDownList('id_supplier', null, Supplier::items());
-				//echo $form->dropDownListRow($model, 'id_supplier', SupplierImage::items(), array('class'=>'span5'));
+				if(Yii::app()->user->isAdmin()) {
+					echo CHtml::label('Supplier', 'id_supplier');
+					echo CHtml::dropDownList('id_supplier', null, Supplier::items());
+				} else {
+					echo CHtml::hiddenField('id_supplier', Yii::app()->user->id, array());
+				}
 			}
 		?>
 		
-		<?php echo $form->textFieldRow($model,'image_title',array('class'=>'span5','maxlength'=>100)); ?>
+		<?php echo $form->textFieldRow($model,'image_title', array('class'=>'span5','maxlength'=>100)); ?>
 		
 		<br />
 		

@@ -31,7 +31,15 @@ class AdmController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		
+		//$this->render('index');
+		
+		if(Yii::app()->user->isAdmin()) {
+			$this->render('index');
+		} else {
+			Yii::app()->user->logout();
+			$this->redirect(Yii::app()->baseUrl . '/adm/login');
+		}
 	}
 
 	/**

@@ -31,7 +31,16 @@ class SupController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		
+		//$this->render('index');
+		//$this->redirect(Yii::app()->baseUrl . '/supplier/index');
+		
+		if(Yii::app()->user->isSUpplier()) {
+			$this->redirect(Yii::app()->baseUrl . '/supplier/index');
+		} else {
+			Yii::app()->user->logout();
+			$this->redirect(Yii::app()->baseUrl . '/sup/login');
+		}
 	}
 
 	/**
