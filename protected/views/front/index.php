@@ -96,7 +96,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				<span class="reputation"></span>
 			</div>
 			<div class="row center">
-				<input type="submit" value="Search Accommodation" onclick="return searchAccommodation();" />
+				<input type="submit" value="Search Accommodation" />
 			</div>
 		</form>
 	</div>
