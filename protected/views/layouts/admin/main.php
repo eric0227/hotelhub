@@ -162,7 +162,6 @@ $translate=Yii::app()->translate;
 	<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by Holidoy.<br/>
 		All Rights Reserved.<br/>
-		Powered by <a href="http://www.gnaemarketing.com.au">Gna eMarketing </a>
 	</div><!-- footer -->
 
 </div><!-- page -->

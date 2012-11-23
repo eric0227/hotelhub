@@ -10,11 +10,11 @@
 	
 	<?php 
 		if($model->isNewRecord) { 
-			echo CHtml::label('Product', 'id_product');
+			echo CHtml::label('Product', 'Product');
 			echo CHtml::dropDownList('id_product', null, Product::items());
 		}
-	?>		
-	
+	?>
+			
 	<?php echo $form->textFieldRow($model,'image_title',array('class'=>'span5','maxlength'=>100)); ?>
 		
 	<?php 

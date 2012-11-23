@@ -217,7 +217,14 @@ class Product extends CActiveRecord
 		$_items = array();
 	
 		$service = Service::getCurrentService();
-		$models = Product::model()->findAllByAttributes(array('id_service'=>Service::getCurrentService()));
+		
+		$whereAttributes = array();
+		$whereAttributes['id_service'] = Service::getCurrentService();
+		
+		if(Yii::app()->user->isSupplier()) {
+			$whereAttributes['id_supplier'] = Yii::app()->user->id;
+		}
+		$models = Product::model()->findAllByAttributes($whereAttributes);
 
 		foreach($models as $model) {
 			$_items[$model->id_product] = $model->getName();

@@ -162,7 +162,11 @@ class ImageProductController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('ImageC');
-		
+		if(!Yii::app()->user->isAdmin()) {
+			$dataProvider->criteria = array(
+				'join' => 'INNER JOIN gc_product_image a ON a.id_image = t.id_image'
+			);
+		}		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

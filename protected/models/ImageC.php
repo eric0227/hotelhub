@@ -101,7 +101,7 @@ class ImageC extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($type, $id = null)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -113,10 +113,19 @@ class ImageC extends CActiveRecord
 		$criteria->compare('position',$this->position);
 		$criteria->compare('cover',$this->cover);
 		
-		if(!Yii::app()->user->isAdmin()) {
+		if($type == 'supplier') {
 			$criteria->join = 'INNER JOIN gc_supplier_image a ON a.id_image = t.id_image';
+			if(Yii::app()->user->isSupplier()) {
+				$criteria->join = $criteria->join . ' and a.id_supplier = '.Yii::app()->user->id;
+			}
 		}
-
+		if($type == 'product') {
+			$criteria->join = 'INNER JOIN gc_product_image a ON a.id_image = t.id_image';
+			if(isset($id)) {
+				$criteria->join = $criteria->join . ' and a.id_product = '.$id;
+			}
+		}
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
