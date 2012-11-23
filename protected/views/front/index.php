@@ -95,9 +95,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				<label>Guest Rating</label>
 				<span class="reputation"></span>
 			</div>
-			<div class="row center">
-				<input type="submit" value="Search Accommodation" />
-			</div>
+
 		</form>
 	</div>
 </div>
