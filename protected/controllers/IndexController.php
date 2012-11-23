@@ -3,7 +3,7 @@
 class IndexController extends FrontController
 {
 	
-	public $layout='//layouts/front/main';
+	public $layout='//layouts/front/column1';
 	/**
 	 * Declares class-based actions.
 	 */
@@ -20,7 +20,7 @@ class IndexController extends FrontController
 	 */
 	public function actionIndex()
 	{
-		$this->render('index');
+		$this->render('/front/index');
 	}
 
 	/**
