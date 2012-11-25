@@ -145,7 +145,7 @@ INSERT INTO `gc_zone` (`id_zone`, `name`, `active`) VALUES
 (7, 'Europe (out E.U)', 1),
 (8, 'Centrale America/Antilla', 1);
 
-
+ 
 CREATE TABLE IF NOT EXISTS `gc_currency` (
   `id_currency` int(10) unsigned NOT NULL AUTO_INCREMENT,
 
