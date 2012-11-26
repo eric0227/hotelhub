@@ -34,7 +34,7 @@ class SupplierController extends Controller
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index'),
-				'expression' => "Yii::app()->user->getLevel() >= 10",
+				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('view','update','roomdates_editor'),
