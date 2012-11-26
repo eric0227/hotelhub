@@ -1,6 +1,6 @@
 <?php
 
-class GroupController extends Controller
+class CurrencyController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -15,7 +15,6 @@ class GroupController extends Controller
 	{
 		return array(
 			'accessControl', // perform access control for CRUD operations
-			'postOnly + delete', // we only allow deletion via POST request
 		);
 	}
 
@@ -33,11 +32,11 @@ class GroupController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'expression' => "Yii::app()->user->getLevel() >= 10",
+				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'expression' => "Yii::app()->user->getLevel() >= 10",
+				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,16 +61,16 @@ class GroupController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Group;
+		$model=new Currency;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Group']))
+		if(isset($_POST['Currency']))
 		{
-			$model->attributes=$_POST['Group'];
+			$model->attributes=$_POST['Currency'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_group));
+				$this->redirect(array('view','id'=>$model->id_currency));
 		}
 
 		$this->render('create',array(
@@ -91,11 +90,11 @@ class GroupController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Group']))
+		if(isset($_POST['Currency']))
 		{
-			$model->attributes=$_POST['Group'];
+			$model->attributes=$_POST['Currency'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_group));
+				$this->redirect(array('view','id'=>$model->id_currency));
 		}
 
 		$this->render('update',array(
@@ -110,11 +109,17 @@ class GroupController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		if(Yii::app()->request->isPostRequest)
+		{
+			// we only allow deletion via POST request
+			$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+			if(!isset($_GET['ajax']))
+				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		}
+		else
+			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
 	}
 
 	/**
@@ -122,7 +127,7 @@ class GroupController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Group');
+		$dataProvider=new CActiveDataProvider('Currency');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -133,10 +138,10 @@ class GroupController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Group('search');
+		$model=new Currency('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Group']))
-			$model->attributes=$_GET['Group'];
+		if(isset($_GET['Currency']))
+			$model->attributes=$_GET['Currency'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -150,7 +155,7 @@ class GroupController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Group::model()->findByPk($id);
+		$model=Currency::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -162,7 +167,7 @@ class GroupController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='group-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='currency-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

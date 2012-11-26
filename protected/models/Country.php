@@ -21,6 +21,7 @@
  * @property Address[] $addresses
  * @property Zone $idZone
  * @property State[] $states
+ * @property Destinations[] $destinations
  */
 class Country extends CActiveRecord
 {
@@ -75,6 +76,7 @@ class Country extends CActiveRecord
 			'addresses' => array(self::HAS_MANY, 'Address', 'id_country'),
 			'zone' => array(self::BELONGS_TO, 'Zone', 'id_zone'),
 			'states' => array(self::HAS_MANY, 'State', 'id_country'),
+			'destinations' => array(self::HAS_MANY, 'Destination', 'id_country'),
 		);
 	}
 
@@ -126,6 +128,15 @@ class Country extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function beforeDelete() {
+		if(count($this->addresses) > 0 || count($this->states) > 0 || count($tins->destinations) > 0) {
+			$this->active = 0;
+			$this->save();
+			return false;
+		}
+		return parent::beforeDelete();
 	}
 	
 	public static function items()

@@ -110,7 +110,6 @@ $translate=Yii::app()->translate;
 					'items'=>array(
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
 						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
-						array('label'=>'Destination', 'url'=>array('/destination/index', 'tag'=>'destination')),
 						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
@@ -132,6 +131,7 @@ $translate=Yii::app()->translate;
 					'items'=>array(
 						array('label'=>'Configuration', 'url'=>array('/configuration/index', 'tag'=>'configuration')),
 						array('label'=>'Lang', 'url'=>array('/lang/index', 'tag'=>'lang')),
+						array('label'=>'Currency', 'url'=>array('/currency/index', 'tag'=>'Currency')),
 						array('label'=>'CodeType', 'url'=>array('/codeType/index', 'tag'=>'codeType')),
 						array('label'=>'Code', 'url'=>array('/code/index', 'tag'=>'code')),
 						array('label'=>'AttributeGroup', 'url'=>array('/attributeGroup/index', 'tag'=>'attributeGroup')),
@@ -139,8 +139,14 @@ $translate=Yii::app()->translate;
 						array('label'=>'AttributeItem', 'url'=>array('/attributeItem/index', 'tag'=>'attributeItem')),
 						array('label'=>'Edit Translate', 'url'=>array('/translate/edit/admin', 'tag'=>'translateEdit')),
 						array('label'=>'Missing Translate', 'url'=>array('/translate/edit/missing', 'tag'=>'translateMission')),
-						
-						
+						array('label'=>'Location', 'url'=>'',
+							'items'=>array(
+								array('label'=>'Zone', 'url'=>array('zone/index'), 'tag'=>'Zone'),
+								array('label'=>'Country', 'url'=>array('country/index'), 'tag'=>'Country'),
+								array('label'=>'State', 'url'=>array('state/index'), 'tag'=>'State'),
+								array('label'=>'Destination', 'url'=>array('destination/index'), 'tag'=>'Destination'),
+							),
+						),
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

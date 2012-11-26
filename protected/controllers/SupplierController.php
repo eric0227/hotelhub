@@ -26,18 +26,24 @@ class SupplierController extends Controller
 	 */
 	public function accessRules()
 	{
+		$id_supplier = $_GET['id'];
+		if(!isset($id_supplier)) {
+			$id_supplier = $_POST['Supplier']['id_supplier'];
+		}
+		
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
+				'actions'=>array('index'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','roomdates_editor'),
-				'expression' => "Yii::app()->user->getLevel() >= 5",
+				'actions'=>array('view','update','roomdates_editor'),
+				'expression' => "Yii::app()->user->getLevel() >= 5 || Yii::app()->user->id == $id_supplier",
+				//'expression' => 'Yii::app()->user->id == $params["Supplier"]->id_supplier',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'expression' => "Yii::app()->user->getLevel() >= 5",
+				'actions'=>array('admin','create','delete'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -51,6 +57,7 @@ class SupplierController extends Controller
 	 */
 	public function actionView($id)
 	{
+				
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));

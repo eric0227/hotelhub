@@ -14,8 +14,9 @@
  *
  * The followings are the available model relations:
  * @property Address[] $addresses
- * @property Zone $idZone
- * @property Country $idCountry
+ * @property Zone $zone
+ * @property Country $country
+ * @property Destinations[] $destinations
  */
 class State extends CActiveRecord
 {
@@ -66,8 +67,9 @@ class State extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'addresses' => array(self::HAS_MANY, 'Address', 'id_state'),
-			'idZone' => array(self::BELONGS_TO, 'Zone', 'id_zone'),
-			'idCountry' => array(self::BELONGS_TO, 'Country', 'id_country'),
+			'zone' => array(self::BELONGS_TO, 'Zone', 'id_zone'),
+			'country' => array(self::BELONGS_TO, 'Country', 'id_country'),
+			'destinations' => array(self::HAS_MANY, 'Destination', 'id_state'),
 		);
 	}
 
@@ -109,6 +111,15 @@ class State extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function beforeDelete() {
+		if(count($this->addresses) > 0 || count($tins->destinations) > 0) {
+			$this->active = 0;
+			$this->save();
+			return false;
+		}
+		return parent::beforeDelete();
 	}
 	
 	public static function items($id_country)

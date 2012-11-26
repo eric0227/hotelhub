@@ -73,6 +73,15 @@ class Zone extends CActiveRecord
 			'active' => 'Active',
 		);
 	}
+	
+	protected function beforeDelete() {
+		if(count($this->countries) > 0 || count($this->states) > 0) {
+			$this->active = 0;
+			$this->save();
+			return false;
+		}
+		return parent::beforeDelete();
+	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -93,4 +102,14 @@ class Zone extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public static function items() {
+		$_items = array();
+		$models = Zone::model()->findAll();
+		foreach($models as $model) {
+			$_items[$model->id_zone] = $model->name; 
+		}
+		return $_items;
+	}
 }
+
