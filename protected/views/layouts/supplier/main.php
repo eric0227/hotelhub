@@ -67,6 +67,7 @@ $lang = Yii::app()->session->get('lang', 1);
 					'items'=>array(
 						//array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),
 						array('label'=>'Supplier Update', 'url'=>array('/supplier/update/'. Yii::app()->user->id)),
+						array('label'=>'Supplier Address', 'url'=>array('/supplier/updateAddress/'. Yii::app()->user->id)),
 						array('label'=>'Supplier Images', 'url'=>array('/imageSupplier/index', 'type'=>ImageC::SUPPLIER_IMAGE)),
 					),
 					'visible'=>!Yii::app()->user->isGuest
