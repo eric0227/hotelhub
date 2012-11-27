@@ -21,6 +21,7 @@
  * @property Address[] $addresses
  * @property Cart[] $carts
  * @property Group $group
+ * @property Address getDefaultAddress
  */
 class User extends CActiveRecord
 {
@@ -88,6 +89,17 @@ class User extends CActiveRecord
 			'lang' => array(self::BELONGS_TO, 'Lang', 'id_lang'),
 			'carts' => array(self::HAS_MANY, 'Cart', 'id_user'),
 		);
+	}
+	
+	public function getDefaultAddress() {
+		$address = Address::model()->findByAttributes(array('id_user'=>$this->id_user, 'address_code'=>Address::DEFAULT_CODE));
+		//var_dump($addressModel);
+		if(!isset($address)) {
+			$address = new Address;
+			$address->id_user = $this->id_user;
+			$address->address_code = Address::DEFAULT_CODE;
+		}
+		return $address;
 	}
 	
 	public function getCart() {

@@ -37,7 +37,7 @@ class SupplierController extends Controller
 				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view','update','roomdates_editor'),
+				'actions'=>array('view','update','roomdates_editor', 'updateAddress'),
 				'expression' => "Yii::app()->user->getLevel() >= 5 || Yii::app()->user->id == $id_supplier",
 				//'expression' => 'Yii::app()->user->id == $params["Supplier"]->id_supplier',
 			),
@@ -116,6 +116,28 @@ class SupplierController extends Controller
 
 		$this->render('update',array(
 			'model'=>$model,
+		));
+	}
+	
+	public function actionUpdateAddress($id)
+	{
+		$user = User::model()->findByPk($id);
+		$defaultAddress = $user->getDefaultAddress();
+	
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+	
+		if(isset($_POST['Address']))
+		{
+			$defaultAddress->attributes = $_POST['Address'];
+				
+			if($defaultAddress->save()) {
+				// success message..
+			}
+		}
+	
+		$this->render('address_form',array(
+				'model'=>$defaultAddress,
 		));
 	}
 
