@@ -250,12 +250,13 @@ class SupplierController extends Controller
 
 	public function actionRoomdates_editor($id)
 	{
-		$productdates = ProductDate::model()->findAllByAttributes(array("id_product" => $id));
+		$productdates = ProductDate::model()->findAllByAttributes(array("id_product" => $id), array('order'=>'on_date'));
 		
 		$this->render('roomdates_editor',array(
 			'productdates'=>$productdates
 		));
 	}
+
 
 	// Added End.
 }

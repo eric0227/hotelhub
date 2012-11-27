@@ -130,6 +130,8 @@ $this->menu=array(
 					//echo $selected_month.".".$selected_year;
 					$lastday = 16;//date('t',strtotime($selected_month.'/1/'.$selected_year));
 					$date = "";
+					$today = date("Y-m-d");
+					
 					echo "<th class=\"dateHeading\"></th>";
 					for($i = 1; $i <= $lastday; $i++) {
 						$date = date('D', mktime(0, 0, 0, $selected_month, $i, $selected_year));
@@ -139,6 +141,8 @@ $this->menu=array(
 							echo "<th class=\"dateHeading\"><span>	".$date."</span><br/>".($i)."</th>";
 						}
 					}
+					
+					
 				?>
 			</thead>
 			<tbody>

@@ -32,7 +32,7 @@ class ProductDateController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','active','inactive'),
+				'actions'=>array('create','update','active','inactive', 'bulksave'),
 				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -205,7 +205,7 @@ class ProductDateController extends Controller
 		}
 		Yii::app()->end();
 	}
-	
+
 	public function actionInactive()
 	{
 		if(isset($_POST['id_product_date']))
@@ -215,6 +215,41 @@ class ProductDateController extends Controller
 				$model->active = "0";
 				$model->save();
 			}
+		}
+		Yii::app()->end();
+	}
+
+
+	public function actionBulkSave()
+	{
+		if(isset($_POST['bulk_save']) && isset($_POST['id_product']))
+		{
+			$id_product = $_POST['id_product'];
+			foreach ($_POST['bulk_save'] as $bulk) {
+				if($bulk['id_product_date'] != "") {
+					//echo "Exist<br>";
+					$model = $this->loadModel($bulk['id_product_date']);
+					$model->price = str_replace(",", "", $bulk['price']);
+					$model->agent_price = str_replace(",", "", $bulk['agent_price']);
+					$model->quantity = str_replace(",", "", $bulk['quantity']);
+					$model->active = isset($bulk['is_active']) ? $bulk['is_active'] : 0;
+					$model->save();
+				} else {
+					if($bulk['price'] != "") {
+						//echo "Not Exist<br>";
+						$model = new ProductDate;
+						$model->id_product = $id_product;
+						$model->price = str_replace(",", "", $bulk['price']);
+						$model->agent_price = str_replace(",", "", $bulk['agent_price']);
+						$model->quantity = str_replace(",", "", $bulk['quantity']);
+						$model->active = isset($bulk['is_active']) ? $bulk['is_active'] : 0;
+						$model->on_date = $bulk['on_date'];
+						$model->save();
+					}
+				}
+			}
+			
+			$this->redirect(array('supplier/roomdates_editor','id'=>$id_product));
 		}
 		Yii::app()->end();
 	}

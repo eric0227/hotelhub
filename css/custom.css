@@ -294,3 +294,40 @@ a.month_navi {
 	margin-top: -20px;
 	margin-bottom: 20px;
 }
+
+th.th_center {
+	background-color: #2d7ebd;
+	font-weight: lighter;
+	text-align: center;
+	color: #fff;
+	border: 1px solid #d6d6d6;
+	line-height: 1em;
+}
+
+span.desc {
+	font-size: 0.8em;
+}
+
+.mon, .Mon, .wed, .Wed, .fri, .Fri {
+	background-color: #FFF8CF;
+}
+
+.tue, .Tue, .thu, .Thu {
+	background-color: #FFF2B3;
+}
+
+.sat, .Sat {
+	background-color: #EDF3FF;
+}
+
+.sun, .Sun {
+	background-color: #E4EBFD;
+}
+
+.outofdate {
+	background-color: #ddd;
+}
+
+th.center, td.center {
+	text-align: center;
+}
