@@ -63,15 +63,15 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('passwd, repeat_passwd', 'required', 'on'=>'insert'),
-			array('id_group, lastname, firstname, email, passwd, repeat_passwd', 'required'),
-			array('is_guest, active, deleted', 'numerical', 'integerOnly'=>true),
-			array('id_group, id_lang', 'length', 'max'=>10),
+			array('id_group, lastname, firstname, email', 'required'),
+			array('is_guest, active, deleted, id_address_default,id_address_delivery,id_address_invoice', 'numerical', 'integerOnly'=>true),
+			array('id_group, id_lang, id_address_default,id_address_delivery,id_address_invoice', 'length', 'max'=>10),
 			array('lastname, firstname, passwd, repeat_passwd', 'length', 'max'=>32),
 			array('email', 'length', 'max'=>128),
 			array('note, birthday', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_user, id_group, id_lang, lastname, firstname, email, passwd, is_guest, note, birthday, active, deleted', 'safe', 'on'=>'search'),
+			array('id_user, id_group,id_address_default,id_address_delivery,id_address_invoice, id_lang, lastname, firstname, email, passwd, is_guest, note, birthday, active, deleted', 'safe', 'on'=>'search'),
 			array('passwd', 'compare', 'compareAttribute'=>'repeat_passwd'),
 		);
 	}
@@ -88,18 +88,14 @@ class User extends CActiveRecord
 			'group' => array(self::BELONGS_TO, 'Group', 'id_group'),
 			'lang' => array(self::BELONGS_TO, 'Lang', 'id_lang'),
 			'carts' => array(self::HAS_MANY, 'Cart', 'id_user'),
+			'addressDefault' => array(self::BELONGS_TO, 'Address', 'id_address_default'),
+			'addressDelivery' => array(self::BELONGS_TO, 'Address', 'id_address_delivery'),
+			'addressInvoice' => array(self::BELONGS_TO, 'Address', 'id_address_invoice'),
 		);
 	}
 	
 	public function getDefaultAddress() {
-		$address = Address::model()->findByAttributes(array('id_user'=>$this->id_user, 'address_code'=>Address::DEFAULT_CODE));
-		//var_dump($addressModel);
-		if(!isset($address)) {
-			$address = new Address;
-			$address->id_user = $this->id_user;
-			$address->address_code = Address::DEFAULT_CODE;
-		}
-		return $address;
+		return $this->addressDefault;
 	}
 	
 	public function getCart() {
@@ -122,6 +118,9 @@ class User extends CActiveRecord
 			'id_user' => 'User Id',
 			'id_group' => 'Group',
 			'id_lang' => 'Lang',
+			'id_address_default' => 'Default Address',
+			'id_address_delivery' => 'Delivery Address',
+			'id_address_invoice' => 'Invoice Address',			
 			'lastname' => 'Lastname',
 			'firstname' => 'Firstname',
 			'email' => 'Email',
@@ -148,6 +147,10 @@ class User extends CActiveRecord
 
 		$criteria->compare('id_user',$this->id_user,true);
 		$criteria->compare('id_group',$this->id_group,true);
+		$criteria->compare('id_address_default',$this->id_address_default,true);
+		$criteria->compare('id_address_delivery',$this->id_address_delivery,true);
+		$criteria->compare('id_address_invoice',$this->id_address_invoice,true);
+		
 		$criteria->compare('id_lang',$this->id_lang,true);
 		$criteria->compare('lastname',$this->lastname,true);
 		$criteria->compare('firstname',$this->firstname,true);
@@ -175,6 +178,8 @@ class User extends CActiveRecord
         //if it's not a new password, save the password only if it not empty and the two passwords match
         {
             $this->passwd = Yii::app()->user->hashPassword($this->passwd);
+        } else {
+        	$this->passwd = User::findAllByPk($this->id_user)->passwd;
         }
         
         return parent::beforeSave();

@@ -55,13 +55,6 @@
 			echo $form->dropDownList($model,'id_destination',$destination,array('prompt'=>'---Please select---'));
 		?>
 	<?php echo $form->error($model,'id_destination'); ?>
-		
-
-	<?php echo $form->labelEx($model,'id_user'); ?>
-	<?php
-		echo $form->dropDownList($model,'id_user', User::items());
-	?>
-	<?php echo $form->error($model,'id_user'); ?>
 
 	<?php echo $form->labelEx($model,'address_code'); ?>
 	<?php 

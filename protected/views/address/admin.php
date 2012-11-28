@@ -45,7 +45,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id_address',
 		'id_country',
 		'id_state',
-		'id_user',
 		'alias',
 		'company',
 		/*

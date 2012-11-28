@@ -8,6 +8,7 @@
  * @property string $id_serivce
  * @property string $id_supplier
  * @property string $id_category_default
+ * @property string $id_address
  * @property integer $on_sale
  * @property integer $quantity
  * @property string $price
@@ -70,7 +71,7 @@ class Product extends CActiveRecord
 			array('id_category_default, id_supplier', 'required'),
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
-			array('id_category_default, out_of_stock', 'length', 'max'=>10),
+			array('id_category_default, out_of_stock, id_address', 'length', 'max'=>10),
 			array('price, wholesale_price', 'length', 'max'=>20),
 			array('condition', 'length', 'max'=>11),
 			// The following rule is used by search().
@@ -95,6 +96,7 @@ class Product extends CActiveRecord
 			'productImages' => array(self::HAS_MANY, 'ProductImage', 'id_product'),
 			'productLangs' => array(self::HAS_MANY, 'ProductLang', 'id_product'),
 			'room' => array(self::HAS_ONE, 'Room', 'id_product'),
+			'address' => array(self::BELONGS_TO, 'Address', 'id_address'),
 		);
 	}
 

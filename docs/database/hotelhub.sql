@@ -254,6 +254,10 @@ CREATE TABLE IF NOT EXISTS `gc_user` (
   `id_user` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_group` int(10) unsigned NOT NULL,
   `id_lang` int(10) unsigned NOT NULL DEFAULT '0',
+   
+  `id_address_default` int(10) unsigned DEFAULT NULL,
+  `id_address_delivery` int(10) unsigned DEFAULT NULL,
+  `id_address_invoice` int(10) unsigned DEFAULT NULL,
 
   `lastname` varchar(32) NOT NULL,
   `firstname` varchar(32) NOT NULL,
@@ -262,14 +266,17 @@ CREATE TABLE IF NOT EXISTS `gc_user` (
   `is_guest` tinyint(1) NOT NULL DEFAULT '0',
   `note` text,
   `birthday` date DEFAULT NULL,
-
+  
   `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_user`),
   KEY `user_login` (`email`,`passwd`),
   KEY `id_user_passwd` (`id_user`,`passwd`),
   
-  FOREIGN KEY (`id_group`) REFERENCES `gc_group`(`id_group`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`id_group`) REFERENCES `gc_group`(`id_group`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_address_default`) REFERENCES `gc_address`(`id_address_default`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_address_delivery`) REFERENCES `gc_address`(`id_address_default`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_address_invoice`) REFERENCES `gc_address`(`id_address_default`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -332,15 +339,12 @@ CREATE TABLE IF NOT EXISTS `gc_supplier_lang` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
-
 CREATE TABLE IF NOT EXISTS `gc_address` (
   `id_address` int(10) unsigned NOT NULL AUTO_INCREMENT,
 
   `id_country` int(10) unsigned NOT NULL,
   `id_state` int(10) unsigned DEFAULT NULL,
   `id_destination` int(10) unsigned DEFAULT NULL,
-  
-  `id_user` int(10) unsigned NOT NULL DEFAULT '0',
 
   `address_code` char(6) NOT NULL DEFAULT '001001',
 
@@ -359,16 +363,17 @@ CREATE TABLE IF NOT EXISTS `gc_address` (
   `dni` varchar(16) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
+  `latitude` decimal(11,8) DEFAULT NULL,
+  `longitude` decimal(11,8) DEFAULT NULL,
+  `note` text,
   `active` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_address`),
 
   FOREIGN KEY (`id_country`) REFERENCES `gc_country`(`id_country`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_state`) REFERENCES `gc_state`(`id_state`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_destination`) REFERENCES `gc_destination`(`id_destination`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_user`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`id_destination`) REFERENCES `gc_destination`(`id_destination`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE IF NOT EXISTS `gc_lang` (
   `id_lang` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -473,6 +478,9 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
   `id_service` int(10) unsigned NOT NULL,
   `id_supplier` int(10) unsigned NOT NULL,
   `id_category_default` int(10) unsigned DEFAULT NULL,
+  
+  `id_address` int(10) unsigned DEFAULT NULL,
+  
   `on_sale` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `quantity` int(10) NOT NULL DEFAULT '0',
   `price` decimal(20,6) NOT NULL DEFAULT '0.000000',
@@ -494,7 +502,8 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
 
   FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_category_default`) REFERENCES `gc_category`(`id_category`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`id_category_default`) REFERENCES `gc_category`(`id_category`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`id_address`) REFERENCES `gc_address`(`id_address`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_product_lang` (

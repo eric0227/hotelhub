@@ -8,7 +8,8 @@
  * @property string $id_country
  * @property string $id_state
  * @property string $id_destination
- * @property string $id_user
+ * @property string $id_address_delivery
+ * @property string $id_address_invoice
  * @property string $alias
  * @property string $company
  * @property string $lastname
@@ -18,6 +19,7 @@
  * @property string $postcode
  * @property string $city
  * @property string $other
+ * @property string $note
  * @property string $phone
  * @property string $phone_mobile
  * @property string $vat_number
@@ -26,6 +28,8 @@
  * @property string $date_upd
  * @property integer $active
  * @property integer $deleted
+ * @property string $latitude
+ * @property string $longitude
  * @property string $address_code
  *
  * The followings are the available model relations:
@@ -68,17 +72,17 @@ class Address extends CActiveRecord
 		return array(
 			array('id_country, alias, lastname, firstname, address1, city', 'required'),
 			array('active, deleted', 'numerical', 'integerOnly'=>true),
-			array('id_country, id_state, id_destination, id_user', 'length', 'max'=>10),
+			array('id_country, id_state, id_destination','length', 'max'=>10),
 			array('alias, company, lastname, firstname, vat_number', 'length', 'max'=>32),
-			array('address1, address2', 'length', 'max'=>128),
+			array('address1, address2, latitude, longitude', 'length', 'max'=>128),
 			array('postcode', 'length', 'max'=>12),
 			array('city', 'length', 'max'=>64),
 			array('phone, phone_mobile, dni', 'length', 'max'=>16),
 			array('address_code', 'length', 'max'=>20),
-			array('other', 'safe'),
+			array('other, note', 'safe'),
 			// The following rule is used by search(). 
 			// Please remove those attributes that should not be searched.
-			array('id_address, id_country, id_state, id_destination, id_user, alias, company, lastname, firstname, address1, address2, postcode, city, other, phone, phone_mobile, vat_number, dni, date_add, date_upd, active, deleted, address_code', 'safe', 'on'=>'search'),
+			array('id_address, id_country, id_state, id_destination, alias, company, lastname, firstname, address1, address2, postcode, city, other, phone, phone_mobile, vat_number, dni, date_add, date_upd, active, deleted, address_code', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -93,24 +97,10 @@ class Address extends CActiveRecord
 			'country' => array(self::BELONGS_TO, 'Country', 'id_country'),
 			'state' => array(self::BELONGS_TO, 'State', 'id_state'),
 			'destination' => array(self::BELONGS_TO, 'Destination', 'id_destination'),
-			'user' => array(self::BELONGS_TO, 'User', 'id_user'),
 			'addressCode' => array(self::BELONGS_TO, 'Code', 'address_code'),
+			
 		);
 	}
-	
-	public function scopes() {
-		return array(
-			'defaultAddresses'=>array(
-				'condition'=>"address_code = '".Address::DELIVERY_CODE."'",
-			),
-			'deliveryAddresses'=>array(
-				'condition'=>"address_code = '".Address::DELIVERY_CODE."'",
-			),
-			'invoceAddresses'=>array(
-				'condition'=>"address_code = '".Address::INVOICE_CODE."'",
-			)
-		);
-	}	
 
 	/**
 	 * @return array customized attribute labels (name=>label)
@@ -122,7 +112,6 @@ class Address extends CActiveRecord
 			'id_country' => 'Id Country',
 			'id_state' => 'Id State',
 			'id_destination' => 'Id Destination',
-			'id_user' => 'Id User',
 			'alias' => 'Alias',
 			'company' => 'Company',
 			'lastname' => 'Lastname',
@@ -159,7 +148,6 @@ class Address extends CActiveRecord
 		$criteria->compare('id_country',$this->id_country,true);
 		$criteria->compare('id_state',$this->id_state,true);
 		$criteria->compare('id_destination',$this->id_destination,true);
-		$criteria->compare('id_user',$this->id_user,true);
 		$criteria->compare('alias',$this->alias,true);
 		$criteria->compare('company',$this->company,true);
 		$criteria->compare('lastname',$this->lastname,true);
@@ -235,11 +223,6 @@ class Address extends CActiveRecord
 			}
 		}
 		return null;
-	}
-	
-	public static function getAddress($id_user, $address_code) {
-		return self::model()->find('id_user = :id_user and address_code = :address_code'
-							, array('id_user'=>$id_user, 'address_code'=>$address_code));
 	}
 }
 

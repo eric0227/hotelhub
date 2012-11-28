@@ -65,13 +65,6 @@ $this->breadcrumbs=array(
 			echo $form->dropDownList($model,'id_destination',$destination,array('prompt'=>'---Please select---'));
 		?>
 	<?php echo $form->error($model,'id_destination'); ?>
-		
-
-	<?php echo $form->labelEx($model,'id_user'); ?>
-	<?php
-		echo $form->dropDownList($model,'id_user', User::items());
-	?>
-	<?php echo $form->error($model,'id_user'); ?>
 
 	<?php echo $form->labelEx($model,'address_code'); ?>
 	<?php 
@@ -104,7 +97,10 @@ $this->breadcrumbs=array(
 	<?php echo $form->textFieldRow($model,'vat_number',array('class'=>'span5','maxlength'=>32)); ?>
 
 	<?php echo $form->textFieldRow($model,'dni',array('class'=>'span5','maxlength'=>16)); ?>
-
+	
+	<?php echo $form->textFieldRow($model,'latitude',array('class'=>'span5','maxlength'=>32)); ?>
+	<?php echo $form->textFieldRow($model,'longitude',array('class'=>'span5','maxlength'=>32)); ?>
+	
 	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>

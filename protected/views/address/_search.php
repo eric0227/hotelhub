@@ -9,8 +9,6 @@
 
 	<?php echo $form->textFieldRow($model,'id_state',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'id_user',array('class'=>'span5','maxlength'=>10)); ?>
-
 	<?php echo $form->textFieldRow($model,'alias',array('class'=>'span5','maxlength'=>32)); ?>
 
 	<?php echo $form->textFieldRow($model,'company',array('class'=>'span5','maxlength'=>32)); ?>
