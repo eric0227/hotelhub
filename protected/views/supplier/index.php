@@ -16,7 +16,9 @@ $this->menu=array(
 			var selected = {};
 			$("input:checked").each(function() {
 				//selected.push($(this).attr("id_product_date"));
-				selected['id_product_date'+"["+$(this).attr("id_product_date")+"]"] = $(this).attr("id_product_date");
+				if($(this).attr("id_product_date") != 0) {
+					selected['id_product_date'+"["+$(this).attr("id_product_date")+"]"] = $(this).attr("id_product_date");
+				}
 			});
 			
 			$.ajax({type:"POST",url: <?php echo "'".Yii::app()->request->baseUrl."'"; ?> + "/productDate/Active",data: selected,
@@ -33,7 +35,9 @@ $this->menu=array(
 			var selected = {};
 			$("input:checked").each(function() {
 				//selected.push($(this).attr("id_product_date"));
-				selected['id_product_date'+"["+$(this).attr("id_product_date")+"]"] = $(this).attr("id_product_date");
+				if($(this).attr("id_product_date") != 0) {
+					selected['id_product_date'+"["+$(this).attr("id_product_date")+"]"] = $(this).attr("id_product_date");
+				}
 			});
 			
 			$.ajax({type:"POST",url: <?php echo "'".Yii::app()->request->baseUrl."'"; ?> + "/productDate/Inactive",data: selected,
@@ -49,7 +53,7 @@ $this->menu=array(
 <form>
 <div>
 	<a href="<?php echo CController::createUrl('room/create'); ?>"><div class="button" id="add_new_room"></div></a>
-	<a href="<?php echo CController::createUrl('imageSupplier/create'); ?>"><div class="button" id="add_image"></div></a>
+	<a href="<?php echo CController::createUrl('imageProduct/create'); ?>"><div class="button" id="add_image"></div></a>
 	<a href=""><div class="button active" active="1" id="btn_blank">START SELL</div></a>
 	<a href=""><div class="button inactive" active="0" id="btn_blank">STOP SELL</div></a>
 </div>
@@ -128,8 +132,10 @@ $this->menu=array(
 					//$year = "2012";
 					//$month = "12";
 					//echo $selected_month.".".$selected_year;
-					$lastday = 16;//date('t',strtotime($selected_month.'/1/'.$selected_year));
+					$lastday = date('t',strtotime($selected_month.'/1/'.$selected_year));
 					$date = "";
+					$today = date("Y-m-d 00:00:00");
+					
 					echo "<th class=\"dateHeading\"></th>";
 					for($i = 1; $i <= $lastday; $i++) {
 						$date = date('D', mktime(0, 0, 0, $selected_month, $i, $selected_year));
@@ -139,6 +145,8 @@ $this->menu=array(
 							echo "<th class=\"dateHeading\"><span>	".$date."</span><br/>".($i)."</th>";
 						}
 					}
+					
+					
 				?>
 			</thead>
 			<tbody>
@@ -165,10 +173,16 @@ $this->menu=array(
 								$colour_class = "inactive";
 							}
 							
-							if($result->price != "") {
-								echo "<td class=\"".$colour_class."\">".(number_format($result->price, 2))."</td>";
+							if($today > $date) {
+								$outofdate_str = " disabled";
 							} else {
-								echo "<td class=\"".$colour_class."\"></td>";
+								$outofdate_str = "";
+							}
+							
+							if($result->price != "") {
+								echo "<td class=\"".$colour_class.$outofdate_str."\">".(number_format($result->price, 2))."</td>";
+							} else {
+								echo "<td class=\"".$colour_class.$outofdate_str."\"></td>";
 							}
 						}
 					?>
@@ -191,10 +205,16 @@ $this->menu=array(
 								$colour_class = "inactive";
 							}
 							
-							if($result->agent_price != "") {
-								echo "<td class=\"".$colour_class."\">".(number_format($result->agent_price, 2))."</td>";
+							if($today > $date) {
+								$outofdate_str = " disabled";
 							} else {
-								echo "<td class=\"".$colour_class."\"></td>";
+								$outofdate_str = "";
+							}
+							
+							if($result->agent_price != "") {
+								echo "<td class=\"".$colour_class.$outofdate_str."\">".(number_format($result->agent_price, 2))."</td>";
+							} else {
+								echo "<td class=\"".$colour_class.$outofdate_str."\"></td>";
 							}
 						}
 					?>
@@ -217,10 +237,16 @@ $this->menu=array(
 								$colour_class = "inactive";
 							}
 							
-							if($result->quantity != "") {
-								echo "<td class=\"".$colour_class."\">".($result->quantity)."</td>";
+							if($today > $date) {
+								$outofdate_str = " disabled";
 							} else {
-								echo "<td class=\"".$colour_class."\"></td>";
+								$outofdate_str = "";
+							}
+							
+							if($result->quantity != "") {
+								echo "<td class=\"".$colour_class.$outofdate_str."\">".($result->quantity)."</td>";
+							} else {
+								echo "<td class=\"".$colour_class.$outofdate_str."\"></td>";
 							}
 						}
 					?>
@@ -238,10 +264,16 @@ $this->menu=array(
 								}
 							}
 							
-							if($result->id_product_date != "") {
-								echo "<td class=\"white\">".CHtml::checkBox('id_product_date[]', false, array('class'=>'activecheckbox','id_product_date'=>$result->id_product_date,'date'=>$date))."</td>";
+							if($today > $date) {
+								$outofdate_str = " disabled";
 							} else {
-								echo "<td class=\"white\">".CHtml::checkBox('id_product_date[]', false, array('class'=>'activecheckbox','id_product_date'=>0,'date'=>$date))."</td>";
+								$outofdate_str = "";
+							}
+							
+							if($result->id_product_date != "") {
+								echo "<td class=\"white".$outofdate_str."\">".CHtml::checkBox('id_product_date[]', false, array("disabled"=>$outofdate_str, 'class'=>'activecheckbox','id_product_date'=>$result->id_product_date,'date'=>$date))."</td>";
+							} else {
+								echo "<td class=\"white".$outofdate_str."\">".CHtml::checkBox('id_product_date[]', false, array("disabled"=>$outofdate_str, 'class'=>'activecheckbox','id_product_date'=>0,'date'=>$date))."</td>";
 							}
 						}
 					?>
@@ -250,6 +282,7 @@ $this->menu=array(
 		</table>
 		
 		<!-- 17~last day of Month -->
+		<!-- 
 		<table>
 			<thead>
 				<?php
@@ -376,14 +409,18 @@ $this->menu=array(
 				</tr>
 			</tbody>
 		</table>
+		 -->
 	</div>
 	<div class="cb"></div>
 	<div class="imagelist">
 	<?php
-		$imgModels = $supplier->supplierImages;
+		//$imgModels = $supplier->supplierImages;
+		//echo "id_product: ".$model->id_product."<br>";
+		$imgModels = Product::model()->findByPk($model->id_product)->productImages;
 		//print_r($imgModels);
 		foreach ($imgModels as $imgModel) {
-			echo CHtml::image($imgModel->image_path."/".$imgModel->id_image."_medium.jpg");
+			//echo CHtml::image($imgModel->image_path."/".$imgModel->id_image."_medium.jpg");
+			echo CHtml::image($imgModel->getLink('medium'));
 		}
 	?>
 	</div>

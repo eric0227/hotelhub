@@ -1,5 +1,7 @@
 <div class="view">
 
+	<img src="<?php echo $data->getLink('medium') ?>" />
+	<br />
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_image')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->id_image),array('view','id'=>$data->id_image)); ?>
 	<br />
