@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'Images',
+	'Suppliers'=>'/supplier/index', 'Images',
 );
 
 $this->menu=array(
