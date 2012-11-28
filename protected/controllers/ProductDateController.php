@@ -203,7 +203,7 @@ class ProductDateController extends Controller
 				$model->save();
 			}
 		}
-		Yii::app()->end();
+		//Yii::app()->end();
 	}
 
 	public function actionInactive()
@@ -216,7 +216,7 @@ class ProductDateController extends Controller
 				$model->save();
 			}
 		}
-		Yii::app()->end();
+		//Yii::app()->end();
 	}
 
 

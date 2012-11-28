@@ -80,7 +80,7 @@
 						'type' => 'POST',
 						'url' => CController::createUrl('room/beddingConfig'),
 						'update' => '#bedding'))); ?>
-			<?php echo $form->dropDownListRow($model,'guests_included_price', Room::numberForSelectItems(0, 0), array('class'=>'span5','maxlength'=>2)); ?>
+			<?php echo $form->dropDownListRow($model,'guests_included_price', Room::numberForSelectItems(1, 15), array('class'=>'span5','maxlength'=>2)); ?>
 			<?php echo $form->textFieldRow($model, 'children_maxnum', array('class'=>'span5','maxlength'=>2)); ?>
 			<?php echo $form->textFieldRow($model, 'children_years', array('class'=>'span5','maxlength'=>2)); ?>
 			<?php echo $form->textFieldRow($model, 'children_extra', array('class'=>'span5','maxlength'=>20)); ?>

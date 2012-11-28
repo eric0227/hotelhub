@@ -179,7 +179,7 @@ fieldset fieldset {
 }
 
 .supplier_details div.details_area {
-	width: 985px;
+	width: 100%;
 	float: left;
 	position: relative;
 	margin-top: -1px;
@@ -204,13 +204,13 @@ th.weekends {
 }
 
 th.dateHeading span {
-	font-size: 1em;
+	font-size: 0.8em;
 	font-weight: lighter;
 	text-align: center;
 }
 
 td.inactive {
-	font-size: 1em;
+	font-size: 0.8em;
 	font-weight: lighter;
 	text-align: center;
 	background-color: #eaeaea;
@@ -218,14 +218,14 @@ td.inactive {
 }
 
 td.white {
-	font-size: 1em;
+	font-size: 0.8em;
 	font-weight: lighter;
 	text-align: center;
 	border: 1px solid #d6d6d6;
 }
 
 td.green {
-	font-size: 1em;
+	font-size: 0.8em;
 	font-weight: lighter;
 	text-align: center;
 	background-color: #eef8d5;
@@ -330,4 +330,13 @@ span.desc {
 
 th.center, td.center {
 	text-align: center;
+}
+
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container {
+	width: 99%;
+}
+
+.disabled {
+	disabled: disabled !important;
+	background-color: #eee !important;
 }

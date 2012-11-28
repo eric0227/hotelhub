@@ -63,7 +63,6 @@ $(function() {
 	//$end_month = date("m", strtotime($start_year."-".$start_month."-01 +3 months"));
 	//$totalDays = (strtotime($end_year."-".$end_month."-".$lastdayOfEndMonth) - strtotime($start_year."-".$start_month."-1") / (60 * 60 * 24);
 	$how_many_month = 3;
-	$outofdate = true;
 	$outofdate_str = "";
 	
 	for($i = 1; $i <= $how_many_month; $i++) {
@@ -76,7 +75,6 @@ $(function() {
 			$date = date('D', mktime(0, 0, 0, $month, $row, $year));
 			
 			if($today > $fulldate) {
-				$outofdate = false;
 				$outofdate_str = "disabled";
 ?>
 				<tr class="<?php echo $date; ?> outofdate">
