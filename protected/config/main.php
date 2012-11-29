@@ -37,7 +37,7 @@ return array(
 				'bootstrap.gii',
 			),
 		),
-		
+		/*
 		'payPal'=>array(
 	        'env'=>'sandbox',
 	        'account'=>array(
@@ -54,7 +54,8 @@ return array(
 				),
 			),
 		),
-		
+		*/
+
 		'translate',
 	),
 
