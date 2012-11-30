@@ -9,6 +9,7 @@ $this->menu=array(
 	array('label'=>'Create User','url'=>array('create')),
 	array('label'=>'Update User','url'=>array('update','id'=>$model->id_user)),
 	array('label'=>'Delete User','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_user),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Update Address','url'=>array('address','id'=>$model->id_user)),
 	array('label'=>'Manage User','url'=>array('admin')),
 );
 ?>

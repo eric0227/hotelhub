@@ -70,7 +70,7 @@ class Address extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_country, alias, lastname, firstname, address1, city', 'required'),
+			array('id_country, alias, lastname, firstname, address1, city, address_code', 'required'),
 			array('active, deleted', 'numerical', 'integerOnly'=>true),
 			array('id_country, id_state, id_destination','length', 'max'=>10),
 			array('alias, company, lastname, firstname, vat_number', 'length', 'max'=>32),

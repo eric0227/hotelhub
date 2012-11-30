@@ -35,7 +35,7 @@ class UserController extends Controller
 				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'address'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -150,6 +150,44 @@ class UserController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+	
+	public function actionAddress($id) {
+				
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		$user=$this->loadModel($id);
+	
+		$address_code = Address::DEFAULT_CODE;
+		if(isset($_POST['Address'])) {
+			$address_code = $_POST['Address']['address_code'];
+		}
+		
+		if($address_code == Address::DEFAULT_CODE) {
+			$model = $user->addressDefault;
+		} else if($address_code == Address::DELIVERY_CODE) {
+			$model = $user->addressDelivery;
+		} else if($address_code == Address::INVOICE_CODE) {
+			$model = $user->addressInvoice;
+		}
+		
+		//$model=Address::model()->findByAttributes(array('id_user'=>$id, 'address_code'=>$address_code));
+		
+		if(isset($_POST['Address']))
+		{
+			$model->attributes=$_POST['Address'];
+			if($model->save())
+			$this->render('address_form',array(
+				'model'=>$model,
+				'id'=>$user->id_user
+			));
+		} else {
+		
+			$this->render('address_form',array(
+				'model'=>$model,
+				'id'=>$user->id_user
+			));
+		}
 	}
 
 	/**
