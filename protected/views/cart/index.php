@@ -13,6 +13,7 @@ $this->menu=array(
 
 PayPal Test
 <?php 
+/*
 $buttonManager = Yii::app()->getModule('payPal')->buttonManager;
 
 $button = $buttonManager->createButton("Test", array('BUTTONTYPE'=>'BUYNOW'));
@@ -24,12 +25,10 @@ echo $button->webSiteCode;
 $button = $buttonManager->getButtonDetails("Test");
 var_dump($button);
 echo $button->WEBSITECODE;
-
-
+*/
 
 //var_dump($button);
-
-
+echo phpinfo();
 ?>
 
 
