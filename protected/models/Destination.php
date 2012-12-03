@@ -147,9 +147,8 @@ class Destination extends CActiveRecord
 			WHERE list.on_date > '".$today."'
 			AND list.on_date < '".$end_date."'
 			AND list.id_supplier = '".$supplier[0]['id_supplier']."'
-		";	
-	
-		
+		";
+
 		$command = $connection->createCommand($product_sql);
 		$products = $command->queryAll();
 		
