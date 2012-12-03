@@ -12,18 +12,18 @@
  *
  */
 ?>
-
+<!-- 
 <html>
 <head>
 <title>::PHP PayPal Payment Button::</title>
 </head>
 
-<body>
+<body> -->
 <form method="post" action="/paypal/Process">
 	<input type="hidden" name="amount" value="">
 	<input type="hidden" name="item_name" value="">
 	<input type="submit" value=" Pay ">
 </form>
-
+<!-- 
 </head>
-</html>
+</html> -->

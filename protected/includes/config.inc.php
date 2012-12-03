@@ -14,13 +14,13 @@
 
 //Configuration Settings
 $paypal[business]="accoun_1340070325_biz@gnaemarketing.com.au";//"seller_1348028137_biz@gmail.com";//
-$paypal[site_url]="hotelhub.localhost";//"14.200.134.156/";//
+$paypal[site_url]="http://hotelhub.localhost";//"14.200.134.156/";//
 $paypal[image_url]="";
 $paypal[success_url]="/paypal/Success/";
 //$paypal[success_url]="php_paypal/ipn/ipn";
 $paypal[cancel_url]="/paypal/Cancelled/";
 $paypal[notify_url]="/paypal/ipn/ipn/";
-$paypal[return_method]="1"; //1=GET 2=POST
+$paypal[return_method]="2"; //1=GET 2=POST
 $paypal[currency_code]="AUD"; //[USD,GBP,JPY,CAD,EUR]
 $paypal[lc]="AU";
 
@@ -73,5 +73,4 @@ $paypal[email]=$_POST[email];
 $paypal[phone_1]=$_POST[phone1];
 $paypal[phone_2]=$_POST[phone2];
 $paypal[phone_3]=$_POST[phone3];
-
 ?>
