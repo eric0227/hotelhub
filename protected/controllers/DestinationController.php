@@ -177,7 +177,7 @@ class DestinationController extends Controller
 	public function actionAjaxList() {
 		$items = Destination::items($_REQUEST['id_country'], $_REQUEST['id_state']);
 		foreach($items as $value => $name) {
-			echo '<li data="'.$value.'" >'.$name.'</li>';
+			echo '<option value="'.$value.'" >'.$name.'</option>';
 		}
 		
 		Yii::app()->end();

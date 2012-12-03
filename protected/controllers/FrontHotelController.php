@@ -47,5 +47,7 @@ class FrontHotelController extends Controller
 	public function actionIndex()
 	{
 		$this->render('index');
+		$supplier = Destination::model()->getHotelList();
+		print_r($supplier);
 	}
 }

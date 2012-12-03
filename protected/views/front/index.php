@@ -5,44 +5,8 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 ?>
 <script type="text/javascript">
 	$(function(){
-		$('.date_input').datepicker();
+		hotel.combine('#country', '#destination');
 	});
-
-	var findData = {
-		'id_country':null,
-		'id_destination':null,
-	};
-
-	$(function() {
-		$("#country").live("change", function(event) {
-			findData.id_country = $(this).val();
-			findData.id_destination = null;
-			displayDestinationList(findData.id_country);
-		});
-
-		$("#state").live("change", function() {
-			findData.id_destination = $(this).attr("data");
-		});
-	});
-
-	function displayDestinationList(id_country) {
-		// ajax
-		$.post(
-			'destination/ajaxList',
-			{'id_country':id_country},
-			function(data){
-				var nullOption = "<option>there is no data</option>";
-				var result = (data == '') ? nullOption : data ;
-				$("#suburb").html(result);
-			}
-		);
-	}
-
-	function searchAccommodation() {
-		var message = (findData.id_country == null) ? 'no result' : findData.id_country;
-		alert(message);
-		return false;
-	}
 </script>
 <div id="left_columns">
 	<form action="search" method="post" id="search_form">
@@ -50,7 +14,9 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
 	</form>
 	<div id="find_accommodation_index">
-		<form action="search/accommodation" method="post" name="find_accommodation_form" id="find_accommodation_form" class="form">
+		<form action="<?php echo Yii::app()->request->baseUrl; ?>/fronthotel" method="post" name="find_accommodation_form" id="find_accommodation_form" class="form">
+			<input type="hidden" id="id_country" name="id_country" value=""/>
+			<input type="hidden" id="id_destination" name="id_destination" value=""/>
 			<div class="row">
 				<select name="country" id="country" class="span4">
 					<option value="non-select">Country</option>
@@ -60,17 +26,12 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				</select>
 			</div>
 			<div class="row">
-				<select name="state" id="state" class="span4">
-					<option value="non-select">State</option>
+				<select name="destination" id="destination" class="span4">
+					<option value="non-select">Destination</option>
 				</select>
 			</div>
 			<div class="row">
-				<select name="suburb" id="suburb" class="span4">
-					<option value="non-select">City / Suburb</option>
-				</select>
-			</div>
-			<div class="row">
-				<input type="text" name="date" id="date" placeholder="Cehck In" class="date_input span2" />
+				<input type="text" name="date" id="date" placeholder="Cehck-In" class="date_input span2" />
 				<select name="day" id="day" class="span2" style="margin-left: 23px;">
 					<option value="Nights">Nights</option>
 				</select>
@@ -96,7 +57,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				<span class="reputation"></span>
 			</div>
 			<div class="row center">
-				<input type="submit" value="Search Accommodation" onclick="return searchAccommodation();" />
+				<input type="submit" value="Search Accommodation" onclick="return hotel.submit();" />
 			</div>
 		</form>
 	</div>
