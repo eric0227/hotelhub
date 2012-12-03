@@ -28,7 +28,7 @@ $paypal[lc]="AU";
 //$paypal[url]="https://www.paypal.com/cgi-bin/webscr";
 $paypal[url]="https://www.sandbox.paypal.com/cgi-bin/webscr";
 $paypal[post_method]="fso"; //fso=fsockopen(); curl=curl command line libCurl=php compiled with libCurl support
-$paypal[curl_location]="C:/xampp/htdocs/hotelhub/curl/curl.exe";//"/usr/local/bin/curl";
+$paypal[curl_location]="C:/curl/curl.exe";//"/usr/local/bin/curl";
 
 $paypal[bn]="toolkit-php";
 $paypal[cmd]="_xclick";//"_express-checkout";//
