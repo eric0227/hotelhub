@@ -187,32 +187,21 @@ class Address extends CActiveRecord
 		} else {
 			$this->date_upd=new CDbExpression('NOW()');
 		}
+		
+		if(empty($this->id_state)) {
+			$this->id_state = NULL;
+		}
+		if(empty($this->id_destination)) {
+			$this->id_destination = NULL;
+		}
+		
+		Yii::trace('$this->id_state =====>' . $this->id_state);
+		Yii::trace('$this->id_destination =====>' . $this->id_destination);
 	
 		return parent::beforeSave();
 	}
 	
 	protected function afterSave() {
-/*			
-		if($this->address_code != self::DEFAULT_CODE) {
-			return parent::afterSave();
-		}
-		$addressCodes = Code::items(self::CODE_TYPE);
-		$addresses = Address::model()->findAllByAttributes(array('id_user'=>$this->id_user));
-		
-		foreach($addressCodes as $code => $codeName) {
-			if($code == self::DEFAULT_CODE) {
-				break;
-			}
-			
-			$address = $this->getAddressByType($addresses, $code);
-			if($address == null) {
-				$address = new Address;
-				$address->attributes = $this->attributes;
-				$address->address_code = $code;
-				$address->save();
-			}
-		}
-*/
 		return parent::afterSave();
 	}
 	

@@ -9,7 +9,7 @@ $this->menu=array(
 	array('label'=>'Create Category','url'=>array('create')),
 	array('label'=>'Update Category','url'=>array('update','id'=>$model->id_category)),
 	array('label'=>'Delete Category','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_category),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Category','url'=>array('admin')),
+	//array('label'=>'Manage Category','url'=>array('admin')),
 );
 ?>
 
@@ -19,8 +19,8 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id_category',
-		'id_parent',
-		'id_service',
+		array('name'=>'id_parent', 'value'=>$model->parent->name),
+		array('name'=>'id_service', 'value'=>$model->service->name),
 		'name',
 		'level_depth',
 		'nleft',

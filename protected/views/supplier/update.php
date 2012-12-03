@@ -5,12 +5,14 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
-$this->menu=array(
-	array('label'=>'List Supplier','url'=>array('index')),
-	array('label'=>'Create Supplier','url'=>array('create')),
-	array('label'=>'View Supplier','url'=>array('view','id'=>$model->id_supplier)),
-	array('label'=>'Manage Supplier','url'=>array('admin')),
-);
+if(Yii::app()->user->isAdmin()) {
+	$this->menu=array(
+		array('label'=>'List Supplier','url'=>array('index')),
+		array('label'=>'Create Supplier','url'=>array('create')),
+		array('label'=>'View Supplier','url'=>array('view','id'=>$model->id_supplier)),
+		array('label'=>'Manage Supplier','url'=>array('admin')),
+	);
+}
 ?>
 
 <h1>Update Supplier <?php echo $model->id_supplier; ?></h1>

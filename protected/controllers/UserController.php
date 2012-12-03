@@ -35,7 +35,7 @@ class UserController extends Controller
 				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'address'),
+				'actions'=>array('create','update', 'address', 'password'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -158,6 +158,37 @@ class UserController extends Controller
 		// $this->performAjaxValidation($model);
 		$user=$this->loadModel($id);
 	
+		$model = $this->getAddress($id);
+		
+		if(isset($_POST['Address']) && isset($_POST['yt0']))
+		{
+			$model->attributes=$_POST['Address'];
+			if($model->save()) {
+				
+				//if($model->isNewRecord) {
+					$this->setAddressId($user, $model);
+				//}
+				
+				Yii::app()->user->setFlash('success', "Data saved!");
+								
+				$this->render('address_form',array(
+					'model'=>$model,
+					'id'=>$user->id_user
+				));
+				return;
+			}
+		}
+
+		$this->render('address_form',array(
+			'model'=>$model,
+			'id'=>$user->id_user
+		));
+
+	}
+	
+	private function getAddress($id) {
+		$user=$this->loadModel($id);
+		
 		$address_code = Address::DEFAULT_CODE;
 		if(isset($_POST['Address'])) {
 			$address_code = $_POST['Address']['address_code'];
@@ -171,23 +202,55 @@ class UserController extends Controller
 			$model = $user->addressInvoice;
 		}
 		
-		//$model=Address::model()->findByAttributes(array('id_user'=>$id, 'address_code'=>$address_code));
-		
-		if(isset($_POST['Address']))
-		{
-			$model->attributes=$_POST['Address'];
-			if($model->save())
-			$this->render('address_form',array(
-				'model'=>$model,
-				'id'=>$user->id_user
-			));
-		} else {
-		
-			$this->render('address_form',array(
-				'model'=>$model,
-				'id'=>$user->id_user
-			));
+		if(!isset($model)) {
+			$model = new Address;
+			$model->address_code = $address_code;
 		}
+		
+		return $model;
+	}
+	
+	private function setAddressId($user, $address) {
+
+		if($address->address_code == Address::DEFAULT_CODE) {
+			$user->id_address_default = $address->id_address;
+		} else if($address->address_code == Address::DELIVERY_CODE) {
+			$user->id_address_delivery = $address->id_address;
+		} else if($address->address_code == Address::INVOICE_CODE) {
+			$user->id_address_invoice = $address->id_address;
+		}
+		
+		$user->save();
+	}
+	
+	public function actionPassword($id) {
+	
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		$model=$this->loadModel($id);
+	
+		if(isset($_POST['User']) && isset($_POST['yt0']))
+		{
+			$model->attributes=$_POST['User'];
+			if($model->save()) {
+	
+				Yii::app()->user->setFlash('success', "Data saved!");
+				
+				$model->passwd = null;
+				$model->repeat_passwd = null;
+				
+				$this->render('password_form',array(
+						'model'=>$model,
+						'id'=>$model->id_user
+				));
+				return;
+			}
+		}
+	
+		$this->render('password_form',array(
+				'model'=>$model,
+				'id'=>$model->id_user
+		));
 	}
 
 	/**

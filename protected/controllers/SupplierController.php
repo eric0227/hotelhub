@@ -57,7 +57,10 @@ class SupplierController extends Controller
 	 */
 	public function actionView($id)
 	{
-				
+		if(Yii::app()->user->isAdmin()) {
+			$this->layout='//layouts/supplier/column2';
+		}
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -69,6 +72,12 @@ class SupplierController extends Controller
 	 */
 	public function actionCreate()
 	{
+		echo Yii::app()->user->isAdmin();
+		
+		if(Yii::app()->user->isAdmin()) {
+			$this->layout='//layouts/supplier/column2';
+		}
+			
 		$model=new Supplier;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -95,6 +104,10 @@ class SupplierController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		//if(Yii::app()->user->isAdmin()) {
+			$this->layout='//layouts/supplier/column2';
+		//}
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -121,6 +134,8 @@ class SupplierController extends Controller
 	
 	public function actionUpdateAddress($id)
 	{
+		$this->layout='//layouts/supplier/column2';
+		
 		$user = User::model()->findByPk($id);
 		$defaultAddress = $user->getDefaultAddress();
 	
@@ -175,6 +190,10 @@ class SupplierController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		if(Yii::app()->user->isAdmin()) {
+			$this->layout='//layouts/column2';
+		}
+				
 		$model=new Supplier('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Supplier']))

@@ -13,8 +13,9 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<?php
-		echo $form->dropDownListRow($model, 'id_supplier', Supplier::items(), array('class' => 'span5'));
-	
+		if($model->isNewRecord) {
+			echo $form->dropDownListRow($model, 'id_supplier', Supplier::items(), array('class' => 'span5'));
+		}
 	?>
 		
 	<?php		
@@ -28,8 +29,12 @@
 	
 	<?php echo $form->textAreaRow($model,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>		
 
-	
-	<?php echo $form->textFieldRow($model,'on_sale',array('class'=>'span5')); ?>
+	<div class="control-group ">
+		<?php echo $form->label($model,'on_sale', array('class'=>'control-label')); ?>
+		<div class="controls">
+			<?php echo $form->checkBox($model,'on_sale',array('value'=>'1', 'class'=>'span1')); ?>
+		</div>
+	</div>	
 
 	<?php echo $form->textFieldRow($model,'quantity',array('class'=>'span5')); ?>
 
@@ -49,7 +54,12 @@
 
 	<?php echo $form->textFieldRow($model,'out_of_stock',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
+	<div class="control-group ">
+		<?php echo $form->label($model,'active', array('class'=>'control-label')); ?>
+		<div class="controls">
+			<?php echo $form->checkBox($model,'active',array('value'=>'1', 'class'=>'span1')); ?>
+		</div>
+	</div>
 
 	<?php echo $form->textFieldRow($model,'condition',array('class'=>'span5','maxlength'=>11)); ?>
 

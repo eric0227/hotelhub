@@ -34,6 +34,7 @@
  * @property ProductDate[] $productDates
  * @property ProductImage[] $productImages
  * @property ProductLang[] $productLangs
+ * @property Service $service
  * @property Room $room
  */
 class Product extends CActiveRecord
@@ -68,7 +69,8 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_category_default, id_supplier', 'required'),
+			array('id_supplier', 'required', 'on'=>'insert'),
+			array('id_category_default', 'required'),
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
 			array('id_category_default, out_of_stock, id_address', 'length', 'max'=>10),
@@ -89,6 +91,7 @@ class Product extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'categories' => array(self::MANY_MANY, 'Category', 'gc_category_product(id_product, id_category)'),
+			'service' => array(self::BELONGS_TO, 'Service', 'id_service'),
 			'categoryDefault' => array(self::BELONGS_TO, 'Category', 'id_category_default'),
 			'attachments' => array(self::MANY_MANY, 'Attachment', 'gc_product_attachment(id_product, id_attachment)'),
 			'attributeList' => array(self::MANY_MANY, 'Attribute', 'gc_product_attribute_value(id_product, id_attribute)'),

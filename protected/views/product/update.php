@@ -9,7 +9,7 @@ $this->menu=array(
 	array('label'=>'List Product','url'=>array('index')),
 	array('label'=>'Create Product','url'=>array('create')),
 	array('label'=>'View Product','url'=>array('view','id'=>$model->id_product)),
-	array('label'=>'Manage Product','url'=>array('admin')),
+	//array('label'=>'Manage Product','url'=>array('admin')),
 );
 ?>
 

@@ -178,10 +178,10 @@ class User extends CActiveRecord
         //if it's not a new password, save the password only if it not empty and the two passwords match
         {
             $this->passwd = Yii::app()->user->hashPassword($this->passwd);
-        } else {
-        	$this->passwd = User::findAllByPk($this->id_user)->passwd;
         }
-        
+        else {
+         	$this->passwd = $this->initialPasswd;
+        }
         return parent::beforeSave();
 	}
 	
