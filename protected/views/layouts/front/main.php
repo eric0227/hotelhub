@@ -25,6 +25,7 @@ if(Yii::app()->request->pathinfo == '') $current = 'current';
 	<!-- load javascript files -->
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.8.2.js" type="text/javascript"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/hotel/hotel.js"></script>
 	<!--[if lt IE 9]>
 		<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/html5shiv.js"></script>
 	<![endif]-->

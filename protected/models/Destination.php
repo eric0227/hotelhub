@@ -108,6 +108,53 @@ class Destination extends CActiveRecord
 		));
 	}
 	
+	public function getHotelList(){
+		$request = Yii::app()->request;
+		$keyword = $request->getPost('keyword');
+		$id_country = $request->getPost('country');
+		$id_destination = $request->getPost('destination');
+		$check_in = $request->getPost('date');
+		$day = $request->getPost('day');
+		$min_price = $request->getPost('min_price');
+		$max_price = $request->getPost('max_price');
+		$number_of_guests = $request->getPost('number_of_guests');
+		
+		$connection = Yii::app()->db;
+		
+		$supplier_sql = "
+			SELECT d.id_destination, co.id_country, ad.id_address, su.id_supplier, u.id_group, 
+			u.id_lang, d.name AS destination_name, co.name AS country_name, ad.firstname, ad.lastname, u.email
+			FROM gc_destination AS d
+			INNER JOIN gc_country AS co ON d.id_country = co.id_country 
+			INNER JOIN gc_address AS ad ON ad.id_country = co.id_country AND d.id_destination = ad.id_destination
+			LEFT JOIN gc_user AS u ON ad.id_address = u.id_address_default 
+			RIGHT JOIN gc_supplier AS su ON u.id_user = su.id_supplier
+		";
+		
+		$command = $connection->createCommand($supplier_sql);
+		$supplier = $command->queryAll();
+		
+		$today = date("Y-m-d H:i:s", mktime(0, 0, 0, date('m'), date('d'), date('Y')));
+		$end_date = date("Y-m-d H:i:s", mktime(0, 0, 0, date('m'), date('d')+13, date('Y')));
+
+		$product_sql = "
+			SELECT list.id_product, list.id_supplier, list.id_product_date, list.on_date 
+			FROM(
+				SELECT p.id_product, p.id_supplier, pd.id_product_date, pd.on_date
+				FROM gc_product p 
+				LEFT JOIN gc_product_date pd ON p.id_product = pd.id_product
+			)list
+			WHERE list.on_date > '".$today."'
+			AND list.on_date < '".$end_date."'
+			AND list.id_supplier = '".$supplier[0]['id_supplier']."'
+		";
+
+		$command = $connection->createCommand($product_sql);
+		$products = $command->queryAll();
+		
+		return $products;
+	}
+	
 	protected function beforeDelete() {
 		if(count($this->addresses) > 0) {
 			$this->active = 0;
@@ -139,5 +186,3 @@ class Destination extends CActiveRecord
 		return $_items;
 	}
 }
-
-

@@ -29,13 +29,17 @@
 
 	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<?php echo $form->passwordFieldRow($model,'passwd',array('class'=>'span5','maxlength'=>32)); ?>
-	<?php echo $form->passwordFieldRow($model,'repeat_passwd',array('class'=>'span5','maxlength'=>32)); ?>
+<?php
+	if($model->isNewRecord) {	
 	
+		echo $form->passwordFieldRow($model,'passwd',array('class'=>'span5','maxlength'=>32));
+		echo $form->passwordFieldRow($model,'repeat_passwd',array('class'=>'span5','maxlength'=>32));
+	}
+?>
 
-	<?php echo $form->textFieldRow($model,'id_address_default',array('class'=>'span5','maxlength'=>10)); ?>
-	<?php echo $form->textFieldRow($model,'id_address_delivery',array('class'=>'span5','maxlength'=>10)); ?>
-	<?php echo $form->textFieldRow($model,'id_address_invoice',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php //echo $form->textFieldRow($model,'id_address_default',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php //echo $form->textFieldRow($model,'id_address_delivery',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php //echo $form->textFieldRow($model,'id_address_invoice',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'is_guest',array('class'=>'span5')); ?>
 

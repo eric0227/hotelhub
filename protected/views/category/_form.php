@@ -22,14 +22,19 @@
 	
 	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
 	
-	<?php echo $form->textFieldRow($model,'active',array('class'=>'span5')); ?>
-
+	<div class="control-group ">
+		<?php echo $form->label($model,'active', array('class'=>'control-label')); ?>
+		<div class="controls">
+			<?php echo $form->checkBox($model,'active',array('value'=>'1', 'class'=>'span1')); ?>
+		</div>
+	</div>
+	
+	
 	<?php echo $form->textFieldRow($model,'date_add',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'date_upd',array('class'=>'span5')); ?>
 
 	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5','maxlength'=>10)); ?>
-
 	
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType'=>'submit',

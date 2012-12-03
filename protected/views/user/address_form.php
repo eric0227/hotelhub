@@ -1,12 +1,58 @@
-<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
-	'id'=>'address-form',
-	'enableAjaxValidation'=>false,
-)); ?>
+
+<?php
+$this->breadcrumbs=array(
+	'Users'=>array('index'),
+	$id=>array('view','id'=>$id_user),
+	'Update Address',
+);
+
+$this->menu=array(
+	array('label'=>'List User','url'=>array('index')),
+	array('label'=>'Create User','url'=>array('create')),
+	array('label'=>'View User','url'=>array('view','id'=>$id)),
+	array('label'=>'Update Address','url'=>array('address','id'=>$id)),
+	array('label'=>'Change Password','url'=>array('password','id'=>$model->id_user)),	
+	array('label'=>'Manage User','url'=>array('admin')),
+);
+?>
+
+
+<h1>Update Address <?php echo $model->id_address; ?></h1>
+
+<script type="text/javascript" >
+function changeAddressCode(address_code){
+	//alert($(address_code).val());
+	$('#address-form').submit();
+}
+</script>
+
+	<?php 
+		Yii::app()->clientScript->registerScript(
+	       'myHideEffect',
+	       '$(".flash-success").animate({opacity: 1.0}, 3000).fadeOut("slow");',
+				CClientScript::POS_READY
+		);
+		
+		$form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+			'id'=>'address-form',
+			'enableAjaxValidation'=>false,
+		)); 
+	?>
 
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
-
-	<?php echo $form->errorSummary($model); ?>
 	
+	<?php if(Yii::app()->user->hasFlash('success')):?>
+	    <div class="flash-success">
+	        <?php echo Yii::app()->user->getFlash('success'); ?>
+	    </div>
+	<?php endif; ?>
+	
+	<?php echo $form->errorSummary($model); ?>
+
+	<?php 
+		echo $form->dropDownListRow($model,'address_code', Code::items(Address::CODE_TYPE), array('onChange'=>'changeAddressCode(this)'));
+	?>
+		
 	<?php
 		echo $form->dropDownListRow(
 			$model,'id_country', Country::items(),
@@ -38,17 +84,12 @@
 		);
 	?>
 
-
 	<?php
 		$destination = array();
 		if(isset($model->id_country)) {
 			$destination = Destination::items($model->id_country, $model->id_state);
 		}
 		echo $form->dropDownListRow($model,'id_destination',$destination,array('prompt'=>'---Please select---'));
-	?>
-
-	<?php 
-		echo $form->dropDownListRow($model,'address_code', Code::items(Address::CODE_TYPE));
 	?>
 
 	<?php //echo $form->textFieldRow($model,'alias',array('class'=>'span5','maxlength'=>32)); ?>

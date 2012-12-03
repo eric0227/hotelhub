@@ -43,10 +43,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id_product',
-		'id_service',
-		'id_category_default',
+		array('name'=>'id_service', 'value'=>'$data->service->name'),
+		array('name'=>'id_category_default', 'value'=>'$data->categoryDefault->name'),
 		'name',
-		'on_sale',
+		array('name'=>'on_sale', 'value'=>'$data->on_sale == 1 ? "Y": "N"'),
+		array('name'=>'active', 'value'=>'$data->active == 1 ? "Y": "N"'),		
+		//'on_sale',
 		'quantity',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
