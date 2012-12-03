@@ -23,8 +23,4 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('email')); ?>:</b>
 	<?php echo CHtml::encode($data->email); ?>
 	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('passwd')); ?>:</b>
-	<?php echo CHtml::encode($data->passwd); ?>
-	<br />
 </div>

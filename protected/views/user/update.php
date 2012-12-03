@@ -9,6 +9,8 @@ $this->menu=array(
 	array('label'=>'List User','url'=>array('index')),
 	array('label'=>'Create User','url'=>array('create')),
 	array('label'=>'View User','url'=>array('view','id'=>$model->id_user)),
+	array('label'=>'Update Address','url'=>array('address','id'=>$model->id_user)),
+	array('label'=>'Change Password','url'=>array('password','id'=>$model->id_user)),
 	array('label'=>'Manage User','url'=>array('admin')),
 );
 ?>

@@ -12,7 +12,6 @@ $this->menu=array(
 	array('label'=>'Manage Supplier','url'=>array('admin')),
 );
 ?>
-
 <h1>View Supplier #<?php echo $model->id_supplier; ?></h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(

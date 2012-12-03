@@ -37,17 +37,28 @@ $translate=Yii::app()->translate;
 		<div>
 			<div style="float:left;">
 			<?php 
-				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/service/change','post');
-				echo CHtml::dropDownList('service', $service, Service::items());
+				Yii::app()->clientScript->registerScript(
+			       'myHideEffect',
+			       '$("#service").on("change", function() {
+			       		$("#service-form").submit();
+					});
+					$("#lang").on("change", function() {
+			       		$("#lang-form").submit();
+					});
+					',
+					CClientScript::POS_READY
+				);
+				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/service/change','post', array('id'=>'service-form'));
+				echo CHtml::dropDownList('service', $service, Service::items(), array('id'=>'service'));
 				echo CHtml::submitButton("Service", array('class'=>'btn'));
 				echo CHtml::endForm();
 			?>
 			</div>
 			
 			<div style="float:left; padding-left: 20px;">
-			<?php 
-				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post');
-				echo CHtml::dropDownList('lang', $lang, Lang::items());
+			<?php
+				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post', array('id'=>'lang-form'));
+				echo CHtml::dropDownList('lang', $lang, Lang::items(), array('id'=>'lang'));
 				echo CHtml::submitButton("Lang", array('class'=>'btn'));
 				echo CHtml::endForm();
 			?>
@@ -63,7 +74,7 @@ $translate=Yii::app()->translate;
 				array('label'=>'Home', 'url'=>array('/adm/index')),
 				array('label'=>'Product', 'url'=>'', 
 					'items'=>array(
-						array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
+						//array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
 						array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),						
 						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),						
 						array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room')),	
@@ -100,17 +111,19 @@ $translate=Yii::app()->translate;
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+/*				
 				array('label'=>'Supplier', 'url'=>'',
 					'items'=>array(
-						array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier'))
+						array('label'=>'Supplier', 'url'=>array('/supplier/admin', 'tag'=>'supplier'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+*/				
 				array('label'=>'Member', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
 						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
-						array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
+						//array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),

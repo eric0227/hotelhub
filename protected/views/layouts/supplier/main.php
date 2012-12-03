@@ -47,8 +47,15 @@ $lang = Yii::app()->session->get('lang', 1);
 			
 			<div style="float:left; padding-left: 20px;">
 			<?php 
-				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post');
-				echo CHtml::dropDownList('lang', $lang, Lang::items());
+				Yii::app()->clientScript->registerScript(
+			       'myHideEffect',
+			       '$("#lang").on("change", function() {
+			       		$("#lang-form").submit();
+					})',
+					CClientScript::POS_READY
+				);
+				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post', array('id'=>'lang-form'));
+				echo CHtml::dropDownList('lang', $lang, Lang::items(), array('id'=>'lang'));
 				echo CHtml::submitButton("Lang", array('class'=>'btn'));
 				echo CHtml::endForm();
 			?>

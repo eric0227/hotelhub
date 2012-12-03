@@ -101,9 +101,9 @@ class Category extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_category' => 'Id Category',
-			'id_parent' => 'Id Parent',
-			'id_service' => 'Id Service',
+			'id_category' => 'Category',
+			'id_parent' => 'Parent',
+			'id_service' => 'Service',
 			'level_depth' => 'Level Depth',
 			'nleft' => 'Nleft',
 			'nright' => 'Nright',
@@ -194,6 +194,12 @@ class Category extends CActiveRecord
  		} else {
  			return true;
  		}
+	}
+	
+	protected function beforeDelete() {
+		if($this->id_parent == 0) {
+			return false;
+		} 
 	}
 	
 	public function getUnDescendants() {

@@ -70,7 +70,7 @@ class Address extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_country, alias, lastname, firstname, address1, city', 'required'),
+			array('id_country, alias, lastname, firstname, address1, city, address_code', 'required'),
 			array('active, deleted', 'numerical', 'integerOnly'=>true),
 			array('id_country, id_state, id_destination','length', 'max'=>10),
 			array('alias, company, lastname, firstname, vat_number', 'length', 'max'=>32),
@@ -187,32 +187,21 @@ class Address extends CActiveRecord
 		} else {
 			$this->date_upd=new CDbExpression('NOW()');
 		}
+		
+		if(empty($this->id_state)) {
+			$this->id_state = NULL;
+		}
+		if(empty($this->id_destination)) {
+			$this->id_destination = NULL;
+		}
+		
+		Yii::trace('$this->id_state =====>' . $this->id_state);
+		Yii::trace('$this->id_destination =====>' . $this->id_destination);
 	
 		return parent::beforeSave();
 	}
 	
 	protected function afterSave() {
-/*			
-		if($this->address_code != self::DEFAULT_CODE) {
-			return parent::afterSave();
-		}
-		$addressCodes = Code::items(self::CODE_TYPE);
-		$addresses = Address::model()->findAllByAttributes(array('id_user'=>$this->id_user));
-		
-		foreach($addressCodes as $code => $codeName) {
-			if($code == self::DEFAULT_CODE) {
-				break;
-			}
-			
-			$address = $this->getAddressByType($addresses, $code);
-			if($address == null) {
-				$address = new Address;
-				$address->attributes = $this->attributes;
-				$address->address_code = $code;
-				$address->save();
-			}
-		}
-*/
 		return parent::afterSave();
 	}
 	
