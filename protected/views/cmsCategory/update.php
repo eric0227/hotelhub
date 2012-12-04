@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Update CmsCategory <?php echo $model->id_cms_category; ?></h1>
 
-<?php echo $this->renderPartial('_form',array('model'=>$model, 'parentItems'=>$parentItems)); ?>
+<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

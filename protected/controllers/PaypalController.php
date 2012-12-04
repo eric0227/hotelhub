@@ -28,6 +28,33 @@ class PaypalController extends Controller
 	}
 	
 	public function actionProcess() {
+		/*
+		$model = new Order;
+		
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		if(isset($_POST['id_cart'])) {
+			$id_cart = $_POST['id_cart'];
+
+			$model->id_lang = Lang::getCurrentLang();
+		
+			// get Cart
+			$cart = Cart::model()->findByPk($id_cart);
+			$model->id_cart = $id_cart;
+			$model->id_user = $cart->id_user;
+			$model->id_currency = $cart->id_currency;
+			$model->id_address_delivery = $cart->id_address_delivery;
+			$model->id_address_invoice = $cart->id_address_invoice;
+				
+			$model->procOrder();
+			if($model->save()) {
+				$_POST[custom_field] = $model->id_order;
+				$this->render('process');
+			} else {
+				die();
+			}
+		}
+		*/
 		$this->render('process');
 	}
 	
@@ -36,7 +63,36 @@ class PaypalController extends Controller
 	}
 	
 	public function actionSuccess() {
-		$this->render('success');
+		$model = new Order;
+		
+		if(isset($_POST['custom'])) {
+			$id_cart = $_POST['custom'];
+		
+			$model->id_lang = Lang::getCurrentLang();
+		
+			// get Cart
+			$cart = Cart::model()->findByPk($id_cart);
+			$model->id_cart = $id_cart;
+			$model->id_user = $cart->id_user;
+			$model->id_currency = $cart->id_currency;
+			$model->id_address_delivery = $cart->id_address_delivery;
+			$model->id_address_invoice = $cart->id_address_invoice;
+		
+			$model->procOrder();
+			if($model->save()) {
+				$order = Order::model()->findByPk($model->id_order);
+				$model->id_user = $order->id_user;
+				$model->id_order = $order->id_order;
+				$model->id_order_state = "11"; //Awaiting PayPal payment.
+				$model->date_add = $_POST['payment_date'];
+					
+				if($model->save()) {
+					$this->render('success');
+				}
+			} else {
+				die();
+			}
+		}
 	}	
 	
 	public function actionCancelled() {

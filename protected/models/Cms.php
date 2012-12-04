@@ -10,7 +10,8 @@
  * @property integer $active
  *
  * The followings are the available model relations:
- * @property CmsCategory $cmsCategory
+ * @property CmsCategory $idCmsCategory
+ * @property CmsLang[] $cmsLangs
  */
 class Cms extends CActiveRecord
 {
@@ -57,7 +58,8 @@ class Cms extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'cmsCategory' => array(self::BELONGS_TO, 'CmsCategory', 'id_cms_category'),
+			'idCmsCategory' => array(self::BELONGS_TO, 'CmsCategory', 'id_cms_category'),
+			'cmsLangs' => array(self::HAS_MANY, 'CmsLang', 'id_cms'),
 		);
 	}
 

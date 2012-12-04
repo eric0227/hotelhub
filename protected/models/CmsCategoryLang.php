@@ -44,7 +44,7 @@ class CmsCategoryLang extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_cms_category, id_lang', 'required'),
+			array('id_cms_category, id_lang, name, link_rewrite', 'required'),
 			array('id_cms_category, id_lang', 'length', 'max'=>10),
 			array('name, link_rewrite, meta_title', 'length', 'max'=>128),
 			array('meta_keywords, meta_description', 'length', 'max'=>255),

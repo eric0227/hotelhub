@@ -28,7 +28,6 @@ echo $button->WEBSITECODE;
 */
 
 //var_dump($button);
-echo phpinfo();
 ?>
 
 

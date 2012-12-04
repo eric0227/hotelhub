@@ -13,33 +13,15 @@
  * @property string $date_add
  * @property string $date_upd
  * @property string $position
- * @property string $name
- * @property string $description
  *
  * The followings are the available model relations:
  * @property Cms[] $cms
- * @property CmsCategory $parent
+ * @property CmsCategory $idParent
  * @property CmsCategory[] $cmsCategories
+ * @property CmsCategoryLang[] $cmsCategoryLangs
  */
 class CmsCategory extends CActiveRecord
 {
-	public $description = null;
-	public $name = null;
-	
-	public function behaviors() {
-		return array(
-			'NestedSetBehavior' => 
-			array(
-				'class'=>'ext.NestedSetBehavior',
-				'leftAttribute'=>'nleft',
-				'rightAttribute'=>'nright',
-				'levelAttribute'=>'level_depth',
-				//'rootAttribute'=>'id_service',
-				'hasManyRoots'=>false
-			)
-		);
-	}
-	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -66,7 +48,7 @@ class CmsCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_parent', 'required'),
+			array('id_parent, date_add, date_upd', 'required'),
 			array('level_depth, active', 'numerical', 'integerOnly'=>true),
 			array('id_parent, nleft, nright, position', 'length', 'max'=>10),
 			// The following rule is used by search().
@@ -84,8 +66,9 @@ class CmsCategory extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'cms' => array(self::HAS_MANY, 'Cms', 'id_cms_category'),
-			'parent' => array(self::BELONGS_TO, 'CmsCategory', 'id_parent'),
+			'idParent' => array(self::BELONGS_TO, 'CmsCategory', 'id_parent'),
 			'cmsCategories' => array(self::HAS_MANY, 'CmsCategory', 'id_parent'),
+			'cmsCategoryLangs' => array(self::HAS_MANY, 'CmsCategoryLang', 'id_cms_category'),
 		);
 	}
 
@@ -132,78 +115,4 @@ class CmsCategory extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
-	protected function afterFind() {
-		$langModel = CmsCategoryLang::model()->findByAttributes(array('id_cms_category'=>$this->id_cms_category, 'id_lang'=>Lang::getCurrentLang()));
-	
-		if(isset($langModel)) {
-			$this->name = $langModel->name;
-			$this->description = $langModel->description;
-		}
-	}
-	
-	public function loadMultiLang() {
-		$mutltiLangModels = CmsCategoryLang::model()->findAllByAttributes(array('id_cms_category'=>$this->id_cms_category));
-		
-		$description = array();
-		$name = array();
-	
-		foreach($mutltiLangModels as $mutltiLangModel) {
-			$description[$mutltiLangModel->id_lang] = $mutltiLangModel->description;
-			$name[$mutltiLangModel->id_lang] = $mutltiLangModel->name;
-		}
-		$this->description = $description;
-		$this->name = $name;
-	}
-
-	public function getDescription() {
-		return $this->description;
-	}
-
-	public function getName() {
-		return $this->name;
-	}
-	
-	protected function beforeSave() {
-		if($this->isNewRecord)
-		{
-			$this->date_add=$this->date_upd=new CDbExpression('NOW()');
-		} else {
-			$this->date_upd=new CDbExpression('NOW()');
-		}
-		
-		return parent::beforeSave();
-	}
-	
-	protected function beforeDelete() {
-		if($this->id_parent == 0) {
-			return false;
-		}
-	}
-	
-	public function getUnDescendants() {
-		$criteria = new CDbCriteria;
-		$criteria->condition='nleft < :nleft OR nright > :nright';
-		$criteria->params=array(':nleft' => $this->nleft, ':nright' => $this->nright);
-		$criteria->order = 'nleft';
-	
-		return CmsCategory::model()->findAll($criteria);
-	}
-	
-	public static function getDescendants() {
-		return CmsCategory::model()->findAll();
-	}
-	
-	public static function items($without = null) {
-		$_items = array();
-
-		$models = self::getDescendants();
-		foreach($models as $model) {
-			if($model->id_cms_category != $without) {
-				$_items[$model->id_cms_category] = $model->id_cms_category;
-			}
-		}
-		return $_items;
-	}
 }
-

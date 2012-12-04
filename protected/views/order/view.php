@@ -45,7 +45,6 @@ $this->menu=array(
 	),
 )); ?>
 
-
 <div>
 	<h4>Order History</h4>
 	<div class="view">

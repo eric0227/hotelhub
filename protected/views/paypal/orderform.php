@@ -12,13 +12,6 @@
  *
  */
 ?>
-
-<html>
-<head>
-<title>::PHP PayPal Order Form::</title>
-</head>
-
-<body>
 <form method="post" action="/paypal/Process">
   
     <br>
@@ -172,5 +165,3 @@
  
 </form> 
 
-</body>
-</html>

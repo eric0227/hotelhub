@@ -977,14 +977,15 @@ CREATE TABLE IF NOT EXISTS `gc_cms_category` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   `position` int(10) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id_cms_category`)
+  PRIMARY KEY (`id_cms_category`),
+  
+  FOREIGN KEY (`id_parent`) REFERENCES `gc_cms_category`(`id_cms_category`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-
+SELECT * FROM `gc_cms_category` WHERE 1
 INSERT INTO `gc_cms_category`(`id_cms_category`, `id_parent`, `level_depth`, `nleft`, `nright`, `active`, `date_add`, `date_upd`, `position`)
 values ('1', '0', '1', '1', '2', '1', now(), now(), 0 );
-
 
 CREATE TABLE IF NOT EXISTS `gc_cms_category_lang` (
   `id_cms_category` int(10) unsigned NOT NULL,

@@ -18,22 +18,28 @@ include_once(Yii::app()->basePath.'/includes/config.inc.php');
 //Global Configuration File
 include_once(Yii::app()->basePath.'/includes/global_config.inc.php');
 
-?> 
-
+?>
+ 
+<!-- 
 <html>
 <head><title>::PHP PayPal::</title></head>
-<body onLoad="">
-<form method="post" name="paypal_form" action="<?php echo $paypal[url]; ?>">
+ -->
+<body onLoad="document.paypal_form.submit();">
+<form method="post" name="paypal_form" id="paypal_form" action="<?php echo $paypal[url]; ?>">
 
 <?php 
 //show paypal hidden variables
 
-showVariables();
+showVariables($paypal);
 
 ?> 
 
 <center><font face="Verdana, Arial, Helvetica, sans-serif" size="2" color="333333">Processing Transaction . . . </font></center>
 
 </form>
+
+ 
+<!-- 
 </body>   
 </html>
+ -->
