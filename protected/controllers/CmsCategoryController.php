@@ -32,11 +32,11 @@ class CmsCategoryController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update'),
-				'users'=>array('@'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'expression' => "Yii::app()->user->getLevel() >= 10",
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,20 +62,31 @@ class CmsCategoryController extends Controller
 	public function actionCreate()
 	{
 		$model=new CmsCategory;
+		$data = array();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		
 		if(isset($_POST['CmsCategory']))
 		{
 			$model->attributes=$_POST['CmsCategory'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_cms_category));
-		}
+			$parent = $this->loadModel($model->attributes['id_parent']);
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
+			//if($model->save())
+			if($model->appendTo($parent)) {
+				$this->setCmsCategoryLang($model->id_cms_category);
+				
+				$this->redirect(array('view','id'=>$model->id_cms_category));
+			}
+		}
+		
+		$_items = CmsCategory::items();
+		$data['parentItems'] = $_items;
+		$data['model'] = $model;
+		
+		//var_dump($_items);
+
+		$this->render('create', $data);
 	}
 
 	/**
@@ -86,6 +97,7 @@ class CmsCategoryController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$data = array();
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -93,13 +105,50 @@ class CmsCategoryController extends Controller
 		if(isset($_POST['CmsCategory']))
 		{
 			$model->attributes=$_POST['CmsCategory'];
-			if($model->save())
+			//if($model->save())
+			if($model->saveNode(false)) {
+				$this->setCmsCategoryLang($model->id_cms_category);
 				$this->redirect(array('view','id'=>$model->id_cms_category));
+			}
 		}
-
-		$this->render('update',array(
-			'model'=>$model,
-		));
+		
+		$_items = array();
+		$parentList = $model->getUnDescendants();
+		foreach($parentList as $_model) {
+			$_items[$_model->id_cms_category] = $_model->id_cms_category;
+		}
+		
+		$data['parentItems'] = $_items;
+		$data['model'] = $model;
+		$model->loadMultiLang();
+				
+		$this->render('update', $data);
+	}
+	
+	private function setCmsCategoryLang($id) {
+	
+		$description = $_POST['CmsCategory']['description'];
+		$name = $_POST['CmsCategory']['name'];
+	
+		CmsCategoryLang::model()->deleteAllByAttributes(array('id_cms_category'=>$id));
+		foreach(Lang::items() as $lang => $langName) {
+	
+			if(empty($description[$lang])) {
+				$description[$lang] = $description[Lang::getDefaultLang()];
+			}
+			if(empty($name[$lang])) {
+				$name[$lang] = $name[Lang::getDefaultLang()];
+			}
+	
+			$model=new CmsCategoryLang;
+			$model->id_cms_category = $id;
+			$model->id_lang = $lang;
+			$model->description = $description[$lang];
+			$model->name = $name[$lang];
+			$model->save();
+			
+			//var_dump($model);
+		}
 	}
 
 	/**
@@ -112,7 +161,8 @@ class CmsCategoryController extends Controller
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			// $this->loadModel($id)->delete();
+			$this->loadModel($id)->deleteNode();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))
