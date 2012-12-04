@@ -14,19 +14,23 @@
 
 //Configuration Settings
 $paypal[business]="accoun_1340070325_biz@gnaemarketing.com.au";//"seller_1348028137_biz@gmail.com";//
-$paypal[site_url]="http://hotelhub.localhost";//"14.200.134.156/";//
+$paypal[site_url]="http://hotelhub.localhost".Yii::app()->baseUrl;//"14.200.134.156/";//
 $paypal[image_url]="";
 $paypal[success_url]="/paypal/Success/";
 //$paypal[success_url]="php_paypal/ipn/ipn";
-$paypal[cancel_url]="/paypal/Cancelled/";
+$paypal[cancel_url]="/paypal/Cancelled/".$_POST[custom_field];
 $paypal[notify_url]="/paypal/ipn/ipn/";
 $paypal[return_method]="2"; //1=GET 2=POST
 $paypal[currency_code]="AUD"; //[USD,GBP,JPY,CAD,EUR]
 $paypal[lc]="AU";
 
-//$paypal[url]="http://www.paypal.com/cgi-bin/webscr";
-//$paypal[url]="https://www.paypal.com/cgi-bin/webscr";
-$paypal[url]="https://www.sandbox.paypal.com/cgi-bin/webscr";
+$paypal[is_test] = true;	//true: sandbox, false: real transation.
+if($paypal[is_test]) {
+	$paypal[url]="https://www.sandbox.paypal.com/cgi-bin/webscr";
+} else {
+	$paypal[url]="https://www.paypal.com/cgi-bin/webscr";
+	
+}
 $paypal[post_method]="fso"; //fso=fsockopen(); curl=curl command line libCurl=php compiled with libCurl support
 $paypal[curl_location]="C:/curl/curl.exe";//"/usr/local/bin/curl";
 
@@ -59,7 +63,7 @@ $paypal[tax]=$_POST[tax];
 $paypal[shipping_amount]=$_POST[shipping_amount];
 $paypal[shipping_amount_per_item]="";
 $paypal[handling_amount]="";
-$paypal[custom_field]="";
+$paypal[custom_field]=$_POST[custom_field];
 
 //Customer Settings
 $paypal[firstname]=$_POST[firstname];

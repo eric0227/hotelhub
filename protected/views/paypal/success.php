@@ -13,7 +13,7 @@
  */
 ?>
 <?php
-	print_r($_POST); 
+	//print_r($_POST); 
 ?>
 <table width="500" border="0" align="center" cellpadding="1" cellspacing="0">
    <tr> 
@@ -60,6 +60,12 @@
                         <td bgcolor="#EEEEEE">Email:</td>
                         <td bgcolor="#EEEEEE"> 
                            <?php echo $_POST[payer_email]; ?>
+                        </td>
+                     </tr>
+                     <tr align="left" valign="top"> 
+                        <td bgcolor="#EEEEEE">custom:</td>
+                        <td bgcolor="#EEEEEE"> 
+                           <?php echo $_POST[custom]; ?>
                         </td>
                      </tr>
                   </table></td>

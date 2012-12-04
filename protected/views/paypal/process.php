@@ -13,10 +13,10 @@
  */
 
 //Configuration File
-include_once(Yii::app()->basePath.'/includes/config.inc.php'); 
+include_once(Yii::app()->baseUrl.'/includes/config.inc.php'); 
 
 //Global Configuration File
-include_once(Yii::app()->basePath.'/includes/global_config.inc.php');
+include_once(Yii::app()->baseUrl.'/includes/global_config.inc.php');
 
 ?>
  
@@ -25,7 +25,6 @@ include_once(Yii::app()->basePath.'/includes/global_config.inc.php');
 <head><title>::PHP PayPal::</title></head>
  -->
 <body onLoad="document.paypal_form.submit();">
-
 <form method="post" name="paypal_form" id="paypal_form" action="<?php echo $paypal[url]; ?>">
 
 <?php 

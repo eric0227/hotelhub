@@ -17,7 +17,7 @@
       <td align="left" valign="top" bgcolor="#333333"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr> 
                <td align="center" bgcolor="#EEEEEE"> <p>&nbsp;</p>
-                  <p>We're sorry, your credit card has been declined. </p>
+                  <p>We're sorry, you've been cancelled for paypal payment. </p>
                   <p>&nbsp;</p></td>
             </tr>
          </table></td>
