@@ -186,27 +186,34 @@ class MPTranslate extends CApplicationComponent{
      * @return string
      */
     function getLanguage(){
-        $key=self::ID;
-        if(($language=@$this->_cache['language'])!==null)
-            return $language;
-        elseif(Yii::app()->getSession()->contains($key))
-            $language=Yii::app()->getSession()->get($key);
-        elseif(isset($_POST[$key]) && !empty($_POST[$key]))
-            $language=$_POST[$key];
-        elseif(isset($_GET[$key]) && !empty($_GET[$key]))
-            $language=$_GET[$key];
-        else
-            $language=Yii::app()->getRequest()->getPreferredLanguage();
-        
-        if(!key_exists($language,$this->acceptedLanguages)){
-            if($language===Yii::app()->sourceLanguage)
-                $language=$this->defaultLanguage;
-            elseif(strpos($language,"_")!==false){
-                $language=substr($language,0,2);
-                if(!key_exists($language,$this->acceptedLanguages))
-                    $language=$this->defaultLanguage;
-            }
-        }
+        try {
+			$key=self::ID;
+			if(($language=@$this->_cache['language'])!==null)
+				return $language;
+			elseif(Yii::app()->getSession()->contains($key))
+				$language=Yii::app()->getSession()->get($key);
+			elseif(isset($_POST[$key]) && !empty($_POST[$key]))
+				$language=$_POST[$key];
+			elseif(isset($_GET[$key]) && !empty($_GET[$key]))
+				$language=$_GET[$key];
+			else
+				$language=Yii::app()->getRequest()->getPreferredLanguage();
+			
+			if($language == "")
+				$language = "en";
+
+			if(!key_exists($language,$this->acceptedLanguages)){
+				if($language===Yii::app()->sourceLanguage)
+					$language=$this->defaultLanguage;
+				elseif(strpos($language,"_")!==false){
+					$language=substr($language,0,2);
+					if(!key_exists($language,$this->acceptedLanguages))
+						$language=$this->defaultLanguage;
+				}
+			}
+		} catch(Exception $e) {
+			$language = "en";
+		}
         return $language;
     }
     /**

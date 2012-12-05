@@ -223,7 +223,7 @@ class OrderController extends Controller
 		} else {
 			$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$id, 'id_order_state'=>$order->id_order_state));
 		}
-				
+
 		$this->render('orderHistory',array(
 				'order'=>$order,
 				'model'=>$orderHistory,

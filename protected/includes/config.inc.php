@@ -19,7 +19,7 @@ $paypal[image_url]="";
 $paypal[success_url]="/paypal/Success/";
 //$paypal[success_url]="php_paypal/ipn/ipn";
 $paypal[cancel_url]="/paypal/Cancelled/".$_POST[custom_field];
-$paypal[notify_url]="/paypal/ipn/ipn/";
+$paypal[notify_url]="/paypal/Ipnsuccess";
 $paypal[return_method]="2"; //1=GET 2=POST
 $paypal[currency_code]="AUD"; //[USD,GBP,JPY,CAD,EUR]
 $paypal[lc]="AU";
@@ -29,7 +29,6 @@ if($paypal[is_test]) {
 	$paypal[url]="https://www.sandbox.paypal.com/cgi-bin/webscr";
 } else {
 	$paypal[url]="https://www.paypal.com/cgi-bin/webscr";
-	
 }
 $paypal[post_method]="fso"; //fso=fsockopen(); curl=curl command line libCurl=php compiled with libCurl support
 $paypal[curl_location]="C:/curl/curl.exe";//"/usr/local/bin/curl";
