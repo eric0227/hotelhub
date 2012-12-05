@@ -26,6 +26,11 @@
  * @property string $delivery_date
  * @property string $date_add
  * @property string $date_upd
+ * @property string $bookin_date
+ * @property string $bookout_upd
+ * @property string $checkin_date
+ * @property string $checkout_upd
+ * 
  * @property string $on_agent
  * @property string $id_order_state
  *
@@ -123,6 +128,12 @@ class Order extends CActiveRecord
 			'delivery_number' => 'Delivery Number',
 			'invoice_date' => 'Invoice Date',
 			'delivery_date' => 'Delivery Date',
+			
+			'bookin_date' => 'Booking-in Date',
+			'bookout_date' => 'Booking-out Date',		
+			'checkin_date' => 'check-in Date',
+			'checkout_date' => 'check-out Date',	
+					
 			'date_add' => 'Date Add',
 			'date_upd' => 'Date Upd',
 			'on_agent' => 'On Agent',
@@ -161,6 +172,13 @@ class Order extends CActiveRecord
 		$criteria->compare('delivery_number',$this->delivery_number,true);
 		$criteria->compare('invoice_date',$this->invoice_date,true);
 		$criteria->compare('delivery_date',$this->delivery_date,true);
+		
+		$criteria->compare('bookin_date',$this->bookin_date,true);
+		$criteria->compare('bookout_date',$this->bookout_date,true);
+		
+		$criteria->compare('ckeckin_date',$this->checkin_date,true);
+		$criteria->compare('checkout_date',$this->checkout_date,true);
+		
 		$criteria->compare('date_add',$this->date_add,true);
 		$criteria->compare('date_upd',$this->date_upd,true);
 		$criteria->compare('on_agent',$this->date_upd,true);

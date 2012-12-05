@@ -15,6 +15,8 @@
  * @property string $gift_message
  * @property string $date_add
  * @property string $date_upd
+ * @property string $bookin_date
+ * @property string $bookout_upd
  * @property string $on_order
  *
  * The followings are the available model relations:
@@ -98,6 +100,8 @@ class Cart extends CActiveRecord
 			'gift_message' => 'Gift Message',
 			'date_add' => 'Date Add',
 			'date_upd' => 'Date Upd',
+			'bookin_date' => 'Booking-in Date',
+			'bookout_date' => 'Booking-out Date',			
 			'on_order' => 'On Order',
 		);
 	}
@@ -123,6 +127,10 @@ class Cart extends CActiveRecord
 		$criteria->compare('gift_message',$this->gift_message,true);
 		$criteria->compare('date_add',$this->date_add,true);
 		$criteria->compare('date_upd',$this->date_upd,true);
+		
+		$criteria->compare('bookin_date',$this->bookin_date,true);
+		$criteria->compare('bookout_date',$this->bookout_date,true);
+		
 		$criteria->compare('on_order',$this->on_order,true);
 
 		return new CActiveDataProvider($this, array(

@@ -251,15 +251,14 @@ class User extends CActiveRecord
 	{
 		$_items = array();
 		
-		$sql = "SELECT u.id_user, u.email FROM gc_user u, gc_supplier s
-				WHERE u.id_user <> s.id_supplier
-				AND u.id_group = '2'";
+		$sql = "SELECT id_user, email FROM gc_user
+				WHERE id_user not in (select id_supplier from gc_supplier) 
+				AND id_group = '2'";
 		$dbcmd = Yii::app()->db->createCommand($sql);
 		$models = $dbcmd->queryAll();
 		
 		foreach($models as $model) {
-			
-			$_items[$model->id_user]=$model->email;
+			$_items[$model['id_user']]=$model['email'];
 		}
 		
 		return $_items;
