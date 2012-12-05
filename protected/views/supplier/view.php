@@ -5,7 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Supplier','url'=>array('index')),
+	//array('label'=>'List Supplier','url'=>array('index')),
 	array('label'=>'Create Supplier','url'=>array('create')),
 	array('label'=>'Update Supplier','url'=>array('update','id'=>$model->id_supplier)),
 	array('label'=>'Delete Supplier','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_supplier),'confirm'=>'Are you sure you want to delete this item?')),
