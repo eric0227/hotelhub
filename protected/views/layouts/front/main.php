@@ -2,9 +2,6 @@
 $service = Yii::app()->session->get('service',1);
 $lang = Yii::app()->session->get('lang', 1);
 $id = Yii::app()->user->id;
-
-$current = "";
-if(Yii::app()->request->pathinfo == '') $current = 'current';
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,6 +26,13 @@ if(Yii::app()->request->pathinfo == '') $current = 'current';
 	<!--[if lt IE 9]>
 		<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/html5shiv.js"></script>
 	<![endif]-->
+	<script type="text/javascript">
+		$(function(){
+			var current = '<?php echo Yii::app()->getController()->getId() ?>';
+			if(current == 'index'){ current = 'fronthotel'; }
+			$('#navigation li[data-name='+current+']').addClass('current');
+		});
+	</script>
 </head>
 <body>
 <div id="wrapper">
@@ -57,11 +61,11 @@ if(Yii::app()->request->pathinfo == '') $current = 'current';
 		</div>
 		<nav>
 			<ul id="navigation">
-				<li class="<?php echo $current ?>"><a href="<?php echo Yii::app()->request->baseUrl; ?>" class="menu1"><span>Accommodation</span></a></li>
-				<li><a href="<?php echo Yii::app()->request->baseUrl; ?>/construction" class="menu2"><span>Car Rental<br/>Services</span></a></li>
-				<li><a href="<?php echo Yii::app()->request->baseUrl; ?>/construction" class="menu3"><span>Things To do<br/>Attraction</span></a></li>
-				<li><a href="<?php echo Yii::app()->request->baseUrl; ?>/construction" class="menu4"><span>Day Tour</span></a></li>
-				<li><a href="<?php echo Yii::app()->request->baseUrl; ?>/construction" class="menu5"><span>Hot Deal</span></a></li>
+				<li data-name="fronthotel"><a href="<?php echo Yii::app()->request->baseUrl; ?>" class="menu1"><span>Accommodation</span></a></li>
+				<li data-name="carrental"><a href="<?php echo Yii::app()->request->baseUrl; ?>/carrental" class="menu2"><span>Car Rental<br/>Services</span></a></li>
+				<li data-name="attraction"><a href="<?php echo Yii::app()->request->baseUrl; ?>/attraction" class="menu3"><span>Things To do<br/>Attraction</span></a></li>
+				<li data-name="daytour"><a href="<?php echo Yii::app()->request->baseUrl; ?>/daytour" class="menu4"><span>Day Tour</span></a></li>
+				<li data-name="hotdeal"><a href="<?php echo Yii::app()->request->baseUrl; ?>/hotdeal" class="menu5"><span>Hot Deal</span></a></li>
 			</ul>
 		</nav>
 	</header>

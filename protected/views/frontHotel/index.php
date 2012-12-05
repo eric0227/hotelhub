@@ -53,12 +53,13 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 			<option value="10">10</option>
 			<option value="11">11</option>
 		</select>
-		<button class="btn btn-success" type="submit" onclick="return hotel.submit();">Search</button>
+		<button class="btn btn-primary" type="submit" onclick="return hotel.submit();">Search</button>
 	</div>
 	</form>
 	
 	<div id="accommodation_list">
 	<table class="table table-bordered">
+		<thead>
 		<tr class="date">
 			<td colspan="2">&nbsp;</td>
 			<th>
@@ -67,12 +68,12 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				<b>30</b>
 				<span>Nov</span>
 			</th>
-			<th>
+			<th class="weekend">
 				Sat
 				<b>1</b>
 				<span>Dec</span>
 			</th>
-			<th>
+			<th class="weekend">
 				Sun
 				<b>2</b>
 				<span>Dec</span>
@@ -102,12 +103,12 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				<b>7</b>
 				<span>Dec</span>
 			</th>
-			<th>
+			<th class="weekend">
 				Sat
 				<b>8</b>
 				<span>Dec</span>
 			</th>
-			<th>
+			<th class="weekend">
 				Sun
 				<b>9</b>
 				<span>Dec</span>
@@ -134,9 +135,11 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				<a class="next">Next</a>
 			</th>
 		</tr>
+		</thead>
+		<thead>
 		<tr>
 			<td class="hotel span4">
-				<a href="#">The Hotel Name</a>
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/view/1">The Hotel Name</a>
 			</td>
 			<td class="rate">
 				AUS--
@@ -158,6 +161,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 			<td class="weekday">100</td>
 			<!-- ## The days ends until here ## -->
 		</tr>
+		</thead>
 	</table>
 	</div>
 </div>

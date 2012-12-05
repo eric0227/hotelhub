@@ -118,8 +118,15 @@ body {
 #accommodation_list table .date .next,
 #accommodation_list table .date .prev { position: absolute; }
 
-#accommodation_list table .date .next { right: -13px; top: 28px; }
-#accommodation_list table .date .prev { left: -13px; top: 28px; }
+#accommodation_list table .date .next,
+#accommodation_list table .date .prev { top: 28px; width: 22px; height: 22px; text-indent: -9999px; }
+
+#accommodation_list table .date .next { right: -13px; background: url('../images/front/arrow_right.png') no-repeat left top; }
+#accommodation_list table .date .prev { left: -13px; background: url('../images/front/arrow_left.png') no-repeat left top; }
+
+#accommodation_list thead th { background: #49a3ca; color: #fff; }
+#accommodation_list thead th.weekend { background: #3f90b3; }
+#accommodation_list thead th b { font-size: 20px; }
 
 /* Advanced search for Accommodation list */
 #advanced_search { }
@@ -132,13 +139,14 @@ body {
 }
 
 #advanced_search .control-group {
-	background: #f7f7f7;
+	background: #81b6cf;
 	margin: 0 !important;
 	padding: 10px 0;
+	color: #fff;
 }
 
 #advanced_search .control-group.odd {
-	background: #eee;
+	background: #a2c1cf;
 }
 
 #advanced_search label.control-label {
@@ -151,6 +159,25 @@ body {
 	height: 20px !important;
 	padding: 0 !important;
 }
+
+/****************** Car Rental *****************/
+#car_rental{width:100%;}
+#car_rental #side{display:inline-block;vertical-align:top;zoom:1;*display:inline;width:175px}
+#car_rental #side #left_select_country {}
+
+#car_rental #list{display:inline-block;vertical-align:top;zoom:1;*display:inline;width:800px}
+#car_rental #list .navigation{border-bottom: 1px solid #7ca310;padding:0;margin:0}
+#car_rental #list .navigation li {display:inline;list-style:none;}
+#car_rental #list .navigation li a { padding: 0 10px; }
+
+#car_rental #list table {margin-top:15px}
+#car_rental #list table thead th,
+#car_rental #list table tbody th {background:#f4f4f4;padding:10px 0;text-align:center;}
+
+
+
+
+
 
 
 

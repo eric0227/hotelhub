@@ -36,9 +36,7 @@ class FrontHotelController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
+		$this->render('view');
 	}
 
 	/**
@@ -47,7 +45,5 @@ class FrontHotelController extends Controller
 	public function actionIndex()
 	{
 		$this->render('index');
-		$supplier = Destination::model()->getHotelList();
-		print_r($supplier);
 	}
 }
