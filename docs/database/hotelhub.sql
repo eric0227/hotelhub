@@ -351,7 +351,7 @@ CREATE TABLE IF NOT EXISTS `gc_address` (
 
   `address_code` char(6) NOT NULL DEFAULT '001001',
 
-  `alias` varchar(32) NOT NULL,
+  `alias` varchar(32) NOT NULL DEFAULT '001001',
   `company` varchar(32) DEFAULT NULL,
   `lastname` varchar(32) NOT NULL,
   `firstname` varchar(32) NOT NULL,
