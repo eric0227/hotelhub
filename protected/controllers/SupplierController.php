@@ -104,9 +104,9 @@ class SupplierController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		//if(Yii::app()->user->isAdmin()) {
+		if(Yii::app()->user->isAdmin()) {
 			$this->layout='//layouts/supplier/column2';
-		//}
+		}
 		
 		$model=$this->loadModel($id);
 
@@ -123,10 +123,9 @@ class SupplierController extends Controller
 				$this->setSupplierLang($model->id_supplier);
 				$this->redirect(array('view','id'=>$model->id_supplier));
 			}
-		} else {
-			$model->loadMultiLang();
 		}
-
+		$model->loadMultiLang();
+		
 		$this->render('update',array(
 			'model'=>$model,
 		));
@@ -175,7 +174,12 @@ class SupplierController extends Controller
 	 */
 	public function actionIndex()
 	{
+		if(Yii::app()->user->isAdmin()) {
+			$this->layout='//layouts/column2';
+		}
+		
 		$dataProvider=new CActiveDataProvider('Supplier');
+		$dataProvider->criteria->condition = 'id_service = '.Service::getCurrentService();
 		
 		$supplier = $this->loadModel(Yii::app()->user->id);
 		
@@ -196,8 +200,11 @@ class SupplierController extends Controller
 				
 		$model=new Supplier('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Supplier']))
+		if(isset($_GET['Supplier'])) {
 			$model->attributes=$_GET['Supplier'];
+		}
+		
+		$model->attributes['id_service'] = Service::getCurrentService();
 
 		$this->render('admin',array(
 			'model'=>$model,

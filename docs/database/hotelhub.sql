@@ -289,6 +289,8 @@ INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`
 CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `id_supplier` int(10) unsigned NOT NULL,
   
+  `id_service` int(10) unsigned NOT NULL,
+  
   `manager_name` varchar(64),
   `manager_email` varchar(128),
 
@@ -313,6 +315,7 @@ CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `check_out_time` char(5) DEFAULT '11:00',
 
   PRIMARY KEY (`id_supplier`),
+  FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_supplier`) REFERENCES `gc_user`(`id_user`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
@@ -438,12 +441,11 @@ CREATE TABLE IF NOT EXISTS `gc_category` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10;
 
 INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nleft, nright, active, date_add, date_upd )
-VALUES (1, 0, 1, 1, 1, 2, 1, now(), now());
-
-INSERT INTO `gc_category` (id_category, id_parent, id_service, level_depth, nleft, nright, active, date_add, date_upd )
-VALUES (2, 0, 2, 2, 1, 2, 1, now(), now());
-
-
+VALUES (1, 0, 1, 1, 1, 2, 1, now(), now())
+,(2, 0, 2, 1, 1, 2, 1, now(), now())
+,(3, 0, 3, 1, 1, 2, 1, now(), now())
+,(4, 0, 4, 1, 1, 2, 1, now(), now())
+,(5, 0, 5, 1, 1, 2, 1, now(), now());
 
 CREATE TABLE IF NOT EXISTS `gc_category_lang` (
   `id_category` int(10) unsigned NOT NULL,

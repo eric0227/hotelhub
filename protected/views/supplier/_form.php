@@ -9,7 +9,9 @@
 		<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 		<?php echo $form->errorSummary($model); ?>
 
-		<?php 
+		<?php
+			print_r(User::getUnLinkSupplierUserItems());
+			
 			if(Yii::app()->user->isAdmin()) {
 				echo $form->dropDownListRow($model,'id_supplier', User::items(User::SUPPLIER),
 					array('class' => 'span5'));

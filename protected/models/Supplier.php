@@ -97,7 +97,7 @@ class Supplier extends CActiveRecord
 			'hotels' => array(self::HAS_MANY, 'Hotel', 'id_supplier'),
 			'products' => array(self::HAS_MANY, 'Product', 'id_supplier'),
 			'rooms' => array(self::HAS_MANY, 'Room', 'id_supplier'),
-			'idSupplier' => array(self::BELONGS_TO, 'User', 'id_supplier'),
+			'service' => array(self::BELONGS_TO, 'Service', 'id_service'),
 			'gcAttributes' => array(self::MANY_MANY, 'Attribute', 'gc_supplier_attribute_value(id_supplier, id_attribute)'),
 			//'supplierImages' => array(self::HAS_MANY, 'SupplierImage', 'id_supplier'),
 			'supplierImages' => array(self::MANY_MANY, 'ImageC', 'gc_supplier_image(id_image, id_supplier)'),
@@ -114,7 +114,7 @@ class Supplier extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_supplier' => 'Id Supplier',
+			'id_supplier' => 'User',
 			'manager_name' => 'Manager Name',
 			'manager_email' => 'Manager Email',
 			'sales_name' => 'Sales Name',
@@ -148,6 +148,7 @@ class Supplier extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_supplier',$this->id_supplier,true);
+		$criteria->compare('id_service',$this->id_service,true);
 		$criteria->compare('manager_name',$this->manager_name,true);
 		$criteria->compare('manager_email',$this->manager_email,true);
 		$criteria->compare('sales_name',$this->sales_name,true);
@@ -332,6 +333,10 @@ class Supplier extends CActiveRecord
 		}
 		
 		//print_r($attributeValue);
+		
+		if($this->isNewRecord) {
+			$this->id_service = Service::getCurrentService();
+		}
 		
 		return parent::beforeSave();
 	}

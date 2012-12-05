@@ -246,4 +246,24 @@ class User extends CActiveRecord
 			self::$_items[$model->id_user]=$model->email;
 		}
 	}
+	
+	public static function getUnLinkSupplierUserItems()
+	{
+		$_items = array();
+		
+		$sql = "SELECT u.id_user, u.email FROM gc_user u, gc_supplier s
+				WHERE u.id_user <> s.id_supplier
+				AND u.id_group = '2'";
+		$dbcmd = Yii::app()->db->createCommand($sql);
+		$models = $dbcmd->queryAll();
+		
+		foreach($models as $model) {
+			
+			$_items[$model->id_user]=$model->email;
+		}
+		
+		return $_items;
+	}
 }
+
+
