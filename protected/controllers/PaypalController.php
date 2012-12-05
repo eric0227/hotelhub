@@ -72,16 +72,6 @@ class PaypalController extends Controller
 	public function actionIpnsuccess() {
 		$this->layout=null;
 		
-		//$date = date("H:i dS F"); //Get the date and time.
-		//$file = Yii::app()->baseUrl."/log.htm"; //Where the log will be saved.
-
-		//$open = fopen($file, "a+"); //open the file, (log.htm).
-		 
-		// STEP 1: Read POST data
-		 
-		// reading posted data from directly from $_POST causes serialization 
-		// issues with array data in POST
-		// reading raw POST data from input stream instead. 
 		$raw_post_data = file_get_contents('php://input');
 		$raw_post_array = explode('&', $raw_post_data);
 		$myPost = array();
@@ -151,60 +141,32 @@ class PaypalController extends Controller
 			$txn_id = $_POST['txn_id'];
 			$receiver_email = $_POST['receiver_email'];
 			$payer_email = $_POST['payer_email'];
-		} else if (strcmp ($res, "invalid") == 0) {
-			// log for manual investigation
-		}
-
-		$id = $_POST['custom'];
-		$order = Order::model()->findByPk($id);
-		$orderState = $order->orderState;
-				
-		//$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$id, 'id_order_state'=>$order->id_order_state));
-
-		//if(isset($_POST['OrderHistory']))
-		{
-			//$id_order_state = $_POST['OrderHistory']['id_order_state'];
-			//if($id_order_state != $order->id_order_state) {
-				$orderHistory = new OrderHistory;
-				$orderHistory->id_order = $id;
-			//}
 			
+			
+			$id = $_POST['custom'];
+			$order = Order::model()->findByPk($id);
+			
+			$orderHistory = new OrderHistory;
+			$orderHistory->id_order = $id;
+			
+			$orderState = OrderState::model()->findByAttributes(array('template'=>strtolower($payment_status)));
+			$orderState_value = 8;
+			if($orderState != null) {
+				$orderState_value = $orderState->id_order_state;
+			}
 			$orderHistory->id_user = $order->id_user;
 			$orderHistory->id_order = $order->id_order;
-			$orderHistory->id_order_state = 12;
+			$orderHistory->id_order_state = $orderState_value;
+			$orderHistory->comment = "txn_id:".$txn_id."\r\n"."original_paypal_state:".$payment_status;
 			$orderHistory->save();
 			
 			$order->id_order_state = $orderHistory->id_order_state;
 			$order->save();
+			
+		} else if (strcmp ($res, "invalid") == 0) {
+			// log for manual investigation
 		}
 
 		Yii::app()->end();
 	}
-	
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

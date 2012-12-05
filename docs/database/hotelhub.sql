@@ -1162,18 +1162,15 @@ CREATE TABLE IF NOT EXISTS `gc_order_state` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 INSERT INTO `gc_order_state` (`id_order_state`, `invoice`, `send_email`, `color`, `unremovable`, `hidden`, `logable`, `delivery`, `name`, `template`) VALUES
-(1, 0, 1, 'lightblue', 1, 0, 0, 0, 'Awaiting cheque payment', 'cheque'),
-(2, 1, 1, '#DDEEFF', 1, 0, 1, 0, 'Payment accepted', 'payment'),
-(3, 1, 1, '#FFDD99', 1, 0, 1, 1, 'Preparation in progress', 'preparation'),
-(4, 1, 1, '#EEDDFF', 1, 0, 1, 1, 'Shipped', 'shipped'),
-(5, 1, 0, '#DDFFAA', 1, 0, 1, 1, 'Delivered', ''),
-(6, 0, 1, '#DADADA', 1, 0, 0, 0, 'Canceled', 'order_canceled'),
-(7, 1, 1, '#FFFFBB', 1, 0, 0, 0, 'Refund', 'refund'),
-(8, 0, 1, '#FFDFDF', 1, 0, 0, 0, 'Payment error', 'payment_error'),
-(9, 1, 1, '#FFD3D3', 1, 0, 0, 0, 'On backorder', 'outofstock'),
-(10, 0, 1, 'lightblue', 1, 0, 0, 0, 'Awaiting bank wire payment', 'bankwire'),
-(11, 0, 0, 'lightblue', 1, 0, 0, 0, 'Awaiting PayPal payment', ''),
-(12, 1, 0, '#DDEEFF', 1, 0, 1, 0, 'Payment remotely accepted', '');
+(1, 1, 1, '#FFDD99', 1, 0, 1, 1, 'Preparation in progress', 'preparation'),
+(2, 1, 1, '#FFDD99', 1, 0, 1, 1, 'Pending', 'pending'),
+(3, 1, 1, '#FFDD99', 1, 0, 1, 1, 'Declined', 'declined'),
+(4, 1, 1, '#DDEEFF', 1, 0, 1, 0, 'Payment Complete', 'complete'),
+(5, 1, 1, '#EEDDFF', 1, 0, 1, 1, 'Shipped', 'shipped'),
+(6, 1, 1, '#DDFFAA', 1, 0, 1, 1, 'Delivered', 'delivered'),
+(7, 1, 1, '#DADADA', 1, 0, 0, 0, 'Canceled', 'order_canceled'),
+(8, 1, 1, '#DADADA', 1, 0, 0, 0, 'Unknown', 'unknown'),
+(9, 1, 1, '#FFFFBB', 1, 0, 0, 0, 'Refund', 'refund');
 
 /*
 CREATE TABLE IF NOT EXISTS `gc_order_state_lang` (
