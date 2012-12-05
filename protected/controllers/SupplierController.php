@@ -58,7 +58,7 @@ class SupplierController extends Controller
 	public function actionView($id)
 	{
 		if(Yii::app()->user->isAdmin()) {
-			$this->layout='//layouts/supplier/column2';
+			$this->layout='//layouts/column2';
 		}
 		
 		$this->render('view',array(
@@ -71,11 +71,9 @@ class SupplierController extends Controller
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
 	public function actionCreate()
-	{
-		echo Yii::app()->user->isAdmin();
-		
+	{		
 		if(Yii::app()->user->isAdmin()) {
-			$this->layout='//layouts/supplier/column2';
+			$this->layout='//layouts/column2';
 		}
 			
 		$model=new Supplier;
@@ -85,10 +83,28 @@ class SupplierController extends Controller
 
 		if(isset($_POST['Supplier']))
 		{
-			$model->attributes=$_POST['Supplier'];
-			if($model->save()) {
-				$this->setSupplierLang($model->id_supplier);
-				$this->redirect(array('view','id'=>$model->id_supplier));
+			if(isset($_POST['yt0'])) {
+				$model->attributes=$_POST['Supplier'];
+				if($model->save()) {
+					$this->setSupplierLang($model->id_supplier);
+					$this->redirect(array('view','id'=>$model->id_supplier));
+				}
+			} else {
+				$id_supplier = $_POST['Supplier']['id_supplier'];
+				$user = User::model()->findByPk($id_supplier);
+				
+				$model->id_supplier = $id_supplier;
+				$model->manager_name = $user->lastname . ' ' . $user->firstname;
+				$model->manager_email = $user->email;
+				
+				$model->sales_name = $user->lastname . ' ' . $user->firstname;
+				$model->sales_email = $user->email;				
+				
+				$model->reservations_name = $user->lastname . ' ' . $user->firstname;
+				$model->reservations_email = $user->email;
+				
+				$model->accounts_name = $user->lastname . ' ' . $user->firstname;
+				$model->accounts_email = $user->email;
 			}
 		}
 
@@ -105,7 +121,7 @@ class SupplierController extends Controller
 	public function actionUpdate($id)
 	{
 		if(Yii::app()->user->isAdmin()) {
-			$this->layout='//layouts/supplier/column2';
+			$this->layout='//layouts/column2';
 		}
 		
 		$model=$this->loadModel($id);
@@ -133,7 +149,7 @@ class SupplierController extends Controller
 	
 	public function actionUpdateAddress($id)
 	{
-		$this->layout='//layouts/supplier/column2';
+		$this->layout='//layouts/column2';
 		
 		$user = User::model()->findByPk($id);
 		$defaultAddress = $user->getDefaultAddress();
@@ -204,7 +220,7 @@ class SupplierController extends Controller
 			$model->attributes=$_GET['Supplier'];
 		}
 		
-		$model->attributes['id_service'] = Service::getCurrentService();
+		$model->id_service = Service::getCurrentService();
 
 		$this->render('admin',array(
 			'model'=>$model,

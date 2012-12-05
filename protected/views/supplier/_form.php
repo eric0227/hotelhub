@@ -9,12 +9,19 @@
 		<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 		<?php echo $form->errorSummary($model); ?>
 
-		<?php
-			print_r(User::getUnLinkSupplierUserItems());
-			
-			if(Yii::app()->user->isAdmin()) {
-				echo $form->dropDownListRow($model,'id_supplier', User::items(User::SUPPLIER),
-					array('class' => 'span5'));
+		<?php			
+			if($model->isNewRecord) {
+				
+				Yii::app()->clientScript->registerScript(
+			       'id_supplier',
+			       '$("#id_user").on("change", function() {
+			       		$("#supplier-form").submit();
+					})',
+					CClientScript::POS_READY
+				);
+				
+				echo $form->dropDownListRow($model,'id_supplier', User::getUnLinkSupplierUserItems(),
+					array('prompt' => '--Please select--','id'=>'id_user','class' => 'span5'));
 			} else {
 				echo $form->hiddenField($model,'id_supplier',array('class'=>'span5','maxlength'=>64));
 			}
@@ -23,6 +30,12 @@
 	
 		<fieldset>
 			<legend>Contact Information</legend>
+
+			<?php
+				if(!$model->isNewRecord) {
+					echo $form->dropDownListRow($model,'id_service', Service::items(), array('class'=>'span5')); 
+				}
+			?>
 			<?php echo $form->textFieldRow($model,'manager_name',array('class'=>'span5','maxlength'=>64)); ?>
 			<?php echo $form->textFieldRow($model,'manager_email',array('class'=>'span5','maxlength'=>128)); ?>
 			<?php echo $form->textFieldRow($model,'sales_name',array('class'=>'span5','maxlength'=>64)); ?>

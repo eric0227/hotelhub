@@ -115,6 +115,7 @@ class Supplier extends CActiveRecord
 	{
 		return array(
 			'id_supplier' => 'User',
+			'id_service' => 'Service',
 			'manager_name' => 'Manager Name',
 			'manager_email' => 'Manager Email',
 			'sales_name' => 'Sales Name',
