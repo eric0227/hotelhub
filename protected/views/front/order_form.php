@@ -4,7 +4,7 @@
 
 <div>
 <?php
-	echo CHtml::beginForm("/front/UserPayment", "post");
+	echo CHtml::beginForm(Yii::app()->request->baseUrl."/front/UserPayment", "post");
 
 	if(Yii::app()->user->isGuest) {
 		$model = new User();

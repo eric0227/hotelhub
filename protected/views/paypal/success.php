@@ -1,75 +1,86 @@
 <?php
 /*
  * success.php
- *
- * PHP Toolkit for PayPal v0.51
- * http://www.paypal.com/pdn
- *
- * Copyright (c) 2004 PayPal Inc
- *
- * Released under Common Public License 1.0
- * http://opensource.org/licenses/cpl.php
- *
- */
+*
+* PHP Toolkit for PayPal v0.51
+* http://www.paypal.com/pdn
+*
+* Copyright (c) 2004 PayPal Inc
+*
+* Released under Common Public License 1.0
+* http://opensource.org/licenses/cpl.php
+*
+*/
 ?>
 <?php
-	//print_r($_POST); 
+//print_r($_POST);
 ?>
-<table width="500" border="0" align="center" cellpadding="1" cellspacing="0">
-   <tr> 
-      <td align="left" valign="top" bgcolor="#333333"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr> 
-               <td align="center" bgcolor="#EEEEEE"> <p>&nbsp;</p>
-                  <p>Thank you! Your order has been successfully processed.</p>
-                  <p>&nbsp;</p></td>
-            </tr>
-         </table></td>
-   </tr>
+<table width="500" border="0" align="center" cellpadding="1"
+	cellspacing="0">
+	<tr>
+		<td align="left" valign="top" bgcolor="#333333">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td align="center" bgcolor="#EEEEEE">
+						<p>&nbsp;</p>
+						<p>Thank you! Your order has been successfully processed.</p>
+						<p>&nbsp;</p>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 </table>
 <br>
-<table width="500" border="0" align="center" cellpadding="1" cellspacing="0">
-   <tr> 
-      <td align="left" valign="top" bgcolor="#333333"> <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr align="left" valign="top"> 
-               <td width="20%" bgcolor="#EEEEEE"><table width="100%" border="0" cellspacing="0" cellpadding="3">
-                     <tr align="left" valign="top"> 
-                        <td bgcolor="#EEEEEE">Order Number:</td>
-                        <td bgcolor="#EEEEEE"> 
-                           <?php echo $_POST[txn_id]; ?>
-                        </td>
-                     </tr>
-                     <tr align="left" valign="top"> 
-                        <td bgcolor="#EEEEEE">Date:</td>
-                        <td bgcolor="#EEEEEE"> 
-                           <?php echo $_POST[payment_date]; ?>
-                        </td>
-                     </tr>
-                     <tr align="left" valign="top"> 
-                        <td width="20%" bgcolor="#EEEEEE"> First Name: </td>
-                        <td width="80%" bgcolor="#EEEEEE"> 
-                           <?php echo $_POST[first_name]; ?>
-                        </td>
-                     </tr>
-                     <tr align="left" valign="top"> 
-                        <td bgcolor="#EEEEEE">Last Name:</td>
-                        <td bgcolor="#EEEEEE"> 
-                           <?php echo $_POST[last_name]; ?>
-                        </td>
-                     </tr>
-                     <tr align="left" valign="top"> 
-                        <td bgcolor="#EEEEEE">Email:</td>
-                        <td bgcolor="#EEEEEE"> 
-                           <?php echo $_POST[payer_email]; ?>
-                        </td>
-                     </tr>
-                     <tr align="left" valign="top"> 
-                        <td bgcolor="#EEEEEE">custom:</td>
-                        <td bgcolor="#EEEEEE"> 
-                           <?php echo $_POST[custom]; ?>
-                        </td>
-                     </tr>
-                  </table></td>
-            </tr>
-         </table></td>
-   </tr>
+<table width="500" border="0" align="center" cellpadding="1"
+	cellspacing="0">
+	<tr>
+		<td align="left" valign="top" bgcolor="#333333">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<tr align="left" valign="top">
+					<td width="20%" bgcolor="#EEEEEE"><table width="100%" border="0"
+							cellspacing="0" cellpadding="3">
+							<tr align="left" valign="top">
+								<td bgcolor="#EEEEEE">Order Number:</td>
+								<td bgcolor="#EEEEEE"> 
+								<?php echo $_POST[custom]; ?>
+								</td>
+							</tr>
+							<!-- 
+							<tr align="left" valign="top"> 
+								<td bgcolor="#EEEEEE">Order Number:</td>
+								<td bgcolor="#EEEEEE"> 
+									<?php echo $_POST[txn_id]; ?>
+								</td>
+							</tr>
+							-->
+							<tr align="left" valign="top">
+								<td bgcolor="#EEEEEE">Date:</td>
+								<td bgcolor="#EEEEEE"> 
+								<?php echo $_POST[payment_date]; ?>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td width="20%" bgcolor="#EEEEEE">First Name:</td>
+								<td width="80%" bgcolor="#EEEEEE"> 
+								<?php echo $_POST[first_name]; ?>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td bgcolor="#EEEEEE">Last Name:</td>
+								<td bgcolor="#EEEEEE"> 
+								<?php echo $_POST[last_name]; ?>
+								</td>
+							</tr>
+							<tr align="left" valign="top">
+								<td bgcolor="#EEEEEE">Email:</td>
+								<td bgcolor="#EEEEEE"> 
+								<?php echo $_POST[payer_email]; ?>
+								</td>
+							</tr>
+						</table></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 </table>

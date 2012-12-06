@@ -14,7 +14,11 @@
 	
 	//Configuration Settings
 	$paypal[business] = "accoun_1340070325_biz@gnaemarketing.com.au";//"seller_1348028137_biz@gmail.com";//
-	$paypal[site_url] = "http://hotelhub.localhost".Yii::app()->baseUrl;//"14.200.134.156/";//
+	if(true) {	//	Local Server.
+		$paypal[site_url] = "http://hotelhub.localhost".Yii::app()->baseUrl;
+	} else {	// Test Server.
+		$paypal[site_url] = "http://14.200.134.156".Yii::app()->baseUrl;
+	}
 	$paypal[image_url] = "";
 	$paypal[success_url] = "/paypal/Success/";
 	//$paypal[success_url] = "php_paypal/ipn/ipn";

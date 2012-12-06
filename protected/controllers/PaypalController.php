@@ -27,8 +27,6 @@ class PaypalController extends Controller
 		$this->render('index');
 	}
 	
-	//public $id_cart_num = "";
-	//public $id_order_num = "";
 	public function actionProcess() {
 		$model = new Order;
 		
@@ -47,10 +45,9 @@ class PaypalController extends Controller
 				
 			$model->procOrder();
 			if($model->save()) {
-				//$_POST[custom_field] = $model->id_order;
-				//$id_cart_num = $id_cart;
-				//$id_order_num = $model->id_order;
-				//$this->render('process');
+				$cart->on_order = 1;
+				$cart->save();
+				
 				$cartproduct_info = CartProduct::model()->findByPk($id_cart);
 				$product_info = Product::model()->findByPk($cartproduct_info->id_product);
 				$user_info = User::model()->findByPk($cart->id_user);
