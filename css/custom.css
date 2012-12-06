@@ -187,7 +187,7 @@ fieldset fieldset {
 }
 
 th.dateHeading {
-	background-color: #2d7ebd;
+	background-color: #8bb841;
 	font-weight: lighter;
 	text-align: center;
 	color: #fff;
@@ -196,7 +196,7 @@ th.dateHeading {
 }
 
 th.weekends {
-	background-color: #59a1d3;
+	background-color: #95c649;
 	font-weight: lighter;
 	text-align: center;
 	color: #fff;
@@ -218,6 +218,14 @@ td.inactive {
 }
 
 td.white {
+	font-size: 0.8em;
+	font-weight: lighter;
+	text-align: center;
+	border: 1px solid #d6d6d6;
+}
+
+td.yellow {
+	background-color: #feffb3;
 	font-size: 0.8em;
 	font-weight: lighter;
 	text-align: center;

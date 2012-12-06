@@ -1,5 +1,6 @@
 $(function(){
 		$('.date_input').datepicker();
+		SetUIActivity();
 });
 
 var hotel = {
@@ -50,3 +51,13 @@ var hotel = {
 		return true;
 	}
 };
+
+function SetUIActivity(){
+	$('.select_btn_group .select_btn').live('click', function(){
+		var list = $(this).parent().find('ul');
+		var flag = list.css('display');
+		
+		if(flag == 'none'){ list.css('display', 'block'); }
+		if(flag == 'block'){ list.css('display', 'none'); }
+	});
+}
