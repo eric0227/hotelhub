@@ -190,3 +190,22 @@ fieldset fieldset {
 
 #find_accommodation .country {float: left; }
 #find_accommodation .destination {float: left; }
+
+.select_btn_group {display:block}
+.select_btn_group .select_btn {position:relative;display:block;padding:0 10px;font-size:12px;height:28px;line-height:28px;border:1px solid #d4d4d4;background:url('../images/front/control_box_bg.gif') repeat-x left top;color:#454545;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-o-border-radius:2px;-ms-border-radius:2px}
+.select_btn_group .select_btn:hover {background:#f7f7f7;text-decoration:none}
+.select_btn_group .select_btn .caret {position:absolute;right: 0;top: 0;height:28px;padding: 0 15px;background:url('../images/front/control_box_arrow_down.png') no-repeat 50% 50%;border: none;border-left: 1px solid #d4d4d4}
+.select_btn_group ul {display:none}
+.select_btn_group ul li {}
+.select_btn_group ul li a {}
+
+.left_arrow,
+.right_arrow {width:27px;height:32px;text-indent:-9999px;background:url('../images/front/selecting_country_arrow_iconset.png');margin:0;padding:0}
+
+.left_arrow {float:left;background-position:-33px 0;border-right:1px solid #ddd}
+.left_arrow:hover {background-position:-33px -38px}
+.left_arrow:active {background-position:-33px -76px}
+
+.right_arrow {float:right;background-position:0 0;border-left:1px solid #ddd}
+.right_arrow:hover {background-position:0px -38px}
+.right_arrow:active {background-position:0px -76px}
