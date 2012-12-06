@@ -19,6 +19,9 @@
 	<?php echo CHtml::encode(CHtml::encode($data->description_short)); ?>
 	<br />
 	
+	<b><?php echo CHtml::encode($data->getAttributeLabel('maker')); ?>:</b>
+	<?php echo CHtml::encode($data->maker); ?>
+	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('id_service')); ?>:</b>
 	<?php echo CHtml::encode($data->id_service); ?>

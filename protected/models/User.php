@@ -22,6 +22,7 @@
  * @property Cart[] $carts
  * @property Group $group
  * @property Address getDefaultAddress
+ * @property Supplier $supplier
  */
 class User extends CActiveRecord
 {
@@ -29,11 +30,10 @@ class User extends CActiveRecord
 	const SUPPLIER = 2;
 	const AGNT = 3;
 	const CUSTOMER = 4;
-	const GUEST = 5;
+	//const GUEST = 5;
 	
 	public $repeat_passwd;
 	public $initialPasswd;
-	
 	
 	private static $_items = null;
 	/**
@@ -88,6 +88,7 @@ class User extends CActiveRecord
 			'group' => array(self::BELONGS_TO, 'Group', 'id_group'),
 			'lang' => array(self::BELONGS_TO, 'Lang', 'id_lang'),
 			'carts' => array(self::HAS_MANY, 'Cart', 'id_user'),
+			'supplier' => array(self::HAS_ONE, 'Supplier', 'id_supplier'),
 			'addressDefault' => array(self::BELONGS_TO, 'Address', 'id_address_default'),
 			'addressDelivery' => array(self::BELONGS_TO, 'Address', 'id_address_delivery'),
 			'addressInvoice' => array(self::BELONGS_TO, 'Address', 'id_address_invoice'),
@@ -222,7 +223,7 @@ class User extends CActiveRecord
 		try {
 			return Yii::app()->user->id_group;
 		}catch (CException $e) {
-			return self::GUEST;
+			return self::CUSTOMER;
         }
 	}
 	
@@ -262,6 +263,18 @@ class User extends CActiveRecord
 		}
 		
 		return $_items;
+	}
+	
+	public function getSupplier() {
+		$supplier = null;
+		if($this->id_group == User::SUPPLIER) {
+			$supplier = Yii::app()->session->get('supplier');
+			if(!isset($supplier)) {
+				$supplier = $this->supplier;
+				Yii::app()->session->add('supplier', $supplier);
+			}
+		}
+		return $supplier;
 	}
 }
 

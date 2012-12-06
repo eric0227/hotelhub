@@ -35,12 +35,34 @@ class SupController extends Controller
 		//$this->render('index');
 		//$this->redirect(Yii::app()->baseUrl . '/supplier/index');
 		
-		if(Yii::app()->user->isSUpplier()) {
-			$this->redirect(Yii::app()->baseUrl . '/supplier/index');
+		if(Yii::app()->user->isSupplier()) {
+			//$this->redirect(Yii::app()->baseUrl . '/supplier/index');
+			if(Yii::app()->user->getSupplier()->id_service == Service::HOTEL) {
+				$this->hotelHome();
+			} else if(Yii::app()->user->getSupplier()->id_service == Service::CAR) {
+				$this->carHome();
+			} 
 		} else {
 			Yii::app()->user->logout();
 			$this->redirect(Yii::app()->baseUrl . '/sup/login');
 		}
+	}
+	
+	private function hotelHome() {
+		//echo 'HotelHome';
+		$this->render('hotel_home');
+	}
+	
+	private function carHome() {
+		echo 'CarHome';
+	}
+	
+	private function daytourHome() {
+		echo 'DaytourHome';
+	}
+	
+	private function hotdealHome() {
+		echo 'HotelHome';
 	}
 
 	/**

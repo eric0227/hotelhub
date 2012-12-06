@@ -22,6 +22,7 @@
  * @property string $condition
  * @property integer $show_price
  * @property integer $indexed
+ * @property string $maker
  * @property string $date_add
  * @property string $date_upd
  *
@@ -75,6 +76,7 @@ class Product extends CActiveRecord
 			array('width, height, depth, weight', 'numerical'),
 			array('id_category_default, out_of_stock, id_address', 'length', 'max'=>10),
 			array('price, wholesale_price', 'length', 'max'=>20),
+			array('maker', 'length', 'max'=>128),
 			array('condition', 'length', 'max'=>11),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -126,6 +128,7 @@ class Product extends CActiveRecord
 			'condition' => 'Condition',
 			'show_price' => 'Show Price',
 			'indexed' => 'Indexed',
+			'maker' => 'Maker',
 			'date_add' => 'Date Add',
 			'date_upd' => 'Date Upd',
 		);

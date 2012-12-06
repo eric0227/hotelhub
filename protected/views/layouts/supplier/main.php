@@ -4,6 +4,27 @@
 $service = Yii::app()->session->get('service',1);
 $lang = Yii::app()->session->get('lang', 1);
 
+
+$productMenu = array();
+
+if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUPPLIER) {
+	if(Yii::app()->user->getSupplier()->id_service == Service::HOTEL) {
+		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
+		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
+		$productMenu[] = array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room'));
+		$productMenu[] = array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding'));
+		$productMenu[] = array('label'=>'Room Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
+	} else if(Yii::app()->user->getSupplier()->id_service == Service::CAR) {
+		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
+		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
+		$productMenu[] = array('label'=>'Car', 'url'=>array('/car/index', 'tag'=>'car'));
+		$productMenu[] = array('label'=>'Car Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
+	} else {
+		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
+		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
+		$productMenu[] = array('label'=>'Product Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
+	}
+}
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -68,7 +89,7 @@ $lang = Yii::app()->session->get('lang', 1);
 		<?php $this->widget('bootstrap.widgets.TbMenu',array(
 			'type' => 'tabs',
 			'items'=>array(
-				array('label'=>'Home', 'url'=>array('/supplier/index')),
+				array('label'=>'Home', 'url'=>array('/sup/index')),
 				
 				array('label'=>'Supplier', 'url'=>'',
 					'items'=>array(
@@ -81,16 +102,7 @@ $lang = Yii::app()->session->get('lang', 1);
 				),
 				
 				array('label'=>'Product', 'url'=>'', 
-					'items'=>array(
-						//array('label'=>'Hotel', 'url'=>array('/hotel/index', 'tag'=>'hotel')),						
-						//array('label'=>'Category', 'url'=>array('/category/index', 'tag'=>'category')),						
-						array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product')),
-						array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct')),
-						array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room')),	
-						array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding')),
-						//array('label'=>'Special', 'url'=>array('/special/index', 'tag'=>'special')),
-						array('label'=>'ProductDate', 'url'=>array('/productDate/index', 'tag'=>'productDate'))
-					),
+					'items'=>$productMenu,
 					'visible'=>!Yii::app()->user->isGuest
 				),
 				array('label'=>'Orders', 'url'=>'',
@@ -104,13 +116,6 @@ $lang = Yii::app()->session->get('lang', 1);
 				),
 				
 				array('label'=>'Guest List', 'url'=>array('/stat/guestList'), 'visible'=>!Yii::app()->user->isGuest),
-				array('label'=>'CMS', 'url'=>'',
-					'items'=>array(
-						array('label'=>'CMS', 'url'=>array('/cms/index', 'tag'=>'cms')),
-						array('label'=>'CMS Category', 'url'=>array('/cmsCategory/index', 'tag'=>'cms-category'))
-					),
-					'visible'=>!Yii::app()->user->isGuest
-				),
 				array('label'=>'Login', 'url'=>array('/sup/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/sup/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
