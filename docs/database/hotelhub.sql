@@ -351,7 +351,7 @@ CREATE TABLE IF NOT EXISTS `gc_address` (
 
   `address_code` char(6) NOT NULL DEFAULT '001001',
 
-  `alias` varchar(32) NOT NULL,
+  `alias` varchar(32) NOT NULL DEFAULT '001001',
   `company` varchar(32) DEFAULT NULL,
   `lastname` varchar(32) NOT NULL,
   `firstname` varchar(32) NOT NULL,
@@ -960,8 +960,8 @@ CREATE TABLE IF NOT EXISTS `gc_category_product` (
 
 CREATE TABLE IF NOT EXISTS `gc_cart` (
   `id_cart` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_address_delivery` int(10) unsigned NOT NULL,
-  `id_address_invoice` int(10) unsigned NOT NULL,
+  `id_address_delivery` int(10) unsigned DEFAULT NULL,
+  `id_address_invoice` int(10) unsigned DEFAULT NULL,
   `id_currency` int(10) unsigned NOT NULL,
   `id_user` int(10) unsigned NOT NULL,
   
@@ -1099,8 +1099,8 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
   `id_user` int(10) unsigned NOT NULL,
   `id_cart` int(10) unsigned NOT NULL,
   `id_currency` int(10) unsigned NOT NULL,
-  `id_address_delivery` int(10) unsigned NOT NULL,
-  `id_address_invoice` int(10) unsigned NOT NULL,
+  `id_address_delivery` int(10) unsigned DEFAULT NULL,
+  `id_address_invoice` int(10) unsigned DEFAULT NULL,
   `id_order_state` int(10) unsigned NOT NULL DEFAULT '1',
 
   `secure_key` varchar(32) NOT NULL DEFAULT '-1',
@@ -1118,8 +1118,8 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
  
   `invoice_number` int(10) unsigned NOT NULL DEFAULT '0',
   `delivery_number` int(10) unsigned NOT NULL DEFAULT '0',
-  `invoice_date` datetime NOT NULL,
-  `delivery_date` datetime NOT NULL,
+  `invoice_date` datetime DEFAULT NULL,
+  `delivery_date` datetime DEFAULT NULL,
   
   `bookin_date` datetime,
   `bookout_date` datetime,
