@@ -79,10 +79,10 @@ body {
 #find_accommodation_index .row { margin: 0 0 15px 0; }
 #find_accommodation_index .row.center { text-align: center; }
 #find_accommodation_index select { cursor: pointer; }
-#find_accommodation_index { display: block; height: 365px; margin: 8px 0 0 0; padding: 57px 22px 0 22px; background: url(../images/front/find_accommodation_text.gif) no-repeat 31px 25px #f8980f; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; }
+#find_accommodation_index { display: block; height: 220px; margin: 8px 0 0 0; padding: 57px 22px 0 22px; background: url(../images/front/find_accommodation_text.gif) no-repeat 31px 25px #f8980f; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -o-border-radius: 5px; -ms-border-radius: 5px; }
 #find_accommodation_index input[type=submit] { width: 247px; height: 35px; color: #fff; font-size: 16px; font-weight: bold; background: url(../images/front/accommodation_button.png) repeat-x left top; border: none; font-family: 'Helvetica'; }
 #find_accommodation_index input[type=submit]:hover { background: url(../images/front/accommodation_button_hover.png) repeat-x left top;  }
-#find_accommodation_index .date_input { background: url(../images/front/calendar_icon.png) no-repeat 93% 50% #fff;  }
+#find_accommodation_index .date_input { background: url(../images/front/calendar_icon.png) no-repeat 96% 50% #fff;  }
 #find_accommodation_index .rating label { color: #fff; font-size: 16px; text-transform: uppercase; font-weight: bold; }
 #find_accommodation_index .hyphen { color: #fff; font-size: 16px; font-weight: bold; padding: 0 9px; }
 
@@ -162,21 +162,21 @@ body {
 
 /****************** Car Rental *****************/
 #car_rental{width:100%;}
-#car_rental #side{display:inline-block;vertical-align:top;zoom:1;*display:inline;width:185px}
+#side{display:inline-block;vertical-align:top;zoom:1;*display:inline;width:185px}
+.main_area {display:inline-block;vertical-align:top;zoom:1;*display:inline;width:780px;margin-left:10px}
 
-#car_rental #list{display:inline-block;vertical-align:top;zoom:1;*display:inline;width:780px;margin-left:10px}
-#car_rental #list .navigation{border-bottom: 1px solid #7ca310;padding:0;margin:0;float:left;width:100%;margin-bottom:10px}
-#car_rental #list .navigation li {float:left;display:inline;list-style:none}
-#car_rental #list .navigation li a {float:left;padding:6px 20px;margin-right:5px;color:#454545;background:#f7f7f7;border-style:solid;border-color:#d6d6d6;border-width:1px 1px 0 1px;border-radius:3px 3px 0 0;-webkit-border-radius:3px 3px 0 0;-moz-border-radius:3px 3px 0 0;-o-border-radius:3px 3px 0 0;-ms-border-radius:3px 3px 0 0}
+#product_list .navigation{border-bottom: 1px solid #7ca310;padding:0;margin:0;float:left;width:100%;margin-bottom:10px}
+#product_list .navigation li {float:left;display:inline;list-style:none}
+#product_list .navigation li a {float:left;padding:6px 20px;margin-right:5px;color:#454545;background:#f7f7f7;border-style:solid;border-color:#d6d6d6;border-width:1px 1px 0 1px;border-radius:3px 3px 0 0;-webkit-border-radius:3px 3px 0 0;-moz-border-radius:3px 3px 0 0;-o-border-radius:3px 3px 0 0;-ms-border-radius:3px 3px 0 0}
 
-#car_rental #list .navigation li.active a,
-#car_rental #list .navigation li a:hover {text-decoration:none;background:#7ca310;color:#fff;border-color:#769b11;font-weight:600}
+#product_list .navigation li.active a,
+#product_list .navigation li a:hover {text-decoration:none;background:#7ca310;color:#fff;border-color:#769b11;font-weight:600}
 
-#car_rental #list table {margin-top:15px;border-top:none;border-collapse:collapse}
-#car_rental #list table thead td {padding:0;text-align:center;vertical-align:middle;border-top:1px solid #ddd;line-height:32px}
-#car_rental #list table th {text-align:center}
-#car_rental #list table thead th {background:#edf4cf;border:1px solid #8eac12;color:#85a112;padding:5px 0}
-#car_rental #list table tbody th {border:1px solid #408bb0;color:#408bb0;padding:10px 0}
+#product_list table {margin-top:15px;border-top:none;border-collapse:collapse}
+#product_list table thead td {padding:0;text-align:center;vertical-align:middle;border-top:1px solid #ddd;line-height:32px}
+#product_list table th {text-align:center}
+#product_list table thead th {background:#edf4cf;border:1px solid #8eac12;color:#85a112;padding:5px 0}
+#product_list table tbody th {border:1px solid #408bb0;color:#408bb0;padding:10px 0}
 
 /***************** Car Rental > Side > Left Select Country ********************/
 #left_select_country {display:block;border:1px solid #e5e5e5}

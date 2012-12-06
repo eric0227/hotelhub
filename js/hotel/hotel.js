@@ -57,7 +57,7 @@ function SetUIActivity(){
 		var list = $(this).parent().find('ul');
 		var flag = list.css('display');
 		
-		if(flag == 'none'){ list.css('display', 'block'); }
-		if(flag == 'block'){ list.css('display', 'none'); }
+		if(flag == 'none'){ list.css('display', 'block'); $(this).addClass('selected'); }
+		if(flag == 'block'){ list.css('display', 'none'); $(this).removeClass('selected'); }
 	});
 }
