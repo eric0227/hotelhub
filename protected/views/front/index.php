@@ -9,10 +9,6 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 	});
 </script>
 <div id="left_columns">
-	<form action="search" method="post" id="search_form">
-		<input type="text" name="search_text" id="search_text" placeholder="Enter Search keywrods here" />
-		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
-	</form>
 	<div id="find_accommodation_index">
 		<form action="<?php echo Yii::app()->request->baseUrl; ?>/fronthotel" method="post" name="find_accommodation_form" id="find_accommodation_form" class="form">
 			<input type="hidden" id="id_country" name="id_country" value=""/>
