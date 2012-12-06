@@ -223,7 +223,7 @@ class User extends CActiveRecord
 		try {
 			return Yii::app()->user->id_group;
 		}catch (CException $e) {
-			return self::GUEST;
+			return self::CUSTOMER;
         }
 	}
 	
