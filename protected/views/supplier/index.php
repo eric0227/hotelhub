@@ -64,7 +64,7 @@ $this->menu=array(
 <div class="supplier_details">
 	
 	<?php
-		$models = Room::model()->findAll();
+		$models = Room::model()->findAllByAttributes(array('id_supplier'=>Yii::app()->user->id_user));
 		foreach ($models as $model) {
 			echo "<div class=\"h4_blue\">";
 			echo "<h4 class=\"blue\">".$model->room_name."</h4>";

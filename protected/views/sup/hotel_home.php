@@ -168,7 +168,7 @@ $this->menu=array(
 								}
 							}
 							
-							$colour_class = "white";
+							$colour_class = "yellow";
 							if($result->active == "0") {
 								$colour_class = "inactive";
 							}
