@@ -38,7 +38,8 @@
 		<td align="left" valign="top" bgcolor="#333333">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr align="left" valign="top">
-					<td width="20%" bgcolor="#EEEEEE"><table width="100%" border="0"
+					<td width="20%" bgcolor="#EEEEEE">
+						<table width="100%" border="0"
 							cellspacing="0" cellpadding="3">
 							<tr align="left" valign="top">
 								<td bgcolor="#EEEEEE">Order Number:</td>
@@ -70,7 +71,8 @@
 								<?php echo $_POST[payer_email]; ?>
 								</td>
 							</tr>
-						</table></td>
+						</table>
+					</td>
 				</tr>
 			</table>
 		</td>
