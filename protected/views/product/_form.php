@@ -28,6 +28,8 @@
 	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
 	
 	<?php echo $form->textAreaRow($model,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>		
+	
+	<?php echo $form->textFieldRow($model,'maker',array('class'=>'span5')); ?>
 
 	<div class="control-group ">
 		<?php echo $form->label($model,'on_sale', array('class'=>'control-label')); ?>

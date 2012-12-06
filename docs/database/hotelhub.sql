@@ -497,6 +497,7 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
   `condition` enum('new','used','refurbished') NOT NULL DEFAULT 'new',
   `show_price` tinyint(1) NOT NULL DEFAULT '1',
   `indexed` tinyint(1) NOT NULL DEFAULT '0',
+  `maker` varchar(128) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_product`),  
@@ -791,32 +792,19 @@ CREATE TABLE IF NOT EXISTS `gc_room` (
 CREATE TABLE IF NOT EXISTS `gc_car` (
   `id_product` int(10) unsigned NOT NULL,
   `id_supplier` int(10) unsigned NOT NULL,
-  `car_code` char(6) NOT NULL,
-
-  `room_type_code` varchar(64) NOT NULL,
-  `lead_in_room_type` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `full_rate` int(10) unsigned NOT NULL DEFAULT '0',
-  `min_night_stay`  int(2) unsigned,
-  `max_night_stay` int(2) unsigned,
-  `room_name`  varchar(64),
-  `root_description` varchar(300),
-
-  `guests_tot_room_cap` int(2) unsigned,
-  `guests_included_price` int(2) unsigned,
   
-  `children_maxnum` int(2) unsigned,
-  `children_years` int(2) unsigned,
-  `children_extra` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `car_group_code` char(6) NOT NULL,
+  `class_code` char(6) NOT NULL,
+  `trans_type` enum('Automatic','Manual') NOT NULL DEFAULT 'Automatic',
   
-  `adults_maxnum` int(2) unsigned,
-  `adults_extra` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  `people_maxnum` int(2) unsigned,
    
   PRIMARY KEY (`id_product`),
 
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
-  -- FOREIGN KEY (`id_bedding_default`) REFERENCES `gc_bedding`(`id_bedding`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`room_code`) REFERENCES `gc_code`(`code`) ON DELETE CASCADE ON UPDATE CASCADE
+  FOREIGN KEY (`car_group_code`) REFERENCES `gc_code`(`code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (`class_code`) REFERENCES `gc_code`(`code`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `gc_bedding` (

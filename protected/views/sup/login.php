@@ -25,7 +25,7 @@ $this->breadcrumbs=array(
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 <?php 
 
-$model->username = 'supplier@holidoy.com.au';
+$model->username = 'hotel@holidoy.com.au';
 $model->password = 'abc123';
 
 ?>

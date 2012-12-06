@@ -46,6 +46,10 @@ class WebUser extends CWebUser
     
     public function hashPassword($password) {
     	return md5($this->salt.$password);
-    }    
+    }
+    
+    protected function afterLogin($fromCookie) {
+    	Yii::trace('$this->id_group ====>' . $this->id_group);
+    }
 }
 ?>

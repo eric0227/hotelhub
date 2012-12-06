@@ -71,7 +71,6 @@ class LoginForm extends CFormModel
 			Yii::app()->user->login($this->_identity,$duration);
 			
 			Yii::app()->user->getModel();
-			
 		/*	
 			$session=new CHttpSession;
 			$session->open();

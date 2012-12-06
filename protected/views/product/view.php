@@ -25,6 +25,7 @@ $this->menu=array(
 		'name',
 		'description',
 		'description_short',
+		'maker',
 		'on_sale',
 		'quantity',
 		'price',
