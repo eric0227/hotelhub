@@ -7,9 +7,9 @@ class FrontController extends Controller
 		$this->render('index');
 	}
 	
-	public function actionDisplayResults()
+	public function actionOrderForm()
 	{
-		$this->render('display_results');
+		$this->render('order_form');
 	}
 	
 	public function actionUserPayment()
