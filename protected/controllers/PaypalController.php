@@ -27,11 +27,13 @@ class PaypalController extends Controller
 		$this->render('index');
 	}
 	
+	//public $id_cart_num = "";
+	//public $id_order_num = "";
 	public function actionProcess() {
 		$model = new Order;
 		
-		if(isset($_POST['id_cart'])) {
-			$id_cart = $_POST['id_cart'];
+		if(isset($_GET['id_cart'])) {
+			$id_cart = $_GET['id_cart'];
 
 			$model->id_lang = Lang::getCurrentLang();
 		
@@ -45,8 +47,18 @@ class PaypalController extends Controller
 				
 			$model->procOrder();
 			if($model->save()) {
-				$_POST[custom_field] = $model->id_order;
-				$this->render('process');
+				//$_POST[custom_field] = $model->id_order;
+				//$id_cart_num = $id_cart;
+				//$id_order_num = $model->id_order;
+				//$this->render('process');
+				$cartproduct_info = CartProduct::model()->findByPk($id_cart);
+				$product_info = Product::model()->findByPk($cartproduct_info->id_product);
+				$user_info = User::model()->findByPk($cart->id_user);
+				
+				$this->render('process',
+					array('cartproduct_model'=>$cartproduct_info, 'order_model'=>$model,
+						'product_model'=>$product_info, 'cart_model'=>$cart,
+						'user_model'=>$user_info));
 			} else {
 				die();
 			}
