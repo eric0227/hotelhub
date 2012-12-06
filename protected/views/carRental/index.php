@@ -39,7 +39,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 			
 		</div>
 	</div>
-	<div id="list">
+	<div id="product_list" class="main_area">
 		<ul class="navigation">
 			<li class="active"><a>Car</a></li>
 			<li><a>Map</a></li>
