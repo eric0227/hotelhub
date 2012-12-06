@@ -188,16 +188,18 @@ fieldset fieldset {
 
 .list-selected { background: blue; color: white;}
 
-#find_accommodation .country {float: left; }
-#find_accommodation .destination {float: left; }
+#find_accommodation .country {float:left}
+#find_accommodation .destination {float:left}
 
-.select_btn_group {display:block}
+.select_btn_group {display:block;position:relative}
 .select_btn_group .select_btn {position:relative;display:block;padding:0 10px;font-size:12px;height:28px;line-height:28px;border:1px solid #d4d4d4;background:url('../images/front/control_box_bg.gif') repeat-x left top;color:#454545;border-radius:2px;-webkit-border-radius:2px;-moz-border-radius:2px;-o-border-radius:2px;-ms-border-radius:2px}
 .select_btn_group .select_btn:hover {background:#f7f7f7;text-decoration:none}
 .select_btn_group .select_btn .caret {position:absolute;right: 0;top: 0;height:28px;padding: 0 15px;background:url('../images/front/control_box_arrow_down.png') no-repeat 50% 50%;border: none;border-left: 1px solid #d4d4d4}
-.select_btn_group ul {display:none}
-.select_btn_group ul li {}
-.select_btn_group ul li a {}
+.select_btn_group ul {display:none;position:absolute;background:#fff;border:1px solid #eee;width: 200px;height:210px;overflow-x:hidden;overflow-y:scroll}
+.select_btn_group ul li:first-child {margin-top:5px}
+.select_btn_group ul li {list-style:none;padding:0 2px 0 5px;margin-top:1px}
+.select_btn_group ul li a {float:left;width:95%;padding:3px 0 3px 5%;color:#454545;border-radius:3px;-webkit-border-radius:3px;-moz-border-radius:3px;-o-border-radius:3px;-ms-border-radius:3px}
+.select_btn_group ul li a:hover {text-decoration:none;background:#6ab9e6;color:#fff}
 
 .left_arrow,
 .right_arrow {width:27px;height:32px;text-indent:-9999px;background:url('../images/front/selecting_country_arrow_iconset.png');margin:0;padding:0}
