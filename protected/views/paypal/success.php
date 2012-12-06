@@ -46,14 +46,6 @@
 								<?php echo $_POST[custom]; ?>
 								</td>
 							</tr>
-							<!-- 
-							<tr align="left" valign="top"> 
-								<td bgcolor="#EEEEEE">Order Number:</td>
-								<td bgcolor="#EEEEEE"> 
-									<?php echo $_POST[txn_id]; ?>
-								</td>
-							</tr>
-							-->
 							<tr align="left" valign="top">
 								<td bgcolor="#EEEEEE">Date:</td>
 								<td bgcolor="#EEEEEE"> 

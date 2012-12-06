@@ -1,5 +1,5 @@
 <?php
-	
+
 class PaypalController extends Controller
 {
 	/**

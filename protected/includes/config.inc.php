@@ -29,9 +29,9 @@
 	$paypal[lc] = "AU";
 	
 	$paypal[is_test] = true;	//true: sandbox, false: real transation.
-	if($paypal[is_test]) {
+	if($paypal[is_test]) {	//	Paypal Sandbox.
 		$paypal[url] = "https://www.sandbox.paypal.com/cgi-bin/webscr";
-	} else {
+	} else {	//	Paypal Real.
 		$paypal[url] = "https://www.paypal.com/cgi-bin/webscr";
 	}
 	$paypal[post_method] = "fso"; //fso=fsockopen(); curl=curl command line libCurl=php compiled with libCurl support
