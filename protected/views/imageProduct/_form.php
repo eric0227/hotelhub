@@ -9,9 +9,11 @@
 	<?php echo $form->errorSummary($model); ?>
 	
 	<?php 
-		if($model->isNewRecord) { 
+		if(empty($_REQUEST['id_product']) && $model->isNewRecord) {
 			echo CHtml::label('Product', 'Product');
 			echo CHtml::dropDownList('id_product', null, Product::items());
+		} else {
+			echo CHtml::hiddenField('id_product', $_REQUEST['id_product']);
 		}
 	?>
 			

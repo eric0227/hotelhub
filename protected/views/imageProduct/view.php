@@ -5,11 +5,11 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Image','url'=>array('index')),
-	array('label'=>'Create Image','url'=>array('create')),
-	array('label'=>'Update Image','url'=>array('update','id'=>$model->id_image)),
+	array('label'=>'List Image','url'=>array('index','id_product'=>$model->productImage->id_product)),
+	array('label'=>'Create Image','url'=>array('create','id_product'=>$model->productImage->id_product)),
+	array('label'=>'Update Image','url'=>array('update','id_product'=>$model->productImage->id_product,'id'=>$model->id_image)),
 	array('label'=>'Delete Image','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_image),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Image','url'=>array('admin')),
+	array('label'=>'Manage Image','url'=>array('admin','id_product'=>$model->productImage->id_product)),
 );
 ?>
 

@@ -28,7 +28,7 @@
 		<h4>Special Deal</h4>
 		<div>
 			<?php 
-				$specialList = Special::model()->findAll();
+				$specialList = Special::model()->findAllByAttributes(array('id_service'=>Service::getCurrentService()));
 				$specialValues = array_keys(CHtml::listData($data->specials, 'id_special', 'name'));
 				echo CHtml::checkBoxList('Special', $specialValues, CHtml::listData($specialList, 'id_special', 'name'), array('readonly'=>true, 'template' => '<div>{input} {label}</div>', 'separator' => ''));
 			?>

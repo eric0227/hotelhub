@@ -36,7 +36,7 @@ class CarController extends Controller
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -62,19 +62,29 @@ class CarController extends Controller
 	public function actionCreate()
 	{
 		$model=new Car;
+		$product=new Product;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Car']))
-		{
-			$model->attributes=$_POST['Car'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_product));
+		{			
+			$product->attributes=$_POST['Product'];		
+			if($product->save()) {
+				$product->saveProductLang();
+				
+				$model->attributes=$_POST['Car'];
+				$model->id_supplier = $product->id_supplier;
+				$model->id_product = $product->id_product;
+				if($model->save()) {
+					$this->redirect(array('view','id'=>$model->id_product));
+				}
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'product'=>$product,
 		));
 	}
 
@@ -86,19 +96,28 @@ class CarController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		$product = Product::model()->findByPk($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Car']))
 		{
-			$model->attributes=$_POST['Car'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_product));
+			$product->attributes=$_POST['Product'];
+			if($product->save()) {
+				$product->saveProductLang();
+				$model->attributes=$_POST['Car'];
+				if($model->save()) {
+					$this->redirect(array('view','id'=>$model->id_product));
+				}
+			}
 		}
+		
+		$product->loadMultiLang();
 
 		$this->render('update',array(
 			'model'=>$model,
+			'product'=>$product
 		));
 	}
 
@@ -127,10 +146,11 @@ class CarController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Car');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+		$this->actionAdmin();
+// 		$dataProvider=new CActiveDataProvider('Car');
+// 		$this->render('index',array(
+// 			'dataProvider'=>$dataProvider,
+// 		));
 	}
 
 	/**
@@ -142,7 +162,7 @@ class CarController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Car']))
 			$model->attributes=$_GET['Car'];
-
+		
 		$this->render('admin',array(
 			'model'=>$model,
 		));

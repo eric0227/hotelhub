@@ -98,6 +98,11 @@ class ProductDate extends CActiveRecord
 
 		$criteria->compare('id_product_date',$this->id_product_date,true);
 		$criteria->compare('id_product',$this->id_product,true);
+		
+		if(isset($_REQUEST['id_product'])) {
+			$criteria->compare('id_product', $_REQUEST['id_product'], true);
+		}
+		
 		$criteria->compare('on_date',$this->on_date,true);
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('agent_price',$this->agent_price,true);

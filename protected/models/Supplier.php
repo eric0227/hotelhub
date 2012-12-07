@@ -380,7 +380,7 @@ class Supplier extends CActiveRecord
 	public static function items() {
 		$_items = array();
 	
-		$models = Supplier::model()->findAll();
+		$models = Supplier::model()->findAllByAttributes(array('id_service'=>Service::getCurrentService()));
 	
 		foreach($models as $model) {
 			$_items[$model->id_supplier] = $model->sales_name;			
@@ -401,6 +401,14 @@ class Supplier extends CActiveRecord
 		}
 
 		return $_items;
+	}
+	
+	public static function currentSupplierId() {
+		if(Yii::app()->user->isSupplier()) {
+			return Yii::app()->user->getId();
+		} else {
+			return $_REQUEST['id_supplier'];
+		}
 	}
 }
 

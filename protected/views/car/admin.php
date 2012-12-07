@@ -43,9 +43,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id_product',
-		'id_supplier',
-		'car_group_code',
-		'class_code',
+		array('name'=>'product.car_name', 'value'=>'$data->product->name'),
+		array('name'=>'classCode.class', 'value'=>'$data->classCode->name'),
+		array('name'=>'groupCode.group', 'value'=>'$data->groupCode->name'),
 		'trans_type',
 		'people_maxnum',
 		array(

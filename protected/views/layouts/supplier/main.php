@@ -15,10 +15,10 @@ if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUP
 		$productMenu[] = array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding'));
 		$productMenu[] = array('label'=>'Room Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
 	} else if(Yii::app()->user->getSupplier()->id_service == Service::CAR) {
-		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
-		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
+		//$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
+		//$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
 		$productMenu[] = array('label'=>'Car', 'url'=>array('/car/index', 'tag'=>'car'));
-		$productMenu[] = array('label'=>'Car Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
+		//$productMenu[] = array('label'=>'Car Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
 	} else {
 		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
 		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
@@ -96,7 +96,7 @@ if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUP
 						//array('label'=>'Supplier', 'url'=>array('/supplier/index', 'tag'=>'supplier')),
 						array('label'=>'Supplier Update', 'url'=>array('/supplier/update/'. Yii::app()->user->id)),
 						array('label'=>'Supplier Address', 'url'=>array('/supplier/updateAddress/'. Yii::app()->user->id)),
-						array('label'=>'Supplier Images', 'url'=>array('/imageSupplier/index', 'type'=>ImageC::SUPPLIER_IMAGE)),
+						array('label'=>'Supplier Images', 'url'=>array('/imageSupplier/index')),
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
