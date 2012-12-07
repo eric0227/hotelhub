@@ -16,7 +16,7 @@ $this->pageTitle=Yii::app()->name;
 	</div>
 	<div id="roomlist">
 	<div class="room">
-		<h1 class="room-name">Special Room</h1>
+		<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/room/1" class="room-name">Special Room</a>
 		<div class="room-images">
 			<a href="#"><img src="./" alt="Image" width="100" height="100" /></a>
 			<a href="#"><img src="./" alt="Image" width="100" height="100" /></a>
@@ -47,7 +47,7 @@ $this->pageTitle=Yii::app()->name;
 		</div>
 	</div>
 	<div class="room">
-		<h1 class="room-name">Special Room</h1>
+		<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/room/1" class="room-name">Special Room</a>
 		<div class="room-images">
 			<a href="#"><img src="./" alt="Image" width="100" height="100" /></a>
 			<a href="#"><img src="./" alt="Image" width="100" height="100" /></a>
