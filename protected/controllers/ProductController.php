@@ -71,8 +71,8 @@ class ProductController extends Controller
 		{
 			$model->attributes=$_POST['Product'];
 			if($model->save()) {
-				$this->setProductLang($model->id_product);
-				
+				$model->saveProductLang();
+
 				$this->redirect(array('view','id'=>$model->id_product));
 			}
 		}
@@ -98,7 +98,7 @@ class ProductController extends Controller
 		{
 			$model->attributes=$_POST['Product'];
 			if($model->save()) {
-				$this->setProductLang($model->id_product);
+				$model->saveProductLang();
 				
 				$this->redirect(array('view','id'=>$model->id_product));
 			}
@@ -109,38 +109,6 @@ class ProductController extends Controller
 		$this->render('update',array(
 			'model'=>$model,
 		));
-	}
-	
-	private function setProductLang($id) {
-	
-		$description = $_POST['Product']['description'];
-		$descriptionShort = $_POST['Product']['description_short'];
-		$name = $_POST['Product']['name'];
-	
-		ProductLang::model()->deleteAllByAttributes(array('id_product'=>$id));
-		foreach(Lang::items() as $lang => $langName) {
-	
-			if(empty($description[$lang])) {
-				$description[$lang] = $description[Lang::getDefaultLang()];
-			}
-			if(empty($descriptionShort[$lang])) {
-				$descriptionShort[$lang] = $descriptionShort[Lang::getDefaultLang()];
-			}
-			if(empty($name[$lang])) {
-				$name[$lang] = $name[Lang::getDefaultLang()];
-			}
-	
-			$model=new ProductLang;
-			$model->id_product = $id;
-			$model->id_lang = $lang;
-			$model->description = $description[$lang];
-			$model->description_short = $descriptionShort[$lang];
-			$model->name = $name[$lang];
-			$model->save();
-				
-			//print_r($model);
-			//return;
-		}
 	}
 
 	/**
@@ -167,6 +135,8 @@ class ProductController extends Controller
 		return;
 		
 		$dataProvider=new CActiveDataProvider('Product');
+		$dataProvider->criteria->condition = 'id_service = '. Service::getCurrentService();
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

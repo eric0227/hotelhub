@@ -39,6 +39,7 @@ class Special extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name', 'required'),
+			array('id_service', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -54,7 +55,8 @@ class Special extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'gcProductDates' => array(self::MANY_MANY, 'ProductDate', 'gc_special_prodduct_date(id_special, id_product_date)'),
+			'productDates' => array(self::MANY_MANY, 'ProductDate', 'gc_special_prodduct_date(id_special, id_product_date)'),
+			'service' => array(self::BELONGS_TO, 'Service', 'gc_service(id_service)'),
 		);
 	}
 
@@ -65,6 +67,7 @@ class Special extends CActiveRecord
 	{
 		return array(
 			'id_special' => 'Id Special',
+			'id_service' => 'Service',
 			'name' => 'Name',
 		);
 	}
@@ -81,10 +84,16 @@ class Special extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_special',$this->id_special,true);
+		$criteria->compare('id_service',Service::getCurrentService(),true);
 		$criteria->compare('name',$this->name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function beforeSave() {
+		$this->id_service = Service::getCurrentService();
+		return parent::beforeSave();
 	}
 }

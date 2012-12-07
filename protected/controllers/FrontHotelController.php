@@ -29,6 +29,13 @@ class FrontHotelController extends Controller
 		return array(
 		);
 	}
+	
+	/**
+	 * Displays selected room details
+	 */
+	public function actionRoom($id){
+		$this->render('room');
+	}
 
 	/**
 	 * Displays a particular model.

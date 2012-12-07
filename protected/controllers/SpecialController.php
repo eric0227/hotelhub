@@ -123,6 +123,7 @@ class SpecialController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Special');
+		$dataProvider->criteria->condition = 'id_service = '. Service::getCurrentService();
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -168,4 +169,6 @@ class SpecialController extends Controller
 			Yii::app()->end();
 		}
 	}
+	
+
 }

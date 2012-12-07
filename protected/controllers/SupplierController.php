@@ -6,8 +6,7 @@ class SupplierController extends Controller
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/supplier/column_fullwidth';
-
+	public $layout='//layouts/column2';
 	/**
 	 * @return array action filters
 	 */
@@ -57,10 +56,6 @@ class SupplierController extends Controller
 	 */
 	public function actionView($id)
 	{
-		if(Yii::app()->user->isAdmin()) {
-			$this->layout='//layouts/column2';
-		}
-		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -72,10 +67,6 @@ class SupplierController extends Controller
 	 */
 	public function actionCreate()
 	{		
-		if(Yii::app()->user->isAdmin()) {
-			$this->layout='//layouts/column2';
-		}
-			
 		$model=new Supplier;
 
 		// Uncomment the following line if AJAX validation is needed
@@ -149,10 +140,11 @@ class SupplierController extends Controller
 	
 	public function actionUpdateAddress($id)
 	{
-		$this->layout='//layouts/column2';
-		
 		$user = User::model()->findByPk($id);
 		$defaultAddress = $user->getDefaultAddress();
+		if(!isset($defaultAddress)) {
+			$defaultAddress = new Address;
+		}
 	
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -190,10 +182,8 @@ class SupplierController extends Controller
 	 */
 	public function actionIndex()
 	{
-		if(Yii::app()->user->isAdmin()) {
-			$this->layout='//layouts/column2';
-		}
-		
+		$layout='//layouts/supplier/column_fullwidth';
+
 		$dataProvider=new CActiveDataProvider('Supplier');
 		$dataProvider->criteria->condition = 'id_service = '.Service::getCurrentService();
 		
@@ -210,10 +200,6 @@ class SupplierController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		if(Yii::app()->user->isAdmin()) {
-			$this->layout='//layouts/column2';
-		}
-				
 		$model=new Supplier('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Supplier'])) {

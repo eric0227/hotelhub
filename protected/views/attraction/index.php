@@ -39,17 +39,88 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 			
 		</div>
 	</div>
-	<div id="attraction_list" class="main_area">
-		<h1>Sydney</h1>
+	<div id="product_list" class="main_area">
 		<table class="table table-bordered">
+			<thead>
 			<tr>
-				<th></th>
+				<td>
+					<a href="#" class="left_arrow">Left</a>
+					Sydney
+					<a href="#" class="right_arrow">Right</a>
+				</td>
+				<th>23 Mon</th>
+				<th>24 Tue</th>
+				<th>25 Wed</th>
+				<th>26 Thu</th>
+				<th>27 Fri</th>
+				<th>28 Sat</th>
+				<th>29 Sun</th>
+				<th>30 Mon</th>
+				<th>31 Tue</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<th width="150">Strathfield</th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 				<td></td>
 			</tr>
 			<tr>
-				<th></th>
+				<th>Chatswood</th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
 				<td></td>
 			</tr>
+			<tr>
+				<th>Mascot</th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Homebush</th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th>Hornsby</th>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			</tbody>
 		</table>
 	</div>
 </div>

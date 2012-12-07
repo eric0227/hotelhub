@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'gc_product':
  * @property string $id_product
- * @property string $id_serivce
+ * @property string $id_service
  * @property string $id_supplier
  * @property string $id_category_default
  * @property string $id_address
@@ -70,12 +70,12 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_supplier', 'required', 'on'=>'insert'),
+			array('', 'required', 'on'=>'insert'),
 			array('id_category_default', 'required'),
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
-			array('id_category_default, out_of_stock, id_address', 'length', 'max'=>10),
-			array('price, wholesale_price', 'length', 'max'=>20),
+			array('id_category_default, id_supplier, out_of_stock, id_address', 'length', 'max'=>10),
+			array('price, agent_price, wholesale_price', 'length', 'max'=>20),
 			array('maker', 'length', 'max'=>128),
 			array('condition', 'length', 'max'=>11),
 			// The following rule is used by search().
@@ -146,6 +146,9 @@ class Product extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_product',$this->id_product,true);
+		
+		$criteria->compare('id_service',Service::getCurrentService(),true);
+				
 		$criteria->compare('id_supplier',$this->id_supplier,true);
 		$criteria->compare('id_category_default',$this->id_category_default,true);
 		$criteria->compare('on_sale',$this->on_sale);
@@ -212,12 +215,14 @@ class Product extends CActiveRecord
 	{
 		if($this->isNewRecord)
 		{
+			if(empty($this->id_supplier)) {
+				$this->id_supplier = Yii::app()->user->getId();
+			}
+			$this->id_service=Service::getCurrentService();
 			$this->date_add=$this->date_upd = new CDbExpression('NOW()');
 		} else {
 			$this->date_upd = new CDbExpression('NOW()');
 		}
-		
-		$this->id_service=Service::getCurrentService();
 		
 		return parent::beforeSave();
 	}
@@ -239,6 +244,39 @@ class Product extends CActiveRecord
 			$_items[$model->id_product] = $model->getName();
 		}
 		return $_items;
+	}
+	
+	public function saveProductLang() {
+		$id = $this->id_product;
+	
+		$description = $_POST['Product']['description'];
+		$descriptionShort = $_POST['Product']['description_short'];
+		$name = $_POST['Product']['name'];
+	
+		ProductLang::model()->deleteAllByAttributes(array('id_product'=>$id));
+		foreach(Lang::items() as $lang => $langName) {
+	
+			if(empty($description[$lang])) {
+				$description[$lang] = $description[Lang::getDefaultLang()];
+			}
+			if(empty($descriptionShort[$lang])) {
+				$descriptionShort[$lang] = $descriptionShort[Lang::getDefaultLang()];
+			}
+			if(empty($name[$lang])) {
+				$name[$lang] = $name[Lang::getDefaultLang()];
+			}
+	
+			$model=new ProductLang;
+			$model->id_product = $id;
+			$model->id_lang = $lang;
+			$model->description = $description[$lang];
+			$model->description_short = $descriptionShort[$lang];
+			$model->name = $name[$lang];
+			$model->save();
+	
+			//print_r($model);
+			//return;
+		}
 	}
 }
 

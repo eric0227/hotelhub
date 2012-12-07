@@ -12,9 +12,10 @@
  */
 class CodeType extends CActiveRecord
 {
-	const ADDRESS = 1;
-	const ROOM = 2;
-	const CHECKTINOUT_TIME = 3;
+	const ADDRESS = "001";
+	const ROOM = "002";
+	const CAR_CLASS = "003";
+	const CAR_GROUP = "004";
 	
 	private static $_items = null;
 	

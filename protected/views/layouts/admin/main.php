@@ -8,16 +8,15 @@ $productMenu = array();
 
 if(Yii::app()->user->isGuest == false) {
 	if($service == Service::HOTEL) {
-		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
+		//$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
 		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
 		$productMenu[] = array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room'));
 		$productMenu[] = array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding'));
 		$productMenu[] = array('label'=>'Room Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
 	} else if($service == Service::CAR) {
-		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
-		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
 		$productMenu[] = array('label'=>'Car', 'url'=>array('/car/index', 'tag'=>'car'));
-		$productMenu[] = array('label'=>'Car Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
+		//$productMenu[] = array('label'=>'Car Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
+		//$productMenu[] = array('label'=>'Car Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
 	} else {
 		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
 		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));

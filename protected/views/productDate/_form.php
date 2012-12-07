@@ -6,15 +6,14 @@
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
-	<div >
-		<?php echo $form->labelEx($model,'id_product'); ?>
-		<?php 
-			//echo $form->textField($model,'id_product',array('size'=>10,'maxlength'=>10)); 
+	
+	<?php 
+		if(empty($_REQUEST['id_product']) && $model->isNewRecord) {
 			echo $form->dropDownList($model, 'id_product', Product::items());
-		?>
-		<?php echo $form->error($model,'id_product'); ?>
-	</div>
+		} else {
+			echo $form->hiddenField($model, 'id_product', array('value'=>$_REQUEST['id_product']));
+		}
+	?>
 
 	<div >
 		<?php echo $form->labelEx($model,'on_date'); ?>
@@ -52,7 +51,7 @@
 		<h4>Special Deal</h4>
 		<div>
 			<?php 
-				$specialList = Special::model()->findAll();
+				$specialList = Special::model()->findAllByAttributes(array('id_service'=>Service::getCurrentService()));
 				$specialValues = array_keys(CHtml::listData($model->specials, 'id_special', 'name'));
 				echo CHtml::checkBoxList('Special', $specialValues, CHtml::listData($specialList, 'id_special', 'name'), array('template' => '<div>{input} {label}</div>', 'separator' => '', 'checkAll' => 'Check all'));
 			?>

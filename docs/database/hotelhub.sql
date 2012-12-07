@@ -528,8 +528,11 @@ CREATE TABLE IF NOT EXISTS `gc_product_lang` (
 
 CREATE TABLE IF NOT EXISTS `gc_special` (
 	`id_special` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	`id_service` int(10) unsigned NOT NULL,
 	`name` varchar(128) NOT NULL,
-	PRIMARY KEY (`id_special`)
+	PRIMARY KEY (`id_special`),
+	
+	FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `gc_special` (`id_special`, `name`) VALUES

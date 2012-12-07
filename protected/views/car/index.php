@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'Create Car','url'=>array('create')),
-	array('label'=>'Manage Car','url'=>array('admin')),
 );
 ?>
 
