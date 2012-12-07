@@ -14,6 +14,9 @@ class Service extends CActiveRecord
 {
 	const HOTEL = '1';
 	const CAR = '2';
+	const TICKET = '3';
+	const DAY_TOUR = '4';
+	const HOT_DEAL = '5';
 	
 	private static $_items = null;
 	

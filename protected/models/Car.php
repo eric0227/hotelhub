@@ -19,6 +19,7 @@
  */
 class Car extends CActiveRecord
 {
+	
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -64,9 +65,9 @@ class Car extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'idSupplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
-			'carGroupCode' => array(self::BELONGS_TO, 'Code', 'car_group_code'),
+			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
+			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
+			'groupCode' => array(self::BELONGS_TO, 'Code', 'car_group_code'),
 			'classCode' => array(self::BELONGS_TO, 'Code', 'class_code'),
 		);
 	}
@@ -77,9 +78,10 @@ class Car extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_product' => 'Id Product',
-			'id_supplier' => 'Id Supplier',
-			'car_group_code' => 'Car Group Code',
+			'id_product' => 'Product',
+			'id_supplier' => 'Supplier',
+			'product_name' => 'Car Name',
+			'car_group_code' => 'Group Code',
 			'class_code' => 'Class Code',
 			'trans_type' => 'Trans Type',
 			'people_maxnum' => 'People Maxnum',
@@ -107,5 +109,15 @@ class Car extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	protected function afterDelete() {
+		if(isset($this->product)) {
+			$this->product->delete();
+		}
+	}
+	
+	public static function  transTypeItems() {
+		return array('Automatic'=>'Automatic', 'Manual'=>'Manual');
 	}
 }

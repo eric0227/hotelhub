@@ -23,8 +23,8 @@ class ImageC extends CActiveRecord
 	const SUPPLIER_IMAGE = 1;
 	const PRODUCT_IMAGE = 2;
 	
-	private $id_supplier;
-	private $id_product;
+	public $id_supplier;
+	public $id_product;
 	
 	/**
 	 * Returns the static model of the specified AR class.
@@ -119,6 +119,7 @@ class ImageC extends CActiveRecord
 				$criteria->join = $criteria->join . ' and a.id_supplier = '.Yii::app()->user->id;
 			}
 		}
+		
 		if($type == 'product') {
 			$criteria->join = 'INNER JOIN gc_product_image a ON a.id_image = t.id_image';
 			if(isset($id)) {

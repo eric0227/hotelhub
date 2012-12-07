@@ -164,11 +164,11 @@ class ImageSupplierController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('ImageC');
-		if(!Yii::app()->user->isAdmin()) {
+		//if(!Yii::app()->user->isAdmin()) {
 			$dataProvider->criteria = array(
-				'join' => 'INNER JOIN gc_supplier_image a ON a.id_image = t.id_image'
+				'join' => 'INNER JOIN gc_supplier_image a ON a.id_image = t.id_image and a.id_supplier = '.Supplier::currentSupplierId()
 			);
-		}
+		//}
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

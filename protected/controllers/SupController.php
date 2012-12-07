@@ -41,7 +41,13 @@ class SupController extends Controller
 				$this->hotelHome();
 			} else if(Yii::app()->user->getSupplier()->id_service == Service::CAR) {
 				$this->carHome();
-			} 
+			} else if(Yii::app()->user->getSupplier()->id_service == Service::TICKET) {
+				$this->ticketHome();
+			} else if(Yii::app()->user->getSupplier()->id_service == Service::DAY_TOUR) {
+				$this->daytourHome();
+			} else if(Yii::app()->user->getSupplier()->id_service == Service::HOT_DEAL) {
+				$this->hotdealHome();
+			}
 		} else {
 			Yii::app()->user->logout();
 			$this->redirect(Yii::app()->baseUrl . '/sup/login');
@@ -54,15 +60,19 @@ class SupController extends Controller
 	}
 	
 	private function carHome() {
-		echo 'CarHome';
+		$this->render('car_home');
+	}
+	
+	private function ticketHome() {
+		$this->render('ticket_home');
 	}
 	
 	private function daytourHome() {
-		echo 'DaytourHome';
+		$this->render('dayture_home');
 	}
 	
 	private function hotdealHome() {
-		echo 'HotelHome';
+		$this->render('hotdeal_home');
 	}
 
 	/**
@@ -99,7 +109,8 @@ class SupController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->validate() && $model->login()) {
-											
+
+				Yii::app()->session->add('service', Yii::app()->user->getSupplier()->id_service);
 				
 				//$this->redirect(Yii::app()->user->returnUrl);
 				$this->redirect(Yii::app()->baseUrl . '/sup/index');
@@ -109,7 +120,6 @@ class SupController extends Controller
 		//$this->layout = null;
 		$this->render('login',array('model'=>$model));
 	}
-
 	/**
 	 * Logs out the current user and redirect to homepage.
 	 */

@@ -6,10 +6,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List ProductDate','url'=>array('index')),
+	array('label'=>'List ProductDate','url'=>array('index', 'id_product'=>$model->id_product)),
 	array('label'=>'Create ProductDate','url'=>array('create')),
-	array('label'=>'View ProductDate','url'=>array('view','id'=>$model->id_product_date)),
-	array('label'=>'Manage ProductDate','url'=>array('admin')),
+	array('label'=>'View ProductDate','url'=>array('view', 'id_product'=>$model->id_product,'id'=>$model->id_product_date)),
+	array('label'=>'Manage ProductDate','url'=>array('admin', 'id_product'=>$model->id_product)),
 );
 ?>
 

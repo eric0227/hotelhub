@@ -6,10 +6,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Image','url'=>array('index')),
-	array('label'=>'Create Image','url'=>array('create')),
-	array('label'=>'View Image','url'=>array('view','id'=>$model->id_image)),
-	array('label'=>'Manage Image','url'=>array('admin')),
+	array('label'=>'List Image','url'=>array('index','id_product'=>$model->productImage->id_product)),
+	array('label'=>'Create Image','url'=>array('create','id_product'=>$model->productImage->id_product)),
+	array('label'=>'View Image','url'=>array('view','id_product'=>$model->productImage->id_product,'id'=>$model->id_image)),
+	array('label'=>'Manage Image','url'=>array('admin','id_product'=>$model->productImage->id_product )),
 );
 ?>
 

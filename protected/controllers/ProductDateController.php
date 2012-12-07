@@ -72,10 +72,10 @@ class ProductDateController extends Controller
 			$model->attributes=$_POST['ProductDate'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id_product_date));
+		} else {
+			$model->quantity = 1;
 		}
 		
-		
-
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -126,6 +126,11 @@ class ProductDateController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('ProductDate');
+		
+		if(isset($_REQUEST['id_product'])) {
+			$dataProvider->criteria->condition = 't.id_product = '.$_REQUEST['id_product'];
+		}
+
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

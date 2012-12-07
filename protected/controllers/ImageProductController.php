@@ -162,11 +162,11 @@ class ImageProductController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('ImageC');
-		if(!Yii::app()->user->isAdmin()) {
+		//if(!Yii::app()->user->isAdmin()) {
 			$dataProvider->criteria = array(
-				'join' => 'INNER JOIN gc_product_image a ON a.id_image = t.id_image'
-			);
-		}		
+				'join' => 'INNER JOIN gc_product_image a ON a.id_image = t.id_image and a.id_product = '.$_REQUEST['id_product']
+			);			
+		//}		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -181,7 +181,7 @@ class ImageProductController extends Controller
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['ImageC']))
 			$model->attributes=$_GET['ImageC'];
-
+		
 		$this->render('admin',array(
 			'model'=>$model,
 		));

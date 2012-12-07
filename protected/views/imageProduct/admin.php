@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Image','url'=>array('index')),
-	array('label'=>'Create Image','url'=>array('create')),
+	array('label'=>'List Image','url'=>array('index'.'?id_product='.$_REQUEST['id_product'])),
+	array('label'=>'Create Image','url'=>array('create'.'?id_product='.$_REQUEST['id_product'])),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -39,7 +39,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'image-grid',
-	'dataProvider'=>$model->search('product'),
+	'dataProvider'=>$model->search('product', $_REQUEST['id_product']),
 	'filter'=>$model,
 	'columns'=>array(
 		'id_image',

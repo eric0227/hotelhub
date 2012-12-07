@@ -4,8 +4,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'Create ProductDate','url'=>array('create')),
-	array('label'=>'Manage ProductDate','url'=>array('admin')),
+	array('label'=>'Create ProductDate','url'=>array('create', 'id_product'=>$_REQUEST['id_product'])),
+	array('label'=>'Manage ProductDate','url'=>array('admin', 'id_product'=>$_REQUEST['id_product'])),
 );
 ?>
 
