@@ -234,7 +234,7 @@ body {
 
 #room-details .room-info .right-columns {display:inline-block;vertical-align:top;zoom:1;*display:inline;width:70%;margin-left:3%}
 #room-details .room-info .right-columns .room-images {padding:0 0 10px 0;margin:5px 0;border-style:solid;border-color:#eee;border-width:1px 0} /* Images */
-#room-details .room-info .right-columns .room-images a {display:inline-block;margin:10px 5px 0 5px;border:1px solid #c0c0c0}
+#room-details .room-info .right-columns .room-images a {display:inline-block;margin:10px 6px 0 6px;border:1px solid #c0c0c0}
 #room-details .room-info .right-columns .room-images a:hover {border:1px solid #37a7ca}
 #room-details .room-info .right-columns .room-images a img {vertical-align:top}
 #room-details .room-info .right-columns .greeting {display:block;min-height:100px;padding:0 10px}

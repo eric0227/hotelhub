@@ -27,19 +27,22 @@ $this->pageTitle=Yii::app()->name;
 					<img src="<?php echo Yii::app()->request->baseUrl ?>/images/front/star.png" />
 				</span>
 				<span class="price">$250</span>
-				<div class="btn-container"><button class="btn">BOOK</button></div>
+				<div class="btn-container">
+					<button class="btn btn-success">BOOK</button>
+					<button class="btn" style="margin-left:5px">Cancel</button>
+				</div>
 			</div>
 		</div>
 		<div class="right-columns">
 			<div class="room-images">
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
-				<a href="#"><img src="./" alt="" width="80" height="80" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
+				<a href="#"><img src="./" alt="" width="75" height="75" /></a>
 			</div>
 			<div class="greeting">
 				This is sample text to show you how your website looks like.
