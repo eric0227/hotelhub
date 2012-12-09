@@ -92,8 +92,8 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 		$start_day = $recvStartDate[1];
 		$start_year = $recvStartDate[2];
 		
-		$lastday = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1)." days"));
-		echo "lastday:".$lastday."<br>";
+		$lastday = date("Y-m-d",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1)." days"));
+		//echo "lastday:".$lastday."<br>";
 
 		$date1 = date("m/d/Y");
 		$date2 = date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." -6 days"));
@@ -115,16 +115,20 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 		$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
 		
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "post", array("id"=>"prev_navi", "name"=>"prev_navi"));
+		echo CHtml::hiddenField("country", $country);
+		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days")));
 		echo CHtml::endForm();
 		
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "post", array("id"=>"next_navi", "name"=>"next_navi"));
+		echo CHtml::hiddenField("country", $country);
+		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." +6 days")));
 		echo CHtml::endForm();
 		
-		$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
-		//$items = Search::findAllAccommodation($country, $destination, $include_date);
-
+		//$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
+		$items = Search::findAllAccommodation($country, $destination, $start_year."-".$start_month."-".$start_day, $lastday);
+		//print_r($items);
 		$rowCount = 0;
 		foreach($items as $item) {
 			if($rowCount % TOT_ROW_NUM == 0) {
@@ -183,28 +187,32 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 			?>
 				<tr>
 					<td class="hotel span4">
+					<?php
+						if($item->id_product != "") { 
+					?>
 						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/view/<?php echo $item->id_product; ?>">
 							<?php echo $item->name; ?>
 						</a>
+					<?php
+						} else {
+					?>
+					<?php 
+							echo $item->name;
+						}
+					?>
 					</td>
 					<td class="rate">AUD</td>
 					<?php
 						for($i = 1; $i <= DURATION; $i++) {
 							$date = date('D', mktime(0, 0, 0, $month, $day, $year));
-							if(1==1) {
-								if($date == "Sat" || $date == "Sun") {
-									echo "<td class=\"weekend\">".$info->price."</td>";
-								} else {
-									echo "<td class=\"weekday\">".$info->price."</td>";
-								}
+							$curr_date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $month, $day, $year));
+							
+							if($date == "Sat" || $date == "Sun") {
+								echo "<td class=\"weekend\">".($item->date_info[$curr_date]->price != "" ? number_format($item->date_info[$curr_date]->price, 0) : "")."</td>";
 							} else {
-								if($date == "Sat" || $date == "Sun") {
-									echo "<td class=\"weekend\"></td>";
-								} else {
-									echo "<td class=\"weekday\"></td>";
-								}
+								echo "<td class=\"weekday\">".($item->date_info[$curr_date]->price != "" ? number_format($item->date_info[$curr_date]->price, 0) : "")."</td>";
 							}
-						
+
 							$nextday = date("d",strtotime($year."-".$month."-".$day." +1 days"));
 							$nextmonth = date("m",strtotime($year."-".$month."-".$day." +1 days"));
 							$nextyear = date("Y",strtotime($year."-".$month."-".$day." +1 days"));
