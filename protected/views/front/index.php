@@ -27,7 +27,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				</select>
 			</div>
 			<div class="row">
-				<input type="text" name="date" id="date" placeholder="Cehck-In" class="date_input span4" />
+				<input type="text" name="include_date" id="include_date" placeholder="Cehck-In" class="date_input span4" />
 			</div>
 			<div class="row center">
 				<input type="submit" value="Search Accommodation" onclick="return hotel.submit();" />
