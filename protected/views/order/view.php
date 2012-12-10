@@ -20,36 +20,58 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id_order',
-		'id_lang',
 		'id_user',
-		'id_cart',
 		'id_currency',
-		'id_address_delivery',
-		'id_address_invoice',
-		'secure_key',
 		'payment',
 		'conversion_rate',
-		'gift',
-		'gift_message',
 		'total_price',
 		'total_agent_price',
 		'total_discount',
 		'total_paid',
 		'invoice_number',
-		'delivery_number',
-		'invoice_date',
-		'delivery_date',
 		'date_add',
-		'date_upd',
 		'on_agent',
 	),
 )); ?>
+
+
+<div>
+	<h4>Order Items</h4>
+	<div class="view">
+		<table>
+			<tr>
+				<th>Id</th>
+				<th>Item Name</th>
+				<th>Booking Date</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Total Price</th>
+			</tr>	
+	<?php 
+		$orderItems = $model->orderItems;
+		foreach($orderItems as $orderItem) {
+			echo "<tr>";
+			echo "  <td>" . CHtml::link("{$orderItem->id_order_item}", array('orderItem','id'=>$orderItem->id_order_item))."</td>" ;
+			echo "	<td>{$orderItem->order_item_name}</td>";
+			echo "	<td>{$orderItem->on_date}</td>";
+			echo "	<td>{$orderItem->product_quantity}</td>";
+			echo "	<td>{$orderItem->quantity_price}</td>";
+			echo "	<td>{$orderItem->total_price}</td>";
+			echo "</tr>";			
+		}
+	?>
+	</table>
+	</div>
+</div>
+
+
 
 <div>
 	<h4>Order History</h4>
 	<div class="view">
 		<table>
 			<tr>
+				<th>Id</th>
 				<th>Date</th>
 				<th>State</th>
 				<th>Comment</th>
@@ -58,6 +80,7 @@ $this->menu=array(
 		$orderHistories = $model->orderHistories;
 		foreach($orderHistories as $orderHistory) {
 			echo "<tr>";
+			echo "	<td>{$orderHistory->id_order_history}</td>";
 			echo "	<td>{$orderHistory->date_add}</td>";
 			echo "	<td>{$orderHistory->orderState->name}</td>";
 			echo "	<td>{$orderHistory->comment}</td>";

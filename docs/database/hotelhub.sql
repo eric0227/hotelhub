@@ -1170,6 +1170,7 @@ CREATE TABLE IF NOT EXISTS `gc_order_item` (
   `tax_name` varchar(16) NOT NULL,
   `tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
   `discount_quantity_applied` tinyint(1) NOT NULL DEFAULT '0',
+  `booking_name` varchar(255) DEFAULT NULL,
 
   PRIMARY KEY (`id_order_item`),
 
