@@ -217,8 +217,45 @@ body {
 
 /* Room Details */
 #room-details {}
-#room-details .room-info {display:block;}
-#room-details .room-info .left-columns {display:inline-block;vertical-align:top;zoom:1;*display:inline;width:65%}
-#room-details .room-info .right-columns {display:inline-block;vertical-align:top;zoom:1;*display:inline;width:30%}
+#room-details .room-names {} /* Name */
+#room-details .room-names .hotel-name {display:inline-block;border:none;font-style:normal;padding:0;margin:0;font-weight:normal;color:#6e8f12}
+#room-details .room-names .room-name {display:inline-block;padding:0;margin:0 0 0 15px;font-weight:normal;color:#6c6c6c}
+
+#room-details .room-info {display:block} /* Room Information */
+
+#room-details .room-info .left-columns {display:inline-block;vertical-align:top;zoom:1;*display:inline;width:25%}
+#room-details .room-info .left-columns .main-image {display:block;margin-top:10px}
+#room-details .room-info .left-columns .order-form {display:block}
+#room-details .room-info .left-columns .order-form .rating {float:left}
+#room-details .room-info .left-columns .order-form .rating img {margin:1px}
+#room-details .room-info .left-columns .order-form .price {float:right;font-size:28px;font-weight:bold;line-height:26px}
+
+#room-details .room-info .left-columns .btn-container {float:left;width:100%;margin-top:10px}
+
+#room-details .room-info .right-columns {display:inline-block;vertical-align:top;zoom:1;*display:inline;width:70%;margin-left:3%}
+#room-details .room-info .right-columns .room-images {padding:0 0 10px 0;margin:5px 0;border-style:solid;border-color:#eee;border-width:1px 0} /* Images */
+#room-details .room-info .right-columns .room-images a {display:inline-block;margin:10px 6px 0 6px;border:1px solid #c0c0c0}
+#room-details .room-info .right-columns .room-images a:hover {border:1px solid #37a7ca}
+#room-details .room-info .right-columns .room-images a img {vertical-align:top}
+#room-details .room-info .right-columns .greeting {display:block;min-height:100px;padding:0 10px}
+#room-details .room-info .right-columns h1 {border:none;padding:0;margin:0;font-style:normal;font-weight:normal}
+
+#room-details .room-info .right-columns .facilities,
+#room-details .room-info .right-columns .bedding {display:inline-block;vertical-align:top;zoom:1;*display:inline;width:45%;margin-top:20px;padding:5px;border-style:solid;border-width:3px 0 0 0}
+
+#room-details .room-info .right-columns .facilities h1,
+#room-details .room-info .right-columns .bedding h1 {margin:2px 0 8px 0;font-size:18px}
+
+#room-details .room-info .right-columns .facilities h1 {color:#6b94c2}
+#room-details .room-info .right-columns .bedding h1 {color:#f08e1b}
+
+#room-details .room-info .right-columns .facilities {border-color:#6b94c2}
+#room-details .room-info .right-columns .facilities ul {margin:0;padding:0}
+#room-details .room-info .right-columns .facilities ul li {float:left;display:inline;color:#567ca7;margin:0;padding:5px 0 5px 20px;width:145px;background:url('../images/front/check.png') no-repeat left 7px}
+#room-details .room-info .right-columns .bedding {margin-left:3%;border-color:#f08e1b}
+
+
+
+
 
 
