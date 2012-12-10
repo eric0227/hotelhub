@@ -81,7 +81,7 @@ class Bedding extends CActiveRecord
 			'id_room' => 'Id Room',
 			'single_num' => 'Single Num',
 			'double_num' => 'Double Num',
-			'bedding_desc' => 'Beddig Desc',
+			'bedding_desc' => 'Beddnig Desc',
 			'additional_cost' => 'Additional Cost',
 			'cots_available' => 'Cots Available',
 		);
