@@ -65,6 +65,8 @@
 		<fieldset>
 			<legend>Website Display Details</legend>
 			<?php $this->widget('MultiLangSelector'); ?>
+
+			<?php echo $form->textFieldRow($model,'title',array('class'=>'span5','maxlength'=>255, 'multilang'=>'1')); ?>
 			<?php echo $form->textAreaRow($model,'short_promotional_blurb',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
 			<?php echo $form->textAreaRow($model,'property_details',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>
 			<?php echo $form->textAreaRow($model,'business_facilities',array('rows'=>6, 'class'=>'span5', 'multilang'=>'1')); ?>

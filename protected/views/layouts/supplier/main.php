@@ -9,11 +9,11 @@ $productMenu = array();
 
 if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUPPLIER) {
 	if(Yii::app()->user->getSupplier()->id_service == Service::HOTEL) {
-		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
-		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
+		//$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
+		//$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
 		$productMenu[] = array('label'=>'Room', 'url'=>array('/room/index', 'tag'=>'room'));
-		$productMenu[] = array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding'));
-		$productMenu[] = array('label'=>'Room Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
+		//$productMenu[] = array('label'=>'Bedding', 'url'=>array('/bedding/index', 'tag'=>'bedding'));
+		//$productMenu[] = array('label'=>'Room Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
 	} else if(Yii::app()->user->getSupplier()->id_service == Service::CAR) {
 		//$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
 		//$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));

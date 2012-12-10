@@ -38,7 +38,9 @@
 class Supplier extends CActiveRecord
 {
 	// Added By Chris.
+	
 	private $currentLangModel = null;
+	private $title = null;
 	private $short_promotional_blurb = null;
 	private $property_details = null;
 	private $business_facilities = null;
@@ -211,6 +213,7 @@ class Supplier extends CActiveRecord
 	protected function afterFind() {
 		$langModel = SupplierLang::model()->findByAttributes(array('id_supplier'=>$this->id_supplier, 'id_lang'=>Lang::getCurrentLang()));
 		
+		$this->title = $langModel->title;
 		$this->short_promotional_blurb = $langModel->short_promotional_blurb;
 		$this->property_details = $langModel->property_details;
 		$this->business_facilities = $langModel->business_facilities;
@@ -218,6 +221,10 @@ class Supplier extends CActiveRecord
 		$this->car_parking = $langModel->car_parking;
 		$this->getting_there = $langModel->getting_there;
 		$this->things_to_do = $langModel->things_to_do;
+	}
+	
+	public function getTitle() {
+		return $this->title;
 	}
 	
 	public function getShort_Promotional_Blurb() {
@@ -263,6 +270,7 @@ class Supplier extends CActiveRecord
 	public function loadMultiLang() {
 		$mutltiLangModels = SupplierLang::model()->findAllByAttributes(array('id_supplier'=>$this->id_supplier));
 
+		$title = array();
 		$short_promotional_blurb = array();
 		$property_details = array();
 		$business_facilities = array();
@@ -272,6 +280,7 @@ class Supplier extends CActiveRecord
 		$things_to_do = array();
 
 		foreach($mutltiLangModels as $mutltiLangModel) {
+			$title[$mutltiLangModel->id_lang] = $mutltiLangModel->title;
 			$short_promotional_blurb[$mutltiLangModel->id_lang] = $mutltiLangModel->short_promotional_blurb;
 			$property_details[$mutltiLangModel->id_lang] = $mutltiLangModel->property_details;
 			$business_facilities[$mutltiLangModel->id_lang] = $mutltiLangModel->business_facilities;
@@ -281,6 +290,7 @@ class Supplier extends CActiveRecord
 			$things_to_do[$mutltiLangModel->id_lang] = $mutltiLangModel->things_to_do;
 		}
 		
+		$this->title = $title;
 		$this->short_promotional_blurb = $short_promotional_blurb;
 		$this->property_details = $property_details;
 		$this->business_facilities = $business_facilities;

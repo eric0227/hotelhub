@@ -243,6 +243,7 @@ class SupplierController extends Controller
 	// Added By Chris.
 	private function setSupplierLang($id) {
 
+		$title = $_POST['Supplier']['title'];
 		$short_promotional_blurb = $_POST['Supplier']['short_promotional_blurb'];
 		$property_details = $_POST['Supplier']['property_details'];
 		$business_facilities = $_POST['Supplier']['business_facilities'];
@@ -254,6 +255,10 @@ class SupplierController extends Controller
 		SupplierLang::model()->deleteAllByAttributes(array('id_supplier'=>$id));
 		foreach(Lang::items() as $lang => $langName) {
 
+			if(empty($title[$lang])) {
+				$title[$lang] = $title[Lang::getDefaultLang()];
+			}
+			
 			if(empty($short_promotional_blurb[$lang])) {
 				$short_promotional_blurb[$lang] = $short_promotional_blurb[Lang::getDefaultLang()];
 			}
@@ -286,6 +291,7 @@ class SupplierController extends Controller
 			$model->id_supplier = $id;
 			$model->id_lang = $lang;
 
+			$model->title = $title[$lang];
 			$model->short_promotional_blurb = $short_promotional_blurb[$lang];
 			$model->property_details = $property_details[$lang];
 			$model->business_facilities = $business_facilities[$lang];

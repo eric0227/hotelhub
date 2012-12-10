@@ -324,6 +324,7 @@ CREATE TABLE IF NOT EXISTS `gc_supplier` (
 CREATE TABLE IF NOT EXISTS `gc_supplier_lang` (
   `id_supplier` int(10) unsigned NOT NULL,
   `id_lang` int(10) unsigned NOT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `short_promotional_blurb` text,
   `property_details` text,
   `business_facilities` text,

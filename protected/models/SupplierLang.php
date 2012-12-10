@@ -52,7 +52,7 @@ class SupplierLang extends CActiveRecord
 			array('id_supplier, id_lang', 'required'),
 			array('id_supplier, id_lang', 'length', 'max'=>10),
 			array('link_rewrite, meta_title', 'length', 'max'=>128),
-			array('meta_keywords, meta_description', 'length', 'max'=>255),
+			array('title, meta_keywords, meta_description', 'length', 'max'=>255),
 			array('short_promotional_blurb, property_details, business_facilities, checkin_instructions, car_parking, getting_there, things_to_do', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -80,6 +80,7 @@ class SupplierLang extends CActiveRecord
 		return array(
 			'id_supplier' => 'Id Supplier',
 			'id_lang' => 'Id Lang',
+			'title'=>'Title',
 			'short_promotional_blurb' => 'Short Promotional Blurb',
 			'property_details' => 'Property Details',
 			'business_facilities' => 'Business Facilities',
@@ -107,6 +108,7 @@ class SupplierLang extends CActiveRecord
 
 		$criteria->compare('id_supplier',$this->id_supplier,true);
 		$criteria->compare('id_lang',$this->id_lang,true);
+		$criteria->compare('title',$this->title,true);
 		$criteria->compare('short_promotional_blurb',$this->short_promotional_blurb,true);
 		$criteria->compare('property_details',$this->property_details,true);
 		$criteria->compare('business_facilities',$this->business_facilities,true);

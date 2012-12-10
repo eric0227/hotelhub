@@ -10,7 +10,7 @@ $this->menu=array(
 	array('label'=>'Create Car','url'=>array('create')),
 	array('label'=>'View Car','url'=>array('view','id'=>$model->id_product)),
 	array('label'=>'Images', 'url'=>array('/imageProduct/index','id_product'=>$model->id_product)),
-	array('label'=>'Price of Date', 'url'=>array('/productDate/index', 'id_product'=>$model->id_product))
+	array('label'=>'Car Date', 'url'=>array('/productDate/index', 'id_product'=>$model->id_product))
 );
 ?>
 
