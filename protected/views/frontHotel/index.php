@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 
 $this->pageTitle=Yii::app()->name;
-$countryList = Country::model()->findAll(array('order' => 'name asc'));
+$countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
 ?>
 <script type="text/javascript">
 	$(function(){
@@ -59,7 +59,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 	
 	<?php
 		const TOT_ROW_NUM = 12;
-		const DURATION = 14;	// show 14 days;
+		const DURATION = 20;	// show 14 days;
 		
 		$country = isset($_POST['country']) ? $_POST['country'] : 0;
 		$destination = isset($_POST['destination']) ? $_POST['destination'] : 0;
@@ -119,7 +119,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days")));
 		echo CHtml::endForm();
-		
+
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "post", array("id"=>"next_navi", "name"=>"next_navi"));
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
@@ -127,7 +127,7 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 		echo CHtml::endForm();
 		
 		//$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
-		$items = Search::findAllAccommodation($country, $destination, $start_year."-".$start_month."-".$start_day, $lastday);
+		$items = Search::findAllHotel($country, $destination, $start_year."-".$start_month."-".$start_day, $lastday);
 		//print_r($items);
 		$rowCount = 0;
 		foreach($items as $item) {
@@ -188,16 +188,12 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 				<tr>
 					<td class="hotel span4">
 					<?php
-						if($item->id_product != "") { 
-					?>
-						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/view/<?php echo $item->id_product; ?>">
-							<?php echo $item->name; ?>
-						</a>
-					<?php
+						if($item->id_supplier != "") {
+							echo CHtml::link($item->title, array(Yii::app()->request->baseUrl."/frontHotel/view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); 
 						} else {
 					?>
 					<?php 
-							echo $item->name;
+							echo $item->title;
 						}
 					?>
 					</td>
@@ -208,9 +204,19 @@ $countryList = Country::model()->findAll(array('order' => 'name asc'));
 							$curr_date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $month, $day, $year));
 							
 							if($date == "Sat" || $date == "Sun") {
-								echo "<td class=\"weekend\">".($item->date_info[$curr_date]->price != "" ? number_format($item->date_info[$curr_date]->price, 0) : "")."</td>";
+								echo "<td class=\"weekend\">";
+								if($item->date_info[$curr_date]->price != "") {
+									$price = number_format($item->date_info[$curr_date]->price, 0);
+									echo CHtml::link($price, array(Yii::app()->request->baseUrl."/frontHotel/view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
+								}
+								echo "</td>";
 							} else {
-								echo "<td class=\"weekday\">".($item->date_info[$curr_date]->price != "" ? number_format($item->date_info[$curr_date]->price, 0) : "")."</td>";
+								echo "<td class=\"weekday\">";
+								if($item->date_info[$curr_date]->price != "") {
+									$price = number_format($item->date_info[$curr_date]->price, 0);
+									echo CHtml::link($price, array(Yii::app()->request->baseUrl."/frontHotel/view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
+								}
+								echo "</td>";
 							}
 
 							$nextday = date("d",strtotime($year."-".$month."-".$day." +1 days"));

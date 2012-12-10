@@ -1,7 +1,8 @@
 <?php
 /* @var $this SiteController */
 $this->pageTitle=Yii::app()->name;
-$countryList = Country::model()->findAll(array('order' => 'name asc'));
+//$countryList = Country::model()->findAll(array('order' => 'name asc'));
+$countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
 ?>
 <script type="text/javascript">
 	$(function(){
