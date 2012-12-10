@@ -10,6 +10,7 @@
  * @property string $price
  * @property string $agent_price
  * @property string $quantity
+ * @property string $out_of_stock
  * @property string $active
  *
  * The followings are the available model relations:
@@ -46,12 +47,12 @@ class ProductDate extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_product, on_date, quantity', 'required'),
-			array('id_product, quantity', 'length', 'max'=>10),
+			array('id_product, quantity, out_of_stock', 'length', 'max'=>10),
 			array('price, agent_price', 'length', 'max'=>20),
 			array('active', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_product_date, id_product, on_date, price, agent_price, quantity, active', 'safe', 'on'=>'search'),
+			array('id_product_date, id_product, on_date, price, agent_price, quantity, out_of_stock, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,6 +82,7 @@ class ProductDate extends CActiveRecord
 			'price' => 'Price',
 			'agent_price' => 'Agent Price',
 			'quantity' => 'Quantity',
+			'out_of_stock' => 'Out Of Stock',
 			'active' => 'Active',
 		);
 	}
@@ -107,6 +109,7 @@ class ProductDate extends CActiveRecord
 		$criteria->compare('price',$this->price,true);
 		$criteria->compare('agent_price',$this->agent_price,true);
 		$criteria->compare('quantity',$this->quantity,true);
+		$criteria->compare('out_of_stock',$this->out_of_stock,true);
 		$criteria->compare('active',$this->active,true);
 
 		return new CActiveDataProvider($this, array(
