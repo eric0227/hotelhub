@@ -158,7 +158,7 @@ class RoomController extends Controller
 			$beddigModel->bed_num = $bedding['bed_num'];
 			$beddigModel->single_num = $bedding['single_num'];
 			$beddigModel->double_num = $bedding['double_num'];
-			$beddigModel->beddig_desc = $bedding['beddig_desc'];
+			$beddigModel->bedding_desc = $bedding['bedding_desc'];
 			$beddigModel->additional_cost = $bedding['additional_cost'];
 			$beddigModel->cots_available = $bedding['cots_available'];
 			$beddigModel->active = 1;

@@ -822,7 +822,7 @@ CREATE TABLE `gc_bedding` (
 	
 	`single_num` int(2) unsigned NOT NULL,
 	`double_num` int(2) unsigned NOT NULL,
-	`beddig_desc`  varchar(200),
+	`bedding_desc`  varchar(200),
 	`additional_cost`  decimal(20,6) NOT NULL DEFAULT '0.000000',
 	`cots_available`  int(2) unsigned NOT NULL,
 	

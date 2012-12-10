@@ -16,8 +16,8 @@
 	<?php echo CHtml::encode($data->double_num); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('beddig_desc')); ?>:</b>
-	<?php echo CHtml::encode($data->beddig_desc); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('bedding_desc')); ?>:</b>
+	<?php echo CHtml::encode($data->bedding_desc); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('additional_cost')); ?>:</b>

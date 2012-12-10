@@ -13,7 +13,7 @@
 
 	<?php echo $form->textFieldRow($model,'double_num',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<?php echo $form->textFieldRow($model,'beddig_desc',array('class'=>'span5','maxlength'=>200)); ?>
+	<?php echo $form->textFieldRow($model,'bedding_desc',array('class'=>'span5','maxlength'=>200)); ?>
 
 	<?php echo $form->textFieldRow($model,'additional_cost',array('class'=>'span5','maxlength'=>20)); ?>
 

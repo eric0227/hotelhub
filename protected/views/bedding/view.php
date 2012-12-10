@@ -22,7 +22,7 @@ $this->menu=array(
 		'id_room',
 		'single_num',
 		'double_num',
-		'beddig_desc',
+		'bedding_desc',
 		'additional_cost',
 		'cots_available',
 	),
