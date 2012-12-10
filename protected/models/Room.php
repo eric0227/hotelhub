@@ -57,7 +57,7 @@ class Room extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_product, room_code, room_type_code', 'required'),
+			array('room_code, room_type_code', 'required'),
 			array('lead_in_room_type', 'numerical', 'integerOnly'=>true),
 			array('id_product, id_supplier, id_bedding_default, full_rate', 'length', 'max'=>10),
 			array('room_code', 'length', 'max'=>6),

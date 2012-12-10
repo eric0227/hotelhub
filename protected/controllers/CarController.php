@@ -67,17 +67,20 @@ class CarController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Car']))
-		{			
-			$product->attributes=$_POST['Product'];		
-			if($product->save()) {
-				$product->saveProductLang();
-				
-				$model->attributes=$_POST['Car'];
-				$model->id_supplier = $product->id_supplier;
-				$model->id_product = $product->id_product;
-				if($model->save()) {
-					$this->redirect(array('view','id'=>$model->id_product));
+		$product->attributes=$_POST['Product'];
+		$model->attributes=$_POST['Car'];
+		
+		if(isset($_POST['Car']) && $_POST['Product'])
+		{
+			if($model->validate() && $product->validate()) {
+				if($product->save()) {
+					$product->saveProductLang();
+	
+					$model->id_supplier = $product->id_supplier;
+					$model->id_product = $product->id_product;
+					if($model->save()) {
+						$this->redirect(array('view','id'=>$model->id_product));
+					}
 				}
 			}
 		}
@@ -101,14 +104,17 @@ class CarController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Car']))
+		if(isset($_POST['Car']) && $_POST['Product'])
 		{
 			$product->attributes=$_POST['Product'];
-			if($product->save()) {
-				$product->saveProductLang();
-				$model->attributes=$_POST['Car'];
-				if($model->save()) {
-					$this->redirect(array('view','id'=>$model->id_product));
+			$model->attributes=$_POST['Car'];
+			
+			if($model->validate() && $product->validate()) {
+				if($product->save()) {
+					$product->saveProductLang();
+					if($model->save()) {
+						$this->redirect(array('view','id'=>$model->id_product));
+					}
 				}
 			}
 		}
