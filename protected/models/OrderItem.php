@@ -27,13 +27,14 @@
  * @property string $tax_name
  * @property string $tax_rate
  * @property integer $discount_quantity_applied
+ * @producty string $booking_name
  *
  * The followings are the available model relations:
- * @property Order $idOrder
- * @property Service $idService
- * @property Supplier $idSupplier
- * @property Product $idProduct
- * @property ProductDate $idProductDate
+ * @property Order $order
+ * @property Service $service
+ * @property Supplier $supplier
+ * @property Product $product
+ * @property ProductDate $productDate
  */
 class OrderItem extends CActiveRecord
 {
@@ -67,12 +68,12 @@ class OrderItem extends CActiveRecord
 			array('product_quantity_in_stock, on_refunded, on_return, discount_quantity_applied', 'numerical', 'integerOnly'=>true),
 			array('product_weight', 'numerical'),
 			array('id_order, id_service, id_supplier, id_product, id_product_date, product_quantity, reduction_percent, tax_rate', 'length', 'max'=>10),
-			array('order_item_name, product_name', 'length', 'max'=>255),
+			array('order_item_name, product_name, booking_name', 'length', 'max'=>255),
 			array('quantity_price, agent_quantity_price, reduction_amount, product_quantity_discount, total_price, agent_total_price', 'length', 'max'=>20),
 			array('tax_name', 'length', 'max'=>16),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_order_item, id_order, id_service, id_supplier, id_product, id_product_date, order_item_name, product_name, product_quantity, product_quantity_in_stock, on_refunded, on_return, quantity_price, agent_quantity_price, reduction_percent, reduction_amount, product_quantity_discount, total_price, agent_total_price, product_weight, tax_name, tax_rate, discount_quantity_applied', 'safe', 'on'=>'search'),
+			array('id_order_item, id_order, id_service, id_supplier, id_product, id_product_date, order_item_name, product_name, product_quantity, product_quantity_in_stock, on_refunded, on_return, quantity_price, agent_quantity_price, reduction_percent, reduction_amount, product_quantity_discount, total_price, agent_total_price, product_weight, tax_name, tax_rate, discount_quantity_applied, booking_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -84,11 +85,11 @@ class OrderItem extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idOrder' => array(self::BELONGS_TO, 'Order', 'id_order'),
-			'idService' => array(self::BELONGS_TO, 'Service', 'id_service'),
-			'idSupplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
-			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'idProductDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
+			'order' => array(self::BELONGS_TO, 'Order', 'id_order'),
+			'service' => array(self::BELONGS_TO, 'Service', 'id_service'),
+			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
+			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
+			'productDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
 		);
 	}
 
@@ -121,6 +122,7 @@ class OrderItem extends CActiveRecord
 			'tax_name' => 'Tax Name',
 			'tax_rate' => 'Tax Rate',
 			'discount_quantity_applied' => 'Discount Quantity Applied',
+			'booking_name' => 'Booking Name',
 		);
 	}
 
@@ -158,6 +160,7 @@ class OrderItem extends CActiveRecord
 		$criteria->compare('tax_name',$this->tax_name,true);
 		$criteria->compare('tax_rate',$this->tax_rate,true);
 		$criteria->compare('discount_quantity_applied',$this->discount_quantity_applied);
+		$criteria->compare('booking_name',$this->booking_name);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

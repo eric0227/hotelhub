@@ -10,6 +10,8 @@ $this->menu=array(
 	array('label'=>'Create Room','url'=>array('create')),
 	array('label'=>'View Room','url'=>array('view','id'=>$model->id_product)),
 	array('label'=>'Manage Room','url'=>array('admin')),
+	array('label'=>'Room Images', 'url'=>array('/imageProduct/index','id_product'=>$model->id_product)),
+	array('label'=>'Room Date', 'url'=>array('/productDate/index', 'id_product'=>$model->id_product))	
 );
 ?>
 
