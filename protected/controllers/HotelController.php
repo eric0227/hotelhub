@@ -63,19 +63,29 @@ class HotelController extends Controller
 	public function actionCreate()
 	{
 		$model=new Hotel;
+		$product=new Product;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
+		
 		if(isset($_POST['Hotel']))
 		{
-			$model->attributes=$_POST['Hotel'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id_hotel));
+			$product->attributes=$_POST['Product'];
+			if($product->save()) {
+				$product->saveProductLang();
+			
+				$model->attributes=$_POST['Hotel'];
+				$model->id_supplier = $product->id_supplier;
+				$model->id_product = $product->id_product;
+				if($model->save()) {
+					$this->redirect(array('view','id'=>$model->id_hotel));
+				}
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'product'=>$product,
 		));
 	}
 

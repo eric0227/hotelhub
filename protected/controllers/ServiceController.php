@@ -178,6 +178,11 @@ class ServiceController extends Controller
 		Yii::app()->session->add('service', $service);
 						
 		//$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		$this->redirect(Yii::app()->getRequest()->getUrlReferrer());
+		//$this->redirect(Yii::app()->getRequest()->getUrlReferrer());
+		if(Yii::app()->user->isAdmin()) {
+			$this->redirect(Yii::app()->getRequest()->baseUrl . '/adm/index');
+		} else {
+			$this->redirect(Yii::app()->getRequest()->getUrlReferrer());
+		}
 	}
 }

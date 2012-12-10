@@ -32,7 +32,7 @@
 	<?php echo $form->errorSummary($product); ?>
 	<?php $this->widget('MultiLangSelector'); ?>
 	
-	<?php		
+	<?php
 		echo $form->dropDownListRow($product, 'id_category_default', Category::items(),array('class' => 'span5'));
 	?>
 
