@@ -21,33 +21,36 @@ class HotelInfo {
 class Search {
 	static public function findAllAccommodation($country, $destination, $start_date, $last_date) {
 		$criteria = new CDbCriteria;
-		/*	SELECT pro.* , pro_date.* , pro_lang.* 
+		/*	SELECT pro_date.* , pro_lang.*, room.*
 			FROM gc_address AS addr
 			INNER JOIN gc_user AS usr ON addr.id_address = usr.id_address_default
 			INNER JOIN gc_supplier AS sup ON usr.id_user = sup.id_supplier
 			INNER JOIN gc_product AS pro ON sup.id_supplier = pro.id_supplier
 			INNER JOIN gc_product_date AS pro_date ON pro_date.id_product = pro.id_product
+			INNER JOIN gc_room AS room ON room.id_product = pro_date.id_product
 			LEFT JOIN gc_product_lang AS pro_lang ON pro_lang.id_product = pro.id_product
 			WHERE addr.id_country =24
 			AND addr.id_destination =2
 			AND sup.id_service =1
 			AND pro.active = 1
 			AND pro_date.active = 1
-			AND pro_lang.id_lang =1
+			AND pro_lang.id_lang = 1
+			AND room.lead_in_room_type = 1
 			AND pro_date.on_date BETWEEN '2012-11-20' AND '2012-12-31'
 			ORDER BY pro.id_product, pro_date.on_date
 		*/
 		$results = Yii::app()->db->createCommand()
-				->select('pro.*, pro_date.*, pro_lang.*')
+				->select('pro_date.*, pro_lang.*, room.*')
 				->from('gc_address as addr')
 				->join('gc_user as usr', 'addr.id_address = usr.id_address_default')
 				->join('gc_supplier as sup', 'usr.id_user = sup.id_supplier')
 				->join('gc_product as pro', 'sup.id_supplier = pro.id_supplier')
 				->join('gc_product_date as pro_date', 'pro_date.id_product = pro.id_product')
+				->join('gc_room as room', 'room.id_product = pro_date.id_product')
 				->leftJoin('gc_product_lang as pro_lang', 'pro_lang.id_product = pro.id_product')
 				->where('addr.id_country = :id_country and addr.id_destination = :id_destination
 						and sup.id_service = :id_service and pro.active = 1 and pro_date.active = 1 and pro_lang.id_lang = :id_lang
-						and pro_date.on_date BETWEEN :id_startdate AND :id_lastdate',
+						and pro_date.on_date BETWEEN :id_startdate and :id_lastdate and room.lead_in_room_type = 1',
 						array(':id_country' => $country,
 						':id_destination' => $destination,
 						':id_service' => Service::HOTEL,
