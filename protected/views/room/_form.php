@@ -10,7 +10,15 @@
 		<legend>New Room</legend>
 		<fieldset>
 			<legend>Basic Information</legend>
+
 			<?php
+				if($product->isNewRecord && Yii::app()->user->isAdmin()) {
+					echo $form->dropDownListRow($product,'id_supplier',Supplier::items(), array('class'=>'span5','maxlength'=>10));
+				}
+			?>
+			
+			<?php
+			/*
 				if($model->isNewRecord) {
 					$command = Yii::app()->db->createCommand();
 					$command->select('a.id_product')->from('gc_product as a');
@@ -27,7 +35,7 @@
 				} else {
 					echo $form->textFieldRow($model, 'id_product', array('class' => 'span5'));
 				}
-				
+			*/
 			?>
 			<?php //echo $form->dropDownListRow($model, 'id_product', Product::items(), array('class' => 'span5')); ?>
 			<?php  ?>
@@ -38,11 +46,25 @@
 			<?php echo $form->textFieldRow($model,'full_rate',array('class'=>'span5','maxlength'=>10)); ?>
 			<?php echo $form->textFieldRow($model,'min_night_stay',array('class'=>'span5','maxlength'=>2)); ?>
 			<?php echo $form->textFieldRow($model,'max_night_stay',array('class'=>'span5','maxlength'=>2)); ?>
+			
 		</fieldset>
 		<fieldset>
 			<legend>Basic Description</legend>
-			<?php echo $form->textFieldRow($model,'room_name',array('class'=>'span5','maxlength'=>64)); ?>
-			<?php echo $form->textFieldRow($model,'root_description',array('class'=>'span5','maxlength'=>300)); ?>
+			
+			<?php //echo $form->textFieldRow($model,'room_name',array('class'=>'span5','maxlength'=>64)); ?>
+			<?php //echo $form->textFieldRow($model,'root_description',array('class'=>'span5','maxlength'=>300)); ?>
+			
+			<?php echo $form->errorSummary($product); ?>
+			<?php $this->widget('MultiLangSelector'); ?>
+			<?php
+				echo $form->dropDownListRow($product, 'id_category_default', Category::items(),array('class' => 'span5'));
+			?>
+			<?php echo $form->textFieldRow($product,'name',array('class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($product,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($product,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
+			
+			<?php echo $form->textFieldRow($product,'price',array('class'=>'span5'));  ?>
+			<?php echo $form->textFieldRow($product,'agent_price',array('class'=>'span5'));  ?>
 		</fieldset>
 		
 		<script> 

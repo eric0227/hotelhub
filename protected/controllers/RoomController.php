@@ -63,21 +63,35 @@ class RoomController extends Controller
 	public function actionCreate()
 	{
 		$model=new Room;
+		$product=new Product;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Room']))
+		if(isset($_POST['Room']) && $_POST['Product'])
 		{
+			$product->attributes=$_POST['Product'];
 			$model->attributes=$_POST['Room'];
-			if($model->save()) {
-				$this->saveBedding($model);
-				$this->redirect(array('view','id'=>$model->id_product));
+			
+			if($model->validate() && $product->validate()) {
+				if($product->save()) {
+					$product->saveProductLang();
+					
+					$model->attributes=$_POST['Room'];
+					$model->id_supplier = $product->id_supplier;
+					$model->id_product = $product->id_product;
+					
+					if($model->save()) {
+						$this->saveBedding($model);
+						$this->redirect(array('view','id'=>$model->id_product));
+					}
+				}
 			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'product'=>$product,
 		));
 	}
 
@@ -89,21 +103,32 @@ class RoomController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
-
+		$product = Product::model()->findByPk($id);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Room']))
+			
+		if(isset($_POST['Room']) && $_POST['Product'])
 		{
 			$model->attributes=$_POST['Room'];
-			if($model->save()) {
-				$this->saveBedding($model);
-				$this->redirect(array('view','id'=>$model->id_product));
+			$product->attributes=$_POST['Product'];
+			
+			if($model->validate() && $product->validate()) {
+				if($product->save()) {
+					$product->saveProductLang();
+					
+					if($model->save()) {
+						$this->saveBedding($model);
+						$this->redirect(array('view','id'=>$model->id_product));
+					}
+				}
 			}
 		}
-
+		
+		$product->loadMultiLang();
+		
 		$this->render('update',array(
 			'model'=>$model,
+			'product'=>$product,
 		));
 	}
 	
