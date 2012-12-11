@@ -75,20 +75,20 @@ class CartController extends Controller
 
 			$model->id_user = $id_user;
 			
-			$defaultAddress = Address::getAddress($id_user, Address::DEFAULT_CODE);
+			$defaultAddress = $user->addressDefault;
 			if(isset($defaultAddress)) {
 				$model->id_address_delivery = $defaultAddress->id_address;
 				$model->id_address_invoice = $defaultAddress->id_address;				
 				$data['defaultAddress'] = $defaultAddress;
 			}
 			
-			$deliveryAddress = Address::getAddress($id_user, Address::DELIVERY_CODE);
+			$deliveryAddress = $user->addressDelivery;
 			if(isset($deliveryAddress)) {
 				$model->id_address_delivery = $deliveryAddress->id_address;
 				$data['deliveryAddress'] = $deliveryAddress;
 			}
 			
-			$invoiceAddress = Address::getAddress($id_user, Address::INVOICE_CODE);
+			$invoiceAddress = $user->addressInvoice;
 			if(isset($invoiceAddress)) {
 				$model->id_address_invoice = $invoiceAddress->id_address;
 				$data['invoiceAddress'] = $invoiceAddress;
@@ -125,20 +125,20 @@ class CartController extends Controller
 			
 			$model->id_user = $id_user;
 			
-			$defaultAddress = Address::getAddress($id_user, Address::DEFAULT_CODE);
+			$defaultAddress = $user->addressDefault;
 			if(isset($defaultAddress)) {
 				$model->id_address_delivery = $defaultAddress->id_address;
 				$model->id_address_invoice = $defaultAddress->id_address;				
 				$data['defaultAddress'] = $defaultAddress;
 			}
 			
-			$deliveryAddress = Address::getAddress($id_user, Address::DELIVERY_CODE);
+			$deliveryAddress = $user->addressDelivery;
 			if(isset($deliveryAddress)) {
 				$model->id_address_delivery = $deliveryAddress->id_address;
 				$data['deliveryAddress'] = $deliveryAddress;
 			}
 			
-			$invoiceAddress = Address::getAddress($id_user, Address::INVOICE_CODE);
+			$invoiceAddress = $user->addressInvoice;
 			if(isset($invoiceAddress)) {
 				$model->id_address_invoice = $invoiceAddress->id_address;
 				$data['invoiceAddress'] = $invoiceAddress;

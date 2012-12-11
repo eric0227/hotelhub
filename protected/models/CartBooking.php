@@ -1,29 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "gc_cart_product".
+ * This is the model class for table "gc_cart_booking".
  *
- * The followings are the available columns in table 'gc_cart_product':
- * @property string $id_cart_product
- * @property string $id_cart
+ * The followings are the available columns in table 'gc_cart_booking':
  * @property string $id_cart_booking
+ * @property string $id_cart
  * @property string $id_product
- * @property string $id_product_date
- * @property string $quantity
+ * @property string $bookin_date
+ * @property string $bookout_date
  * @property string $date_add
+ * @property string $id_bedding
+ * @property string $booking_name
  *
  * The followings are the available model relations:
- * @property Cart $cart
- * @property CartBooking $cartBooking
- * @property Product $product
- * @property ProductDate $productDate
+ * @property Cart $idCart
+ * @property Product $idProduct
  */
-class CartProduct extends CActiveRecord
+class CartBooking extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return CartProduct the static model class
+	 * @return CartBooking the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -35,7 +34,7 @@ class CartProduct extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'gc_cart_product';
+		return 'gc_cart_booking';
 	}
 
 	/**
@@ -47,10 +46,12 @@ class CartProduct extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_cart, id_product', 'required'),
-			array('id_cart, id_cart_booking, id_product, id_product_date, quantity', 'length', 'max'=>10),
+			array('id_cart, id_product, id_bedding', 'length', 'max'=>10),
+			array('booking_name', 'length', 'max'=>256),
+			array('bookin_date, bookout_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_cart_product, id_cart, id_product, id_product_date, quantity, date_add', 'safe', 'on'=>'search'),
+			array('id_cart_booking, id_cart, id_product, booking_name, bookin_date, bookout_date, date_add', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,9 +64,9 @@ class CartProduct extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'cart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
-			'cartBooking' => array(self::BELONGS_TO, 'CartBooking', 'id_cart_booking'),
 			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'productDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
+			'bedding' => array(self::BELONGS_TO, 'Bedding', 'id_bedding'),
+			'cartProducts' => array(self::HAS_MANY, 'CartProduct', 'id_cart_booking'),
 		);
 	}
 
@@ -75,11 +76,12 @@ class CartProduct extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_cart_product' => 'Id Cart Product',
+			'id_cart_booking' => 'Id Cart Booking',
 			'id_cart' => 'Id Cart',
 			'id_product' => 'Id Product',
-			'id_product_date' => 'Id Product Date',
-			'quantity' => 'Quantity',
+			'booking_name' => 'Booking Name',
+			'bookin_date' => 'Bookin Date',
+			'bookout_date' => 'Bookout Date',
 			'date_add' => 'Date Add',
 		);
 	}
@@ -95,13 +97,15 @@ class CartProduct extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id_cart_product',$this->id_cart_product,true);
-		$criteria->compare('id_cart',$this->id_cart,true);
 		$criteria->compare('id_cart_booking',$this->id_cart_booking,true);
+		$criteria->compare('id_cart',$this->id_cart,true);
 		$criteria->compare('id_product',$this->id_product,true);
-		$criteria->compare('id_product_date',$this->id_product_date,true);
-		$criteria->compare('quantity',$this->quantity,true);
+		$criteria->compare('id_bedding',$this->id_bedding,true);
+		$criteria->compare('booking_name',$this->booking_name,true);
+		$criteria->compare('bookin_date',$this->bookin_date,true);
+		$criteria->compare('bookout_date',$this->bookout_date,true);
 		$criteria->compare('date_add',$this->date_add,true);
+		
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -109,10 +113,10 @@ class CartProduct extends CActiveRecord
 	}
 	
 	protected function beforeSave() {
-		if($this->isNewRecord) {
-			$this->date_add = new CDbExpression('NOW()');
+		if($this->isNewRecord)
+		{
+			$this->date_add=new CDbExpression('NOW()');
 		}
 		return parent::beforeSave();
 	}
 }
-

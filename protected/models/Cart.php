@@ -15,8 +15,6 @@
  * @property string $gift_message
  * @property string $date_add
  * @property string $date_upd
- * @property string $bookin_date
- * @property string $bookout_upd
  * @property string $on_order
  *
  * The followings are the available model relations:
@@ -24,6 +22,7 @@
  * @property Address $addressDelivery
  * @property Address $addressInvoice
  * @property Currency $currency
+ * @property CartBooking[] $cartBookings
  * @property CartProduct[] $cartProducts
  * @property Order[] $orders
  */
@@ -78,6 +77,7 @@ class Cart extends CActiveRecord
 			'addressDelivery' => array(self::BELONGS_TO, 'Address', 'id_address_delivery'),
 			'addressInvoice' => array(self::BELONGS_TO, 'Address', 'id_address_invoice'),
 			'currency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
+			'cartBookings' => array(self::HAS_MANY, 'CartBooking', 'id_cart'),
 			'cartProducts' => array(self::HAS_MANY, 'CartProduct', 'id_cart'),
 			'orders' => array(self::HAS_MANY, 'Order', 'id_cart'),
 		);
@@ -99,9 +99,7 @@ class Cart extends CActiveRecord
 			'gift' => 'Gift',
 			'gift_message' => 'Gift Message',
 			'date_add' => 'Date Add',
-			'date_upd' => 'Date Upd',
-			'bookin_date' => 'Booking-in Date',
-			'bookout_date' => 'Booking-out Date',			
+			'date_upd' => 'Date Upd',		
 			'on_order' => 'On Order',
 		);
 	}
@@ -127,9 +125,6 @@ class Cart extends CActiveRecord
 		$criteria->compare('gift_message',$this->gift_message,true);
 		$criteria->compare('date_add',$this->date_add,true);
 		$criteria->compare('date_upd',$this->date_upd,true);
-		
-		$criteria->compare('bookin_date',$this->bookin_date,true);
-		$criteria->compare('bookout_date',$this->bookout_date,true);
 		
 		$criteria->compare('on_order',$this->on_order,true);
 

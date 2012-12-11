@@ -41,6 +41,7 @@
  * @property OrderHistory[] $orderHistories
  * @property OrderSate $orderState
  * @proverty OrderItem[] orderItems
+ * @proverty OrderBooking[] orderBookings
  */
 class Order extends CActiveRecord
 {
@@ -97,6 +98,7 @@ class Order extends CActiveRecord
 			'currency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
 			'orderHistories' => array(self::HAS_MANY, 'OrderHistory', 'id_order',
 									'order'=>'orderHistories.date_add DESC'),
+			'orderBookings' => array(self::HAS_MANY, 'OrderBooking', 'id_order'),
 			'orderItems' => array(self::HAS_MANY, 'OrderItem', 'id_order'),
 			'orderState' => array(self::BELONGS_TO, 'OrderState', 'id_order_state'),
 		);
@@ -161,9 +163,12 @@ class Order extends CActiveRecord
 		
 		if(Supplier::currentSupplierId() != "") {
 			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = '.Supplier::currentSupplierId();
+		} else if(Yii::app()->user->isAdmin()) {
+			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
 		} else {
 			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = null';
 		}
+				
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

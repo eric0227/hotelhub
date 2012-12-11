@@ -68,6 +68,8 @@ class Bedding extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'room' => array(self::BELONGS_TO, 'Room', 'id_room'),
+			'cartBooking' => array(self::HAS_MANY, 'CartBooking', 'id_bedding'),
+			'orderBooking' => array(self::HAS_MANY, 'OrderBooking', 'id_bedding'),
 		);
 	}
 
