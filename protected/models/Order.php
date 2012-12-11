@@ -112,13 +112,13 @@ class Order extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_order' => 'Id Order',
-			'id_lang' => 'Id Lang',
-			'id_user' => 'Id User',
-			'id_cart' => 'Id Cart',
-			'id_currency' => 'Id Currency',
-			'id_address_delivery' => 'Id Address Delivery',
-			'id_address_invoice' => 'Id Address Invoice',
+			'id_order' => 'Order',
+			'id_lang' => 'Lang',
+			'id_user' => 'User',
+			'id_cart' => 'Cart',
+			'id_currency' => 'Currency',
+			'id_address_delivery' => 'Address Delivery',
+			'id_address_invoice' => 'Address Invoice',
 			'secure_key' => 'Secure Key',
 			'payment' => 'Payment',
 			'conversion_rate' => 'Conversion Rate',
