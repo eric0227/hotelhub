@@ -12,17 +12,53 @@ class HotelInfo {
 	public $name = "";
 	public $title = "";
 	public $date_info = "";
-	
+
 	function __construct() {
 		$this->date_info = new DateInfo;
 	}
 }
 
 
+class BedInfo {
+	public $id_bedding = "";
+	public $single_num = "";
+	public $double_num = "";
+	public $bedding_desc = "";
+	public $additional_cost = "";
+}
+
+class RoomInfo {
+	public $id_supplier = "";
+	public $id_product = "";
+	public $name = "";
+	public $title = "";
+	
+	public $guests_tot_room_cap = "";
+	public $guests_included_price = "";
+	public $children_maxnum = "";
+	public $children_years = "";
+	public $children_extra = "";
+	public $adults_maxnum = "";
+	public $adults_extra = "";
+	
+	public $bed_info = "";
+
+	function __construct() {
+		$this->bed_info = new BedInfo;
+	}
+}
+
 
 class Search {
+	static public function newHotelInfo() {
+		return new HotelInfo();
+	}
+	
+	static public function newDateInfo() {
+		return new DateInfo();
+	}
+	
 	static public function findAllHotel($country, $destination, $start_date, $last_date) {
-		$criteria = new CDbCriteria;
 		/*	SELECT pro_date.* , pro_lang.*, room.*, sup_lang.*
 			FROM gc_address AS addr
 			INNER JOIN gc_user AS usr ON addr.id_address = usr.id_address_default
@@ -91,6 +127,8 @@ class Search {
 				$date_info = new DateInfo;
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
+				$date_info->product_description = $result['description'];
+				$date_info->out_of_stock = $result['out_of_stock'];
 				
 				$hotel->date_info[$date_info->on_date] = $date_info;
 			}
@@ -111,7 +149,6 @@ class Search {
 	}
 	
 	static public function findAllHotelRoom($id_supplier, $country, $destination, $start_date, $last_date) {
-		$criteria = new CDbCriteria;
 		/*	SELECT pro_date.* , pro_lang.*, room.*, sup_lang.*
 			FROM gc_address AS addr
 			INNER JOIN gc_user AS usr ON addr.id_address = usr.id_address_default
@@ -182,6 +219,8 @@ class Search {
 				$date_info = new DateInfo;
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
+				$date_info->product_description = $result['description'];
+				$date_info->out_of_stock = $result['out_of_stock'];
 	
 				$hotel->date_info[$date_info->on_date] = $date_info;
 			}
@@ -202,45 +241,81 @@ class Search {
 	}
 	
 	static public function findInfoHotelRoom($id_product) {
-		$criteria = new CDbCriteria;
-		/*	SELECT *
+		/*	SELECT pro.*, pro_lang.*, sup_lang.*, room.*, bed.*
 			FROM gc_product as pro
 			INNER JOIN gc_product_lang as pro_lang on pro.id_product = pro_lang.id_product
 			INNER JOIN gc_supplier_lang as sup_lang on pro.id_supplier = sup_lang.id_supplier
-			WHERE pro.id_product = 1
+			INNER JOIN gc_room as room on room.id_product = pro.id_product
+			INNER JOIN gc_bedding as bed on bed.id_room = room.id_product
+			WHERE pro.id_product = 2
 			AND pro_lang.id_lang = 1
 			AND sup_lang.id_lang = 1
+			AND bed.active = 1 AND bed.deleted != 1
 		*/
 		$results = Yii::app()->db->createCommand()
-			->select('pro.*, pro_lang.*, sup_lang.*')
+			->select('pro.*, pro_lang.*, sup_lang.*, room.*, bed.*')
 			->from('gc_product as pro')
 			->join('gc_product_lang as pro_lang', 'pro.id_product = pro_lang.id_product')
 			->join('gc_supplier_lang as sup_lang', 'pro.id_supplier = sup_lang.id_supplier')
-			->where('pro.id_product = :id_product
-				and pro_lang.id_lang = :id_pro_lang and sup_lang.id_lang = :id_sup_lang',
-			array(':id_product' => $id_product,
-				':id_pro_lang' => Lang::getCurrentLang(),
+			->join('gc_room as room', 'room.id_product = pro.id_product')
+			->join('gc_bedding as bed', 'bed.id_room = room.id_product')
+			->where('pro.id_product IN ('.implode(",", $id_product).')
+				and pro_lang.id_lang = :id_pro_lang and sup_lang.id_lang = :id_sup_lang
+				and bed.active = 1 and bed.deleted != 1',
+			array(':id_pro_lang' => Lang::getCurrentLang(),
 				':id_sup_lang' => Lang::getCurrentLang(),
 				))
 			->queryAll();
-	
+
 		$items = Array();
 		$before_id_product = "";
-		$hotel = "";
+		$room = "";
+		//var_dump($results);die();
 		foreach($results as $result) {
-			$hotel = new HotelInfo;
-			$hotel->id_product = $result['id_product'];
-			$hotel->id_supplier = $result['id_supplier'];
-			$hotel->name = $result['name'];
-			$hotel->title = $result['title'];
-			$hotel->date_info = array();
-			array_push($items, $hotel);
+			if($before_id_product != $result['id_product']) {
+				$room = new RoomInfo;
+				$room->id_product = $result['id_product'];
+				$room->id_supplier = $result['id_supplier'];
+				$room->name = $result['name'];
+				$room->title = $result['title'];
+				
+				$room->guests_tot_room_cap = $result['guests_tot_room_cap'];
+				$room->guests_included_price = $result['guests_included_price'];
+				$room->children_maxnum = $result['children_maxnum'];
+				$room->children_years = $result['children_years'];
+				$room->children_extra = $result['children_extra'];
+				$room->adults_maxnum = $result['adults_maxnum'];
+				$room->adults_extra = $result['adults_extra'];
+
+				$room->bed_info = array();
+				array_push($items, $room);
+
+				$bed_info = new BedInfo;
+				$bed_info->id_bedding = $result['id_bedding'];
+				$bed_info->single_num = $result['single_num'];
+				$bed_info->double_num = $result['double_num'];
+				$bed_info->bedding_desc = $result['bedding_desc'];
+				$bed_info->additional_cost = $result['additional_cost'];
+					
+				$room->bed_info[$bed_info->id_bedding] = $bed_info;
+			} else {
+				$bed_info = new BedInfo;
+				$bed_info->id_bedding = $result['id_bedding'];
+				$bed_info->single_num = $result['single_num'];
+				$bed_info->double_num = $result['double_num'];
+				$bed_info->bedding_desc = $result['bedding_desc'];
+				$bed_info->additional_cost = $result['additional_cost'];
+	
+				$room->bed_info[$bed_info->id_bedding] = $bed_info;
+			}
+				
+			$before_id_product = $result['id_product'];
 		}
 	
 		if(count($items) == 0) {
-			$hotel = new HotelInfo;
-			$hotel->name = "There is no data.";
-			array_push($items, $hotel);
+			$room = new RoomInfo;
+			$room->name = "There is no data.";
+			array_push($items, $room);
 		}
 		
 		return $items;
