@@ -28,7 +28,7 @@ class OrderController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'orderItem'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -153,6 +153,14 @@ class OrderController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Order');
+		if(Supplier::currentSupplierId() != "") {
+			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = '.Supplier::currentSupplierId();
+		} else if(Yii::app()->user->isAdmin()) {
+			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
+		} else {
+			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = null';
+		}
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -205,7 +213,7 @@ class OrderController extends Controller
 		$orderState = $order->orderState;
 				
 		$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$id, 'id_order_state'=>$order->id_order_state));
-
+				
 		if(isset($_POST['OrderHistory']))
 		{
 			$id_order_state = $_POST['OrderHistory']['id_order_state'];
@@ -223,10 +231,26 @@ class OrderController extends Controller
 		} else {
 			$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$id, 'id_order_state'=>$order->id_order_state));
 		}
+		
+		if(!isset($orderHistory)) {
+			$orderHistory = new OrderHistory;
+			$orderHistory->id_order = $id;
+		}
 
 		$this->render('orderHistory',array(
 				'order'=>$order,
 				'model'=>$orderHistory,
+		));
+	}
+	
+	public function actionOrderItem($id) {
+		$model = OrderItem::model()->findByPk($id);
+		if(!isset($model)) {
+			$model = new OrderItem;
+		}
+		
+		$this->render('orderItem', array(
+			'model'=>$model
 		));
 	}
 }

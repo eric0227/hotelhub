@@ -37,17 +37,18 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
+<?php
+	$this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'order-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id_order',
-		'id_lang',
-		'id_user',
-		'id_cart',
-		'id_currency',
-		'id_address_delivery',
+		array('name'=>'id_user', 'value'=>'$data->user->email'),
+		array('name'=>'id_order_state', 'value'=>'$data->orderState->name'),
+		'invoice_number',
+		'date_add',
+		'total_price',
 		/*
 		'id_address_invoice',
 		'secure_key',
@@ -69,6 +70,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
+			'template'=>'{view} {update}',
 		),
 	),
 )); ?>

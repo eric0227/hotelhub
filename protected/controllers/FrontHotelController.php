@@ -34,11 +34,7 @@ class FrontHotelController extends Controller
 	 * Displays selected room details
 	 */
 	public function actionRoom($id){
-		$room = Room::model()->findByPk($id);
-			
-		$this->render('room', array(
-			'room' => $room
-		));
+		$this->render('room');
 	}
 
 	/**
@@ -56,5 +52,10 @@ class FrontHotelController extends Controller
 	public function actionIndex()
 	{
 		$this->render('index');
+	}
+	
+	public function actionOrder()
+	{
+		$this->render('order');
 	}
 }

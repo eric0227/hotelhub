@@ -40,6 +40,8 @@
  * @property Currency $currency
  * @property OrderHistory[] $orderHistories
  * @property OrderSate $orderState
+ * @proverty OrderItem[] orderItems
+ * @proverty OrderBooking[] orderBookings
  */
 class Order extends CActiveRecord
 {
@@ -96,6 +98,8 @@ class Order extends CActiveRecord
 			'currency' => array(self::BELONGS_TO, 'Currency', 'id_currency'),
 			'orderHistories' => array(self::HAS_MANY, 'OrderHistory', 'id_order',
 									'order'=>'orderHistories.date_add DESC'),
+			'orderBookings' => array(self::HAS_MANY, 'OrderBooking', 'id_order'),
+			'orderItems' => array(self::HAS_MANY, 'OrderItem', 'id_order'),
 			'orderState' => array(self::BELONGS_TO, 'OrderState', 'id_order_state'),
 		);
 	}
@@ -108,13 +112,13 @@ class Order extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_order' => 'Id Order',
-			'id_lang' => 'Id Lang',
-			'id_user' => 'Id User',
-			'id_cart' => 'Id Cart',
-			'id_currency' => 'Id Currency',
-			'id_address_delivery' => 'Id Address Delivery',
-			'id_address_invoice' => 'Id Address Invoice',
+			'id_order' => 'Order',
+			'id_lang' => 'Lang',
+			'id_user' => 'User',
+			'id_cart' => 'Cart',
+			'id_currency' => 'Currency',
+			'id_address_delivery' => 'Address Delivery',
+			'id_address_invoice' => 'Address Invoice',
 			'secure_key' => 'Secure Key',
 			'payment' => 'Payment',
 			'conversion_rate' => 'Conversion Rate',
@@ -153,36 +157,18 @@ class Order extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id_order',$this->id_order,true);
-		$criteria->compare('id_lang',$this->id_lang,true);
 		$criteria->compare('id_user',$this->id_user,true);
-		$criteria->compare('id_cart',$this->id_cart,true);
-		$criteria->compare('id_currency',$this->id_currency,true);
-		$criteria->compare('id_address_delivery',$this->id_address_delivery,true);
-		$criteria->compare('id_address_invoice',$this->id_address_invoice,true);
-		$criteria->compare('secure_key',$this->secure_key,true);
-		$criteria->compare('payment',$this->payment,true);
-		$criteria->compare('conversion_rate',$this->conversion_rate,true);
-		$criteria->compare('gift',$this->gift);
-		$criteria->compare('gift_message',$this->gift_message,true);
-		$criteria->compare('total_price',$this->total_price,true);
-		$criteria->compare('total_agent_price',$this->total_agent_price,true);
-		$criteria->compare('total_discount',$this->total_discount,true);
-		$criteria->compare('total_paid',$this->total_paid,true);
 		$criteria->compare('invoice_number',$this->invoice_number,true);
-		$criteria->compare('delivery_number',$this->delivery_number,true);
-		$criteria->compare('invoice_date',$this->invoice_date,true);
-		$criteria->compare('delivery_date',$this->delivery_date,true);
-		
-		$criteria->compare('bookin_date',$this->bookin_date,true);
-		$criteria->compare('bookout_date',$this->bookout_date,true);
-		
-		$criteria->compare('ckeckin_date',$this->checkin_date,true);
-		$criteria->compare('checkout_date',$this->checkout_date,true);
-		
-		$criteria->compare('date_add',$this->date_add,true);
-		$criteria->compare('date_upd',$this->date_upd,true);
 		$criteria->compare('on_agent',$this->date_upd,true);
-
+		
+		if(Supplier::currentSupplierId() != "") {
+			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = '.Supplier::currentSupplierId();
+		} else if(Yii::app()->user->isAdmin()) {
+			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
+		} else {
+			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = null';
+		}
+				
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -224,7 +210,7 @@ class Order extends CActiveRecord
 			$orderHistory->id_order_state = $this->id_order_state;
 			$orderHistory->id_user = $this->id_user;
 			$orderHistory->save();
-		}		
+		}
 		return parent::afterSave();
 	}
 	

@@ -9,7 +9,7 @@
  * @property string $bed_num
  * @property string $single_num
  * @property string $double_num
- * @property string $beddig_desc
+ * @property string $bedding_desc
  * @property string $additional_cost
  * @property string $cots_available
  * @property string $deleted
@@ -51,11 +51,11 @@ class Bedding extends CActiveRecord
 			array('id_room', 'length', 'max'=>10),
 			array('bed_num, single_num, double_num, bed_index, cots_available', 'length', 'max'=>2),
 			array('deleted, on_default, active', 'length', 'max'=>1),
-			array('beddig_desc', 'length', 'max'=>200),
+			array('bedding_desc', 'length', 'max'=>200),
 			array('additional_cost', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id_bedding, id_room, single_num, double_num, beddig_desc, additional_cost, cots_available', 'safe', 'on'=>'search'),
+			array('id_bedding, id_room, single_num, double_num, bedding_desc, additional_cost, cots_available', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,6 +68,8 @@ class Bedding extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'room' => array(self::BELONGS_TO, 'Room', 'id_room'),
+			'cartBooking' => array(self::HAS_MANY, 'CartBooking', 'id_bedding'),
+			'orderBooking' => array(self::HAS_MANY, 'OrderBooking', 'id_bedding'),
 		);
 	}
 
@@ -81,7 +83,7 @@ class Bedding extends CActiveRecord
 			'id_room' => 'Id Room',
 			'single_num' => 'Single Num',
 			'double_num' => 'Double Num',
-			'beddig_desc' => 'Beddig Desc',
+			'bedding_desc' => 'Beddnig Desc',
 			'additional_cost' => 'Additional Cost',
 			'cots_available' => 'Cots Available',
 		);
@@ -102,7 +104,7 @@ class Bedding extends CActiveRecord
 		$criteria->compare('id_room',$this->id_room,true);
 		$criteria->compare('single_num',$this->single_num,true);
 		$criteria->compare('double_num',$this->double_num,true);
-		$criteria->compare('beddig_desc',$this->beddig_desc,true);
+		$criteria->compare('bedding_desc',$this->bedding_desc,true);
 		$criteria->compare('additional_cost',$this->additional_cost,true);
 		$criteria->compare('cots_available',$this->cots_available,true);
 		

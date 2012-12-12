@@ -10,6 +10,7 @@
  * @property string $id_supplier
  * @property string $id_product
  * @property string $id_product_date
+ * @property string $id_order_booking
  * @property string $order_item_name
  * @property string $product_name
  * @property string $product_quantity
@@ -29,11 +30,11 @@
  * @property integer $discount_quantity_applied
  *
  * The followings are the available model relations:
- * @property Order $idOrder
- * @property Service $idService
- * @property Supplier $idSupplier
- * @property Product $idProduct
- * @property ProductDate $idProductDate
+ * @property Order $order
+ * @property Service $service
+ * @property Supplier $supplier
+ * @property Product $product
+ * @property ProductDate $productDate
  */
 class OrderItem extends CActiveRecord
 {
@@ -66,7 +67,7 @@ class OrderItem extends CActiveRecord
 			array('id_order, id_service, id_supplier, id_product, order_item_name, product_name, product_weight, tax_name', 'required'),
 			array('product_quantity_in_stock, on_refunded, on_return, discount_quantity_applied', 'numerical', 'integerOnly'=>true),
 			array('product_weight', 'numerical'),
-			array('id_order, id_service, id_supplier, id_product, id_product_date, product_quantity, reduction_percent, tax_rate', 'length', 'max'=>10),
+			array('id_order, id_order_booking, id_service, id_supplier, id_product, id_product_date, product_quantity, reduction_percent, tax_rate', 'length', 'max'=>10),
 			array('order_item_name, product_name', 'length', 'max'=>255),
 			array('quantity_price, agent_quantity_price, reduction_amount, product_quantity_discount, total_price, agent_total_price', 'length', 'max'=>20),
 			array('tax_name', 'length', 'max'=>16),
@@ -84,11 +85,12 @@ class OrderItem extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idOrder' => array(self::BELONGS_TO, 'Order', 'id_order'),
-			'idService' => array(self::BELONGS_TO, 'Service', 'id_service'),
-			'idSupplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
-			'idProduct' => array(self::BELONGS_TO, 'Product', 'id_product'),
-			'idProductDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
+			'order' => array(self::BELONGS_TO, 'Order', 'id_order'),
+			'service' => array(self::BELONGS_TO, 'Service', 'id_service'),
+			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
+			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
+			'productDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
+			'orderBooking' => array(self::BELONGS_TO, 'OrderBooking', 'id_order_booking'),
 		);
 	}
 
@@ -141,6 +143,7 @@ class OrderItem extends CActiveRecord
 		$criteria->compare('id_supplier',$this->id_supplier,true);
 		$criteria->compare('id_product',$this->id_product,true);
 		$criteria->compare('id_product_date',$this->id_product_date,true);
+		$criteria->compare('id_order_booking',$this->id_order_booking,true);
 		$criteria->compare('order_item_name',$this->order_item_name,true);
 		$criteria->compare('product_name',$this->product_name,true);
 		$criteria->compare('product_quantity',$this->product_quantity,true);
