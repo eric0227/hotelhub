@@ -313,6 +313,7 @@ CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `website` varchar(128),
   `check_in_time` char(5) DEFAULT '14:00',
   `check_out_time` char(5) DEFAULT '11:00',
+  `grade_level` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`id_supplier`),
   FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -501,6 +502,8 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
   `maker` varchar(128) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
+  `grade_level` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  
   PRIMARY KEY (`id_product`),  
   KEY `date_add` (`date_add`),
 
@@ -539,6 +542,29 @@ CREATE TABLE IF NOT EXISTS `gc_special` (
 INSERT INTO `gc_special` (`id_special`, `name`) VALUES
 (1, 'Special A'),
 (2, 'Special B');
+
+CREATE TABLE IF NOT EXISTS `gc_special_supplier` (
+	`id_supplier` int(10) unsigned NOT NULL,
+	`id_service` int(10) unsigned NOT NULL,
+	`position` int(10) unsigned NOT NULL DEFAULT '0',
+	
+	PRIMARY KEY (`id_supplier`),
+	
+	FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `gc_special_product` (
+	`id_product` int(10) unsigned NOT NULL,
+	`id_service` int(10) unsigned NOT NULL,
+	`position` int(10) unsigned NOT NULL DEFAULT '0',
+	
+	PRIMARY KEY (`id_product`),
+	
+	FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE IF NOT EXISTS `gc_product_date` (
 	`id_product_date` int(10) unsigned NOT NULL AUTO_INCREMENT,
