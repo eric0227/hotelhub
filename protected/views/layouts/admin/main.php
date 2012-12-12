@@ -111,7 +111,6 @@ if(Yii::app()->user->isGuest == false) {
 				array('label'=>'Orders', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Order', 'url'=>array('/order/index', 'tag'=>'order')),
-						array('label'=>'OrderBooking', 'url'=>array('/orderBooking/index', 'tag'=>'orderBooking')),
 						array('label'=>'OrderItem', 'url'=>array('/orderItem/index', 'tag'=>'orderItem')),
 						array('label'=>'OrderHistory', 'url'=>array('/orderHistory/index', 'tag'=>'orderHistory')),
 						array('label'=>'OrderState', 'url'=>array('/orderState/index', 'tag'=>'orderState'))
@@ -121,7 +120,6 @@ if(Yii::app()->user->isGuest == false) {
 				array('label'=>'Cart', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Cart', 'url'=>array('/cart/index', 'tag'=>'cart')),
-						array('label'=>'CartBooking', 'url'=>array('/cartBooking/index', 'tag'=>'cartBooking')),
 						array('label'=>'CartProduct', 'url'=>array('/cartProduct/index', 'tag'=>'cartProduct'))
 					),
 					'visible'=>!Yii::app()->user->isGuest
@@ -139,7 +137,6 @@ if(Yii::app()->user->isGuest == false) {
 						array('label'=>'Group', 'url'=>array('/group/index', 'tag'=>'group')),
 						array('label'=>'User', 'url'=>array('/user/index', 'tag'=>'user')),
 						array('label'=>'Supplier', 'url'=>array('/supplier/admin', 'tag'=>'supplier')),
-						array('label'=>'Special Supplier', 'url'=>array('/specialSupplier/admin', 'tag'=>'specialSupplier')),
 						//array('label'=>'Address', 'url'=>array('/address/index', 'tag'=>'address'))
 					),
 					'visible'=>!Yii::app()->user->isGuest

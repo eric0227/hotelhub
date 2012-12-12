@@ -313,7 +313,6 @@ CREATE TABLE IF NOT EXISTS `gc_supplier` (
   `website` varchar(128),
   `check_in_time` char(5) DEFAULT '14:00',
   `check_out_time` char(5) DEFAULT '11:00',
-  `grade_level` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
   PRIMARY KEY (`id_supplier`),
   FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -502,8 +501,6 @@ CREATE TABLE IF NOT EXISTS `gc_product` (
   `maker` varchar(128) DEFAULT NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
-  `grade_level` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  
   PRIMARY KEY (`id_product`),  
   KEY `date_add` (`date_add`),
 
@@ -542,29 +539,6 @@ CREATE TABLE IF NOT EXISTS `gc_special` (
 INSERT INTO `gc_special` (`id_special`, `name`) VALUES
 (1, 'Special A'),
 (2, 'Special B');
-
-CREATE TABLE IF NOT EXISTS `gc_special_supplier` (
-	`id_supplier` int(10) unsigned NOT NULL,
-	`id_service` int(10) unsigned NOT NULL,
-	`position` int(10) unsigned NOT NULL DEFAULT '0',
-	
-	PRIMARY KEY (`id_supplier`),
-	
-	FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `gc_special_product` (
-	`id_product` int(10) unsigned NOT NULL,
-	`id_service` int(10) unsigned NOT NULL,
-	`position` int(10) unsigned NOT NULL DEFAULT '0',
-	
-	PRIMARY KEY (`id_product`),
-	
-	FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE IF NOT EXISTS `gc_product_date` (
 	`id_product_date` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -848,7 +822,7 @@ CREATE TABLE `gc_bedding` (
 	
 	`single_num` int(2) unsigned NOT NULL,
 	`double_num` int(2) unsigned NOT NULL,
-	`bedding_desc`  varchar(200),
+	`beddig_desc`  varchar(200),
 	`additional_cost`  decimal(20,6) NOT NULL DEFAULT '0.000000',
 	`cots_available`  int(2) unsigned NOT NULL,
 	
@@ -983,13 +957,16 @@ CREATE TABLE IF NOT EXISTS `gc_cart` (
   `id_address_invoice` int(10) unsigned DEFAULT NULL,
   `id_currency` int(10) unsigned NOT NULL,
   `id_user` int(10) unsigned NOT NULL,
-    
+  
   `on_order` tinyint(1) unsigned NOT NULL DEFAULT '0',
 
   `secure_key` varchar(32) NOT NULL DEFAULT '-1',
   `recyclable` tinyint(1) unsigned NOT NULL DEFAULT '1',
   `gift` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `gift_message` text,
+  
+  `bookin_date` datetime,
+  `bookout_date` datetime,
   
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
@@ -1002,30 +979,10 @@ CREATE TABLE IF NOT EXISTS `gc_cart` (
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `gc_cart_booking` (
-  `id_cart_booking` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `id_cart` int(10) unsigned NOT NULL,
-  `id_product` int(10) unsigned NOT NULL,
-  `id_bedding` int(10) unsigned DEFAULT NULL,
-  
-  `bookin_date` datetime,
-  `bookout_date` datetime,
-  
-  `date_add` datetime NOT NULL,
-  `booking_name` varchar(255) DEFAULT NULL,
-  
-  PRIMARY KEY (`id_cart_booking`),
-  
-  FOREIGN KEY (`id_cart`) REFERENCES `gc_cart`(`id_cart`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_bedding`) REFERENCES `gc_bedding`(`id_bedding`) ON DELETE CASCADE ON UPDATE CASCADE
-  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `gc_cart_product` (
   `id_cart_product` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `id_cart` int(10) unsigned NOT NULL,
-  `id_cart_booking` int(10) unsigned DEFAULT NULL,
   `id_product` int(10) unsigned NOT NULL,
   `id_product_date` int(10) unsigned,
 
@@ -1034,7 +991,6 @@ CREATE TABLE IF NOT EXISTS `gc_cart_product` (
   PRIMARY KEY (`id_cart_product`),
   
   FOREIGN KEY (`id_cart`) REFERENCES `gc_cart`(`id_cart`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_cart_booking`) REFERENCES `gc_cart_booking`(`id_cart_booking`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_product_date`) REFERENCES `gc_product_date`(`id_product_date`) ON DELETE CASCADE ON UPDATE CASCADE
 
@@ -1157,6 +1113,12 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
   `delivery_number` int(10) unsigned NOT NULL DEFAULT '0',
   `invoice_date` datetime DEFAULT NULL,
   `delivery_date` datetime DEFAULT NULL,
+  
+  `bookin_date` datetime,
+  `bookout_date` datetime,
+  
+  `checkin_date` datetime,
+  `checkout_date` datetime,
 
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
@@ -1174,47 +1136,11 @@ CREATE TABLE IF NOT EXISTS `gc_order` (
 
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `gc_order_booking` (
-  `id_order_booking` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  
-  `id_order` int(10) unsigned NOT NULL,
-  `id_service` int(10) unsigned NOT NULL,
- 
-  `id_supplier` int(10) unsigned NOT NULL,
-  `id_product` int(10) unsigned NOT NULL,
-  `id_bedding` int(10) unsigned DEFAULT NULL,
-  
-  `on_refunded` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `on_return` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  
-  `total_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
-  `agent_total_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
-  
-  `bookin_date` datetime,
-  `bookout_date` datetime,
-  
-  `checkin_date` datetime,
-  `checkout_date` datetime,
-  
-  `booking_name` varchar(255) DEFAULT NULL,
-
-  PRIMARY KEY (`id_order_booking`),
-
-  FOREIGN KEY (`id_order`) REFERENCES `gc_order`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`),
-  FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`),
-  FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`),
-  FOREIGN KEY (`id_bedding`) REFERENCES `gc_bedding`(`id_bedding`) ON DELETE CASCADE ON UPDATE CASCADE
-  
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
 CREATE TABLE IF NOT EXISTS `gc_order_item` (
   `id_order_item` int(10) unsigned NOT NULL AUTO_INCREMENT,
   
   `id_order` int(10) unsigned NOT NULL,
   `id_service` int(10) unsigned NOT NULL,
-  
-  `id_order_booking` int(10) unsigned DEFAULT NULL,
  
   `id_supplier` int(10) unsigned NOT NULL,
   `id_product` int(10) unsigned NOT NULL,
@@ -1244,10 +1170,10 @@ CREATE TABLE IF NOT EXISTS `gc_order_item` (
   `tax_name` varchar(16) NOT NULL,
   `tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
   `discount_quantity_applied` tinyint(1) NOT NULL DEFAULT '0',
+
   PRIMARY KEY (`id_order_item`),
 
   FOREIGN KEY (`id_order`) REFERENCES `gc_order`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (`id_order_booking`) REFERENCES `gc_order_booking`(`id_order_booking`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY (`id_service`) REFERENCES `gc_service`(`id_service`),
   FOREIGN KEY (`id_supplier`) REFERENCES `gc_supplier`(`id_supplier`),
   FOREIGN KEY (`id_product`) REFERENCES `gc_product`(`id_product`),

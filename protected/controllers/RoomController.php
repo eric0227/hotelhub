@@ -149,30 +149,30 @@ class RoomController extends Controller
 			Yii::trace(print_r($bedding, true));
 					
 			if(isset($bedding['id_bedding'])) {
-				$beddingModel = Bedding::model()->findByPk($bedding['id_bedding']);
+				$beddigModel = Bedding::model()->findByPk($bedding['id_bedding']);
 			} else {
-				$beddingModel = new Bedding;
+				$beddigModel = new Bedding;
 			}
-			$beddingModel->id_room = $model->id_product;
-			$beddingModel->bed_index = $index;
-			$beddingModel->bed_num = $bedding['bed_num'];
-			$beddingModel->single_num = $bedding['single_num'];
-			$beddingModel->double_num = $bedding['double_num'];
-			$beddingModel->bedding_desc = $bedding['bedding_desc'];
-			$beddingModel->additional_cost = $bedding['additional_cost'];
-			$beddingModel->cots_available = $bedding['cots_available'];
-			$beddingModel->active = 1;
-			$beddingModel->deleted = 0;
+			$beddigModel->id_room = $model->id_product;
+			$beddigModel->bed_index = $index;
+			$beddigModel->bed_num = $bedding['bed_num'];
+			$beddigModel->single_num = $bedding['single_num'];
+			$beddigModel->double_num = $bedding['double_num'];
+			$beddigModel->beddig_desc = $bedding['beddig_desc'];
+			$beddigModel->additional_cost = $bedding['additional_cost'];
+			$beddigModel->cots_available = $bedding['cots_available'];
+			$beddigModel->active = 1;
+			$beddigModel->deleted = 0;
 			
 			if($_POST['on_default'] == $index) {
-				$beddingModel->on_default = 1;
+				$beddigModel->on_default = 1;
 				
 			}
 			
-			$beddingModel->save();
+			$beddigModel->save();
 			
 			if($_POST['on_default'] == $index) {
-				$id_bedding_default = $beddingModel->id_bedding;
+				$id_bedding_default = $beddigModel->id_bedding;
 			}
 		}
 		

@@ -50,13 +50,13 @@
 	
 	//Product Settings
 	$paypal[item_name] = $product_model->name."(Order No:".$order_model->id_order.")";
-	$paypal[item_number] = "";//$cartproduct_model->id_product;
+	$paypal[item_number] = $cartproduct_model->id_product;
 	$paypal[amount] = $order_model->payment;
 	$paypal[on0] = "";
 	$paypal[os0] = "";
 	$paypal[on1] = "";
 	$paypal[os1] = "";
-	$paypal[quantity] = "1";//$cartproduct_model->quantity;
+	$paypal[quantity] = $cartproduct_model->quantity;
 	$paypal[edit_quantity] = ""; //1=yes =no
 	$paypal[invoice] = "";
 	$paypal[tax] = "";

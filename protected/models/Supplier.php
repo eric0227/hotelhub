@@ -25,7 +25,6 @@
  * @property string $check_in_time
  * @property string $check_out_time
  * @property array  $items
- * @property string $grade_level
  *
  * The followings are the available model relations:
  * @property Hotel[] $hotels
@@ -35,7 +34,6 @@
  * @property Attribute[] $gcAttributes
  * @property SupplierImage[] $supplierImages
  * @property SupplierLang[] $supplierLangs
- * @property SpecialSupplier $special
  */
 class Supplier extends CActiveRecord
 {
@@ -81,7 +79,6 @@ class Supplier extends CActiveRecord
 			array('id_supplier', 'required'),
 			array('room_count', 'numerical', 'integerOnly'=>true),
 			array('id_supplier', 'length', 'max'=>10),
-			array('grade_level', 'length', 'max'=>1),
 			array('manager_name, sales_name, reservations_name, reservations_phone, reservations_fx, accounts_name, accounts_phone, accounts_fx, supplier_abn, member_chain_group', 'length', 'max'=>64),
 			array('manager_email, sales_email, reservations_email, accounts_email, website', 'length', 'max'=>128),
 			array('check_in_time, check_out_time', 'length', 'max'=>5),
@@ -109,7 +106,6 @@ class Supplier extends CActiveRecord
 			'user' => array(self::BELONGS_TO, 'User', 'id_supplier'),
 			'attributeValues' => array(self::HAS_MANY, 'SupplierAttributeValue', 'id_supplier'),
 			'supplierLangs' => array(self::HAS_MANY, 'SupplierLang', 'id_supplier'),
-			'special' => array(self::BELONGS_TO, 'SpecialSupplier', 'id_supplier'),
 		);
 	}
 	

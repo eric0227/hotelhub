@@ -29,8 +29,7 @@ class PaypalController extends Controller
 	
 	public function actionProcess() {
 		$model = new Order;
-		echo "id_cart:".$_GET['id_cart'];
-		//die();
+		
 		if(isset($_GET['id_cart'])) {
 			$id_cart = $_GET['id_cart'];
 
@@ -52,27 +51,14 @@ class PaypalController extends Controller
 				$cartproduct_info = CartProduct::model()->findByPk($id_cart);
 				$product_info = Product::model()->findByPk($cartproduct_info->id_product);
 				$user_info = User::model()->findByPk($cart->id_user);
-			
-				$cart_bookings = CartBooking::model()->findAllByAttributes(array("id_cart"=>$id_cart));
-				foreach($cart_bookings as $cart_booking) {
-					$order_booking = new OrderBooking();
-					$order_booking->id_order = $model->id_order;
-					$order_booking->id_service = Service::HOTEL;
-					$order_booking->id_supplier = Product::model()->findByPk($cart_booking->id_product);
-					$order_booking->id_bedding = $cart_booking->id_bedding;
-					$order_booking->total_price = $model->total_price;
-					$order_booking->agent_total_price = $model->total_agent_price;
-					$order_booking->booking_name = $cart_booking->booking_name;
-				}
+				
+				$this->render('process',
+					array('cartproduct_model'=>$cartproduct_info, 'order_model'=>$model,
+						'product_model'=>$product_info, 'cart_model'=>$cart,
+						'user_model'=>$user_info));
 			} else {
 				die();
 			}
-			
-			
-			$this->render('process',
-								array('cartproduct_model'=>$cartproduct_info, 'order_model'=>$model,
-									'product_model'=>$product_info, 'cart_model'=>$cart,
-									'user_model'=>$user_info));
 		}
 	}
 	

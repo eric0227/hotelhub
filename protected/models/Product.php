@@ -37,7 +37,6 @@
  * @property ProductLang[] $productLangs
  * @property Service $service
  * @property Room $room
- * @property SpecialProduct $special 
  */
 class Product extends CActiveRecord
 {
@@ -76,7 +75,6 @@ class Product extends CActiveRecord
 			array('on_sale, quantity, active, show_price, indexed', 'numerical', 'integerOnly'=>true),
 			array('width, height, depth, weight', 'numerical'),
 			array('id_category_default, id_supplier, out_of_stock, id_address', 'length', 'max'=>10),
-			array('grade_level', 'length', 'max'=>1),
 			array('price, agent_price, wholesale_price', 'length', 'max'=>20),
 			array('maker', 'length', 'max'=>128),
 			array('condition', 'length', 'max'=>11),
@@ -105,7 +103,6 @@ class Product extends CActiveRecord
 			'productLangs' => array(self::HAS_MANY, 'ProductLang', 'id_product'),
 			'room' => array(self::HAS_ONE, 'Room', 'id_product'),
 			'address' => array(self::BELONGS_TO, 'Address', 'id_address'),
-			'special' => array(self::BELONGS_TO, 'SpecialProduct', 'id_product'),
 		);
 	}
 

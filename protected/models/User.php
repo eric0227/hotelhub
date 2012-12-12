@@ -22,9 +22,6 @@
  * @property Cart[] $carts
  * @property Group $group
  * @property Address getDefaultAddress
- * @property Address addressDefault
- * @property Address addressInvoice
- * @property Address addressDelivery
  * @property Supplier $supplier
  */
 class User extends CActiveRecord

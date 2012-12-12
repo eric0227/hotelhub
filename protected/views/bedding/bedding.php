@@ -28,9 +28,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'bedding_desc'); ?>
-		<?php echo $form->textField($model,'bedding_desc',array('size'=>60,'maxlength'=>200)); ?>
-		<?php echo $form->error($model,'bedding_desc'); ?>
+		<?php echo $form->labelEx($model,'beddig_desc'); ?>
+		<?php echo $form->textField($model,'beddig_desc',array('size'=>60,'maxlength'=>200)); ?>
+		<?php echo $form->error($model,'beddig_desc'); ?>
 	</div>
 
 	<div class="row">

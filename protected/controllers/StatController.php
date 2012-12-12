@@ -46,18 +46,12 @@ class StatController extends Controller
 		$where = array();
 		if(!empty($model->from_date)) {
 			$model->from_date = $model->from_date . ' 00:00:00';
-		} else {
-			$model->from_date = date("Y-m-d",strtotime ("-7 days")) . ' 00:00:00';
+			$where[] = "o.date_add >= '{$model->from_date}'";
 		}
-		$where[] = "o.date_add >= '{$model->from_date}'";
-		
 		if(!empty($model->to_date)) {
 			$model->to_date = $model->to_date . ' 23:59:59';
-		} else {
-			$model->to_date = date("Y-m-d") . ' 23:59:59';
+			$where[] = "o.date_add <= '{$model->to_date}'";
 		}
-		$where[] = "o.date_add <= '{$model->to_date}'";
-		
 		if(!empty($model->room_name)) {
 			$where[] = "r.room_name = '{$model->room_name}'";
 		}
@@ -69,18 +63,10 @@ class StatController extends Controller
 				AND o.id_user = u.id_user
 				AND p.id_supplier = s.id_supplier
 				AND p.id_product = oi.id_product
-				AND p.id_product = r.id_product
-				AND p.id_supplier = ".Supplier::currentSupplierId()." 
-				AND p.id_service = ".Service::getCurrentService()." 
-				";
-		
+				AND p.id_product = r.id_product";
 		if(count($where) > 0) {
 			$sql = $sql . ' AND ' . implode(' AND ', $where);
 		}
-		
-		$sql = $sql . " GROUP BY (o.id_order)";		
-		
-		//echo $sql;
 		
 		$command = Yii::app()->db->createCommand($sql);
 		

@@ -6,16 +6,14 @@
  * The followings are the available columns in table 'gc_cart_product':
  * @property string $id_cart_product
  * @property string $id_cart
- * @property string $id_cart_booking
  * @property string $id_product
  * @property string $id_product_date
  * @property string $quantity
  * @property string $date_add
  *
  * The followings are the available model relations:
- * @property Cart $cart
- * @property CartBooking $cartBooking
- * @property Product $product
+ * @property Cart $idCart
+ * @property Product $idProduct
  * @property ProductDate $productDate
  */
 class CartProduct extends CActiveRecord
@@ -47,7 +45,7 @@ class CartProduct extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id_cart, id_product', 'required'),
-			array('id_cart, id_cart_booking, id_product, id_product_date, quantity', 'length', 'max'=>10),
+			array('id_cart, id_product, id_product_date, quantity', 'length', 'max'=>10),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id_cart_product, id_cart, id_product, id_product_date, quantity, date_add', 'safe', 'on'=>'search'),
@@ -63,7 +61,6 @@ class CartProduct extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'cart' => array(self::BELONGS_TO, 'Cart', 'id_cart'),
-			'cartBooking' => array(self::BELONGS_TO, 'CartBooking', 'id_cart_booking'),
 			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
 			'productDate' => array(self::BELONGS_TO, 'ProductDate', 'id_product_date'),
 		);
@@ -97,7 +94,6 @@ class CartProduct extends CActiveRecord
 
 		$criteria->compare('id_cart_product',$this->id_cart_product,true);
 		$criteria->compare('id_cart',$this->id_cart,true);
-		$criteria->compare('id_cart_booking',$this->id_cart_booking,true);
 		$criteria->compare('id_product',$this->id_product,true);
 		$criteria->compare('id_product_date',$this->id_product_date,true);
 		$criteria->compare('quantity',$this->quantity,true);

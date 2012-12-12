@@ -2,6 +2,8 @@
 /* @var $this SiteController */
 
 $this->pageTitle=Yii::app()->name;
+
+print_r($room);
 ?>
 <script type="text/javascript">
 	$(function(){
@@ -10,8 +12,8 @@ $this->pageTitle=Yii::app()->name;
 </Script>
 <div id="room-details">
 	<div class="room-names">
-		<h1 class="hotel-name">Hotel Name</h1>
-		<h2 class="room-name">Room Name</h2>
+		<h1 class="hotel-name"><?php  ?></h1>
+		<h2 class="room-name"><?php echo $room->product->name ?></h2>
 	</div>
 	<div class="room-info">
 		<div class="left-columns">
@@ -28,8 +30,8 @@ $this->pageTitle=Yii::app()->name;
 				</span>
 				<span class="price">$250</span>
 				<div class="btn-container">
-					<button class="btn btn-success">BOOK</button>
-					<button class="btn" style="margin-left:5px">Cancel</button>
+					<button class="btn btn-success" style="width:48%">BOOK</button>
+					<button class="btn" style="margin-left:5px;width:48%">Cancel</button>
 				</div>
 			</div>
 		</div>

@@ -46,7 +46,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id_room',
 		'single_num',
 		'double_num',
-		'bedding_desc',
+		'beddig_desc',
 		/*
 		'additional_cost',
 		'cots_available',
