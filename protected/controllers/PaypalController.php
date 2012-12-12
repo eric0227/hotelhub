@@ -52,7 +52,7 @@ class PaypalController extends Controller
 				$cartproduct_info = CartProduct::model()->findByPk($id_cart);
 				$product_info = Product::model()->findByPk($cartproduct_info->id_product);
 				$user_info = User::model()->findByPk($cart->id_user);
-				
+			
 				$cart_bookings = CartBooking::model()->findAllByAttributes(array("id_cart"=>$id_cart));
 				foreach($cart_bookings as $cart_booking) {
 					$order_booking = new OrderBooking();
