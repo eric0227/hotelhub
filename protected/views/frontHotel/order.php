@@ -2,8 +2,11 @@
 	//var_dump($_POST);
 	$recv_booking_datas = isset($_POST['booking']) ? $_POST['booking'] : array();
 	$book_datas = array();
-	$id_product_array = array();
 	$before_id_product = "";
+	$id_product_array = array();
+	
+	echo CHtml::beginForm("/front/UserPayment", "post");
+	
 	foreach ($recv_booking_datas as $k => $v1) {
 		foreach ($v1 as $k2 => $v2) {
 			echo $k.", ".$k2.", ".$v2."<br>";
@@ -18,16 +21,20 @@
 				array_push($book_datas, $book_data);
 				
 				$book_data->date_info[$date_info->on_date] = $date_info;
+				echo CHtml::hiddenField("id_product_array[]", $book_data->id_product);
+				echo CHtml::hiddenField("id_product_date_array[$v2]", $book_data->id_product);
 			} else {
 				$date_info = Search::newDateInfo();
 				$date_info->on_date = $k2;
 				
 				$book_data->date_info[$date_info->on_date] = $date_info;
+				echo CHtml::hiddenField("id_product_date_array[$v2]", $book_data->id_product);
 			}
 
 			$before_id_product = $k;
 		}
 	}
+	
 	//var_dump($book_datas);
 	
 	$urlSingleBed = Yii::app()->request->baseUrl . "/images/bed-s.gif";
@@ -39,7 +46,6 @@
 	<h2>Book & Pay Securely</h2>
 	<div id="order_list">
 	<?php
-		echo CHtml::beginForm("/frontHotel/Preparepay", "post");
 		foreach($items as $item) { 
 	?>
 		<h3><?php echo $item->name; ?></h3>
@@ -61,14 +67,14 @@
 								array_push($adults_max, $num);
 							} 
 						?>
-						<td>Number of Adults:<?php echo CHtml::dropDownList("adults_num", "", $adults_max); ?></td>
+						<td>Number of Adults:<?php echo CHtml::dropDownList("adults_num[$item->id_product]", "", $adults_max); ?></td>
 						<?php
 							$children_max = array();
 							for($num = 0; $num <= $item->children_maxnum; $num++) {
 								array_push($children_max, $num);
 							} 
 						?>
-						<td>Children (<?php echo $item->children_years; ?>yrs and under):<?php echo CHtml::dropDownList("adults_num", "", $children_max); ?></td>
+						<td>Children (<?php echo $item->children_years; ?>yrs and under):<?php echo CHtml::dropDownList("children_num[$item->id_product]", "", $children_max); ?></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -78,7 +84,7 @@
 								$i = 1;
 								foreach($item->bed_info as $bed) {
 									echo "<div style='float:left;'>";
-									echo CHtml::radioButton($bed->id_bedding, false)."Option ".$i++;
+									echo CHtml::radioButton("options[$item->id_product]", ($i==1 ? true : false), array("value"=>$bed->id_bedding))."Option ".$i++;
 									echo "<br>";
 									for($j = 0; $j < $bed->single_num; $j++) {
 										echo CHtml::image($urlSingleBed);
@@ -137,36 +143,69 @@
 				foreach($items as $item) { 
 			?>
 				<tr>
-					<td>Guest name:</td>
-					<td><?php echo CHtml::textField("customer_name"); ?></td>
+					<td><?php echo $item->name; ?>, Guest :</td>
+					<td>
+						<?php echo "First name:".CHtml::textField("firstname[$item->id_product]")."<br>"; ?>
+						<?php echo "Last name:".CHtml::textField("lastname[$item->id_product]"); ?>
+					</td>
 					<td>This is the person who will be staying. They will require photo ID to check-in.</td>
 				</tr>
 			<?php
 				}
+			
+				if(Yii::app()->user->isGuest) {
+					$model = new User();
+					/*
+					echo "<tr>";
+					echo "<td>".CHtml::label("First Name:", "firstname")."</td>";
+					echo "<td>".CHtml::activeTextField($model, "firstname")."</td>";
+					echo "</tr>";
+				
+					echo "<tr>";
+					echo "<td>".CHtml::label("Last Name:", "lastname")."</td>";
+					echo "<td>".CHtml::activeTextField($model, "lastname")."</td>";
+					echo "</tr>";
+					*/
+					echo "<tr>";
+					echo "<td>".CHtml::label("Email:", "email")."</td>";
+					echo "<td>".CHtml::activeTextField($model, "email")."</td>";
+					echo "</tr>";
+				
+					echo "<tr>";
+					echo "<td>".CHtml::label("Create a password:", "passwd")."</td>";
+					echo "<td>".CHtml::activePasswordField($model, "passwd")."</td>";
+					echo "</tr>";
+				
+					echo "<tr>";
+					echo "<td>".CHtml::label("Confirm your password:", "repeat_passwd")."</td>";
+					echo "<td>".CHtml::activePasswordField($model, "repeat_passwd")."</td>";
+					echo "</tr>";
+				
+					echo CHtml::hiddenField("is_guest", "1");
+				} else {
+					$model = User::model()->findByPk(Yii::app()->user->id_user);
+				
+					echo "<tr>";
+					echo "<td>".CHtml::label("First Name:", "firstname")."</td>";
+					echo "<td>".CHtml::activeTextField($model, "firstname")."</td>";
+					echo "</tr>";
+				
+					echo "<tr>";
+					echo "<td>".CHtml::label("Last Name:", "lastname")."</td>";
+					echo "<td>".CHtml::activeTextField($model, "lastname")."</td>";
+					echo "</tr>";
+				
+					echo "<tr>";
+					echo "<td>".CHtml::label("Email:", "email")."</td>";
+					echo "<td>".CHtml::activeTextField($model, "email")."</td>";
+					echo "</tr>";
+				
+					echo CHtml::hiddenField("id_user", $model->id_user);
+				} 
 			?>
-				<tr>
-					<td>Email address:</td>
-					<td><?php echo CHtml::textField("email"); ?></td>
-					<td>Your booking confirmation will be sent to this address.</td>
-				</tr>
-				<tr>
-					<td>Phone number:</td>
-					<td><?php echo CHtml::textField("phone"); ?></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Comments:</td>
-					<td><?php echo CHtml::textField("comments"); ?></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Estimated time of arrival:</td>
-					<td><?php echo CHtml::textField("arrival_time"); ?></td>
-					<td></td>
-				</tr>
 			</table>
 		</div>
-				
+
 		<?php echo CHtml::submitButton("Pay Now"); ?>
 		<?php echo CHtml::endForm(); ?>
 	</div>

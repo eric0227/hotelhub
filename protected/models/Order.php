@@ -210,7 +210,7 @@ class Order extends CActiveRecord
 			$orderHistory->id_order_state = $this->id_order_state;
 			$orderHistory->id_user = $this->id_user;
 			$orderHistory->save();
-		}		
+		}
 		return parent::afterSave();
 	}
 	

@@ -148,14 +148,16 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 								if($date == "Sat" || $date == "Sun") {
 									echo "<td class=\"weekend\">";
 									if($item->date_info[$curr_date]->price != "") {
-										echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->price))."<br>";
+										//echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->price))."<br>";
+										echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->id_product_date))."<br>";
 										echo number_format($item->date_info[$curr_date]->price, 0);
 									}
 									echo "</td>";
 								} else {
 									echo "<td class=\"weekday\">";
 									if($item->date_info[$curr_date]->price != "") {
-										echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->price))."<br>";
+										//echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->price))."<br>";
+										echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->id_product_date))."<br>";
 										echo number_format($item->date_info[$curr_date]->price, 0);
 									}
 									echo "</td>";

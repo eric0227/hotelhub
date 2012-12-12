@@ -58,9 +58,4 @@ class FrontHotelController extends Controller
 	{
 		$this->render('order');
 	}
-	
-	public function actionPreparepay()
-	{
-		$this->render('preparepay');
-	}
 }

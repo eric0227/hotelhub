@@ -1,5 +1,6 @@
 <?php
 class DateInfo {
+	public $id_product_date = "";
 	public $on_date = "";
 	public $price = "";
 	public $product_description = "";
@@ -117,6 +118,7 @@ class Search {
 				array_push($items, $hotel);
 				
 				$date_info = new DateInfo;
+				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
 				$date_info->product_description = $result['description'];
@@ -125,6 +127,7 @@ class Search {
 				$hotel->date_info[$date_info->on_date] = $date_info;
 			} else {
 				$date_info = new DateInfo;
+				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
 				$date_info->product_description = $result['description'];
@@ -209,6 +212,7 @@ class Search {
 				array_push($items, $hotel);
 	
 				$date_info = new DateInfo;
+				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
 				$date_info->product_description = $result['description'];
@@ -217,6 +221,7 @@ class Search {
 				$hotel->date_info[$date_info->on_date] = $date_info;
 			} else {
 				$date_info = new DateInfo;
+				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
 				$date_info->product_description = $result['description'];
