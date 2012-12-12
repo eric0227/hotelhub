@@ -56,8 +56,8 @@ class SpecialSupplier extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'idSupplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
-			'idService' => array(self::BELONGS_TO, 'Service', 'id_service'),
+			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
+			'service' => array(self::BELONGS_TO, 'Service', 'id_service'),
 		);
 	}
 
@@ -67,8 +67,8 @@ class SpecialSupplier extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'id_supplier' => 'Id Supplier',
-			'id_service' => 'Id Service',
+			'id_supplier' => 'Supplier',
+			'id_service' => 'Service',
 			'position' => 'Position',
 		);
 	}
@@ -91,5 +91,16 @@ class SpecialSupplier extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+	
+	public static function getSuppliers($id_service = null) {
+		$criteria=new CDbCriteria;
+		if(isset($id_service)) {
+			$criteria->condition = 'id_service = :id_service';
+			$criteria->params = array(':id_service'=>$id_serivce);
+		}
+		$criteria->order = 'position ASC';
+		$models = SpecialSupplier::model()->find($criteria);
+		return $models;
 	}
 }
