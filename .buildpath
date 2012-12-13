@@ -5,4 +5,5 @@
 	<buildpathentry external="true" kind="lib" path="D:/xampp/htdocs/yii"/>
 	<buildpathentry external="true" kind="lib" path="C:/xampp/htdocs/yii/framework"/>
 	<buildpathentry kind="src" path=""/>
+	<buildpathentry external="true" kind="lib" path="D:/xampp/htdocs/yii"/>
 </buildpath>
