@@ -6,7 +6,12 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 ?>
 <script type="text/javascript">
 	$(function(){
-		$('.room-images a, .main-image').fancybox();
+		$('.room-images a, .main-image').fancybox({
+			overlayOpacity:0.8,
+			overlayColor:'#000',
+			speedIn:500,
+			speedOut:500
+		});
 	});
 </Script>
 <div id="room-details">

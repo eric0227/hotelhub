@@ -35,6 +35,8 @@ class FrontHotelController extends Controller
 	 */
 	public function actionRoom($id){
 		$room = Room::model()->findByPk($id);
+		if($room == null){ throw new CHttpException('404'); }
+		
 		$attributes = $room->getAllSttributes();
 		$images = imageC::model()->getSelectedImages($room->id_product);
 

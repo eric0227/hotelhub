@@ -189,7 +189,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 					<td class="hotel span4">
 					<?php
 						if($item->id_supplier != "") {
-							echo CHtml::link($item->title, array(Yii::app()->request->baseUrl."/frontHotel/view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); 
+							echo CHtml::link($item->title, Yii::app()->request->baseUrl."/frontHotel/view/".$item->id_supplier); 
 						} else {
 					?>
 					<?php 

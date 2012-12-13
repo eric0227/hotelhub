@@ -153,7 +153,7 @@ class Room extends CActiveRecord
 	
 	public function getAllSttributes() {
 		$result = array();
-	
+			
 		$attributeList = Attribute::model()->findAll(
 			"id_attribute_group = :id_attribute_group", 
 			array('id_attribute_group' => AttributeGroup::ROOM)
