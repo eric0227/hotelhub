@@ -61,4 +61,10 @@ class FrontHotelController extends Controller
 	{
 		$this->render('index');
 	}
+	
+	
+	public function actionOrder()
+	{
+		$this->render('order');
+	}	
 }

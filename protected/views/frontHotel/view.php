@@ -15,10 +15,10 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		const TOT_ROW_NUM = 100;
 		const DURATION = 20;	// show 14 days;
 		
-		$id_supplier = isset($_GET['id_supplier']) ? $_GET['id_supplier'] : (isset($_POST['id_supplier']) ? $_POST['id_supplier'] : 0);
-		$country = isset($_GET['country']) ? $_GET['country'] : (isset($_POST['country']) ? $_POST['country'] : 0);
-		$destination = isset($_GET['destination']) ? $_GET['destination'] : (isset($_POST['destination']) ? $_POST['destination'] : 0);
-		$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : (isset($_POST['start_date']) ? $_POST['start_date'] : date("m/d/Y"));
+		$id_supplier = isset($_GET['id_supplier']) ? $_GET['id_supplier'] : (isset($_REQUEST['id_supplier']) ? $_REQUEST['id_supplier'] : 0);
+		$country = isset($_GET['country']) ? $_GET['country'] : (isset($_REQUEST['country']) ? $_REQUEST['country'] : 0);
+		$destination = isset($_GET['destination']) ? $_GET['destination'] : (isset($_REQUEST['destination']) ? $_REQUEST['destination'] : 0);
+		$start_date = isset($_GET['start_date']) ? $_GET['start_date'] : (isset($_REQUEST['start_date']) ? $_REQUEST['start_date'] : date("m/d/Y"));
 
 		$recvStartDate = explode("/", $start_date);
 		$start_month = $recvStartDate[0];
@@ -47,14 +47,14 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		$prev_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION+$prev_alt_diff-1)." days"));
 		$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
 		
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/view", "post", array("id"=>"prev_navi", "name"=>"prev_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/view", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
 		echo CHtml::hiddenField("id_supplier", $id_supplier);
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days")));
 		echo CHtml::endForm();
 		
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/view", "post", array("id"=>"next_navi", "name"=>"next_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/view", "get", array("id"=>"next_navi", "name"=>"next_navi"));
 		echo CHtml::hiddenField("id_supplier", $id_supplier);
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
@@ -127,7 +127,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 					<?php
 						if($item->id_product != "") { 
 					?>
-						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/view/<?php echo $item->id_product; ?>">
+						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/room/<?php echo $item->id_product; ?>">
 							<?php echo $item->name; ?>
 						</a>
 					<?php
