@@ -59,7 +59,7 @@ class OrderBooking extends CActiveRecord
 			array('id_order, id_service, id_supplier, id_product', 'required'),
 			array('on_refunded, on_return', 'numerical', 'integerOnly'=>true),
 			array('id_order, id_service, id_supplier, id_product, id_bedding', 'length', 'max'=>10),
-			array('order_item_name, product_name, booking_name', 'length', 'max'=>255),
+			array('booking_name', 'length', 'max'=>255),
 			array('total_price, agent_total_price', 'length', 'max'=>20),
 			array('bookin_date, bookout_date, checkin_date, checkout_date', 'safe'),
 			// The following rule is used by search().

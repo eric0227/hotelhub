@@ -5,7 +5,7 @@
 	$before_id_product = "";
 	$id_product_array = array();
 	
-	echo CHtml::beginForm("/front/UserPayment", "post");
+	echo CHtml::beginForm(Yii::app()->request->baseUrl . "/front/userPayment", "post");
 	
 	foreach ($recv_booking_datas as $k => $v1) {
 		foreach ($v1 as $k2 => $v2) {
@@ -143,10 +143,11 @@
 				foreach($items as $item) { 
 			?>
 				<tr>
-					<td><?php echo $item->name; ?>, Guest :</td>
+					<td><?php echo $item->name; ?>, Guest Name:</td>
 					<td>
-						<?php echo "First name:".CHtml::textField("firstname[$item->id_product]")."<br>"; ?>
-						<?php echo "Last name:".CHtml::textField("lastname[$item->id_product]"); ?>
+						<?php //echo "First name:".CHtml::textField("firstname[$item->id_product]")."<br>"; ?>
+						<?php //echo "Last name:".CHtml::textField("lastname[$item->id_product]"); ?>
+						<?php echo "".CHtml::textField("booking_name[$item->id_product]") ?>
 					</td>
 					<td>This is the person who will be staying. They will require photo ID to check-in.</td>
 				</tr>
@@ -155,7 +156,7 @@
 			
 				if(Yii::app()->user->isGuest) {
 					$model = new User();
-					/*
+
 					echo "<tr>";
 					echo "<td>".CHtml::label("First Name:", "firstname")."</td>";
 					echo "<td>".CHtml::activeTextField($model, "firstname")."</td>";
@@ -165,7 +166,7 @@
 					echo "<td>".CHtml::label("Last Name:", "lastname")."</td>";
 					echo "<td>".CHtml::activeTextField($model, "lastname")."</td>";
 					echo "</tr>";
-					*/
+
 					echo "<tr>";
 					echo "<td>".CHtml::label("Email:", "email")."</td>";
 					echo "<td>".CHtml::activeTextField($model, "email")."</td>";

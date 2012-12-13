@@ -28,8 +28,10 @@ class FrontController extends Controller
 		} else {
 			$address_info = new Address();
 			$address_info->id_country = 24;
-			$address_info->firstname = $_POST['firstname'][array_pop($id_product_array)];//$post_array['firstname'];
-			$address_info->lastname = $_POST['lastname'][array_pop($id_product_array)];//$post_array['lastname'];
+// 			$address_info->firstname = $_POST['firstname'][array_pop($id_product_array)];//$post_array['firstname'];
+// 			$address_info->lastname = $_POST['lastname'][array_pop($id_product_array)];//$post_array['lastname'];
+			$address_info->firstname = $_POST['User']['firstname'];
+			$address_info->lastname = $_POST['User']['lastname'];
 			$address_info->address1 = "empty";
 			$address_info->city = "sydney";
 			
@@ -79,6 +81,7 @@ class FrontController extends Controller
 					$cart_booking->id_cart = $newCart->id_cart;
 					$cart_booking->id_product = $id_product;
 					$cart_booking->id_bedding = $id_bedding;
+					$cart_booking->booking_name = $_POST['booking_name'][$id_product];
 					
 					if($cart_booking->save()){
 						$bCartProccessed = true;
@@ -131,7 +134,7 @@ class FrontController extends Controller
 				print_r($newCart->getErrors());
 			}
 		}
-
+		
 		if($bUserProccessed && $bCartProccessed) {
 			$this->redirect(array('/paypal/process', 'id_cart'=>$newCart->id_cart));
 		} else {

@@ -24,47 +24,22 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		</select>
 		<label class="control-label" for="destination">Destination</label>
 		<select id="destination" name="destination" class="span2"></select>
-	</div>
-	<div class="control-group odd">
 		<label class="control-label" for="date">Check-In</label>
 		<input type="text" id="date" name="date" class="span2 date_input"/>
-		<label class="control-label" for="day">Day</label>
-		<select id="day" name="day" class="span2">
-			<option value="Nights">Nights</option>
-			<option value="Daytime">Daytime</option>
-		</select>
-		<label class="control-label" for="min_rice">Min. Price/night</label>
-		<input type="text" id="min_price" name="min_price" class="span2"/>
-		<label class="control-label" for="max_price">Max. Price/night</label>
-		<input type="text" id="max_price" name="max_price" class="span2"/>
-	</div>
-	<div class="control-group">
-		<label class="control-label" for="number_of_guests">Number of Guests</label>
-		<select id="number_of_guests" name="number_of_guests">
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button class="btn btn-primary" type="submit" onclick="return hotel.submit();">Search</button>
 	</div>
+	
 	</form>
 	
 	<?php
 		const TOT_ROW_NUM = 12;
 		const DURATION = 20;	// show 14 days;
 		
-		$country = isset($_POST['country']) ? $_POST['country'] : 0;
-		$destination = isset($_POST['destination']) ? $_POST['destination'] : 0;
-		$start_date = isset($_POST['start_date']) ? $_POST['start_date'] : date("m/d/Y");
-		$include_date = isset($_POST['include_date']) ? $_POST['include_date'] : $start_date;
+		$country = isset($_REQUEST['country']) ? $_REQUEST['country'] : 0;
+		$destination = isset($_REQUEST['destination']) ? $_REQUEST['destination'] : 0;
+		$start_date = isset($_REQUEST['start_date']) ? $_REQUEST['start_date'] : date("m/d/Y");
+		$include_date = isset($_REQUEST['include_date']) ? $_REQUEST['include_date'] : $start_date;
 
 		//echo "include_date:".$include_date."<br>";
 		$recvDate = explode("/", $include_date);
@@ -189,7 +164,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 					<td class="hotel span4">
 					<?php
 						if($item->id_supplier != "") {
-							echo CHtml::link($item->title, array(Yii::app()->request->baseUrl."/frontHotel/view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); 
+							echo CHtml::link($item->title, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); 
 						} else {
 					?>
 					<?php 
@@ -207,14 +182,14 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 								echo "<td class=\"weekend\">";
 								if($item->date_info[$curr_date]->price != "") {
 									$price = number_format($item->date_info[$curr_date]->price, 0);
-									echo CHtml::link($price, array(Yii::app()->request->baseUrl."/frontHotel/view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
+									echo CHtml::link($price, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
 								}
 								echo "</td>";
 							} else {
 								echo "<td class=\"weekday\">";
 								if($item->date_info[$curr_date]->price != "") {
 									$price = number_format($item->date_info[$curr_date]->price, 0);
-									echo CHtml::link($price, array(Yii::app()->request->baseUrl."/frontHotel/view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
+									echo CHtml::link($price, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
 								}
 								echo "</td>";
 							}

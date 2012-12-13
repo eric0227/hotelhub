@@ -156,7 +156,7 @@ class OrderController extends Controller
 		if(Supplier::currentSupplierId() != "") {
 			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = '.Supplier::currentSupplierId();
 		} else if(Yii::app()->user->isAdmin()) {
-			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
+			//$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
 		} else {
 			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = null';
 		}

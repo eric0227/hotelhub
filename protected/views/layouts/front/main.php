@@ -47,11 +47,27 @@ $id = Yii::app()->user->id;
 				</a>
 			</div>
 			<div id="header_controls">
-				<a href="<?php echo Yii::app()->request->baseUrl; ?>/user" class="btn">Doy Member</a>
-				<select class="language">
-					<option value="Australia">Australia</option>
-					<option value="Korean">Korean</option>			
-				</select>
+			<?php if(Yii::app()->user->isGuest) { ?>
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>/site/login" class="btn">Doy Member</a>
+			<?php } else { ?>
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>/site/logout" class="btn">Log out</a>
+			<?php }?>	
+				
+			<div id="lang-block">
+			<script>
+				$(function() {
+					$("#lang").on("change", function() {
+			       		$("#lang-form").submit();
+					})
+				});
+			</script>
+			<?php
+				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post', array('id'=>'lang-form'));
+				echo CHtml::dropDownList('lang', $lang, Lang::items(), array('id'=>'lang'));
+				echo CHtml::endForm();
+			?>
+			</div>
+				
 				<div class="sns">
 					<h4>Follow Us On</h4>
 					<a href="http://facebook.com/" class="sns_icon facebook" title="Facebook"></a>
@@ -59,7 +75,7 @@ $id = Yii::app()->user->id;
 					<a href="http://plus.google.com/" class="sns_icon googleplus" title="Google Plus"></a>
 					<a href="http://youtube.com/" class="sns_icon youtube" title="Youtube"></a>
 				</div>
-				<a href="<?php echo Yii::app()->request->baseUrl; ?>/sup/login" class="partner_login btn btn-warning">Partner Login</a>
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>/sup/" class="partner_login btn btn-warning">Partner Login</a>
 			</div>
 		</div>
 		<nav>

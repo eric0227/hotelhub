@@ -161,10 +161,13 @@ class Order extends CActiveRecord
 		$criteria->compare('invoice_number',$this->invoice_number,true);
 		$criteria->compare('on_agent',$this->date_upd,true);
 		
+		//var_dump($criteria->condition);
+		
 		if(Supplier::currentSupplierId() != "") {
 			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = '.Supplier::currentSupplierId();
 		} else if(Yii::app()->user->isAdmin()) {
-			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
+			//$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
+			//$criteria->condition = "id_order in (select id_order from gc_order_item) ";
 		} else {
 			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = null';
 		}
@@ -202,7 +205,8 @@ class Order extends CActiveRecord
 	
 	protected function afterSave() {
 		$this->procOrderItem();
-		
+		$this->procOrderBooking();
+				
 		$orderHistory = OrderHistory::model()->findByAttributes(array('id_order'=>$this->id_order, 'id_order_state'=>$this->id_order_state));
 		if(!isset($orderHistory)) {
 			$orderHistory = new OrderHistory;
@@ -241,6 +245,63 @@ class Order extends CActiveRecord
 		$this->total_agent_price = $agentPriceSum;
 		
 		$this->payment = $priceSum;
+	}
+	
+	private function procOrderBooking() {
+		
+		$sqlCmd = Yii::app()->db->createCommand();
+		
+		$sqlCmd->select('id_product, min( on_date ) bookin_date , max( on_date ) bookout_date, sum(total_price) total_price, sum(agent_total_price) agent_total_price');
+		$sqlCmd->from('gc_order_item');
+		$sqlCmd->where('id_order = :id_order', array(':id_order'=>$this->id_order));
+		$sqlCmd->group('id_product');
+		$rows = $sqlCmd->queryAll();
+		
+		$cart = Cart::model()->findByPk($this->id_cart);
+		$cartBookings = $cart->cartBookings;
+		
+		foreach($cartBookings as $cartBooking) {
+			foreach($rows as $row) {
+				if($row['id_product'] != $cartBooking->id_product) {
+					continue;
+				}
+				
+				$product = Product::model()->findByPk($row['id_product']);
+				
+				$kinds = array();
+				$kinds['id_order'] = $this->id_order;
+				$kinds['id_product'] = $row['id_product'];
+					
+				$orderBooking = OrderBooking::model()->findByAttributes($kinds);
+				if(!isset($orderBooking)) {
+					$orderBooking = new OrderBooking;
+				}
+				$orderBooking->id_order = $this->id_order;
+				$orderBooking->id_service = $product->id_service;
+				$orderBooking->id_supplier = $product->id_supplier;
+				$orderBooking->id_product = $product->id_product;
+				//$orderBooking->product_name = $product->getName();
+				//var_dump($cartBooking);
+				$orderBooking->id_bedding = $cartBooking->id_bedding;
+				
+				$orderBooking->total_price = $row['total_price'];
+				$orderBooking->agent_total_price = $row['agent_total_price'];
+								
+				$orderBooking->bookin_date = $cartBooking->bookin_date;
+				$orderBooking->bookout_date = $cartBooking->bookout_date;
+				$orderBooking->booking_name = $cartBooking->booking_name;
+				
+				$isNewRecord = $orderBooking->isNewRecord;
+				$orderBooking->save();
+				
+				if($isNewRecord) {
+					OrderItem::model()->updateAll(array('id_order_booking'=>$orderBooking->id_order_booking), 
+						'id_order=:id_order and id_product=:id_product', 
+						array(':id_order'=>$orderBooking->id_order, ':id_product'=>$orderBooking->id_product)
+					);
+				}
+			}
+		}
 	}
 	
 	private function procOrderItem() {
@@ -292,7 +353,12 @@ class Order extends CActiveRecord
 		$orderItem->tax_name = 'default';
 		$orderItem->product_weight = 0;
 		
-		print_r($orderItem->attributes, true);
+		//print_r($orderItem->attributes, true);
+		
+		$orderBooking = OrderBooking::model()->findByAttributes(array('id_order'=>$orderItem->id_order, 'id_product'=>$orderItem->id_product));
+		if(isset($orderBooking)) {
+			$orderItem->id_order_booking = $orderBooking->id_order_booking;
+		}
 		
 		$orderItem->save();
 	}
