@@ -15,6 +15,7 @@ $id = Yii::app()->user->id;
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/flick/jquery-ui-1.9.1.custom.min.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/js_plugins/fancybox/jquery.fancybox-1.3.4.css" />
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
@@ -22,10 +23,11 @@ $id = Yii::app()->user->id;
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/global.css" />
 	<!-- load javascript files -->
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-1.8.2.js" type="text/javascript"></script>
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js_plugins/fancybox/jquery.fancybox-1.3.4.js" type="text/javascript"></script>
-	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/hotel/hotel.js"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/jquery-1.8.2.js" type="text/javascript"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl ?>/js_plugins/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl ?>/js_plugins/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
+	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/hotel/hotel.js"></script>
 	<!--[if lt IE 9]>
 		<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/html5shiv.js"></script>
 	<![endif]-->
@@ -47,27 +49,11 @@ $id = Yii::app()->user->id;
 				</a>
 			</div>
 			<div id="header_controls">
-			<?php if(Yii::app()->user->isGuest) { ?>
-				<a href="<?php echo Yii::app()->request->baseUrl; ?>/site/login" class="btn">Doy Member</a>
-			<?php } else { ?>
-				<a href="<?php echo Yii::app()->request->baseUrl; ?>/site/logout" class="btn">Log out</a>
-			<?php }?>	
-				
-			<div id="lang-block">
-			<script>
-				$(function() {
-					$("#lang").on("change", function() {
-			       		$("#lang-form").submit();
-					})
-				});
-			</script>
-			<?php
-				echo CHtml::beginForm( Yii::app()->request->baseUrl .'/lang/change','post', array('id'=>'lang-form'));
-				echo CHtml::dropDownList('lang', $lang, Lang::items(), array('id'=>'lang'));
-				echo CHtml::endForm();
-			?>
-			</div>
-				
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>/user" class="btn">Doy Member</a>
+				<select class="language">
+					<option value="Australia">Australia</option>
+					<option value="Korean">Korean</option>			
+				</select>
 				<div class="sns">
 					<h4>Follow Us On</h4>
 					<a href="http://facebook.com/" class="sns_icon facebook" title="Facebook"></a>
@@ -75,7 +61,7 @@ $id = Yii::app()->user->id;
 					<a href="http://plus.google.com/" class="sns_icon googleplus" title="Google Plus"></a>
 					<a href="http://youtube.com/" class="sns_icon youtube" title="Youtube"></a>
 				</div>
-				<a href="<?php echo Yii::app()->request->baseUrl; ?>/sup/" class="partner_login btn btn-warning">Partner Login</a>
+				<a href="<?php echo Yii::app()->request->baseUrl; ?>/sup/login" class="partner_login btn btn-warning">Partner Login</a>
 			</div>
 		</div>
 		<nav>

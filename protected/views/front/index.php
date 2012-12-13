@@ -15,7 +15,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
 	</form>
 	<div id="find_accommodation_index">
-		<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" method="get" name="find_accommodation_form" id="find_accommodation_form" class="form">
+		<form action="<?php echo Yii::app()->request->baseUrl; ?>/fronthotel" method="post" name="find_accommodation_form" id="find_accommodation_form" class="form">
 			<input type="hidden" id="id_country" name="id_country" value=""/>
 			<input type="hidden" id="id_destination" name="id_destination" value=""/>
 			<div class="row">

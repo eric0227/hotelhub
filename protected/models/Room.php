@@ -147,6 +147,10 @@ class Room extends CActiveRecord
 		));
 	}
 	
+	public function getBeddings(){
+		
+	}
+	
 	public function getAllSttributes() {
 		$result = array();
 	
