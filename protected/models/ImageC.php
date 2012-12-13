@@ -132,6 +132,17 @@ class ImageC extends CActiveRecord
 		));
 	}
 	
+	public function getSelectedImages($id_product){
+		$sql = "
+			SELECT gc_image.*  
+			FROM gc_image 
+			INNER JOIN gc_product_image ON gc_product_image.id_image = gc_image.id_image 
+			WHERE gc_product_image.id_product = ".$id_product."
+		";
+		
+		return Yii::app()->db->createCommand($sql)->queryAll();
+	}
+	
 	public function getLink($type = null) {
 		if($type == null) {
 			return Yii::app()->request->baseUrl . $this->image_path .'/'. $this->getRealName();
