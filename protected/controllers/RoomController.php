@@ -204,6 +204,11 @@ class RoomController extends Controller
 	public function actionIndex()
 	{
 		$dataProvider=new CActiveDataProvider('Room');
+
+		if(!Yii::app()->user->isAdmin()) {
+			$dataProvider->criteria->condition = 'id_supplier = '. Supplier::currentSupplierId();
+		}
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

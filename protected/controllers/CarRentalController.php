@@ -44,6 +44,7 @@ class CarRentalController extends Controller
 	 */
 	public function actionIndex()
 	{
+		Yii::app()->session->add('service', Service::CAR);
 		$this->render('index');
 	}
 }

@@ -20,7 +20,18 @@ class IndexController extends FrontController
 	 */
 	public function actionIndex()
 	{
-		$this->render('/front/index');
+		Yii::app()->session->add('service', Service::HOTEL);
+		
+		// special hotel..
+		$spProvider=new CActiveDataProvider('SpecialProduct');
+		$spProvider->criteria->condition = 'id_service = '.Service::HOTEL;
+		$spProvider->criteria->order = 'position ASC';
+		
+		$specialModels = $spProvider->getData();
+		
+		$this->render('/front/index'
+			, array('specialModels'=>$specialModels)
+		);
 	}
 
 	/**

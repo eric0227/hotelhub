@@ -44,6 +44,7 @@ class HotDealController extends Controller
 	 */
 	public function actionIndex()
 	{
+		Yii::app()->session->add('service', Service::HOT_DEAL);
 		$this->render('index');
 	}
 }

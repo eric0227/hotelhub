@@ -164,14 +164,14 @@ class Order extends CActiveRecord
 		//var_dump($criteria->condition);
 		
 		if(Supplier::currentSupplierId() != "") {
-			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = '.Supplier::currentSupplierId();
+			$criteria->condition = 'id_order in (select id_order from gc_order_item where id_supplier = '.Supplier::currentSupplierId().')';
 		} else if(Yii::app()->user->isAdmin()) {
 			//$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
 			//$criteria->condition = "id_order in (select id_order from gc_order_item) ";
 		} else {
-			$criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = null';
+			$criteria->condition = 'id_order in (select id_order from gc_order_item where id_supplier = null)';
 		}
-				
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

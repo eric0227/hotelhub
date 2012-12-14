@@ -44,6 +44,7 @@ class DayTourController extends Controller
 	 */
 	public function actionIndex()
 	{
+		Yii::app()->session->add('service', Service::DAY_TOUR);
 		$this->render('index');
 	}
 }

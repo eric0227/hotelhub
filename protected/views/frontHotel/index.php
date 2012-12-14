@@ -167,8 +167,8 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 
 							//echo CHtml::link($item->title, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); 
 
-							echo CHtml::link($item->title, Yii::app()->request->baseUrl."/frontHotel/view/".$item->id_supplier); 
-
+							//$start_date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $month, $day, $year));
+							echo CHtml::link($item->title, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
 						} else {
 					?>
 					<?php 

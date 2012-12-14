@@ -154,11 +154,11 @@ class OrderController extends Controller
 	{
 		$dataProvider=new CActiveDataProvider('Order');
 		if(Supplier::currentSupplierId() != "") {
-			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = '.Supplier::currentSupplierId();
+			$dataProvider->criteria->condition = 'id_order in (select id_order from gc_order_item where id_supplier = '.Supplier::currentSupplierId().')';
 		} else if(Yii::app()->user->isAdmin()) {
 			//$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order';
 		} else {
-			$dataProvider->criteria->join = 'INNER JOIN gc_order_item a ON a.id_order = t.id_order AND a.id_supplier = null';
+			$dataProvider->criteria->condition = 'id_order in (select id_order from gc_order_item where id_supplier = null)';
 		}
 		
 		$this->render('index',array(

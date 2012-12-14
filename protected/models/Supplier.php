@@ -424,5 +424,12 @@ class Supplier extends CActiveRecord
 			return $_REQUEST['id_supplier'];
 		}
 	}
+	
+	public function getCoverImage() {
+		foreach($this->supplierImages as $image) {
+			if($image->cover == 1) {
+				return $image;
+			}
+		}
+	}
 }
-

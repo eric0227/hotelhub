@@ -106,6 +106,7 @@ class Product extends CActiveRecord
 			'room' => array(self::HAS_ONE, 'Room', 'id_product'),
 			'address' => array(self::BELONGS_TO, 'Address', 'id_address'),
 			'special' => array(self::BELONGS_TO, 'SpecialProduct', 'id_product'),
+			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
 		);
 	}
 
@@ -280,6 +281,14 @@ class Product extends CActiveRecord
 	
 			//print_r($model);
 			//return;
+		}
+	}
+	
+	public function getCoverImage() {
+		foreach($this->productImages as $image) {
+			if($image->cover == 1) {
+				return $image;
+			}
 		}
 	}
 }

@@ -5,9 +5,13 @@ $this->pageTitle=Yii::app()->name;
 $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
 ?>
 <script type="text/javascript">
+
 	$(function(){
 		hotel.combine('#country', '#destination');
+		$('#country option[value=non-select]').attr('selected', true);
 	});
+
+		
 </script>
 <div id="left_columns">
 	<form action="search" method="post" id="search_form">
@@ -15,7 +19,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
 	</form>
 	<div id="find_accommodation_index">
-		<form action="<?php echo Yii::app()->request->baseUrl; ?>/fronthotel" method="post" name="find_accommodation_form" id="find_accommodation_form" class="form">
+		<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" method="get" name="find_accommodation_form" id="find_accommodation_form" class="form">
 			<input type="hidden" id="id_country" name="id_country" value=""/>
 			<input type="hidden" id="id_destination" name="id_destination" value=""/>
 			<div class="row">
@@ -44,98 +48,36 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 	<div id="special_products">
 		<h1><span>DOY's</span> Special</h1>
 		<div class="special_product_list">
-			<div class="item">
+<?php 	
+		foreach($specialModels as $model) {
+			$coverImg = $model->product->getCoverImage();
+			if(isset($coverImg)) {
+				$image = $coverImg->getLink('medium');
+			}
+			
+?>		
+		<div class="item">
 				<span class="decoration"></span>
-				<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/sample_product_image.jpg" class="pull-left" />
+				<img src="<?php echo  $image ?>" class="pull-left" />
 				<div class="detail">
 					<header>
-						<h4 class="name">Sample Hotel</h4>
-						<h6 class="location">Location | Sydney CBD</h6>
+						<h4 class="name"><?php echo $model->product->name ?> </h4>
+						<h6 class="location">Location | <?php echo $model->product->supplier->user->addressDefault->destination->name ?> </h6>
 						<div class="displayed_right pull-right">
 							<span class="reputation">
+						<?php for($i = 0; $i < $model->product->grade_level; $i++) { ?>		
 								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
+						<?php } ?>
 							</span>
-							<span class="price">$650</span>
+							<span class="price"><?php echo $model->product->price ?></span>
 						</div>
 					</header>
 					<p>
-						This is sample text to show you how your website looks like. Please note that the actual website may not look exactly the same. Please feel free to discuss with our friendly
+						<?php echo $model->product->description_short ?>
 					</p>
 				</div>
 			</div>
-			<div class="item">
-				<span class="decoration"></span>
-				<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/sample_product_image.jpg" class="pull-left" />
-				<div class="detail">
-					<header>
-						<h4 class="name">Sample Hotel</h4>
-						<h6 class="location">Location | Sydney CBD</h6>
-						<div class="right">
-							<span class="reputation">
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-							</span>
-							<span class="price">$650</span>
-						</div>
-					</header>
-					<p>
-						This is sample text to show you how your website looks like. Please note that the actual website may not look exactly the same. Please feel free to discuss with our friendly
-					</p>
-				</div>
-			</div>
-			<div class="item">
-				<span class="decoration"></span>
-				<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/sample_product_image.jpg" class="pull-left" />
-				<div class="detail">
-					<header>
-						<h4 class="name">Sample Hotel</h4>
-						<h6 class="location">Location | Sydney CBD</h6>
-						<div class="right">
-							<span class="reputation">
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-							</span>
-							<span class="price">$650</span>
-						</div>
-					</header>
-					<p>
-						This is sample text to show you how your website looks like. Please note that the actual website may not look exactly the same. Please feel free to discuss with our friendly
-					</p>
-				</div>
-			</div>
-			<div class="item">
-				<span class="decoration"></span>
-				<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/sample_product_image.jpg" class="pull-left" />
-				<div class="detail">
-					<header>
-						<h4 class="name">Sample Hotel</h4>
-						<h6 class="location">Location | Sydney CBD</h6>
-						<div class="right">
-							<span class="reputation">
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
-							</span>
-							<span class="price">$650</span>
-						</div>
-					</header>
-					<p>
-						This is sample text to show you how your website looks like. Please note that the actual website may not look exactly the same. Please feel free to discuss with our friendly
-					</p>
-				</div>
-			</div>
+<?php 	}?>
 		</div>
 	</div>
 </div>

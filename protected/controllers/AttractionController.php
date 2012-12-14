@@ -44,6 +44,7 @@ class AttractionController extends Controller
 	 */
 	public function actionIndex()
 	{
+		Yii::app()->session->add('service', Service::TICKET);
 		$this->render('index');
 	}
 }

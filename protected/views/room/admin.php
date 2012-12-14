@@ -44,10 +44,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'columns'=>array(
 		'id_product',
 		'id_supplier',
-		'room_code',
+		array('name'=>'room_code', 'value'=>'$data->roomCode->name'),
 		'room_type_code',
-		'lead_in_room_type',
-		'full_rate',
+		array('name'=>'room_name', 'value'=>'$data->product->name'),
 		/*
 		'min_night_stay',
 		'max_night_stay',

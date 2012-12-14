@@ -9,23 +9,15 @@
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('room_code')); ?>:</b>
-	<?php echo CHtml::encode($data->room_code); ?>
+	<?php echo CHtml::encode($data->roomCode->name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('room_type_code')); ?>:</b>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('room_type')); ?>:</b>
 	<?php echo CHtml::encode($data->room_type_code); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('lead_in_room_type')); ?>:</b>
-	<?php echo CHtml::encode($data->lead_in_room_type); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('full_rate')); ?>:</b>
-	<?php echo CHtml::encode($data->full_rate); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('min_night_stay')); ?>:</b>
-	<?php echo CHtml::encode($data->min_night_stay); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('room_name')); ?>:</b>
+	<?php echo CHtml::encode($data->product->name); ?>
 	<br />
 
 	<?php /*

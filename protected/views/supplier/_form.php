@@ -32,7 +32,7 @@
 			<legend>Contact Information</legend>
 
 			<?php
-				if(!$model->isNewRecord) {
+				if($model->isNewRecord) {
 					echo $form->dropDownListRow($model,'id_service', Service::items(), array('class'=>'span5')); 
 				}
 			?>

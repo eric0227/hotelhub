@@ -141,6 +141,10 @@ class Room extends CActiveRecord
 		$criteria->compare('children_extra',$this->children_extra,true);
 		$criteria->compare('adults_maxnum',$this->adults_maxnum,true);
 		$criteria->compare('adults_extra',$this->adults_extra,true);
+		
+		if(!Yii::app()->user->isAdmin()) {
+			$criteria->condition = 'id_supplier = '. Supplier::currentSupplierId();
+		}
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
