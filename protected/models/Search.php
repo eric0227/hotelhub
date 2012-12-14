@@ -151,7 +151,7 @@ class Search {
 		return $items;
 	}
 	
-	static public function findAllHotelRoom($id_supplier, $country, $destination, $start_date, $last_date) {
+	static public function findAllHotelRoom($id_supplier, $country, $destination, $start_date, $last_date, $id_product) {
 		/*	SELECT pro_date.* , pro_lang.*, room.*, sup_lang.*
 			FROM gc_address AS addr
 			INNER JOIN gc_user AS usr ON addr.id_address = usr.id_address_default
@@ -172,32 +172,57 @@ class Search {
 			AND pro_date.on_date BETWEEN '2012-12-10' AND '2012-12-31'
 			ORDER BY pro.id_product, pro_date.on_date
 		*/
-		$results = Yii::app()->db->createCommand()
+		
+		if(isset($id_product)) {
+			$results = Yii::app()->db->createCommand()
 			->select('pro_date.*, pro_lang.*, room.*, sup_lang.*')
-			->from('gc_address as addr')
-			->join('gc_user as usr', 'addr.id_address = usr.id_address_default')
-			->join('gc_supplier as sup', 'usr.id_user = sup.id_supplier')
+			->from('gc_supplier as sup')
 			->join('gc_product as pro', 'sup.id_supplier = pro.id_supplier')
 			->join('gc_product_date as pro_date', 'pro_date.id_product = pro.id_product')
 			->join('gc_room as room', 'room.id_product = pro_date.id_product')
 			->leftJoin('gc_product_lang as pro_lang', 'pro_lang.id_product = pro.id_product')
 			->leftJoin('gc_supplier_lang as sup_lang', 'sup_lang.id_supplier = pro.id_supplier')
-			->where('addr.id_country = :id_country and addr.id_destination = :id_destination
-				and sup.id_service = :id_service and pro.active = 1 and pro_date.active = 1
-				and pro_lang.id_lang = :id_pro_lang and sup_lang.id_lang = :id_sup_lang
-				and pro_date.on_date BETWEEN :id_startdate and :id_lastdate
-				and room.id_supplier = :id_supplier',
-			array(':id_country' => $country,
-				':id_destination' => $destination,
+			->where('sup.id_service = :id_service and pro.active = 1 and pro_date.active = 1
+					and pro_lang.id_lang = :id_pro_lang and sup_lang.id_lang = :id_sup_lang
+					
+					and room.id_supplier = :id_supplier
+					and pro.id_product = :id_product',
+			array(
 				':id_service' => Service::HOTEL,
 				':id_pro_lang' => Lang::getCurrentLang(),
 				':id_sup_lang' => Lang::getCurrentLang(),
-				':id_startdate'=> $start_date,
-				':id_lastdate' => $last_date,
-				':id_supplier' => $id_supplier))
+				':id_supplier' => $id_supplier,
+				':id_product' => $id_product ))
 			->order(array('pro.id_product', 'pro_date.on_date'))
 			->queryAll();
-	
+		} else {
+			$results = Yii::app()->db->createCommand()
+				->select('pro_date.*, pro_lang.*, room.*, sup_lang.*')
+				->from('gc_address as addr')
+				->join('gc_user as usr', 'addr.id_address = usr.id_address_default')
+				->join('gc_supplier as sup', 'usr.id_user = sup.id_supplier')
+				->join('gc_product as pro', 'sup.id_supplier = pro.id_supplier')
+				->join('gc_product_date as pro_date', 'pro_date.id_product = pro.id_product')
+				->join('gc_room as room', 'room.id_product = pro_date.id_product')
+				->leftJoin('gc_product_lang as pro_lang', 'pro_lang.id_product = pro.id_product')
+				->leftJoin('gc_supplier_lang as sup_lang', 'sup_lang.id_supplier = pro.id_supplier')
+				->where('addr.id_country = :id_country and addr.id_destination = :id_destination
+					and sup.id_service = :id_service and pro.active = 1 and pro_date.active = 1
+					and pro_lang.id_lang = :id_pro_lang and sup_lang.id_lang = :id_sup_lang
+					and pro_date.on_date BETWEEN :id_startdate and :id_lastdate
+					and room.id_supplier = :id_supplier',
+				array(':id_country' => $country,
+					':id_destination' => $destination,
+					':id_service' => Service::HOTEL,
+					':id_pro_lang' => Lang::getCurrentLang(),
+					':id_sup_lang' => Lang::getCurrentLang(),
+					':id_startdate'=> $start_date,
+					':id_lastdate' => $last_date,
+					':id_supplier' => $id_supplier))
+				->order(array('pro.id_product', 'pro_date.on_date'))
+				->queryAll();
+		}
+
 		$items = Array();
 		$before_id_product = "";
 		$hotel = "";

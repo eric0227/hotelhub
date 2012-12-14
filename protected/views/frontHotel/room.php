@@ -38,8 +38,8 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 					<img src="<?php echo Yii::app()->request->baseUrl ?>/images/front/star.png" />
 				</span>
 				<div class="btn-container">
-					<button class="btn btn-success" style="width:48%">BOOK</button>
-					<button class="btn" style="margin-left:5px;width:48%" onclick="location='<?php echo Yii::app()->request->baseUrl ?>/frontHotel'">Cancel</button>
+					<button class="btn btn-success" style="width:48%" onClick="">BOOK</button>
+					<button class="btn" style="margin-left:5px;width:48%" onclick="history.back(-1)">Cancel</button>
 				</div>
 			</div>
 		</div>

@@ -56,7 +56,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 			}
 			
 ?>		
-		<div class="item">
+		<div class="item" onClick="location='<?php echo Yii::app()->request->baseUrl.'/frontHotel/room/'. $model->product->id_product ?>'">
 				<span class="decoration"></span>
 				<img src="<?php echo  $image ?>" class="pull-left" />
 				<div class="detail">
