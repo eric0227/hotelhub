@@ -299,6 +299,9 @@ class RoomController extends Controller
 	}
 	
 	private function makeBedding($id_product, $roomCnt) {
+		echo $id_product;
+		echo $roomCnt;
+		
 		for($s = $roomCnt; $s >= 0; $s--) {
 			$beddingModel = Bedding::model()->findByAttributes(array('id_room' => $id_product, 'bed_num' => $roomCnt, 'single_num' => $s));
 			if(!isset($beddingModel)) {
@@ -306,8 +309,12 @@ class RoomController extends Controller
 	 			$beddingModel->bed_num = $roomCnt;
 	 			$beddingModel->single_num = $s;
 	 			$beddingModel->double_num = $roomCnt - $s;
+			} else {
+				//var_dump($beddingModel);
 			}
 			$this->beddingList[] = $beddingModel;
+			
+			
 		}
 	}
 /*

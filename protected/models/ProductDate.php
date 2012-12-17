@@ -134,4 +134,17 @@ class ProductDate extends CActiveRecord
 		}
 		return parent::afterSave();
 	}
+	
+	public function getSoldDateQuantity() {
+	
+		$sqlCom = Yii::app()->db->createCommand(array(
+						'select' => 'sum(product_quantity) sum_quantity',
+						'from' => 'gc_order_item',
+						'where' => 'id_product = :id_product and on_date = :on_date',
+						'params' => array(':id_product'=>$this->id_product, ':on_date'=>$this->on_date),
+		));
+	
+		$row = $sqlCom->queryRow();
+		return isset($row['sum_quantity']) ? $row['sum_quantity'] : 0;
+	}
 }

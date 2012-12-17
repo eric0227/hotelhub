@@ -105,6 +105,13 @@ body {
 #special_products .special_product_list div.item .detail header .price { color: #7ca310; font-size: 16px; font-weight: bold; }
 #special_products .special_product_list div.item .detail p { float: left; text-align: justify; line-height: 16px; padding: 5px 14px 0 10px; color: #5d5d5d; }
 
+.price a {
+	color: #7ca310;
+}
+
+.weekend {font-size: 14px; font-weight: bold; text-align: center !important; }
+.weekday {font-size: 14px; font-weight: bold; text-align: center !important; }
+
 #site_footer a { color: #fff !important; text-decoration: underline; }
 #site_footer a:hover { color: #fff; text-decoration: none; }
 

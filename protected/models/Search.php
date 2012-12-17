@@ -121,6 +121,7 @@ class Search {
 				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
+				$date_info->agent_price = $result['agent_price'];
 				$date_info->product_description = $result['description'];
 				$date_info->out_of_stock = $result['out_of_stock'];
 				
@@ -130,6 +131,7 @@ class Search {
 				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
+				$date_info->agent_price = $result['agent_price'];
 				$date_info->product_description = $result['description'];
 				$date_info->out_of_stock = $result['out_of_stock'];
 				
@@ -138,6 +140,8 @@ class Search {
 			
 			$before_id_product = $result['id_product'];
 		}
+		
+		//var_dump($hotel);
 		
 		if(count($items) == 0) {
 			$hotel = new HotelInfo;
@@ -151,7 +155,7 @@ class Search {
 		return $items;
 	}
 	
-	static public function findAllHotelRoom($id_supplier, $country, $destination, $start_date, $last_date, $id_product) {
+	static public function findAllHotelRoom($id_supplier, $country, $destination, $start_date = null, $last_date = null, $id_product = null) {
 		/*	SELECT pro_date.* , pro_lang.*, room.*, sup_lang.*
 			FROM gc_address AS addr
 			INNER JOIN gc_user AS usr ON addr.id_address = usr.id_address_default
@@ -173,6 +177,12 @@ class Search {
 			ORDER BY pro.id_product, pro_date.on_date
 		*/
 		
+		if(!isset($start_date)) {
+			$start_date = date("m/d/Y");
+			//$last_date = date("m/d/Y");
+		}
+				
+		
 		if(isset($id_product)) {
 			$results = Yii::app()->db->createCommand()
 			->select('pro_date.*, pro_lang.*, room.*, sup_lang.*')
@@ -184,15 +194,16 @@ class Search {
 			->leftJoin('gc_supplier_lang as sup_lang', 'sup_lang.id_supplier = pro.id_supplier')
 			->where('sup.id_service = :id_service and pro.active = 1 and pro_date.active = 1
 					and pro_lang.id_lang = :id_pro_lang and sup_lang.id_lang = :id_sup_lang
-					
-					and room.id_supplier = :id_supplier
-					and pro.id_product = :id_product',
+					and pro.id_product = :id_product
+					and pro_date.on_date BETWEEN :id_startdate and :id_lastdate',
 			array(
 				':id_service' => Service::HOTEL,
 				':id_pro_lang' => Lang::getCurrentLang(),
 				':id_sup_lang' => Lang::getCurrentLang(),
-				':id_supplier' => $id_supplier,
-				':id_product' => $id_product ))
+				':id_product' => $id_product,
+				':id_startdate'=> $start_date,
+				':id_lastdate' => $last_date,
+				))
 			->order(array('pro.id_product', 'pro_date.on_date'))
 			->queryAll();
 		} else {
@@ -240,6 +251,7 @@ class Search {
 				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
+				$date_info->agent_price = $result['agent_price'];
 				$date_info->product_description = $result['description'];
 				$date_info->out_of_stock = $result['out_of_stock'];
 	
@@ -249,6 +261,7 @@ class Search {
 				$date_info->id_product_date = $result['id_product_date'];
 				$date_info->on_date = $result['on_date'];
 				$date_info->price = $result['price'];
+				$date_info->agent_price = $result['agent_price'];
 				$date_info->product_description = $result['description'];
 				$date_info->out_of_stock = $result['out_of_stock'];
 	
@@ -257,6 +270,8 @@ class Search {
 				
 			$before_id_product = $result['id_product'];
 		}
+		
+		//var_dump($hotel);
 	
 		if(count($items) == 0) {
 			$hotel = new HotelInfo;

@@ -186,14 +186,27 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 								echo "<td class=\"weekend\">";
 								if($item->date_info[$curr_date]->price != "") {
 									$price = number_format($item->date_info[$curr_date]->price, 0);
+									if(Yii::app()->user->isAgent()) {
+										$agent_price = number_format($item->date_info[$curr_date]->agent_price, 0);
+										$price = $price . "<br><span class='agent-price'>(".$agent_price.")</span>";
+									}
+									
+									echo "<span class='price' >";
 									echo CHtml::link($price, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
+									echo "</span>";
 								}
 								echo "</td>";
 							} else {
 								echo "<td class=\"weekday\">";
 								if($item->date_info[$curr_date]->price != "") {
 									$price = number_format($item->date_info[$curr_date]->price, 0);
+									if(Yii::app()->user->isAgent()) {
+										$agent_price = number_format($item->date_info[$curr_date]->agent_price, 0);
+										$price = $price . "<br><span class='agent-price'>(".$agent_price.")</span>";
+									}
+									echo "<span class='price' >";
 									echo CHtml::link($price, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
+									echo "</span>";
 								}
 								echo "</td>";
 							}

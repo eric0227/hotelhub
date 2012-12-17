@@ -30,10 +30,10 @@ $(function() {
  -->
 <?php
 	$this->breadcrumbs=array(
-		'Suppliers'=>'/supplier/index', 'Edit Prices',
+		'Suppliers'=>Yii::app()->request->baseUrl . '/sup', 'Edit Prices',
 	);
 
-	echo CHtml::form("/productDate/BulkSave");
+	echo CHtml::form(Yii::app()->request->baseUrl . "/productDate/BulkSave");
 	echo CHtml::hiddenField("id_product", $id_product);
 	echo "<h1>Edit Prices</h1>";
 	
@@ -50,7 +50,7 @@ $(function() {
 			<th class="th_center">Agent Rate<br><span class="desc">per night</span></th>
 			<!-- <th class="th_center">Inclusions<br><span class="desc">(Leave blank for Room Only)</span></th> -->
 			<th class="th_center">Allotment</th>
-			<!-- <th class="th_center">Number Sold</th> -->
+			<th class="th_center">Number Sold</th>
 			<th class="th_center">Active Selling</th>
 		</thead>
 		<tbody>
@@ -100,9 +100,10 @@ $(function() {
 			if($isExist) {
 		?>
 				<td class="" on_date="<?php echo $fulldate; ?>" id_product_date="<?php echo $productdate->id_product_date; ?>"><span><?php echo $fulldateExceptYear; ?></span></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", number_format($productdate->price, 2), array("style"=>"width: 100px;", "disabled"=>$outofdate_str))?></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", number_format($productdate->agent_price, 2), array("style"=>"width: 100px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", $productdate->quantity, array("style"=>"width: 100px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", number_format($productdate->price, 2), array("style"=>"width: 70px;", "disabled"=>$outofdate_str))?></td>
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", number_format($productdate->agent_price, 2), array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", $productdate->quantity, array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo CHtml::textField("sold", $productdate->getSoldDateQuantity(), array("style"=>"width: 70px;", "disabled"=>true)) ?></td>
 				<td class="center"><?php echo CHtml::checkBox("bulk_save[".$fulldate."][is_active]", $productdate->active, array("disabled"=>$outofdate_str, "class"=>"stopsell")); ?></td>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][id_product_date]", $productdate->id_product_date, array("disabled"=>$outofdate_str)); ?>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][on_date]", $productdate->on_date, array("disabled"=>$outofdate_str)); ?>
@@ -110,9 +111,10 @@ $(function() {
 			} else {
 		?>
 				<td class="" on_date="<?php echo $fulldate; ?>" id_product_date=""><span><?php echo $fulldateExceptYear; ?></span></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", "", array("style"=>"width: 100px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", "", array("style"=>"width: 100px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", "", array("style"=>"width: 100px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", "", array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", "", array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", "", array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo CHtml::textField("sold", "", array("style"=>"width: 70px;", "disabled"=>true)) ?></td>			
 				<td class="center"><?php echo CHtml::checkBox("bulk_save[".$fulldate."][is_active]", false, array("disabled"=>$outofdate_str, "class"=>"stopsell")); ?></td>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][id_product_date]", "", array("disabled"=>$outofdate_str)); ?>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][on_date]", $fulldate, array("disabled"=>$outofdate_str)); ?>

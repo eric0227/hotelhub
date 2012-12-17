@@ -23,7 +23,7 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 	</div>
 	<div class="room-info">
 		<div class="map">
-			Map
+			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/map-icon.png" width="50" />
 		</div>
 		<div class="left-columns">
 			<a href="<?php echo $main_image_path ?>" class="main-image">
@@ -31,19 +31,30 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 			</a>
 			<div class="order-form">
 				<span class="rating">
-					<img src="<?php echo Yii::app()->request->baseUrl ?>/images/front/star.png" />
-					<img src="<?php echo Yii::app()->request->baseUrl ?>/images/front/star.png" />
-					<img src="<?php echo Yii::app()->request->baseUrl ?>/images/front/star.png" />
-					<img src="<?php echo Yii::app()->request->baseUrl ?>/images/front/star.png" />
-					<img src="<?php echo Yii::app()->request->baseUrl ?>/images/front/star.png" />
+			<?php for($i = 0; $i < $room->product->grade_level; $i++) { ?>		
+					<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
+			<?php } ?>
 				</span>
+				<br>
+<?php if(!$room->product->isDateProduct()) { ?>				
+				<span class="price">
+					<?php echo number_format($room->product->price,2) ?>
+					<?php if(Yii::app()->user->isAgent()) {?>
+						<br>
+						(<?php echo number_format($room->product->agent_price,2) ?>)
+					<?php }?>
+				</span>
+				<div style="clear:both"></div>
+				<div> Quantity : <?php echo $room->product->quantity - $room->product->getSoldQuantity() ?> </div>
+<?php } ?>					
 				<div class="btn-container">
-					<button class="btn btn-success" style="width:48%" onClick="">BOOK</button>
+					<button class="btn btn-success" style="width:48%" onClick="location.href='<?php echo Yii::app()->request->baseUrl ?>/frontHotel/view?id_product=<?php echo $room->product->id_product?>'">BOOK</button>
 					<button class="btn" style="margin-left:5px;width:48%" onclick="history.back(-1)">Cancel</button>
 				</div>
 			</div>
 		</div>
 		<div class="right-columns">
+			
 			<div class="room-images">
 				<?php
 					foreach($images as $image):
@@ -55,6 +66,10 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 					<a href="<?php echo $main_image_path ?>"><img src="<?php echo $thumbnail_image_path ?>" alt="<?php echo $image['title'] ?>" style="width:75px;height:75px" /></a>
 				<?php endforeach; ?>
 			</div>
+			<div class="greeting">
+				<?php echo $room->product->description_short ?>
+			</div>
+			
 			<div class="greeting">
 				<?php echo $room->product->description ?>
 			</div>

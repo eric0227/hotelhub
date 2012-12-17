@@ -8,6 +8,15 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 	$(function(){
 		hotel.combine('#country', '#destination');
 	});
+
+	function book() {
+		var checkedCnt = $('#order input[type=checkbox]:checked').length;
+		if(checkedCnt == 0) {
+			alert("<?php echo Yii::t('front', 'Please select the dates you wish to book.')?>");
+		} else {
+			$('#order').submit();
+		}
+	}
 </script>
 <div>
 
@@ -52,6 +61,10 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days")));
+		
+		if(isset($_REQUEST['id_product'])) {
+			echo CHtml::hiddenField("id_product", $_REQUEST['id_product']);
+		}
 		echo CHtml::endForm();
 		
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/view", "get", array("id"=>"next_navi", "name"=>"next_navi"));
@@ -59,13 +72,17 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." +6 days")));
+		
+		if(isset($_REQUEST['id_product'])) {
+			echo CHtml::hiddenField("id_product", $_REQUEST['id_product']);
+		}
+		
 		echo CHtml::endForm();
 		
 		//$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
 		
 		if(isset($_REQUEST['id_product'])) {
 			$items = Search::findAllHotelRoom($id_supplier, $country, $destination, $start_year."-".$start_month."-".$start_day, $lastday, $_REQUEST['id_product']);
-			var_dump($items);
 		} else {		
 			$items = Search::findAllHotelRoom($id_supplier, $country, $destination, $start_year."-".$start_month."-".$start_day, $lastday);
 		}
@@ -156,7 +173,14 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 									if($item->date_info[$curr_date]->price != "") {
 										//echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->price))."<br>";
 										echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->id_product_date))."<br>";
-										echo number_format($item->date_info[$curr_date]->price, 0);
+										$price = number_format($item->date_info[$curr_date]->price, 0);
+										
+										if(Yii::app()->user->isAgent()) {
+											$agent_price = number_format($item->date_info[$curr_date]->agent_price, 0);
+											$price = $price . "<br><span class='agent-price'>(".$agent_price.")</span>";
+										}
+										
+										echo $price;
 									}
 									echo "</td>";
 								} else {
@@ -164,7 +188,14 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 									if($item->date_info[$curr_date]->price != "") {
 										//echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->price))."<br>";
 										echo CHtml::checkBox("booking[$item->id_product][$curr_date]", false, array('value'=>$item->date_info[$curr_date]->id_product_date))."<br>";
-										echo number_format($item->date_info[$curr_date]->price, 0);
+										$price = number_format($item->date_info[$curr_date]->price, 0);
+										
+										if(Yii::app()->user->isAgent()) {
+											$agent_price = number_format($item->date_info[$curr_date]->agent_price, 0);
+											$price = $price . "<br><span class='agent-price'>(".$agent_price.")</span>";
+										}
+										
+										echo $price;
 									}
 									echo "</td>";
 								}
@@ -198,7 +229,8 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 			echo "</tbody></table></div>";
 		}
 		
-		echo CHtml::submitButton("Book Now");
+		//echo CHtml::submitButton("Book Now");
+		echo CHtml::button("Book Now", array('onclick'=>'book()'));
 		echo CHtml::endForm();
 	?>
 </div>

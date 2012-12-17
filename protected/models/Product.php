@@ -291,6 +291,41 @@ class Product extends CActiveRecord
 			}
 		}
 	}
+	
+	public function getSoldQuantity() {
+
+		$sqlCom = Yii::app()->db->createCommand(array(
+			'select' => 'sum(product_quantity) sum_quantity',
+			'from' => 'gc_order_item',
+			'where' => 'id_product = :id_product',
+			'params' => array(':id_product'=>$this->id_product)
+		));
+			
+		$row = $sqlCom->queryRow();
+		return isset($row['sum_quantity']) ? $row['sum_quantity'] : 0;
+	}
+	
+	// on_date : 'yyyy-MM-dd'
+	public function getSoldDateQuantity($on_date) {
+	
+		$sqlCom = Yii::app()->db->createCommand(array(
+					'select' => 'sum(product_quantity) sum_quantity',
+					'from' => 'gc_order_item',
+					'where' => 'id_product = :id_product and on_date = :on_date',
+					'params' => array(':id_product'=>$this->id_product, ':on_date'=>$on_date),
+		));
+		
+		$row = $sqlCom->queryRow();
+		return isset($row['sum_quantity']) ? $row['sum_quantity'] : 0;
+	}
+	
+	public function isDateProduct() {
+		if($this->id_service == Service::HOTEL || $this->id_service == Service::CAR ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 
 

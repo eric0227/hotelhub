@@ -18,8 +18,8 @@
 			?>
 			
 			<?php
-			/*
 				if($model->isNewRecord) {
+					/*
 					$command = Yii::app()->db->createCommand();
 					$command->select('a.id_product')->from('gc_product as a');
 					$command->join('gc_room as b', 'a.id_product <> b.id_product');
@@ -31,11 +31,10 @@
 					}
 					
 					echo $form->dropDownListRow($model, 'id_product', $items, array('class' => 'span5'));
-					
+					*/
 				} else {
-					echo $form->textFieldRow($model, 'id_product', array('class' => 'span5'));
+					echo $form->hiddenField($model, 'id_product');
 				}
-			*/
 			?>
 			<?php //echo $form->dropDownListRow($model, 'id_product', Product::items(), array('class' => 'span5')); ?>
 			<?php  ?>
