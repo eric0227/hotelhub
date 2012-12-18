@@ -53,7 +53,6 @@ $this->menu=array(
 <form>
 <div>
 	<a href="<?php echo CController::createUrl('room/create'); ?>"><div class="button" id="add_new_room"></div></a>
-	<a href="<?php echo CController::createUrl('imageProduct/create'); ?>"><div class="button" id="add_image"></div></a>
 	<a href=""><div class="button active" active="1" id="btn_blank">START SELL</div></a>
 	<a href=""><div class="button inactive" active="0" id="btn_blank">STOP SELL</div></a>
 </div>
@@ -66,8 +65,9 @@ $this->menu=array(
 	<?php
 		$models = Room::model()->findAllByAttributes(array('id_supplier'=>Yii::app()->user->id_user));
 		foreach ($models as $model) {
+			$product = $model->product;
 			echo "<div class=\"h4_blue\">";
-			echo "<h4 class=\"blue\">".$model->room_name."</h4>";
+			echo "<h4 class=\"blue\">".$product->name."</h4>";
 	?>
 	</div>
 	<div class="blue_line">

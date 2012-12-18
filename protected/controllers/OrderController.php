@@ -161,6 +161,8 @@ class OrderController extends Controller
 			$dataProvider->criteria->condition = 'id_order in (select id_order from gc_order_item where id_supplier = null)';
 		}
 		
+		$dataProvider->criteria->order = 'id_order DESC';
+		
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

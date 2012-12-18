@@ -41,6 +41,7 @@ $this->menu=array(
 				<th>Booking Date</th>
 				<th>Quantity</th>
 				<th>Price</th>
+				<th>Extra Price</th>
 				<th>Total Price</th>
 			</tr>	
 	<?php 
@@ -52,6 +53,7 @@ $this->menu=array(
 			echo "	<td>{$orderItem->on_date}</td>";
 			echo "	<td>{$orderItem->product_quantity}</td>";
 			echo "	<td>{$orderItem->quantity_price}</td>";
+			echo "	<td>{$orderItem->quantity_extra_price}</td>";
 			echo "	<td>{$orderItem->total_price}</td>";
 			echo "</tr>";			
 		}

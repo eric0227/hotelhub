@@ -35,6 +35,7 @@ $this->menu=array(
 		'on_return',
 		'quantity_price',
 		'agent_quantity_price',
+		'quantity_extra_price',
 		'reduction_percent',
 		'reduction_amount',
 		'product_quantity_discount',

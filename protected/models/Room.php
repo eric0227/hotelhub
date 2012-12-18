@@ -335,6 +335,7 @@ class Room extends CActiveRecord
 		foreach($id_product_date_array as $id_product_date => $id_product) {
 			//echo $id_product_date . ",";
 			$productDate = ProductDate::model()->findByPk($id_product_date);
+			$extra_price = $option_data[$id_product]['extra_price'];
 			
 			$option_data[$id_product]['product_date'][$productDate->on_date] = array(
 						'id_product_date'=>$id_product_date,

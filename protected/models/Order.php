@@ -172,6 +172,8 @@ class Order extends CActiveRecord
 			$criteria->condition = 'id_order in (select id_order from gc_order_item where id_supplier = null)';
 		}
 		
+		$criteria->order = 'id_order DESC';
+		
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -229,23 +231,28 @@ class Order extends CActiveRecord
 		if(isset($cartProducts)) {
 			foreach($cartProducts as $cartProduct) {
 				
-				if(isset($cartProduct->option_data)) {
-					$option_data = json_decode($cartProduct->option_data);
-					$priceSum = $priceSum + $option_data['total_price'];
-					$agentPriceSum = $agentPriceSum + $option_data['total_agent_price'];
-				} else {
+				$product = $cartProduct->product;
+				$productDate = $cartProduct->productDate;
 				
-					$product = $cartProduct->product;
-					$productDate = $cartProduct->productDate;
+				$extra_price = 0;
+				if(isset($cartProduct->option_data)) {
+					$option = json_decode($cartProduct->option_data);
 					
-					if(isset($productDate)) {
-						$priceSum = $priceSum + $productDate->price;
-						$agentPriceSum = $agentPriceSum + $productDate->agent_price;
-					} else {
-						$priceSum = $priceSum + $product->price;
-						$agentPriceSum = $agentPriceSum + $product->agent_price;
-					}
+// 					var_dump($option);
+// 					echo $option->extra_price;
+// 					Yii::app()->end();
+					
+					$extra_price = $option->extra_price;
 				}
+				
+				if(isset($productDate)) {
+					$priceSum = $priceSum + $productDate->price + $extra_price;
+					$agentPriceSum = $agentPriceSum + $productDate->agent_price  + $extra_price;
+				} else {
+					$priceSum = $priceSum + $product->price  + $extra_price;
+					$agentPriceSum = $agentPriceSum + $product->agent_price  + $extra_price;
+				}
+			
 			}
 		}
 	
@@ -338,6 +345,13 @@ class Order extends CActiveRecord
 			$orderItem = new OrderItem;
 		}		
 		
+		if(isset($cartProduct->option_data)) {
+			$orderItem->option_data = $cartProduct->option_data;
+				
+			$option = json_decode($cartProduct->option_data);
+			$orderItem->quantity_extra_price = $option->extra_price;
+		}
+		
 		$orderItem->id_order = $this->id_order;
 		$orderItem->id_service = $product->id_service;
 		$orderItem->id_supplier = $product->id_supplier;
@@ -354,10 +368,10 @@ class Order extends CActiveRecord
 			$orderItem->quantity_price = $product->price;
 			$orderItem->agent_quantity_price = $product->agent_price;
 		}
-		$orderItem->total_price = $orderItem->product_quantity * $orderItem->quantity_price;
-		$orderItem->agent_total_price = $orderItem->product_quantity * $orderItem->agent_quantity_price;
-		
 		$orderItem->product_quantity = $cartProduct->quantity;
+		$orderItem->total_price = $orderItem->product_quantity * ($orderItem->quantity_extra_price + $orderItem->quantity_price);
+		$orderItem->agent_total_price = $orderItem->product_quantity * ($orderItem->quantity_extra_price + $orderItem->agent_quantity_price);
+
 		$orderItem->tax_name = 'default';
 		$orderItem->product_weight = 0;
 		
@@ -367,8 +381,6 @@ class Order extends CActiveRecord
 		if(isset($orderBooking)) {
 			$orderItem->id_order_booking = $orderBooking->id_order_booking;
 		}
-		
-		$orderItem->option_data = $cartProduct->option_data;
 		
 		$orderItem->save();
 	}

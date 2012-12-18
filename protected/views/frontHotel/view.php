@@ -18,6 +18,20 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		}
 	}
 </script>
+
+
+<script type="text/javascript">
+	$(function(){
+		$('.supplier-images a, .main-image').fancybox({
+			overlayOpacity:0.8,
+			overlayColor:'#000',
+			speedIn:500,
+			speedOut:500
+		});
+	});
+</Script>
+
+
 <div>
 
 	<?php
@@ -89,11 +103,25 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		//print_r($items);
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/order", "post", array("id"=>"order", "name"=>"order"));
 
+		if(isset($id_supplier)) {
+			$supplier = Supplier::model()->findByPk($id_supplier);
+		}
+		
 		$rowCount = 0;
 		foreach($items as $item) {
 			if($rowCount % TOT_ROW_NUM == 0) {
 	?>
 	<div id="accommodation_list">
+		<div class="supplier-images">
+	<?php
+		if(isset($supplier)) { 
+			$images = $supplier->supplierImages;
+			foreach($images as $image) {
+				echo "<a href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
+			}
+		} 
+	?>		
+		</div>
 		<table class="table table-bordered">
 			<thead>
 				<tr class="date">

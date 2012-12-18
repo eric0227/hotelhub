@@ -143,7 +143,7 @@ class FrontController extends Controller
 									
 									$optionStr = json_encode($option);
 									$cart_product->option_data = $optionStr;
-									echo $optionStr;
+									//echo $optionStr;
 								}
 								
 								if($cart_product->save()) {
@@ -177,7 +177,7 @@ class FrontController extends Controller
 		}
 		
 		if($bUserProccessed && $bCartProccessed) {
-			//$this->redirect(array('/paypal/process', 'id_cart'=>$newCart->id_cart));
+			$this->redirect(array('/paypal/process', 'id_cart'=>$newCart->id_cart));
 		} else {
 			echo "save error in the end of it.";
 		}
