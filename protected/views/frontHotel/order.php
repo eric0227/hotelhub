@@ -1,3 +1,38 @@
+<script>
+	function refreshBookInfo() {
+		var form = $('#book_form');
+		serializedData = form.serialize();
+
+		$.ajax({
+	        url: "<?php echo Yii::app()->request->baseUrl ?>/frontHotel/bookInfoDisplay",
+	        type: "post",
+	        data: serializedData,
+	        // callback handler that will be called on success
+	        success: function(response, textStatus, jqXHR){
+	            console.log(response);
+	            $("#book_info").html(response);
+	        },
+	        // callback handler that will be called on error
+	        error: function(jqXHR, textStatus, errorThrown){
+	            console.log(
+	                "The following error occured: "+
+	                textStatus, errorThrown
+	            );
+	        },
+	        // callback handler that will be called on completion
+	        // which means, either on success or error
+	        complete: function(){
+	            // enable the inputs
+	        }
+	    });
+	}
+
+	$(function(){
+		refreshBookInfo();
+	});
+</script>
+
+
 <?php
 	//var_dump($_POST);
 	$recv_booking_datas = isset($_POST['booking']) ? $_POST['booking'] : array();
@@ -5,11 +40,11 @@
 	$before_id_product = "";
 	$id_product_array = array();
 	
-	echo CHtml::beginForm(Yii::app()->request->baseUrl . "/front/userPayment", "post");
+	echo CHtml::beginForm(Yii::app()->request->baseUrl . "/front/userPayment", "post", array('id'=>'book_form'));
 	
 	foreach ($recv_booking_datas as $k => $v1) {
 		foreach ($v1 as $k2 => $v2) {
-			echo $k.", ".$k2.", ".$v2."<br>";
+			//echo $k.", ".$k2.", ".$v2."<br>";
 			if($before_id_product != $k) {
 				$book_data = Search::newHotelInfo();
 				$book_data->id_product = $k;
@@ -67,14 +102,14 @@
 								array_push($adults_max, $num);
 							} 
 						?>
-						<td>Number of Adults:<?php echo CHtml::dropDownList("adults_num[$item->id_product]", "", $adults_max); ?></td>
+						<td>Number of Adults:<?php echo CHtml::dropDownList("adults_num[$item->id_product]", "", $adults_max, array('onchange'=>'refreshBookInfo()')); ?></td>
 						<?php
 							$children_max = array();
 							for($num = 0; $num <= $item->children_maxnum; $num++) {
 								array_push($children_max, $num);
 							} 
 						?>
-						<td>Children (<?php echo $item->children_years; ?>yrs and under):<?php echo CHtml::dropDownList("children_num[$item->id_product]", "", $children_max); ?></td>
+						<td>Children (<?php echo $item->children_years; ?>yrs and under):<?php echo CHtml::dropDownList("children_num[$item->id_product]", "", $children_max, array('onchange'=>'refreshBookInfo()')); ?></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -83,8 +118,9 @@
 							<?php
 								$i = 1;
 								foreach($item->bed_info as $bed) {
-									echo "<div style='float:left;'>";
-									echo CHtml::radioButton("options[$item->id_product]", ($i==1 ? true : false), array("value"=>$bed->id_bedding))."Option ".$i++;
+									echo "<div style='float:left; margin-right:30px;'>";
+									echo "<label>";
+									echo CHtml::radioButton("options[$item->id_product]", ($i==1 ? true : false), array("value"=>$bed->id_bedding, 'onchange'=>'refreshBookInfo()'))."Option ".$i++;
 									echo "<br>";
 									for($j = 0; $j < $bed->single_num; $j++) {
 										echo CHtml::image($urlSingleBed);
@@ -94,6 +130,7 @@
 									}
 									echo "<br>".($bed->double_num != 0 ? $bed->double_num." Double(s)" : "");
 									echo " ".($bed->single_num != 0 ? $bed->single_num." Single(s)" : "");
+									echo "</label>";
 									echo "</div>";
 								}
 							?>
@@ -104,37 +141,26 @@
 	<?php
 		}
 	?>
+			<a href="javascript:showBookInfo()" >TEST</a>
 			<div>
 				<span>Selected your dates by checking the boxes before page</span><br>
 				<div>All rates are TAX inclusive and per Room listed in Australian Dollars ($)</div>
 				<table>
 					<thead>
-						<th></th>
+						<th>Room Name</th>
 						<th>Date</th>
 						<th>Base Rate</th>
 						<th>Extras</th>
 						<th>Total</th>
 						<th>Inclusions</th>
 					</thead>
-					<tbody>
-						<?php
-							foreach($items as $item) {
-						?>
-						<tr>
-							<td>
-								<?php echo $item->name; ?>
-							</td>
-							<td>
-								<?php echo $item->name; ?>
-							</td>
-						</tr>
-						<?php 
-							}
-						?>
+					<tbody id="book_info">
+						
 					</tbody>
 				</table>
 			</div>
 		</div>
+		
 		<div id="order_form">
 			<span>Complete your guest details and click 'Pay Now'</span><br>
 			<span>These are the details the supplier will use to identify you at check in. All compulsory information.</span>
@@ -207,7 +233,16 @@
 			</table>
 		</div>
 
-		<?php echo CHtml::submitButton("Pay Now"); ?>
+		<?php //echo CHtml::submitButton("Pay Now"); ?>
+		<?php 
+			echo '<div style="display:inline-block; width:500px;">';
+			echo '<div class="btn-container">';
+			echo '<button type="submit" class="btn btn-success" style="width:48%" >BOOK</button>';
+			//echo '<button class="btn" style="margin-left:5px;width:48%" onclick="history.back(-1)">Cancel</button>';
+			echo '</div>';
+			echo '</div>';
+		?>
+		
 		<?php echo CHtml::endForm(); ?>
 	</div>
 	

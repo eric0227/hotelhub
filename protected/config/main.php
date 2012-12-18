@@ -109,7 +109,7 @@ return array(
 		// GD or ImageMagick
 		    'driver'=>'GD',
 		// ImageMagick setup path
-		    'params'=>array('directory'=>'c:/ImageMagick'),
+		    'params'=>array('directory'=>'c:/ImageMagick'), // /usr/lib/ImageMagick-6.8.0
 		),
 		
 		'messages'=>array(

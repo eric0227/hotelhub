@@ -19,11 +19,13 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 </Script>
 <div id="room-details">
 	<div class="room-names">
-		<h2 class="room-name"><?php echo $room->product->name ?></h2>
+		<h2 class="room-name"><?php echo $room->product->name ?>
+			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/map-icon.png"  style="width:60px;" />
+		</h2>
 	</div>
 	<div class="room-info">
 		<div class="map">
-			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/map-icon.png" width="50" />
+			
 		</div>
 		<div class="left-columns">
 			<a href="<?php echo $main_image_path ?>" class="main-image">
@@ -36,7 +38,7 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 			<?php } ?>
 				</span>
 				<br>
-<?php if(!$room->product->isDateProduct()) { ?>				
+<?php //if(!$room->product->isDateProduct()) { ?>				
 				<span class="price">
 					<?php echo number_format($room->product->price,2) ?>
 					<?php if(Yii::app()->user->isAgent()) {?>
@@ -46,7 +48,7 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 				</span>
 				<div style="clear:both"></div>
 				<div> Quantity : <?php echo $room->product->quantity - $room->product->getSoldQuantity() ?> </div>
-<?php } ?>					
+<?php //} ?>					
 				<div class="btn-container">
 					<button class="btn btn-success" style="width:48%" onClick="location.href='<?php echo Yii::app()->request->baseUrl ?>/frontHotel/view?id_product=<?php echo $room->product->id_product?>'">BOOK</button>
 					<button class="btn" style="margin-left:5px;width:48%" onclick="history.back(-1)">Cancel</button>

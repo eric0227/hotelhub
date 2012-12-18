@@ -39,7 +39,7 @@ class FrontHotelController extends Controller
 		if($room == null){ throw new CHttpException('404'); }
 
 		$attributes = $room->getAllSttributes();
-		$images = imageC::model()->getSelectedImages($room->id_product);
+		$images = ImageC::model()->getSelectedImages($room->id_product);
 
 		$this->render('room', array(
 			'room' => $room,
@@ -68,6 +68,63 @@ class FrontHotelController extends Controller
 	public function actionOrder()
 	{
 		$this->render('order');
-	}	
+	}
 
+/*	
+	{
+		name : $name,
+		adults_num : $adults_num,
+		children_num : $children_num,
+		adults_extra : $adults_extra,
+		children_extra : $children_extra,
+		bedding : {
+			id_bedding : $id_bedding,
+			bed_index : $bed_index,
+			bed_num : $bed_num,
+			single_num: $single_num,
+			double_num : $double_num,
+			additional_cost: $additional_cost
+		},
+		product_date : [{
+			id_product_date: $id_product_date,
+			on_date : 'yyyy-MM-dd',
+			price : $price,
+			agent_price: $agent_price,
+			extra_price : $extra_price,
+		}, ... ],
+		total_price : $total_price,
+		total_agent_price : $total_agent_price,
+	}
+*/	
+	public function actionBookInfoDisplay() {
+		$option_data = Room::makeOptionData();
+		//var_dump($option_data);
+		
+		$total_price = 0;
+		$total_agent_price = 0;
+		
+		foreach($option_data as $id_product => $product) {
+			$total_price += $product['total_price'];
+			$total_agent_price += $product['total_agent_price'];
+			
+			foreach($product['product_date'] as $product_date) {
+				echo "<tr>";
+				echo "<td>".$product['name']."</td>";
+				echo "<td>".substr($product_date['on_date'], 0, 10)."</td>";
+				echo "<td>".number_format($product_date['price'],2)."</td>";
+				echo "<td>".number_format($product_date['extra_price'],2)."</td>";
+				echo "<td>".($product_date['price'] + $product_date['extra_price'])."</td>";
+				echo "<td>".($product['adults_num'] + $product['children_num'])."</td>";
+				echo "</tr>";
+			}
+		}
+		echo "<tr >";
+		echo "<td colspan='4' style='font-size:18px; text-align:right; font-weight:bold'>Total :</td>";
+		echo "<td style='font-size:18px; font-weight:bold'>".$total_price."</td>";
+		echo "</tr>";
+		
+		Yii::app()->end();
+	}
+	
+	
 }

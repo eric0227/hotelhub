@@ -14,6 +14,8 @@ class FrontController extends Controller
 	
 	public function actionUserPayment()
 	{
+		$option_data = Room::makeOptionData();
+		
 		$bUserProccessed = false;
 		$user_info = null;
 		$post_array = $_POST['User'];

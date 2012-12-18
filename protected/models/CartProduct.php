@@ -11,6 +11,7 @@
  * @property string $id_product_date
  * @property string $quantity
  * @property string $date_add
+ * @property string $option_data
  *
  * The followings are the available model relations:
  * @property Cart $cart
@@ -48,6 +49,7 @@ class CartProduct extends CActiveRecord
 		return array(
 			array('id_cart, id_product', 'required'),
 			array('id_cart, id_cart_booking, id_product, id_product_date, quantity', 'length', 'max'=>10),
+			array('option_data', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id_cart_product, id_cart, id_product, id_product_date, quantity, date_add', 'safe', 'on'=>'search'),

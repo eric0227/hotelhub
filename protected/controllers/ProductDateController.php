@@ -254,6 +254,7 @@ class ProductDateController extends Controller
 				}
 			}
 			
+			Yii::app()->user->setFlash('success', Yii::t('admin', 'Update successful..'));
 			$this->redirect(array('supplier/roomdates_editor','id'=>$id_product));
 		}
 		Yii::app()->end();

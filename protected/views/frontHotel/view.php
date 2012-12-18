@@ -230,7 +230,12 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		}
 		
 		//echo CHtml::submitButton("Book Now");
-		echo CHtml::button("Book Now", array('onclick'=>'book()'));
+		echo '<div style="display:inline-block; width:300px;">';
+		echo '<div class="btn-container">';
+		echo '<button class="btn btn-success" style="width:48%" onClick="book(); return false;">BOOK</button>';
+		//echo '<button class="btn" style="margin-left:5px;width:48%" onclick="history.back(-1)">Cancel</button>';
+		echo '</div>';
+		echo '</div>';
 		echo CHtml::endForm();
 	?>
 </div>

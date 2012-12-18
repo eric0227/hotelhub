@@ -165,8 +165,8 @@ CREATE TABLE IF NOT EXISTS `gc_currency` (
 INSERT INTO `gc_currency` (`id_currency`, `name`, `iso_code`, `iso_code_num`, `sign`, `blank`, `format`, `decimals`, `conversion_rate`, `deleted`, `active`) VALUES
 (1, 'Dollar', 'AUD', '36', '$', 0, 1, 1, 1.000000, 0, 1),
 (2, 'Dollar', 'USD', '840', '$', 0, 1, 1, 1.051065, 0, 1),
-(3, 'Won', 'KRW', '410', '챦쩔짝', 0, 1, 0, 120.000000, 0, 1),
-(4, 'Yuan', 'CNY', '156', '횘째', 0, 1, 1, 6.740000, 0, 1);
+(3, 'Won', 'KRW', '410', 'ì±¦ì©”ì§�', 0, 1, 0, 120.000000, 0, 1),
+(4, 'Yuan', 'CNY', '156', 'íš˜ì§¸', 0, 1, 1, 6.740000, 0, 1);
 
 CREATE TABLE IF NOT EXISTS `gc_country` (
   `id_country` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `gc_user` (
 INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`, `email`, `passwd`, `is_guest`, `note`, `birthday`, `active`, `deleted`) VALUES
 (1, 1, 1, 'Admin', 'Admin', 'kyhleem@gmail.com', 'bdf13fac4167a477b4d10d8685405354', 0, '', '0000-00-00', 1, 0),
 (2, 2, 1, 'supplier', 'hotel', 'kyhleem@naver.com', 'admin123456', 0, '', '0000-00-00', 0, 0),
-(3, 4, 2, '챗쨌흹챠���, '챙占승�, 'test@naver.com', 'hyoung01', 0, '', '0000-00-00', 0, 0);
+(3, 4, 2, 'ì±—ì¨Œí�¹ì± ï¿½ï¿½ï¿½, 'ì±™å� ìŠ¹ï¿½, 'test@naver.com', 'hyoung01', 0, '', '0000-00-00', 0, 0);
 
 
 CREATE TABLE IF NOT EXISTS `gc_supplier` (
@@ -1028,8 +1028,9 @@ CREATE TABLE IF NOT EXISTS `gc_cart_product` (
   `id_cart_booking` int(10) unsigned DEFAULT NULL,
   `id_product` int(10) unsigned NOT NULL,
   `id_product_date` int(10) unsigned,
-
+ 
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  `option_data`  varchar(255) DEFAULT NULL, -- Json Type
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id_cart_product`),
   
@@ -1244,6 +1245,7 @@ CREATE TABLE IF NOT EXISTS `gc_order_item` (
   `tax_name` varchar(16) NOT NULL,
   `tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
   `discount_quantity_applied` tinyint(1) NOT NULL DEFAULT '0',
+  `option_data`  varchar(255) DEFAULT NULL, -- Json type
   PRIMARY KEY (`id_order_item`),
 
   FOREIGN KEY (`id_order`) REFERENCES `gc_order`(`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,

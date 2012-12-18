@@ -293,4 +293,74 @@ class Room extends CActiveRecord
 		return $_items;
 	}
 	
+	public static function makeOptionData() {
+		$id_product_array = $_POST['id_product_array'];
+		$id_product_date_array = $_POST['id_product_date_array'];
+		
+		$adults_num =  $_POST['adults_num'];
+		$children_num = $_POST['children_num'];
+		$options = $_POST['options'];
+		
+		$option_data = array();
+		
+		
+		foreach($id_product_array as $id_product) {
+			//echo $id_product . ",";
+			$bedding = Bedding::model()->findByPk($options[$id_product]);
+			$room = Room::model()->findByPk($id_product);
+			$product = Product::model()->findByPk($id_product);
+				
+			$option_data[$id_product] = array(
+						'name'=>$product->name,
+						'adults_num'=>$adults_num[$id_product],
+						'children_num'=>$children_num[$id_product],
+						'adults_extra'=>$room->adults_extra,
+						'children_extra'=>$room->children_extra,
+						'bedding'=>array(
+							'id_bedding'=>$options[$id_product],
+							'bed_index'=>$bedding->bed_index,
+							'bed_num'=>$bedding->bed_num,
+							'single_num'=>$bedding->single_num,
+							'double_num'=>$bedding->double_num,
+							'additional_cost'=>$bedding->additional_cost,
+						)
+			);
+		}
+		
+		foreach($id_product_date_array as $id_product_date => $id_product) {
+			//echo $id_product_date . ",";
+			$productDate = ProductDate::model()->findByPk($id_product_date);
+			
+			$extra_price = ($option_data[$id_product]['adults_num'] * $option_data[$id_product]['adults_extra'])
+			+ ($option_data[$id_product]['children_num'] * $option_data[$id_product]['children_extra'])
+			+ $option_data[$id_product]['bedding']['additional_cost'];
+			
+			$option_data[$id_product]['product_date'][$productDate->on_date] = array(
+						'id_product_date'=>$id_product_date,
+						'on_date'=>$productDate->on_date,
+						'price'=>$productDate->price,
+						'agent_price'=>$productDate->agent_price,
+						'extra_price'=>$extra_price,
+			);
+			
+			$total_price = $option_data[$id_product]['total_price'];
+			if(!isset($total_price)) {
+				$total_price = 0;
+			}
+			
+			$total_agent_price = $option_data[$id_product]['total_agent_price'];
+			if(!isset($total_agent_price)) {
+				$total_agent_price = 0;
+			}
+			$total_price += $productDate->price + $extra_price;	
+			$total_agent_price += $productDate->agent_price +  $extra_price;
+			
+				
+			$option_data[$id_product]['total_price'] = $total_price;
+			$option_data[$id_product]['total_agent_price'] = $total_agent_price;
+		}
+		
+		return $option_data;		
+	}
+	
 }

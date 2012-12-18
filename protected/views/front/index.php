@@ -69,7 +69,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
 						<?php } ?>
 							</span>
-							<span class="price"><?php echo $model->product->price ?></span>
+							<span class="price"><?php echo number_format($model->product->price, 2) ?></span>
 						</div>
 					</header>
 					<p>

@@ -28,6 +28,13 @@ $(function() {
 		});
 </script>
  -->
+ <?php 
+ 	$successMsg = Yii::app()->user->getFlash('success');
+ 	if(isset($successMsg)) {
+ 		echo "<script> alert('{$successMsg}');  </script>";
+ 	}
+ ?>
+ 
 <?php
 	$this->breadcrumbs=array(
 		'Suppliers'=>Yii::app()->request->baseUrl . '/sup', 'Edit Prices',
