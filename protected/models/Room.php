@@ -309,31 +309,32 @@ class Room extends CActiveRecord
 			$bedding = Bedding::model()->findByPk($options[$id_product]);
 			$room = Room::model()->findByPk($id_product);
 			$product = Product::model()->findByPk($id_product);
+			
+			$extra_price = ($adults_num[$id_product] * $room->adults_extra)
+			+ ($children_num[$id_product] * $room->children_extra)
+			+ $bedding->additional_cost;			
 				
 			$option_data[$id_product] = array(
-						'name'=>$product->name,
-						'adults_num'=>$adults_num[$id_product],
-						'children_num'=>$children_num[$id_product],
-						'adults_extra'=>$room->adults_extra,
-						'children_extra'=>$room->children_extra,
-						'bedding'=>array(
-							'id_bedding'=>$options[$id_product],
-							'bed_index'=>$bedding->bed_index,
-							'bed_num'=>$bedding->bed_num,
-							'single_num'=>$bedding->single_num,
-							'double_num'=>$bedding->double_num,
-							'additional_cost'=>$bedding->additional_cost,
-						)
+				'name'=>$product->name,
+				'adults_num'=>$adults_num[$id_product],
+				'children_num'=>$children_num[$id_product],
+				'adults_extra'=>$room->adults_extra,
+				'children_extra'=>$room->children_extra,
+				'extra_price'=>$extra_price,
+				'bedding'=>array(
+					'id_bedding'=>$options[$id_product],
+					'bed_index'=>$bedding->bed_index,
+					'bed_num'=>$bedding->bed_num,
+					'single_num'=>$bedding->single_num,
+					'double_num'=>$bedding->double_num,
+					'additional_cost'=>$bedding->additional_cost,
+				),	
 			);
 		}
 		
 		foreach($id_product_date_array as $id_product_date => $id_product) {
 			//echo $id_product_date . ",";
 			$productDate = ProductDate::model()->findByPk($id_product_date);
-			
-			$extra_price = ($option_data[$id_product]['adults_num'] * $option_data[$id_product]['adults_extra'])
-			+ ($option_data[$id_product]['children_num'] * $option_data[$id_product]['children_extra'])
-			+ $option_data[$id_product]['bedding']['additional_cost'];
 			
 			$option_data[$id_product]['product_date'][$productDate->on_date] = array(
 						'id_product_date'=>$id_product_date,
@@ -355,7 +356,6 @@ class Room extends CActiveRecord
 			$total_price += $productDate->price + $extra_price;	
 			$total_agent_price += $productDate->agent_price +  $extra_price;
 			
-				
 			$option_data[$id_product]['total_price'] = $total_price;
 			$option_data[$id_product]['total_agent_price'] = $total_agent_price;
 		}

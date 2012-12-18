@@ -107,6 +107,45 @@ class FrontController extends Controller
 								$cart_product->id_cart = $newCart->id_cart;
 								$cart_product->quantity = 1;//$_POST['quantity'];
 								
+								if(isset($option_data[$cart_product->id_product])) {
+									/*
+									 {
+										name : $name,
+										adults_num : $adults_num,
+										children_num : $children_num,
+										adults_extra : $adults_extra,
+										children_extra : $children_extra,
+										extra_price : $extra_price,
+										bedding : {
+											id_bedding : $id_bedding,
+											bed_index : $bed_index,
+											bed_num : $bed_num,
+											single_num: $single_num,
+											double_num : $double_num,
+											additional_cost: $additional_cost
+										},
+										product_date : [{
+											id_product_date: $id_product_date,
+											on_date : 'yyyy-MM-dd',
+											price : $price,
+											agent_price: $agent_price,
+											extra_price : $extra_price										
+										}, ... ],
+										total_price : $total_price,
+										total_agent_price : $total_agent_price,
+									}
+									 */
+									
+									$option = $option_data[$cart_product->id_product];									
+									unset($option['product_date']);
+									unset($option['total_price']);
+									unset($option['total_agent_price']);
+									
+									$optionStr = json_encode($option);
+									$cart_product->option_data = $optionStr;
+									echo $optionStr;
+								}
+								
 								if($cart_product->save()) {
 									$bCartProccessed = true;
 								} else {
@@ -138,7 +177,7 @@ class FrontController extends Controller
 		}
 		
 		if($bUserProccessed && $bCartProccessed) {
-			$this->redirect(array('/paypal/process', 'id_cart'=>$newCart->id_cart));
+			//$this->redirect(array('/paypal/process', 'id_cart'=>$newCart->id_cart));
 		} else {
 			echo "save error in the end of it.";
 		}

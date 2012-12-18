@@ -9,15 +9,13 @@
 	        data: serializedData,
 	        // callback handler that will be called on success
 	        success: function(response, textStatus, jqXHR){
-	            console.log(response);
+	            //console.log(response);
 	            $("#book_info").html(response);
 	        },
 	        // callback handler that will be called on error
 	        error: function(jqXHR, textStatus, errorThrown){
-	            console.log(
-	                "The following error occured: "+
-	                textStatus, errorThrown
-	            );
+	            alert( "The following error occured: "+
+		                textStatus, errorThrown);
 	        },
 	        // callback handler that will be called on completion
 	        // which means, either on success or error

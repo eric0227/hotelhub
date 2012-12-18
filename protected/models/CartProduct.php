@@ -49,7 +49,7 @@ class CartProduct extends CActiveRecord
 		return array(
 			array('id_cart, id_product', 'required'),
 			array('id_cart, id_cart_booking, id_product, id_product_date, quantity', 'length', 'max'=>10),
-			array('option_data', 'length', 'max'=>255),
+			array('option_data', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id_cart_product, id_cart, id_product, id_product_date, quantity, date_add', 'safe', 'on'=>'search'),

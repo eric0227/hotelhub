@@ -29,6 +29,7 @@
  * @property string $tax_rate
  * @property integer $discount_quantity_applied
  * @property string $option_data
+ * @property string $quantity_extra_price
  *
  * The followings are the available model relations:
  * @property Order $order
@@ -69,8 +70,9 @@ class OrderItem extends CActiveRecord
 			array('product_quantity_in_stock, on_refunded, on_return, discount_quantity_applied', 'numerical', 'integerOnly'=>true),
 			array('product_weight', 'numerical'),
 			array('id_order, id_order_booking, id_service, id_supplier, id_product, id_product_date, product_quantity, reduction_percent, tax_rate', 'length', 'max'=>10),
-			array('order_item_name, product_name, option_data', 'length', 'max'=>255),
-			array('quantity_price, agent_quantity_price, reduction_amount, product_quantity_discount, total_price, agent_total_price', 'length', 'max'=>20),
+			array('order_item_name, product_name', 'length', 'max'=>255),
+			array('option_data', 'safe'),
+			array('quantity_price, agent_quantity_price, reduction_amount, product_quantity_discount, total_price, agent_total_price, quantity_extra_price', 'length', 'max'=>20),
 			array('tax_name', 'length', 'max'=>16),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.

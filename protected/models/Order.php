@@ -225,19 +225,27 @@ class Order extends CActiveRecord
 				
 		$priceSum = 0;
 		$agentPriceSum = 0;
+		
 		if(isset($cartProducts)) {
 			foreach($cartProducts as $cartProduct) {
-				$product = $cartProduct->product;
-				$productDate = $cartProduct->productDate;
 				
-				if(isset($productDate)) {
-					$priceSum = $priceSum + $productDate->price;
-					$agentPriceSum = $agentPriceSum + $productDate->agent_price;
+				if(isset($cartProduct->option_data)) {
+					$option_data = json_decode($cartProduct->option_data);
+					$priceSum = $priceSum + $option_data['total_price'];
+					$agentPriceSum = $agentPriceSum + $option_data['total_agent_price'];
 				} else {
-					$priceSum = $priceSum + $product->price;
-					$agentPriceSum = $agentPriceSum + $product->agent_price;
+				
+					$product = $cartProduct->product;
+					$productDate = $cartProduct->productDate;
+					
+					if(isset($productDate)) {
+						$priceSum = $priceSum + $productDate->price;
+						$agentPriceSum = $agentPriceSum + $productDate->agent_price;
+					} else {
+						$priceSum = $priceSum + $product->price;
+						$agentPriceSum = $agentPriceSum + $product->agent_price;
+					}
 				}
-
 			}
 		}
 	
@@ -346,10 +354,10 @@ class Order extends CActiveRecord
 			$orderItem->quantity_price = $product->price;
 			$orderItem->agent_quantity_price = $product->agent_price;
 		}
-		$orderItem->product_quantity = $cartProduct->quantity;
-		
 		$orderItem->total_price = $orderItem->product_quantity * $orderItem->quantity_price;
 		$orderItem->agent_total_price = $orderItem->product_quantity * $orderItem->agent_quantity_price;
+		
+		$orderItem->product_quantity = $cartProduct->quantity;
 		$orderItem->tax_name = 'default';
 		$orderItem->product_weight = 0;
 		
@@ -359,6 +367,8 @@ class Order extends CActiveRecord
 		if(isset($orderBooking)) {
 			$orderItem->id_order_booking = $orderBooking->id_order_booking;
 		}
+		
+		$orderItem->option_data = $cartProduct->option_data;
 		
 		$orderItem->save();
 	}

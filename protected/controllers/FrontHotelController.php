@@ -85,6 +85,7 @@ class FrontHotelController extends Controller
 			double_num : $double_num,
 			additional_cost: $additional_cost
 		},
+		extra_price : $extra_price,
 		product_date : [{
 			id_product_date: $id_product_date,
 			on_date : 'yyyy-MM-dd',

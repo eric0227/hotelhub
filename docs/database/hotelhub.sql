@@ -1030,7 +1030,9 @@ CREATE TABLE IF NOT EXISTS `gc_cart_product` (
   `id_product_date` int(10) unsigned,
  
   `quantity` int(10) unsigned NOT NULL DEFAULT '0',
+  
   `option_data`  varchar(255) DEFAULT NULL, -- Json Type
+  
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id_cart_product`),
   
@@ -1238,6 +1240,8 @@ CREATE TABLE IF NOT EXISTS `gc_order_item` (
   `reduction_amount` decimal(20,6) NOT NULL DEFAULT '0.000000',
   `product_quantity_discount` decimal(20,6) NOT NULL DEFAULT '0.000000',
   
+  `quantity_extra_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
+  
   `total_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
   `agent_total_price` decimal(20,6) NOT NULL DEFAULT '0.000000',
   
@@ -1245,6 +1249,7 @@ CREATE TABLE IF NOT EXISTS `gc_order_item` (
   `tax_name` varchar(16) NOT NULL,
   `tax_rate` decimal(10,3) NOT NULL DEFAULT '0.000',
   `discount_quantity_applied` tinyint(1) NOT NULL DEFAULT '0',
+  
   `option_data`  varchar(255) DEFAULT NULL, -- Json type
   PRIMARY KEY (`id_order_item`),
 
