@@ -264,3 +264,30 @@ body {
 .supplier-images a {margin: 0 10px 0 0;}
 
 
+h1.section {
+	position: relative;
+	padding: 0 0 .3em;
+	overflow: hidden;
+	font-size: 2.5em;
+	font-family: Arial,Verdana,Sans-Serif;
+	font-style: normal;
+	margin-top: 5px;
+}
+
+h2 {
+	display: block;
+	font-size: 1.5em;
+	-webkit-margin-before: 0.83em;
+	-webkit-margin-after: 0.83em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	font-weight: bold;
+}
+
+h1.section, h2.section, h3.section {
+	font-family: "Gill Sans MT","Gill Sans",Arial,Verdana,Sans-Serif;
+	color: black;
+	font-size: 1.5em;
+	margin: 0;
+	font-weight: bold;
+}

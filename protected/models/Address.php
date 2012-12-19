@@ -213,5 +213,9 @@ class Address extends CActiveRecord
 		}
 		return null;
 	}
+	
+	public function toString() {
+		return $this->address1 . ' ' . $this->address2 . ' ' . $this->city . ' ' . $this->state->iso_code . ' ' . $this->country->name . ' ' . $this->postcode;
+	}
 }
 

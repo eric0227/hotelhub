@@ -120,6 +120,12 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		foreach($items as $item) {
 			if($rowCount % TOT_ROW_NUM == 0) {
 	?>
+	
+<?php if(isset($supplier)) {?>
+	<div class="supplier-title">
+		<h1 class="section"><?php echo $supplier->title ?></h1>
+	</div>
+<?php } ?>
 	<div id="accommodation_list">
 		<div class="supplier-images">
 	<?php
@@ -285,3 +291,27 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		$('#next_navi').submit();
 	});
 </script>
+
+<?php if(isset($supplier)) {?>
+<br><br><br>
+<h2 class="section">Accommodation details</h2>
+<div id="supplier-address">
+	<div class="map">
+	</div>
+	<div class="address">
+	  	<?php echo $supplier->user->addressDefault->toString() ?>
+	</div> 
+	<div class="short_promotional_blurb">
+		<?php echo $supplier->short_promotional_blurb  ?>
+	</div>
+	<div class="property_details">
+		<?php echo $supplier->property_details  ?>
+	</div>
+	<div class="business_facilities">
+		<?php echo $supplier->business_facilities  ?>
+	</div>
+	
+	
+</div>
+
+<?php }?>
