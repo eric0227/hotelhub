@@ -139,10 +139,10 @@
 	<?php
 		}
 	?>
-			<a href="javascript:showBookInfo()" >TEST</a>
 			<div>
 				<span>Selected your dates by checking the boxes before page</span><br>
 				<div>All rates are TAX inclusive and per Room listed in Australian Dollars ($)</div>
+				<a href="javascript:showBookInfo()">Refresh Price</a>
 				<table>
 					<thead>
 						<th>Room Name</th>

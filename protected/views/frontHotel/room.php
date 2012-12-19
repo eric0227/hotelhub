@@ -47,7 +47,7 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 					<?php }?>
 				</span>
 				<div style="clear:both"></div>
-				<div> Quantity : <?php echo $room->product->quantity - $room->product->getSoldQuantity() ?> </div>
+			<!--  	<div> Quantity : <?php echo $room->product->quantity - $room->product->getSoldQuantity() ?> </div> -->
 <?php //} ?>					
 				<div class="btn-container">
 					<button class="btn btn-success" style="width:48%" onClick="location.href='<?php echo Yii::app()->request->baseUrl ?>/frontHotel/view?id_product=<?php echo $room->product->id_product?>'">BOOK</button>

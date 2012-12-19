@@ -95,11 +95,20 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		
 		//$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
 		
+		$search = array(
+			'id_supplier'=>$id_supplier,
+			'country'=>$country,
+			'destination'=>$destination,
+			'start_date'=>$start_year."-".$start_month."-".$start_day,
+			'last_date'=>$lastday,
+			'search_text'=>$_REQUEST['search_text']
+		);
+		
 		if(isset($_REQUEST['id_product'])) {
-			$items = Search::findAllHotelRoom($id_supplier, $country, $destination, $start_year."-".$start_month."-".$start_day, $lastday, $_REQUEST['id_product']);
-		} else {		
-			$items = Search::findAllHotelRoom($id_supplier, $country, $destination, $start_year."-".$start_month."-".$start_day, $lastday);
+			$search[id_product] = $_REQUEST['id_product'];
 		}
+		$items = Search::findAllHotelRoom($search);
+		
 		//print_r($items);
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/order", "post", array("id"=>"order", "name"=>"order"));
 
