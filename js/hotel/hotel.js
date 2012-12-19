@@ -4,10 +4,15 @@ $(function(){
 });
 
 var hotel = {
+	baseUrl:null,
 	id_country:null,
 	id_destination:null,
 	countryObject:null,
 	destinationObject:null,
+	
+	setBaseUrl: function(baseUrl) {
+		this.baseUrl = baseUrl;
+	},
 	
 	combine: function(country, destination){
 		this.countryObject = $(country);
@@ -25,16 +30,25 @@ var hotel = {
 		return this;
 	},
 	
-	displayDestinationList: function(id_country){
-		$.post(
-			'destination/ajaxList',
-			{'id_country':id_country},
-			function(data){
-				hotel.destinationObject.html(data);
-				hotel.id_destination = hotel.destinationObject.val();
-				if(id_destination == ''){ hotel.id_destination = 0; }
-			}
-		);
+	displayDestinationList: function(id_country, callback){
+		data = "<option value=''>Destination</option>";
+		hotel.destinationObject.html(data);
+		
+		if(id_country) {
+			$.post(
+				this.baseUrl + '/destination/ajaxList',
+				{'id_country':id_country},
+				function(data){
+					data = "<option value=''>Destination</option>" + data;
+					hotel.destinationObject.html(data);
+					hotel.id_destination = hotel.destinationObject.val();
+					if(hotel.id_destination == ''){ hotel.id_destination = 0; }
+					if(callback) {
+						callback();
+					}
+				}
+			);
+		}
 		
 		return this;
 	},
@@ -44,8 +58,8 @@ var hotel = {
 		
 		if(hotel.id_country == null || hotel.id_destination == null){ flag = false; }
 		if(!flag){
-			alert('Please choose country and destination you want to find.');
-			return false;
+			//alert('Please choose country and destination you want to find.');
+			//return false;
 		}
 		
 		return true;

@@ -3,29 +3,49 @@
 
 $this->pageTitle=Yii::app()->name;
 $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
+
 ?>
 <script type="text/javascript">
+
+	var country = "<?php echo $_REQUEST['country']?>";
+	var destination =  "<?php echo $_REQUEST['destination'] ?>";
+
+	hotel.setBaseUrl("<?php echo Yii::app()->request->baseUrl ?>");
 	$(function(){
 		hotel.combine('#country', '#destination');
+
+		if(country != "") {
+			hotel.displayDestinationList(country , function () {
+				if(destination) {
+					$('#destination option[value='+destination+']').attr('selected', true);
+				}
+			});
+		}
 	});
+
+
+	
 </script>
 <div>
-	<form action="<?php echo Yii::app()->request->baseUrl ?>/fronthotel/" method="POST" class="form-inline" id="advanced_search">
+	<form action="<?php echo Yii::app()->request->baseUrl ?>/fronthotel/" method="get" class="form-inline" id="advanced_search">
 	<input type="hidden" id="id_country" name="id_country" value="" />
 	<input type="hidden" id="id_destination" name="id_destination" value="" />
 	<div class="control-group">
 		<label class="control-label" for="keyword">Search Keyword</label>
-		<input type="text" id="keyword" name="keyword" class="span2"/>
+		<input type="text" id="keyword" name="search_text" value="<?php echo $_REQUEST['search_text']?>" class="span2"/>
 		<label class="control-label" for="country">Country</label>
 		<select id="country" name="country" class="span2">
+			<option value="">Country</option>
 			<?php foreach($countryList as $country): ?>
-			<option value="<?php echo $country->id_country ?>"><?php echo $country->name ?></option>
+			<option value="<?php echo $country->id_country ?>" <?php echo ($_REQUEST['country'] == $country->id_country) ? 'selected':'' ?> ><?php echo $country->name ?></option>
 			<?php endforeach; ?>
 		</select>
 		<label class="control-label" for="destination">Destination</label>
-		<select id="destination" name="destination" class="span2"></select>
-		<label class="control-label" for="date">Check-In</label>
-		<input type="text" id="date" name="date" class="span2 date_input"/>
+		<select id="destination" name="destination" class="span2">
+			<option value="">Destination</option>
+		</select>
+		<label class="control-label" for="include_date">Check-In</label>
+		<input type="text" id="include_date" name="include_date" value="<?php echo $_REQUEST['include_date']?>" class="span2 date_input"/>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<button class="btn btn-primary" type="submit" onclick="return hotel.submit();">Search</button>
 	</div>
@@ -89,20 +109,30 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		$prev_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION+$prev_alt_diff-1)." days"));
 		$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
 		
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "post", array("id"=>"prev_navi", "name"=>"prev_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days")));
+		echo CHtml::hiddenField("search_text", $_REQUEST['search_text']);
 		echo CHtml::endForm();
 
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "post", array("id"=>"next_navi", "name"=>"next_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "get", array("id"=>"next_navi", "name"=>"next_navi"));
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." +6 days")));
+		echo CHtml::hiddenField("search_text", $_REQUEST['search_text']);
 		echo CHtml::endForm();
 		
 		//$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
-		$items = Search::findAllHotel($country, $destination, $start_year."-".$start_month."-".$start_day, $lastday);
+		
+		$search = array(
+			'country'=>$country,
+			'destination'=>$destination,
+			'start_date'=>$start_year."-".$start_month."-".$start_day,
+			'last_date'=>$lastday,
+			'search_text'=>$_REQUEST['search_text']
+		);
+		$items = Search::findAllHotel($search);
 		//print_r($items);
 		$rowCount = 0;
 		foreach($items as $item) {

@@ -7,6 +7,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 <script type="text/javascript">
 
 	$(function(){
+		hotel.setBaseUrl("<?php echo Yii::app()->request->baseUrl ?>");
 		hotel.combine('#country', '#destination');
 		$('#country option[value=non-select]').attr('selected', true);
 	});
@@ -14,7 +15,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		
 </script>
 <div id="left_columns">
-	<form action="search" method="post" id="search_form">
+	<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" method="post" id="search_form">
 		<input type="text" name="search_text" id="search_text" placeholder="Enter Search keywrods here" />
 		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
 	</form>
@@ -24,7 +25,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 			<input type="hidden" id="id_destination" name="id_destination" value=""/>
 			<div class="row">
 				<select name="country" id="country" class="span4">
-					<option value="non-select">Country</option>
+					<option value="">Country</option>
 					<?php foreach($countryList as $country): ?>
 					<option value="<?php echo $country->id_country ?>"><?php echo $country->name ?></option>
 					<?php endforeach; ?>
@@ -32,7 +33,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 			</div>
 			<div class="row">
 				<select name="destination" id="destination" class="span4">
-					<option value="non-select">Destination</option>
+					<option value="">Destination</option>
 				</select>
 			</div>
 			<div class="row">
