@@ -27,7 +27,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 	
 </script>
 <div>
-	<form action="<?php echo Yii::app()->request->baseUrl ?>/fronthotel/" method="get" class="form-inline" id="advanced_search">
+	<form action="<?php echo Yii::app()->request->baseUrl ?>/frontHotel/" method="get" class="form-inline" id="advanced_search">
 	<input type="hidden" id="id_country" name="id_country" value="" />
 	<input type="hidden" id="id_destination" name="id_destination" value="" />
 	<div class="control-group">

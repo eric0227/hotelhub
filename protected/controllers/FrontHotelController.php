@@ -39,12 +39,14 @@ class FrontHotelController extends Controller
 		if($room == null){ throw new CHttpException('404'); }
 
 		$attributes = $room->getAllSttributes();
-		$images = ImageC::model()->getSelectedImages($room->id_product);
-
+		//$images = ImageC::model()->getSelectedImages($room->id_product);
+		
 		$this->render('room', array(
 			'room' => $room,
 			'attributes' => $attributes,
-			'images' => $images
+			'roomImages' => $room->product->productImages,
+			'coverImage' => $room->product->getCoverImage(),
+			'supplierImages' => $room->supplier->supplierImages,
 		));
 	}
 

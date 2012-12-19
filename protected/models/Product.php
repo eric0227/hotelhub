@@ -285,11 +285,15 @@ class Product extends CActiveRecord
 	}
 	
 	public function getCoverImage() {
-		foreach($this->productImages as $image) {
-			if($image->cover == 1) {
-				return $image;
+		if(isset($this->productImages)) {
+			foreach($this->productImages as $image) {
+				if($image->cover == 1) {
+					return $image;
+				}
 			}
+			return $this->productImages[0];
 		}
+		return null;
 	}
 	
 	public function getSoldQuantity() {
@@ -326,6 +330,8 @@ class Product extends CActiveRecord
 			return false;
 		}
 	}
+	
+	
 }
 
 

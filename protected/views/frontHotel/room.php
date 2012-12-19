@@ -3,9 +3,6 @@
 
 $this->pageTitle=Yii::app()->name;
 
-$image_ext = explode('.',$images[0]['image']);
-$image_ext = array_pop($image_ext);
-$main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$images[0]['id_image'].'_large.'.$image_ext;
 ?>
 <script type="text/javascript">
 	$(function(){
@@ -28,8 +25,8 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 			
 		</div>
 		<div class="left-columns">
-			<a href="<?php echo $main_image_path ?>" class="main-image">
-				<img src="<?php echo $main_image_path ?>" alt="" style="width:250px;height:250px" />
+			<a href="<?php echo isset($coverImage) ? $coverImage->getLink('large') : '' ?>" class="main-image">
+				<img src="<?php echo isset($coverImage) ? $coverImage->getLink('large') : '' ?>" alt="" style="width:250px;height:250px" />
 			</a>
 			<div class="order-form">
 				<span class="rating">
@@ -56,16 +53,14 @@ $main_image_path = Yii::app()->request->baseUrl.$images[0]['image_path'].'/'.$im
 			</div>
 		</div>
 		<div class="right-columns">
-			
+		
 			<div class="room-images">
-				<?php
-					foreach($images as $image):
-					$image_ext = explode('.',$image['image']);
-					$image_ext = array_pop($image_ext);
-					$main_image_path = Yii::app()->request->baseUrl.$image['image_path'].'/'.$image['id_image'].'_large.'.$image_ext;
-					$thumbnail_image_path = Yii::app()->request->baseUrl.$image['image_path'].'/'.$image['id_image'].'_small.'.$image_ext;
-				?>
-					<a href="<?php echo $main_image_path ?>"><img src="<?php echo $thumbnail_image_path ?>" alt="<?php echo $image['title'] ?>" style="width:75px;height:75px" /></a>
+				<?php foreach($supplierImages as $image):?>
+					<a href="<?php echo $image->getLink('large') ?>"><img src="<?php echo $image->getLink('medium') ?>" alt="<?php echo $image->image_title ?>" style="width:75px;height:75px" /></a>
+				<?php endforeach; ?>
+			
+				<?php foreach($roomImages as $image):?>
+					<a href="<?php echo $image->getLink('large') ?>"><img src="<?php echo $image->getLink('medium') ?>" alt="<?php echo $image->image_title ?>" style="width:75px;height:75px" /></a>
 				<?php endforeach; ?>
 			</div>
 			<div class="greeting">

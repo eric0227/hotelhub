@@ -84,6 +84,7 @@ class Room extends CActiveRecord
 			'beddings' => array(self::HAS_MANY, 'Bedding', 'id_room'),
 			'attributeValues' => array(self::HAS_MANY, 'ProductAttributeValue', 'id_product'),
 			'bedding_default' => array(self::BELONGS_TO, 'Bedding', 'id_bedding_default'),
+			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
 		);
 	}
 
