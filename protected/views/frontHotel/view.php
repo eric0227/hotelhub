@@ -3,6 +3,10 @@
 
 $this->pageTitle=Yii::app()->name;
 $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
+
+$urlSingleBed = Yii::app()->request->baseUrl . "/images/bed-s.gif";
+$urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
+
 ?>
 <script type="text/javascript">
 	$(function(){
@@ -35,6 +39,8 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 <div>
 
 	<?php
+		$roomList = array();
+		
 		const TOT_ROW_NUM = 100;
 		const DURATION = 20;	// show 14 days;
 		
@@ -106,13 +112,18 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		
 		if(isset($_REQUEST['id_product'])) {
 			$search[id_product] = $_REQUEST['id_product'];
+			$product = Product::model()->findByPk($_REQUEST['id_product']);
+			$supplier = $product->supplier;
+			
+			// add room
+			//$roomList[] = Room::model()->findByPk($_REQUEST['id_product']);
 		}
 		$items = Search::findAllHotelRoom($search);
 		
 		//print_r($items);
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/order", "post", array("id"=>"order", "name"=>"order"));
 
-		if(isset($id_supplier)) {
+		if(!isset($supplier) && isset($id_supplier)) {
 			$supplier = Supplier::model()->findByPk($id_supplier);
 		}
 		
@@ -135,7 +146,13 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 				echo "<a href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
 			}
 		} 
-	?>		
+		if(isset($product)) {
+			$images = $product->productImages;
+			foreach($images as $image) {
+				echo "<a href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
+			}
+		}
+	?>
 		</div>
 		<table class="table table-bordered">
 			<thead>
@@ -191,7 +208,10 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 				<tr>
 					<td class="hotel span4">
 					<?php
-						if($item->id_product != "") { 
+						if($item->id_product != "") {
+							
+							// add hotelList
+							$roomList[] = Room::model()->findByPk($item->id_product);
 					?>
 						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/room/<?php echo $item->id_product; ?>">
 							<?php echo $item->name; ?>
@@ -294,13 +314,17 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 
 <?php if(isset($supplier)) {?>
 <br><br><br>
+<div id="hotel_table">
 <h2 class="section">Accommodation details</h2>
-<div id="supplier-address">
-	<div class="map">
+	<div id="supplier_address">
+		<div class="map">
+			<img src="<?php echo Yii::app()->request->baseUrl?>/images/map-icon2.png" />
+		</div>
+		<div class="address">
+		  	<?php echo $supplier->user->addressDefault->toString() ?>
+		</div>
+		<div style="clear:both;"></div>
 	</div>
-	<div class="address">
-	  	<?php echo $supplier->user->addressDefault->toString() ?>
-	</div> 
 	<div class="short_promotional_blurb">
 		<?php echo $supplier->short_promotional_blurb  ?>
 	</div>
@@ -310,8 +334,70 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 	<div class="business_facilities">
 		<?php echo $supplier->business_facilities  ?>
 	</div>
-	
-	
+
+<?php foreach($roomList as $room) { 
+		$product = $room->product;		
+?>
+	<div class="room_table">
+		<div class="room_main">
+			<div class="room_title"><h1> <?php echo $product->name ?></h1> </div>
+			<div class="room_description_short"> <?php echo $product->description_short ?>  </div>
+			<div class="room_description"> <?php echo $product->description ?>  </div>
+			<div class="room_price_info">
+				Rates are for <?php echo $room->guests_included_price; ?> people.
+				Extra adults $<?php echo number_format($room->adults_extra, 2); ?>.
+				Extra children $<?php echo number_format($room->children_extra, 2); ?>.
+				The room caters for a maximum of <?php echo $room->adults_maxnum; ?> adult(s),
+				and a maximum of <?php echo $room->children_maxnum; ?> child(ren) but cannot exceed <?php echo $room->guests_tot_room_cap; ?> guests in total.
+			</div>
+			<div class="room_bedding_info">
+				<?php
+					$i = 1;
+					foreach($room->beddings as $bed) {
+						echo "<div class='bedding_item'>";
+						//echo "<label>";
+						//echo CHtml::radioButton("options[$room->id_product]", ($i==1 ? true : false), array("value"=>$bed->id_bedding, 'onchange'=>'refreshBookInfo()'))."Option ".$i++;
+						echo "<br>";
+						for($j = 0; $j < $bed->single_num; $j++) {
+							echo CHtml::image($urlSingleBed);
+						}
+						for($j = 0; $j < $bed->double_num; $j++) {
+							echo CHtml::image($urlDoubleBed);
+						}
+						echo "<br>".($bed->double_num != 0 ? $bed->double_num." Double(s)" : "");
+						echo " ".($bed->single_num != 0 ? $bed->single_num." Single(s)" : "");
+						//echo "</label>";
+						echo "</div>";
+					}
+				?>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="room_booking">
+				
+			</div>
+		</div>
+		<div class="room_option">
+			<div class="facilities">
+				<h1>Facilities</h1>
+				<ul>
+				<?php 
+					foreach($room->getAllSttributes() as $info) {
+						foreach($info['attributeItem'] as $item){
+							if(in_array($item['id_attribute_item'], $info['selectedAttributeItemIds'])){
+								echo '<li>';
+								echo $item['item'];
+								echo '</li>';
+							}
+						}
+					}
+				?>
+				</ul>
+				<div style="clear:both;"></div>
+			</div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+<?php } ?>	
 </div>
 
 <?php }?>

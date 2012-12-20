@@ -264,6 +264,8 @@ body {
 .supplier-images a {margin: 0 10px 0 0;}
 
 
+
+
 h1.section {
 	position: relative;
 	padding: 0 0 .3em;
@@ -291,3 +293,21 @@ h1.section, h2.section, h3.section {
 	margin: 0;
 	font-weight: bold;
 }
+
+#hotel_table {font-size:13px;}
+
+#supplier_address .map {float:left;margin-right:10px;}
+#supplier_address .map img {width: 70px;}
+
+#supplier_address .address {font-size: 15px;}
+
+#hotel_table .room_title {font-size: 14px; font-weight:bold;}
+
+
+#hotel_table .room_table {padding:20px 0;}
+#hotel_table .room_main {float: left; width: 650px;}
+#hotel_table .room_option {float:right; width: 350px;}
+
+#hotel_table .bedding_item {float:left; margin-right:10px; width: 150px; text-align:center; height: 100px; background:#D0E3F1;}
+
+#hotel_table .facilities ul li {float:left; font-size:1em; display:inline;color:#567ca7;margin:0;padding:5px 0 5px 20px;width:130px;background:url('../images/front/check.png') no-repeat left 7px}
