@@ -206,7 +206,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 						}
 					?>
 					</td>
-					<td class="rate">AUD</td>
+					<td class="book"><?php echo CHtml::link("Book", array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); ?></td>
 					<?php
 						for($i = 1; $i <= DURATION; $i++) {
 							$date = date('D', mktime(0, 0, 0, $month, $day, $year));

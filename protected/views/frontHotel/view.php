@@ -224,7 +224,14 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 						}
 					?>
 					</td>
-					<td class="rate">AUD</td>
+				<!-- 	
+					<td class="rate">
+						<div>AUD</div>
+					</td>
+				-->	
+					<td>
+						<div><?php echo CHtml::textField("booking[$item->id_product]['cnt']", '1', array('class'=>'span1'))?></div>
+					</td>
 					<?php
 						for($i = 1; $i <= DURATION; $i++) {
 							$date = date('D', mktime(0, 0, 0, $month, $day, $year));
@@ -380,7 +387,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 			<div class="facilities">
 				<h1>Facilities</h1>
 				<ul>
-				<?php 
+				<?php
 					foreach($room->getAllSttributes() as $info) {
 						foreach($info['attributeItem'] as $item){
 							if(in_array($item['id_attribute_item'], $info['selectedAttributeItemIds'])){
