@@ -1,6 +1,6 @@
 <?php
 
-class DayTourController extends Controller
+class FrontAttractionController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -44,7 +44,7 @@ class DayTourController extends Controller
 	 */
 	public function actionIndex()
 	{
-		Yii::app()->session->add('service', Service::DAY_TOUR);
+		Yii::app()->session->add('service', Service::TICKET);
 		$this->render('index');
 	}
 }

@@ -64,7 +64,23 @@ class FrontHotelController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$this->render('index');
+		Yii::app()->session->add('service', Service::HOTEL);
+		
+		// special hotel..
+		$spProvider=new CActiveDataProvider('SpecialProduct');
+		$spProvider->criteria->condition = 'id_service = '.Service::HOTEL;
+		$spProvider->criteria->order = 'position ASC';
+		
+		$specialModels = $spProvider->getData();
+		
+		$this->render('index'
+			, array('specialModels'=>$specialModels)
+		);
+	}
+	
+	public function actionMain()
+	{
+		$this->render('main');
 	}
 
 	public function actionOrder()

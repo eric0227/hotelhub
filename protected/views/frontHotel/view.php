@@ -223,15 +223,15 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 							echo $item->name;
 						}
 					?>
-					</td>
-				<!-- 	
+					</td>	
 					<td class="rate">
 						<div>AUD</div>
 					</td>
-				-->	
+				<!-- 
 					<td>
 						<div><?php echo CHtml::textField("booking[$item->id_product]['cnt']", '1', array('class'=>'span1'))?></div>
 					</td>
+				-->	
 					<?php
 						for($i = 1; $i <= DURATION; $i++) {
 							$date = date('D', mktime(0, 0, 0, $month, $day, $year));

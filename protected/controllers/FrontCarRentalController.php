@@ -1,6 +1,6 @@
 <?php
 
-class HotDealController extends Controller
+class FrontCarRentalController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -44,7 +44,7 @@ class HotDealController extends Controller
 	 */
 	public function actionIndex()
 	{
-		Yii::app()->session->add('service', Service::HOT_DEAL);
+		Yii::app()->session->add('service', Service::CAR);
 		$this->render('index');
 	}
 }

@@ -1,279 +1,84 @@
 <?php
 /* @var $this SiteController */
-
 $this->pageTitle=Yii::app()->name;
+//$countryList = Country::model()->findAll(array('order' => 'name asc'));
 $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
-
 ?>
 <script type="text/javascript">
 
-	var country = "<?php echo $_REQUEST['country']?>";
-	var destination =  "<?php echo $_REQUEST['destination'] ?>";
-
-	hotel.setBaseUrl("<?php echo Yii::app()->request->baseUrl ?>");
 	$(function(){
+		hotel.setBaseUrl("<?php echo Yii::app()->request->baseUrl ?>");
 		hotel.combine('#country', '#destination');
-
-		if(country != "") {
-			hotel.displayDestinationList(country , function () {
-				if(destination) {
-					$('#destination option[value='+destination+']').attr('selected', true);
-				}
-			});
-		}
+		$('#country option[value=non-select]').attr('selected', true);
 	});
 
-
-	
+		
 </script>
-<div>
-	<form action="<?php echo Yii::app()->request->baseUrl ?>/frontHotel/" method="get" class="form-inline" id="advanced_search">
-	<input type="hidden" id="id_country" name="id_country" value="" />
-	<input type="hidden" id="id_destination" name="id_destination" value="" />
-	<div class="control-group">
-		<label class="control-label" for="keyword">Search Keyword</label>
-		<input type="text" id="keyword" name="search_text" value="<?php echo $_REQUEST['search_text']?>" class="span2"/>
-		<label class="control-label" for="country">Country</label>
-		<select id="country" name="country" class="span2">
-			<option value="">Country</option>
-			<?php foreach($countryList as $country): ?>
-			<option value="<?php echo $country->id_country ?>" <?php echo ($_REQUEST['country'] == $country->id_country) ? 'selected':'' ?> ><?php echo $country->name ?></option>
-			<?php endforeach; ?>
-		</select>
-		<label class="control-label" for="destination">Destination</label>
-		<select id="destination" name="destination" class="span2">
-			<option value="">Destination</option>
-		</select>
-		<label class="control-label" for="include_date">Check-In</label>
-		<input type="text" id="include_date" name="include_date" value="<?php echo $_REQUEST['include_date']?>" class="span2 date_input"/>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<button class="btn btn-primary" type="submit" onclick="return hotel.submit();">Search</button>
-	</div>
-	
+<div id="left_columns">
+	<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" method="post" id="search_form">
+		<input type="text" name="search_text" id="search_text" placeholder="Enter Search keywrods here" />
+		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
 	</form>
-	
-	<?php
-		const TOT_ROW_NUM = 12;
-		const DURATION = 20;	// show 14 days;
-		
-		$country = isset($_REQUEST['country']) ? $_REQUEST['country'] : 0;
-		$destination = isset($_REQUEST['destination']) ? $_REQUEST['destination'] : 0;
-		$start_date = isset($_REQUEST['start_date']) ? $_REQUEST['start_date'] : date("m/d/Y");
-		$include_date = isset($_REQUEST['include_date']) ? $_REQUEST['include_date'] : $start_date;
-
-		//echo "include_date:".$include_date."<br>";
-		$recvDate = explode("/", $include_date);
-		$include_date_month = $recvDate[0];
-		$include_date_day = $recvDate[1];
-		$include_date_year = $recvDate[2];
-		
-		
-		$date1 = $start_date;
-		$date2 = $include_date;
-		
-		$ts1 = strtotime($date1);
-		$ts2 = strtotime($date2);
-		
-		$seconds_diff = $ts2 - $ts1;
-		
-		//echo floor($seconds_diff/3600/24);
-		
-		if(floor($seconds_diff/3600/24) > 5) {
-			$start_date = date("m/d/Y",strtotime($include_date_month."/".$include_date_day."/".$include_date_year." -4 days"));
-		}
-		
-		$recvStartDate = explode("/", $start_date);
-		$start_month = $recvStartDate[0];
-		$start_day = $recvStartDate[1];
-		$start_year = $recvStartDate[2];
-		
-		$lastday = date("Y-m-d",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1)." days"));
-		//echo "lastday:".$lastday."<br>";
-
-		$date1 = date("m/d/Y");
-		$date2 = date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." -6 days"));
-		
-		$ts1 = strtotime($date1);
-		$ts2 = strtotime($date2);
-		
-		$seconds_diff = $ts2 - $ts1;
-		
-		$prev_alt_diff = floor($seconds_diff/3600/24);
-		//echo "prev_alt_diff:".$prev_alt_diff;
-		if(floor($seconds_diff/3600/24) <= 0) {
-			$prev_alt_diff = -6 - $prev_alt_diff;
-		} else {
-			$prev_alt_diff = -6;
-		}
-		
-		$prev_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION+$prev_alt_diff-1)." days"));
-		$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
-		
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
-		echo CHtml::hiddenField("country", $country);
-		echo CHtml::hiddenField("destination", $destination);
-		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days")));
-		echo CHtml::hiddenField("search_text", $_REQUEST['search_text']);
-		echo CHtml::endForm();
-
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "get", array("id"=>"next_navi", "name"=>"next_navi"));
-		echo CHtml::hiddenField("country", $country);
-		echo CHtml::hiddenField("destination", $destination);
-		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." +6 days")));
-		echo CHtml::hiddenField("search_text", $_REQUEST['search_text']);
-		echo CHtml::endForm();
-		
-		//$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
-		
-		$search = array(
-			'country'=>$country,
-			'destination'=>$destination,
-			'start_date'=>$start_year."-".$start_month."-".$start_day,
-			'last_date'=>$lastday,
-			'search_text'=>$_REQUEST['search_text']
-		);
-		$items = Search::findAllHotel($search);
-		//print_r($items);
-		$rowCount = 0;
-		foreach($items as $item) {
-			if($rowCount % TOT_ROW_NUM == 0) {
-	?>
-	<div id="accommodation_list">
-		<table class="table table-bordered">
-			<thead>
-				<tr class="date">
-					<td colspan="2">&nbsp;</td>
-					<?php
-						$month = $start_month;
-						$day = $start_day;
-						$year = $start_year;
-	
-						$date = "";
-						
-						for($i = 1; $i <= DURATION; $i++) {
-							$date = date('D', mktime(0, 0, 0, $month, $day, $year));
-							if($date == "Sat" || $date == "Sun") {
-								if($i == 1) {
-									echo "<th class=\"weekend\"><a id=\"a_prev\" class=\"prev\" title=\"".$prev_alt."\">Prev</a>".$date."<b>".($day)."</b><span>".date("M", mktime(0, 0, 0, $month, $day, $year))."</span></th>";
-								} else if($i == DURATION) {
-									echo "<th class=\"weekend\">".$date."<b>".($day)."</b><span>".date("M", mktime(0, 0, 0, $month, $day, $year))."</span><a id=\"a_next\" class=\"next\" title=\"".$next_alt."\">Next</a></th>";
-								} else {
-									echo "<th class=\"weekend\">".$date."<b>".($day)."</b><span>".date("M", mktime(0, 0, 0, $month, $day, $year))."</span></th>";
-								}
-							} else {
-								if($i == 1) {
-									echo "<th><a id=\"a_prev\" class=\"prev\" title=\"".$prev_alt."\">Prev</a>".$date."<b>".($day)."</b><span>".date("M", mktime(0, 0, 0, $month, $day, $year))."</span></th>";
-								} else if($i == DURATION) {
-									echo "<th>".$date."<b>".($day)."</b><span>".date("M", mktime(0, 0, 0, $month, $day, $year))."</span><a id=\"a_next\" class=\"next\" title=\"".$next_alt."\">Next</a></th>";
-								} else {
-									echo "<th>".$date."<b>".($day)."</b><span>".date("M", mktime(0, 0, 0, $month, $day, $year))."</span></th>";
-								}
-							}
-							
-							$nextday = date("d",strtotime($year."-".$month."-".$day." +1 days"));
-							$nextmonth = date("m",strtotime($year."-".$month."-".$day." +1 days"));
-							$nextyear = date("Y",strtotime($year."-".$month."-".$day." +1 days"));
-							$day = $nextday;
-							$month = $nextmonth;
-							$year = $nextyear;
-						}
-					?>
-				</tr>
-			</thead>
-			<tbody>
-			<?php
-			}
-			?>
-			<?php
-				//var_dump($items);
-				$month = $start_month;
-				$day = $start_day;
-				$year = $start_year;
-			?>
-				<tr>
-					<td class="hotel span4">
-					<?php
-						if($item->id_supplier != "") {
-
-							//echo CHtml::link($item->title, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); 
-
-							//$start_date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $month, $day, $year));
-							echo CHtml::link($item->title, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
-						} else {
-					?>
-					<?php 
-							echo $item->title;
-						}
-					?>
-					</td>
-					<td class="book"><?php echo CHtml::link("Book", array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination)); ?></td>
-					<?php
-						for($i = 1; $i <= DURATION; $i++) {
-							$date = date('D', mktime(0, 0, 0, $month, $day, $year));
-							$curr_date = date('Y-m-d 00:00:00', mktime(0, 0, 0, $month, $day, $year));
-							
-							if($date == "Sat" || $date == "Sun") {
-								echo "<td class=\"weekend\">";
-								if($item->date_info[$curr_date]->price != "") {
-									$price = number_format($item->date_info[$curr_date]->price, 0);
-									if(Yii::app()->user->isAgent()) {
-										$agent_price = number_format($item->date_info[$curr_date]->agent_price, 0);
-										$price = $price . "<br><span class='agent-price'>(".$agent_price.")</span>";
-									}
-									
-									echo "<span class='price' >";
-									echo CHtml::link($price, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
-									echo "</span>";
-								}
-								echo "</td>";
-							} else {
-								echo "<td class=\"weekday\">";
-								if($item->date_info[$curr_date]->price != "") {
-									$price = number_format($item->date_info[$curr_date]->price, 0);
-									if(Yii::app()->user->isAgent()) {
-										$agent_price = number_format($item->date_info[$curr_date]->agent_price, 0);
-										$price = $price . "<br><span class='agent-price'>(".$agent_price.")</span>";
-									}
-									echo "<span class='price' >";
-									echo CHtml::link($price, array("view", "id_supplier"=>$item->id_supplier, "start_date"=>$start_date, "country"=>$country, "destination"=>$destination));
-									echo "</span>";
-								}
-								echo "</td>";
-							}
-
-							$nextday = date("d",strtotime($year."-".$month."-".$day." +1 days"));
-							$nextmonth = date("m",strtotime($year."-".$month."-".$day." +1 days"));
-							$nextyear = date("Y",strtotime($year."-".$month."-".$day." +1 days"));
-							$day = $nextday;
-							$month = $nextmonth;
-							$year = $nextyear;
-						} 
-					?>
-				</tr>
-		<?php
-			if($rowCount == TOT_ROW_NUM-1) {
-				$rowCount = 0;
-		?>
-			</tbody>
-		</table>
+	<div id="find_accommodation_index">
+		<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" method="get" name="find_accommodation_form" id="find_accommodation_form" class="form">
+			<input type="hidden" id="id_country" name="id_country" value=""/>
+			<input type="hidden" id="id_destination" name="id_destination" value=""/>
+			<div class="row">
+				<select name="country" id="country" class="span4">
+					<option value="">Country</option>
+					<?php foreach($countryList as $country): ?>
+					<option value="<?php echo $country->id_country ?>"><?php echo $country->name ?></option>
+					<?php endforeach; ?>
+				</select>
+			</div>
+			<div class="row">
+				<select name="destination" id="destination" class="span4">
+					<option value="">Destination</option>
+				</select>
+			</div>
+			<div class="row">
+				<input type="text" name="include_date" id="include_date" placeholder="Cehck-In" class="date_input span4" />
+			</div>
+			<div class="row center">
+				<input type="submit" value="Search Accommodation" onclick="return hotel.submit();" />
+			</div>
+		</form>
 	</div>
-	<?php
-			} else {
-				$rowCount++;
-			}
-		}
-		
-		if($rowCount != TOT_ROW_NUM-1) {
-			echo "</tbody></table></div>";
-		}
-	?>
 </div>
-<script type="text/javascript">
-	$('#a_prev').on('click', function(){
-		$('#prev_navi').submit();
-	});
-
-	$('#a_next').on('click', function(){
-		$('#next_navi').submit();
-	});
-</script>
+<div id="right_columns">
+	<div id="special_products">
+		<h1><span>DOY's</span> Special</h1>
+		<div class="special_product_list">
+<?php 	
+		foreach($specialModels as $model) {
+			$coverImg = $model->product->getCoverImage();
+			if(isset($coverImg)) {
+				$image = $coverImg->getLink('medium');
+			}
+			
+?>		
+		<div class="item" onClick="location='<?php echo Yii::app()->request->baseUrl.'/frontHotel/room/'. $model->product->id_product ?>'">
+				<span class="decoration"></span>
+				<img src="<?php echo  $image ?>" class="pull-left" />
+				<div class="detail">
+					<header>
+						<h4 class="name"><?php echo $model->product->name ?> </h4>
+						<h6 class="location">Location | <?php echo $model->product->supplier->user->addressDefault->destination->name ?> </h6>
+						<div class="displayed_right pull-right">
+							<span class="reputation">
+						<?php for($i = 0; $i < $model->product->grade_level; $i++) { ?>		
+								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
+						<?php } ?>
+							</span>
+							<span class="price"><?php echo number_format($model->product->price, 2) ?></span>
+						</div>
+					</header>
+					<p>
+						<?php echo $model->product->description_short ?>
+					</p>
+				</div>
+			</div>
+<?php 	}?>
+		</div>
+	</div>
+</div>
