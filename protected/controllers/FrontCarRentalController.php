@@ -36,8 +36,24 @@ class FrontCarRentalController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view');
+		$car = Car::model()->findByPk($id);
+		
+		if($car == null){
+			throw new CHttpException('404');
+		}
+		
+		$attributes = $car->getAllSttributes();
+		//$images = ImageC::model()->getSelectedImages($room->id_product);
+		
+		$this->render('view', array(
+					'car' => $car,
+					'attributes' => $attributes,
+					'roomImages' => $car->product->productImages,
+					'coverImage' => $car->product->getCoverImage(),
+					'supplierImages' => $car->supplier->supplierImages,
+		));
 	}
+	
 
 	/**
 	 * Lists all models.
@@ -45,6 +61,29 @@ class FrontCarRentalController extends Controller
 	public function actionIndex()
 	{
 		Yii::app()->session->add('service', Service::CAR);
-		$this->render('index');
+		
+		// special car..
+		$spProvider=new CActiveDataProvider('SpecialSupplier');
+		$spProvider->criteria->condition = 'id_service = '.Service::CAR;
+		$spProvider->criteria->order = 'position ASC';
+		
+		$specialModels = $spProvider->getData();
+		
+		$this->render('index'
+		, array('specialModels'=>$specialModels)
+		);
+	}
+	
+	public function actionSuppliers()
+	{
+		$this->render('suppliers');
+	}
+	
+	public function actionOrder()
+	{
+		$this->render('order');
+	}
+	public function actionProducts(){
+		$this->render('products');
 	}
 }

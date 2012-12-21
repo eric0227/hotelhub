@@ -33,30 +33,32 @@ class FrontHotelController extends Controller
 	/**
 	 * Displays selected room details
 	 */
-	public function actionRoom($id){
-		$room = Room::model()->findByPk($id);
-
-		if($room == null){ throw new CHttpException('404'); }
-
-		$attributes = $room->getAllSttributes();
-		//$images = ImageC::model()->getSelectedImages($room->id_product);
-		
-		$this->render('room', array(
-			'room' => $room,
-			'attributes' => $attributes,
-			'roomImages' => $room->product->productImages,
-			'coverImage' => $room->product->getCoverImage(),
-			'supplierImages' => $room->supplier->supplierImages,
-		));
+	public function actionProducts(){
+		$this->render('products');
 	}
 
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
 	 */
-	public function actionView()
+	public function actionView($id)
 	{
-		$this->render('view');
+		$room = Room::model()->findByPk($id);
+		
+		if($room == null){
+			throw new CHttpException('404');
+		}
+		
+		$attributes = $room->getAllSttributes();
+		//$images = ImageC::model()->getSelectedImages($room->id_product);
+		
+		$this->render('view', array(
+					'room' => $room,
+					'attributes' => $attributes,
+					'roomImages' => $room->product->productImages,
+					'coverImage' => $room->product->getCoverImage(),
+					'supplierImages' => $room->supplier->supplierImages,
+		));
 	}
 
 	/**
@@ -66,8 +68,8 @@ class FrontHotelController extends Controller
 	{
 		Yii::app()->session->add('service', Service::HOTEL);
 		
-		// special hotel..
-		$spProvider=new CActiveDataProvider('SpecialProduct');
+		// special Supplier..
+		$spProvider=new CActiveDataProvider('SpecialSupplier');
 		$spProvider->criteria->condition = 'id_service = '.Service::HOTEL;
 		$spProvider->criteria->order = 'position ASC';
 		
@@ -78,9 +80,9 @@ class FrontHotelController extends Controller
 		);
 	}
 	
-	public function actionMain()
+	public function actionSuppliers()
 	{
-		$this->render('main');
+		$this->render('suppliers');
 	}
 
 	public function actionOrder()

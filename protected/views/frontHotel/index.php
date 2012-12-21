@@ -15,12 +15,12 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		
 </script>
 <div id="left_columns">
-	<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" method="post" id="search_form">
+	<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/suppliers" method="post" id="search_form">
 		<input type="text" name="search_text" id="search_text" placeholder="Enter Search keywrods here" />
 		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
 	</form>
 	<div id="find_accommodation_index">
-		<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" method="get" name="find_accommodation_form" id="find_accommodation_form" class="form">
+		<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/suppliers" method="get" name="find_accommodation_form" id="find_accommodation_form" class="form">
 			<input type="hidden" id="id_country" name="id_country" value=""/>
 			<input type="hidden" id="id_destination" name="id_destination" value=""/>
 			<div class="row">
@@ -51,30 +51,30 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		<div class="special_product_list">
 <?php 	
 		foreach($specialModels as $model) {
-			$coverImg = $model->product->getCoverImage();
+			$coverImg = $model->supplier->getCoverImage();
 			if(isset($coverImg)) {
 				$image = $coverImg->getLink('medium');
 			}
 			
 ?>		
-		<div class="item" onClick="location='<?php echo Yii::app()->request->baseUrl.'/frontHotel/room/'. $model->product->id_product ?>'">
+		<div class="item" onClick="location='<?php echo Yii::app()->request->baseUrl.'/frontHotel/products?id_supplier='. $model->supplier->id_supplier ?>'">
 				<span class="decoration"></span>
 				<img src="<?php echo  $image ?>" class="pull-left" />
 				<div class="detail">
 					<header>
-						<h4 class="name"><?php echo $model->product->name ?> </h4>
-						<h6 class="location">Location | <?php echo $model->product->supplier->user->addressDefault->destination->name ?> </h6>
+						<h4 class="name"><?php echo $model->supplier->title ?> </h4>
+						<h6 class="location">Location | <?php echo $model->supplier->user->addressDefault->destination->name ?> </h6>
 						<div class="displayed_right pull-right">
 							<span class="reputation">
-						<?php for($i = 0; $i < $model->product->grade_level; $i++) { ?>		
+						<?php for($i = 0; $i < $model->supplier->grade_level; $i++) { ?>		
 								<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/star.png" />
 						<?php } ?>
 							</span>
-							<span class="price"><?php echo number_format($model->product->price, 2) ?></span>
+							<span class="price"><?php //echo number_format($model->product->price, 2) ?></span>
 						</div>
 					</header>
 					<p>
-						<?php echo $model->product->description_short ?>
+						<?php //echo $model->suppler->description_short ?>
 					</p>
 				</div>
 			</div>

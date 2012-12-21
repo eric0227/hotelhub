@@ -88,7 +88,7 @@ class Search {
 		if(!empty($search['last_date'])) $where[] = "pro_date.on_date <= '{$search['last_date']}'";
 		if(!empty($search['search_text'])) $where[] = "sup_lang.title like '%{$search['search_text']}%'";
 		
-		$where[] = "sup.id_service = " . Service::HOTEL;
+		$where[] = "sup.id_service = " . Service::getCurrentService();
 		$where[] = "pro.active = 1";
 		$where[] = "pro_date.active = 1";
 		$where[] = "pro_lang.id_lang = ".Lang::getCurrentLang();
@@ -196,7 +196,7 @@ class Search {
 		if(!empty($search['id_product'])) $where[] = "pro.id_product = {$search['id_product']}";
 		
 		
-		$where[] = "sup.id_service = " . Service::HOTEL;
+		$where[] = "sup.id_service = " . Service::getCurrentService();
 		$where[] = "pro.active = 1";
 		$where[] = "pro_date.active = 1";
 		$where[] = "pro_lang.id_lang = ".Lang::getCurrentLang();

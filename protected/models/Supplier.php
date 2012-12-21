@@ -426,10 +426,14 @@ class Supplier extends CActiveRecord
 	}
 	
 	public function getCoverImage() {
-		foreach($this->supplierImages as $image) {
-			if($image->cover == 1) {
-				return $image;
+		if(isset($this->supplierImages)) {
+			foreach($this->supplierImages as $image) {
+				if($image->cover == 1) {
+					return $image;
+				}
 			}
+			return $this->supplierImages[0];
 		}
+		return null;
 	}
 }
