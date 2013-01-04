@@ -36,7 +36,7 @@ class SupplierController extends Controller
 				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('view','update','roomdates_editor', 'updateAddress'),
+				'actions'=>array('view','update','dates_editor', 'updateAddress'),
 				'expression' => "Yii::app()->user->getLevel() >= 5 || Yii::app()->user->id == $id_supplier",
 				//'expression' => 'Yii::app()->user->id == $params["Supplier"]->id_supplier',
 			),
@@ -155,6 +155,9 @@ class SupplierController extends Controller
 				
 			if($defaultAddress->save()) {
 				// success message..
+				
+				$user->id_address_default = $defaultAddress->id_address;
+				$user->save();
 			}
 		}
 	
@@ -304,11 +307,11 @@ class SupplierController extends Controller
 		}
 	}
 
-	public function actionRoomdates_editor($id)
+	public function actionDates_editor($id)
 	{
 		$productdates = ProductDate::model()->findAllByAttributes(array("id_product" => $id), array('order'=>'on_date'));
 		
-		$this->render('roomdates_editor',array(
+		$this->render('dates_editor',array(
 			'productdates'=>$productdates
 		));
 	}

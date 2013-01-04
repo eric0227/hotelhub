@@ -49,7 +49,7 @@ class FrontHotelController extends Controller
 			throw new CHttpException('404');
 		}
 		
-		$attributes = $room->getAllSttributes();
+		$attributes = $room->getAllAttributes();
 		//$images = ImageC::model()->getSelectedImages($room->id_product);
 		
 		$this->render('view', array(

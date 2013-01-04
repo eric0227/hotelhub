@@ -76,7 +76,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 		$prev_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION+$prev_alt_diff-1)." days"));
 		$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
 		
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/products", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontCarRental/products", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
 		echo CHtml::hiddenField("id_supplier", $id_supplier);
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
@@ -87,7 +87,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 		}
 		echo CHtml::endForm();
 		
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/products", "get", array("id"=>"next_navi", "name"=>"next_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontCarRental/products", "get", array("id"=>"next_navi", "name"=>"next_navi"));
 		echo CHtml::hiddenField("id_supplier", $id_supplier);
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
@@ -121,7 +121,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 		$items = Search::findAllHotelRoom($search);
 		
 		//print_r($items);
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/order", "post", array("id"=>"order", "name"=>"order"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontCarRental/order", "post", array("id"=>"order", "name"=>"order"));
 
 		if(!isset($supplier) && isset($id_supplier)) {
 			$supplier = Supplier::model()->findByPk($id_supplier);
@@ -213,7 +213,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 							// add hotelList
 							$roomList[] = Room::model()->findByPk($item->id_product);
 					?>
-						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel/view/<?php echo $item->id_product; ?>">
+						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontCarRental/view/<?php echo $item->id_product; ?>">
 							<?php echo $item->name; ?>
 						</a>
 					<?php
@@ -322,7 +322,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 <?php if(isset($supplier)) {?>
 <br><br><br>
 <div id="hotel_table">
-<h2 class="section">Accommodation details</h2>
+<h2 class="section">Car Retal details</h2>
 	<div id="supplier_address">
 		<div class="map">
 			<img src="<?php echo Yii::app()->request->baseUrl?>/images/map-icon2.png" />
@@ -350,42 +350,13 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 			<div class="room_title"><h1> <?php echo $product->name ?></h1> </div>
 			<div class="room_description_short"> <?php echo $product->description_short ?>  </div>
 			<div class="room_description"> <?php echo $product->description ?>  </div>
-			<div class="room_price_info">
-				Rates are for <?php echo $room->guests_included_price; ?> people.
-				Extra adults $<?php echo number_format($room->adults_extra, 2); ?>.
-				Extra children $<?php echo number_format($room->children_extra, 2); ?>.
-				The room caters for a maximum of <?php echo $room->adults_maxnum; ?> adult(s),
-				and a maximum of <?php echo $room->children_maxnum; ?> child(ren) but cannot exceed <?php echo $room->guests_tot_room_cap; ?> guests in total.
-			</div>
-			<div class="room_bedding_info">
-				<?php
-					$i = 1;
-					foreach($room->beddings as $bed) {
-						echo "<div class='bedding_item'>";
-						//echo "<label>";
-						//echo CHtml::radioButton("options[$room->id_product]", ($i==1 ? true : false), array("value"=>$bed->id_bedding, 'onchange'=>'refreshBookInfo()'))."Option ".$i++;
-						echo "<br>";
-						for($j = 0; $j < $bed->single_num; $j++) {
-							echo CHtml::image($urlSingleBed);
-						}
-						for($j = 0; $j < $bed->double_num; $j++) {
-							echo CHtml::image($urlDoubleBed);
-						}
-						echo "<br>".($bed->double_num != 0 ? $bed->double_num." Double(s)" : "");
-						echo " ".($bed->single_num != 0 ? $bed->single_num." Single(s)" : "");
-						//echo "</label>";
-						echo "</div>";
-					}
-				?>
-				<div style="clear:both;"></div>
-			</div>
 			<div class="room_booking">
 				
 			</div>
 		</div>
 		<div class="room_option">
 			<div class="facilities">
-				<h1>Facilities</h1>
+				<h1>Options</h1>
 				<ul>
 				<?php
 					foreach($room->getAllAttributes() as $info) {

@@ -48,7 +48,7 @@ $this->menu=array(
 
 <div>
 	<?php			
-		$attributeInfos = $model->getAllSttributes();
+		$attributeInfos = $model->getAllAttributes();
 		foreach($attributeInfos as $info) {
 			echo '<div>';
 			echo '<h4 class="custom">' . $info['attribute']->name . '</h4>';

@@ -42,13 +42,13 @@ class FrontCarRentalController extends Controller
 			throw new CHttpException('404');
 		}
 		
-		$attributes = $car->getAllSttributes();
+		$attributes = $car->getAllAttributes();
 		//$images = ImageC::model()->getSelectedImages($room->id_product);
-		
+	
 		$this->render('view', array(
 					'car' => $car,
 					'attributes' => $attributes,
-					'roomImages' => $car->product->productImages,
+					'carImages' => $car->product->productImages,
 					'coverImage' => $car->product->getCoverImage(),
 					'supplierImages' => $car->supplier->supplierImages,
 		));

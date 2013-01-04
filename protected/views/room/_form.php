@@ -131,7 +131,7 @@
 
 		<div>
 		<?php 
-			$attributeInfos = $model->getAllSttributes();
+			$attributeInfos = $model->getAllAttributes();
 			foreach($attributeInfos as $info) {
 				echo '<div>';
 				echo '<fieldset><legend>' . $info['attribute']->name . '</legend>';

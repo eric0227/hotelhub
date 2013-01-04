@@ -180,7 +180,7 @@ class Supplier extends CActiveRecord
 		));
 	}
 	
-	public function getAllSttributes() {
+	public function getAllAttributes() {
 		$result = array(); 
 		
 		$attributeList = Attribute::model()->findAll(

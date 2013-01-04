@@ -40,7 +40,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 				<input type="text" name="include_date" id="include_date" placeholder="Cehck-In" class="date_input span4" />
 			</div>
 			<div class="row center">
-				<input type="submit" value="Search Accommodation" onclick="return hotel.submit();" />
+				<input type="submit" value="Search CarRental Service" onclick="return hotel.submit();" />
 			</div>
 		</form>
 	</div>

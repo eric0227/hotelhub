@@ -121,7 +121,7 @@ $this->menu=array(
 		</span>
 	</div>
 	<div class="button_area">
-		<?php echo CHtml::link('Edit Price', '/supplier/roomdates_editor/'.$model->id_product); ?>
+		<?php echo CHtml::link('Edit Price', '/supplier/dates_editor/'.$model->id_product); ?>
 	</div>
 	<div class="cb"></div>
 	<div class="details_area">
