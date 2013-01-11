@@ -23,8 +23,6 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		}
 	});
 
-
-	
 </script>
 <div>
 	<form action="<?php echo Yii::app()->request->baseUrl ?>/frontHotel/suppliers" method="get" class="form-inline" id="advanced_search">
@@ -109,14 +107,14 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		$prev_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION+$prev_alt_diff-1)." days"));
 		$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
 		
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/suppliers", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days")));
 		echo CHtml::hiddenField("search_text", $_REQUEST['search_text']);
 		echo CHtml::endForm();
 
-		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/", "get", array("id"=>"next_navi", "name"=>"next_navi"));
+		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/suppliers", "get", array("id"=>"next_navi", "name"=>"next_navi"));
 		echo CHtml::hiddenField("country", $country);
 		echo CHtml::hiddenField("destination", $destination);
 		echo CHtml::hiddenField("start_date", date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." +6 days")));

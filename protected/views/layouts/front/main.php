@@ -83,7 +83,7 @@ $id = Yii::app()->user->id;
 			<ul id="navigation">
 				<li data-name="fronthotel" data-sid="1"><a href="<?php echo Yii::app()->request->baseUrl; ?>/frontHotel" class="menu1"><span>Accommodation</span></a></li>
 				<li data-name="carrental" data-sid="2"><a href="<?php echo Yii::app()->request->baseUrl; ?>/frontCarRental" class="menu2"><span>Car Rental<br/>Services</span></a></li>
-				<li data-name="attraction" data-sid="3"><a href="<?php echo Yii::app()->request->baseUrl; ?>/frontAttraction" class="menu3"><span>Things To do<br/>Attraction</span></a></li>
+				<li data-name="attraction" data-sid="3"><a href="<?php echo Yii::app()->request->baseUrl; ?>/frontTicket" class="menu3"><span>Things To do<br/>Attraction</span></a></li>
 				<li data-name="daytour" data-sid="4"><a href="<?php echo Yii::app()->request->baseUrl; ?>/frontDayTour" class="menu4"><span>Day Tour</span></a></li>
 				<li data-name="hotdeal" data-sid="5"><a href="<?php echo Yii::app()->request->baseUrl; ?>/frontDoyDeal" class="menu5"><span>Hot Deal</span></a></li>
 			</ul>
@@ -93,7 +93,6 @@ $id = Yii::app()->user->id;
 </div>
 <footer id="site_footer">
 	Copyright &copy; <?php echo date('Y'); ?> by Holidoy. All Rights Reserved.<br/>
-	Powered by <a href="http://www.gnaemarketing.com.au">Gna eMarketing </a>
 </footer>
 </body>
 </html>

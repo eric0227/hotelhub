@@ -25,7 +25,7 @@ $this->pageTitle=Yii::app()->name;
 			
 		</div>
 		<div class="left-columns">
-			<a href="<?php echo isset($coverImage) ? $coverImage->getLink('large') : '' ?>" class="main-image">
+			<a rel="image_group" href="<?php echo isset($coverImage) ? $coverImage->getLink('large') : '' ?>" class="main-image">
 				<img src="<?php echo isset($coverImage) ? $coverImage->getLink('large') : '' ?>" alt="" style="width:250px;height:250px" />
 			</a>
 			<div class="order-form">
@@ -56,11 +56,12 @@ $this->pageTitle=Yii::app()->name;
 		
 			<div class="room-images">
 				<?php foreach($supplierImages as $image):?>
-					<a href="<?php echo $image->getLink('large') ?>"><img src="<?php echo $image->getLink('medium') ?>" alt="<?php echo $image->image_title ?>" style="width:75px;height:75px" /></a>
+					<a rel="image_group" href="<?php echo $image->getLink('large') ?>"><img src="<?php echo $image->getLink('medium') ?>" alt="<?php echo $image->image_title ?>" style="width:75px;height:75px" /></a>
 				<?php endforeach; ?>
 			
 				<?php foreach($roomImages as $image):?>
-					<a href="<?php echo $image->getLink('large') ?>"><img src="<?php echo $image->getLink('medium') ?>" alt="<?php echo $image->image_title ?>" style="width:75px;height:75px" /></a>
+				<!--	<a href="<?php echo $image->getLink('large') ?>"><img src="<?php echo $image->getLink('medium') ?>" alt="<?php echo $image->image_title ?>" style="width:75px;height:75px" /></a>
+				-->
 				<?php endforeach; ?>
 			</div>
 			<div class="greeting">

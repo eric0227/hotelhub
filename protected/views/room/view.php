@@ -10,7 +10,7 @@ $this->menu=array(
 	array('label'=>'Update Room','url'=>array('update','id'=>$model->id_product)),
 	array('label'=>'Delete Room','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_product),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Room','url'=>array('admin')),
-	array('label'=>'Room Images', 'url'=>array('/imageProduct/index','id_product'=>$model->id_product)),
+	//array('label'=>'Room Images', 'url'=>array('/imageProduct/index','id_product'=>$model->id_product)),
 	array('label'=>'Room Date', 'url'=>array('/productDate/index', 'id_product'=>$model->id_product))
 );
 ?>

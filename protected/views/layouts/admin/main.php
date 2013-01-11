@@ -182,9 +182,18 @@ if(Yii::app()->user->isGuest == false) {
 					'visible'=>!Yii::app()->user->isGuest
 				),
 				array('label'=>'Login', 'url'=>array('/adm/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/adm/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				// array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/adm/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
+		
+	<?php if(!Yii::app()->user->isGuest) { ?>
+		<div class="logout">
+			<a href="<?php echo Yii::app()->request->baseUrl?>/sup/logout">Logout (<?php echo Yii::app()->user->name ?>)</a>
+		</div>
+	<?php } ?>
+	
+		<div style="clear:both"></div>
+		
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(

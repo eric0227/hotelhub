@@ -83,59 +83,6 @@
 	?>
 		<h3><?php echo $item->name; ?></h3>
 		<div id="room_list">
-			<span>How many guests?</span><br>
-			<span>
-				Rates are for <?php echo $item->guests_included_price; ?> people.
-				Extra adults $<?php echo number_format($item->adults_extra, 2); ?>.
-				Extra children $<?php echo number_format($item->children_extra, 2); ?>.
-				The room caters for a maximum of <?php echo $item->adults_maxnum; ?> adult(s),
-				and a maximum of <?php echo $item->children_maxnum; ?> child(ren) but cannot exceed <?php echo $item->guests_tot_room_cap; ?> guests in total.</span>
-			<div>
-				<table>
-					<tr>
-						<td>Room :</td>
-						<?php
-							$adults_max = array();
-							for($num = 0; $num <= $item->adults_maxnum; $num++) {
-								array_push($adults_max, $num);
-							} 
-						?>
-						<td>Number of Adults:<?php echo CHtml::dropDownList("adults_num[$item->id_product]", "", $adults_max, array('onchange'=>'refreshBookInfo()')); ?></td>
-						<?php
-							$children_max = array();
-							for($num = 0; $num <= $item->children_maxnum; $num++) {
-								array_push($children_max, $num);
-							} 
-						?>
-						<td>Children (<?php echo $item->children_years; ?>yrs and under):<?php echo CHtml::dropDownList("children_num[$item->id_product]", "", $children_max, array('onchange'=>'refreshBookInfo()')); ?></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Bedding Configuration</td>
-						<td>
-							<?php
-								$i = 1;
-								foreach($item->bed_info as $bed) {
-									echo "<div style='float:left; margin-right:30px;'>";
-									echo "<label>";
-									echo CHtml::radioButton("options[$item->id_product]", ($i==1 ? true : false), array("value"=>$bed->id_bedding, 'onchange'=>'refreshBookInfo()'))."Option ".$i++;
-									echo "<br>";
-									for($j = 0; $j < $bed->single_num; $j++) {
-										echo CHtml::image($urlSingleBed);
-									}
-									for($j = 0; $j < $bed->double_num; $j++) {
-										echo CHtml::image($urlDoubleBed);
-									}
-									echo "<br>".($bed->double_num != 0 ? $bed->double_num." Double(s)" : "");
-									echo " ".($bed->single_num != 0 ? $bed->single_num." Single(s)" : "");
-									echo "</label>";
-									echo "</div>";
-								}
-							?>
-						</td>
-					</tr>
-				</table>
-			</div>
 	<?php
 		}
 	?>
@@ -145,7 +92,7 @@
 				<a href="javascript:showBookInfo()">Refresh Price</a>
 				<table>
 					<thead>
-						<th>Room Name</th>
+						<th>Name</th>
 						<th>Date</th>
 						<th>Base Rate</th>
 						<th>Extras</th>

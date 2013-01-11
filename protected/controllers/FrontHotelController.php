@@ -56,7 +56,7 @@ class FrontHotelController extends Controller
 					'room' => $room,
 					'attributes' => $attributes,
 					'roomImages' => $room->product->productImages,
-					'coverImage' => $room->product->getCoverImage(),
+					'coverImage' => $room->supplier->getCoverImage(),
 					'supplierImages' => $room->supplier->supplierImages,
 		));
 	}

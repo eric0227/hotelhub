@@ -125,10 +125,9 @@ $this->menu=array(
 		function goPage(url) {
 			location.href = url;
 		}
-		           		
 	</script>
 		<?php //echo CHtml::button('Room Image', array('submit' =>array(Yii::app()->request->baseUrl . '/imageProduct/index', array('id_product'=>$model->id_product)))); ?>
-		<?php echo CHtml::button('Room Image', array('onclick' => 'goPage("'.Yii::app()->request->baseUrl . '/imageProduct/index?id_product='.$model->id_product.'")')); ?>
+		<?php //echo CHtml::button('Room Image', array('onclick' => 'goPage("'.Yii::app()->request->baseUrl . '/imageProduct/index?id_product='.$model->id_product.'")')); ?>
 		<?php echo CHtml::button('Edit Price', array('submit' =>Yii::app()->request->baseUrl . '/supplier/dates_editor/'.$model->id_product)); ?>
 	</div>
 	<div class="cb"></div>

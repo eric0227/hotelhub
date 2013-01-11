@@ -6,7 +6,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Order','url'=>array('index')),
-	array('label'=>'Create Order','url'=>array('create')),
+	//array('label'=>'Create Order','url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "

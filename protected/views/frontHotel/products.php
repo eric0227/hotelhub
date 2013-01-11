@@ -143,15 +143,17 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 		if(isset($supplier)) { 
 			$images = $supplier->supplierImages;
 			foreach($images as $image) {
-				echo "<a href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
+				echo "<a rel='image_group' href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
 			}
 		} 
+	/*	
 		if(isset($product)) {
 			$images = $product->productImages;
 			foreach($images as $image) {
-				echo "<a href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
+				echo "<a rel='image_group' href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
 			}
 		}
+	*/	
 	?>
 		</div>
 		<table class="table table-bordered">

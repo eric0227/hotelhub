@@ -6,9 +6,9 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'List Order','url'=>array('index')),
-	array('label'=>'Create Order','url'=>array('create')),
+	//array('label'=>'Create Order','url'=>array('create')),
 	array('label'=>'Update Order','url'=>array('update','id'=>$model->id_order)),
-	array('label'=>'Delete Order','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_order),'confirm'=>'Are you sure you want to delete this item?')),
+	//array('label'=>'Delete Order','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_order),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Order','url'=>array('admin')),
 	array('label'=>'Order History','url'=>array('orderHistory','id'=>$model->id_order)),
 );

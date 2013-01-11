@@ -290,7 +290,7 @@ class Product extends CActiveRecord
 				if($image->cover == 1) {
 					return $image;
 				}
-			}
+			}			
 			return $this->productImages[0];
 		}
 		return null;

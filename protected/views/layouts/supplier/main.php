@@ -86,6 +86,7 @@ if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUP
 				
 	</div><!-- header -->
 	<div id="mainmenu">
+		
 		<?php $this->widget('bootstrap.widgets.TbMenu',array(
 			'type' => 'tabs',
 			'items'=>array(
@@ -117,9 +118,18 @@ if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUP
 				
 				array('label'=>'Guest List', 'url'=>array('/stat/guestList'), 'visible'=>!Yii::app()->user->isGuest),
 				array('label'=>'Login', 'url'=>array('/sup/login'), 'visible'=>Yii::app()->user->isGuest),
-				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/sup/logout'), 'visible'=>!Yii::app()->user->isGuest)
+				//array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/sup/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			),
 		)); ?>
+	
+	<?php if(!Yii::app()->user->isGuest) { ?>
+		<div class="logout">
+			<a href="<?php echo Yii::app()->request->baseUrl?>/sup/logout">Logout (<?php echo Yii::app()->user->name ?>)</a>
+		</div>
+	<?php } ?>
+	
+		<div style="clear:both"></div>
+		
 	</div><!-- mainmenu -->
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(

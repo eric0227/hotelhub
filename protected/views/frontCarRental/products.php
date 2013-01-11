@@ -137,16 +137,17 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 	<div id="accommodation_list">
 		<div class="supplier-images">
 	<?php
-		if(isset($supplier)) { 
-			$images = $supplier->supplierImages;
-			foreach($images as $image) {
-				echo "<a href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
-			}
-		} 
 		if(isset($product)) {
 			$images = $product->productImages;
 			foreach($images as $image) {
-				echo "<a href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
+				echo "<a rel='image_group' href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
+			}
+		} else {
+			if(isset($supplier)) {
+				$images = $supplier->supplierImages;
+				foreach($images as $image) {
+					echo "<a rel='image_group' href='".$image->getLink('large')."' ><img class='supplier_img' src='".$image->getLink('medium')."' /></a>";
+				}
 			}
 		}
 	?>

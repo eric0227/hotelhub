@@ -60,6 +60,7 @@ select {
 {
 	padding:6px 20px 5px 20px;
 	margin:0px;
+	float:left;
 }
 
 #mainmenu ul li
@@ -245,3 +246,20 @@ div.search-form
 	background: #43b2e5;
 	color: #fff;
 }
+
+.logout {
+	float:right;
+	padding: 10px 20px 5px 20px;
+	margin: 0px;
+}
+
+.logout a {
+	color:#ffffff;
+	background-color:transparent;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:5px 8px;
+}
+
+

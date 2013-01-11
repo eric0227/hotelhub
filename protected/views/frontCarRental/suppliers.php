@@ -23,8 +23,6 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		}
 	});
 
-
-	
 </script>
 <div>
 	<form action="<?php echo Yii::app()->request->baseUrl ?>/frontHotel/suppliers" method="get" class="form-inline" id="advanced_search">
