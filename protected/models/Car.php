@@ -67,8 +67,8 @@ class Car extends CActiveRecord
 		return array(
 			'product' => array(self::BELONGS_TO, 'Product', 'id_product'),
 			'supplier' => array(self::BELONGS_TO, 'Supplier', 'id_supplier'),
-			'groupCode' => array(self::BELONGS_TO, 'Code', 'car_group_code'),
-			'classCode' => array(self::BELONGS_TO, 'Code', 'class_code'),
+			'group' => array(self::BELONGS_TO, 'Code', 'car_group_code'),
+			'class' => array(self::BELONGS_TO, 'Code', 'class_code'),
 			'attributeValues' => array(self::HAS_MANY, 'ProductAttributeValue', 'id_product'),
 		);
 	}

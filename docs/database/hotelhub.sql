@@ -165,8 +165,8 @@ CREATE TABLE IF NOT EXISTS `gc_currency` (
 INSERT INTO `gc_currency` (`id_currency`, `name`, `iso_code`, `iso_code_num`, `sign`, `blank`, `format`, `decimals`, `conversion_rate`, `deleted`, `active`) VALUES
 (1, 'Dollar', 'AUD', '36', '$', 0, 1, 1, 1.000000, 0, 1),
 (2, 'Dollar', 'USD', '840', '$', 0, 1, 1, 1.051065, 0, 1),
-(3, 'Won', 'KRW', '410', 'ì±¦ì©”ì§�', 0, 1, 0, 120.000000, 0, 1),
-(4, 'Yuan', 'CNY', '156', 'íš˜ì§¸', 0, 1, 1, 6.740000, 0, 1);
+(3, 'Won', 'KRW', '410', '챙짹짝챙짤�씳�㏆옙', 0, 1, 0, 120.000000, 0, 1),
+(4, 'Yuan', 'CNY', '156', '챠큄�챙짠쨍', 0, 1, 1, 6.740000, 0, 1);
 
 CREATE TABLE IF NOT EXISTS `gc_country` (
   `id_country` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `gc_user` (
 INSERT INTO `gc_user` (`id_user`, `id_group`, `id_lang`, `lastname`, `firstname`, `email`, `passwd`, `is_guest`, `note`, `birthday`, `active`, `deleted`) VALUES
 (1, 1, 1, 'Admin', 'Admin', 'kyhleem@gmail.com', 'bdf13fac4167a477b4d10d8685405354', 0, '', '0000-00-00', 1, 0),
 (2, 2, 1, 'supplier', 'hotel', 'kyhleem@naver.com', 'admin123456', 0, '', '0000-00-00', 0, 0),
-(3, 4, 2, 'ì±—ì¨Œí�¹ì± ï¿½ï¿½ï¿½, 'ì±™å� ìŠ¹ï¿½, 'test@naver.com', 'hyoung01', 0, '', '0000-00-00', 0, 0);
+(3, 4, 2, '챙짹�붌�㉴뮼�옙쨔챙짹혻챦쩔쩍챦쩔쩍챦쩔쩍, '챙짹�▣ο옙혻챙힋쨔챦쩔쩍, 'test@naver.com', 'hyoung01', 0, '', '0000-00-00', 0, 0);
 
 
 CREATE TABLE IF NOT EXISTS `gc_supplier` (

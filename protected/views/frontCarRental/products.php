@@ -4,9 +4,6 @@
 $this->pageTitle=Yii::app()->name;
 $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
 
-$urlSingleBed = Yii::app()->request->baseUrl . "/images/bed-s.gif";
-$urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
-
 ?>
 <script type="text/javascript">
 	$(function(){
@@ -39,7 +36,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 <div>
 
 	<?php
-		$roomList = array();
+		$carList = array();
 		
 		const TOT_ROW_NUM = 100;
 		const DURATION = 20;	// show 14 days;
@@ -211,7 +208,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 						if($item->id_product != "") {
 							
 							// add hotelList
-							$roomList[] = Room::model()->findByPk($item->id_product);
+							$carList[] = Car::model()->findByPk($item->id_product);
 					?>
 						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontCarRental/view/<?php echo $item->id_product; ?>">
 							<?php echo $item->name; ?>
@@ -342,8 +339,8 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 		<?php echo $supplier->business_facilities  ?>
 	</div>
 
-<?php foreach($roomList as $room) { 
-		$product = $room->product;		
+<?php foreach($carList as $car) { 
+		$product = $car->product;		
 ?>
 	<div class="room_table">
 		<div class="room_main">
@@ -358,16 +355,21 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 			<div class="facilities">
 				<h1>Options</h1>
 				<ul>
+				
 				<?php
-					foreach($room->getAllAttributes() as $info) {
-						foreach($info['attributeItem'] as $item){
-							if(in_array($item['id_attribute_item'], $info['selectedAttributeItemIds'])){
-								echo '<li>';
-								echo $item['item'];
-								echo '</li>';
-							}
-						}
-					}
+					echo '<li>' . $car->group->name . '</li>';
+					echo '<li>' . $car->class->name . '</li>';
+					echo '<li>' . $car->trans_type . '</li>';
+					
+// 					foreach($room->getAllAttributes() as $info) {
+// 						foreach($info['attributeItem'] as $item){
+// 							if(in_array($item['id_attribute_item'], $info['selectedAttributeItemIds'])){
+// 								echo '<li>';
+// 								echo $item['item'];
+// 								echo '</li>';
+// 							}
+// 						}
+// 					}
 				?>
 				</ul>
 				<div style="clear:both;"></div>

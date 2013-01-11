@@ -58,7 +58,10 @@
 		<fieldset>
 			<legend>Property Information</legend>
 			<?php echo $form->textFieldRow($model,'member_chain_group',array('class'=>'span5','maxlength'=>64)); ?>
-			<?php echo $form->textFieldRow($model,'room_count',array('class'=>'span5')); ?>
+			
+			<?php if(Service::getCurrentService() == Service::HOTEL) { ?>
+				echo $form->textFieldRow($model,'room_count',array('class'=>'span5'));
+			<?php } ?>
 			<?php echo $form->textFieldRow($model,'website',array('class'=>'span5','maxlength'=>128)); ?>
 		</fieldset>
 		

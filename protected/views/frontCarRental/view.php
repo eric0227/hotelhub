@@ -73,22 +73,24 @@ $this->pageTitle=Yii::app()->name;
 			<div class="facilities">
 				<h1>Options</h1>
 				<ul>
-				<?php 
-					foreach($attributes as $info) {
-						foreach($info['attributeItem'] as $item){
-							if(in_array($item['id_attribute_item'], $info['selectedAttributeItemIds'])){
-								echo '<li>';
-								echo $item['item'];
-								echo '</li>';
-							}
-						}
-					}
+				<?php
+					echo '<li>' . $car->group->name . '</li>';
+					echo '<li>' . $car->class->name . '</li>';					
+					echo '<li>' . $car->trans_type . '</li>';
+// 					foreach($attributes as $info) {
+// 						foreach($info['attributeItem'] as $item){
+// 							if(in_array($item['id_attribute_item'], $info['selectedAttributeItemIds'])){
+// 								echo '<li>';
+// 								echo $item['item'];
+// 								echo '</li>';
+// 							}
+// 						}
+// 					}
 				?>
 				</ul>
 			</div>
 			<div class="bedding">
-				<h1>Configuration</h1>
-				
+								
 			</div>
 		</div>
 	</div>
