@@ -45,7 +45,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'id_product',
 		array('name'=>'product.car_name', 'value'=>'$data->product->name'),
 		array('name'=>'classCode.class', 'value'=>'$data->classCode->name'),
-		array('name'=>'groupCode.group', 'value'=>'$data->groupCode->name'),
+		array('name'=>'carGroupCode.group', 'value'=>'$data->carGroupCode->name'),
 		'trans_type',
 		'people_maxnum',
 		array(

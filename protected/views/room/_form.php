@@ -59,8 +59,8 @@
 				echo $form->dropDownListRow($product, 'id_category_default', Category::items(),array('class' => 'span5'));
 			?>
 			<?php echo $form->textFieldRow($product,'name',array('class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($product,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
-			<?php echo $form->textAreaRow($product,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($product,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5 tinymce', 'multilang'=>'1')); ?>
+			<?php echo $form->textAreaRow($product,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5 tinymce', 'multilang'=>'1')); ?>
 			
 			<?php echo $form->textFieldRow($product,'price',array('class'=>'span5'));  ?>
 			<?php echo $form->textFieldRow($product,'agent_price',array('class'=>'span5'));  ?>

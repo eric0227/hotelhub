@@ -9,7 +9,8 @@ $this->menu=array(
 	array('label'=>'Create Product','url'=>array('create')),
 	array('label'=>'Update Product','url'=>array('update','id'=>$model->id_product)),
 	array('label'=>'Delete Product','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id_product),'confirm'=>'Are you sure you want to delete this item?')),
-	//array('label'=>'Manage Product','url'=>array('admin')),
+	array('label'=>'Images', 'url'=>array('/imageProduct/index','id_product'=>$model->id_product)),
+//array('label'=>'Manage Product','url'=>array('admin')),
 );
 ?>
 

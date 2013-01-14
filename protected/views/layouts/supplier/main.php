@@ -21,8 +21,8 @@ if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUP
 		//$productMenu[] = array('label'=>'Car Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
 	} else {
 		$productMenu[] = array('label'=>'Product', 'url'=>array('/product/index', 'tag'=>'product'));
-		$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
-		$productMenu[] = array('label'=>'Product Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
+		//$productMenu[] = array('label'=>'Product Image', 'url'=>array('/imageProduct/index', 'tag'=>'imageProduct'));
+		//$productMenu[] = array('label'=>'Product Date', 'url'=>array('/productDate/index', 'tag'=>'productDate'));
 	}
 }
 ?>
@@ -45,6 +45,44 @@ if(Yii::app()->user->isGuest == false && Yii::app()->user->id_group == User::SUP
 
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom.css" />
+
+
+	<!-- Load TinyMCE -->
+	<script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/tiny_mce/jquery.tinymce.js"></script>
+	<script type="text/javascript">
+		$().ready(function() {
+			$('textarea.tinymce').tinymce({
+				// Location of TinyMCE script
+				script_url : '<?php echo Yii::app()->request->baseUrl; ?>/tiny_mce/tiny_mce.js',
+	
+				 mode : "none",
+		         theme : "advanced",  
+				 plugins : "autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,jbimages",
+	
+					 
+				// theme options
+		        theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+				theme_advanced_buttons2 : "search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+				theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,|,sub,sup,|,charmap,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+				theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,blockquote,pagebreak",
+				theme_advanced_toolbar_location : "top",
+				theme_advanced_toolbar_align : "left",
+				theme_advanced_statusbar_location : "bottom",
+				theme_advanced_resizing : true,
+	
+				// Example content CSS (should be your site CSS)
+				content_css : "<?php echo Yii::app()->request->baseUrl; ?>/tiny_mce/themes/simple/skins/default/content.css",
+	
+				// Replace values for the template plugin
+				template_replace_values : {
+					username : "Some User",
+					staffid : "991234"
+				}
+			});
+		});
+	</script>
+
+
 </head>
 
 <body>

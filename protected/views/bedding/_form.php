@@ -13,8 +13,8 @@
 
 	<?php echo $form->textFieldRow($model,'double_num',array('class'=>'span5','maxlength'=>2)); ?>
 
-	<?php echo $form->textFieldRow($model,'bedding_desc',array('class'=>'span5','maxlength'=>200)); ?>
-
+	<?php echo $form->textAreaRow($model,'bedding_desc',array('class'=>'span5 tinymce', 'rows'=>6, 'cols'=>30, 'maxlength'=>200)); ?>
+	
 	<?php echo $form->textFieldRow($model,'additional_cost',array('class'=>'span5','maxlength'=>20)); ?>
 
 	<?php echo $form->textFieldRow($model,'cots_available',array('class'=>'span5','maxlength'=>2)); ?>

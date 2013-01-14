@@ -358,8 +358,8 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 				<ul>
 				
 				<?php
-					echo '<li>' . $car->group->name . '</li>';
-					echo '<li>' . $car->class->name . '</li>';
+					echo '<li>' . $car->carGroupCode->name . '</li>';
+					echo '<li>' . $car->classCode->name . '</li>';
 					echo '<li>' . $car->trans_type . '</li>';
 					
 // 					foreach($room->getAllAttributes() as $info) {

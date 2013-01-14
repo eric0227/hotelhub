@@ -75,8 +75,8 @@ $this->pageTitle=Yii::app()->name;
 				<h1>Options</h1>
 				<ul>
 				<?php
-					echo '<li>' . $car->group->name . '</li>';
-					echo '<li>' . $car->class->name . '</li>';					
+					echo '<li>' . $car->carGroupCode->name . '</li>';
+					echo '<li>' . $car->classCode->name . '</li>';					
 					echo '<li>' . $car->trans_type . '</li>';
 // 					foreach($attributes as $info) {
 // 						foreach($info['attributeItem'] as $item){

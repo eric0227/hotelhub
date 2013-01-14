@@ -25,9 +25,9 @@
 
 	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5', 'multilang'=>'1')); ?>
 		
-	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>
+	<?php echo $form->textAreaRow($model,'description',array('rows'=>6, 'cols'=>30, 'class'=>'span5 tinymce', 'multilang'=>'1')); ?>
 	
-	<?php echo $form->textAreaRow($model,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5', 'multilang'=>'1')); ?>		
+	<?php echo $form->textAreaRow($model,'description_short',array('rows'=>6, 'cols'=>30, 'class'=>'span5 tinymce', 'multilang'=>'1')); ?>		
 	
 	<?php echo $form->textFieldRow($model,'maker',array('class'=>'span5')); ?>
 

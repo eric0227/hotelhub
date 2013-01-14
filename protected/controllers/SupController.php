@@ -46,7 +46,7 @@ class SupController extends Controller
 			} else if(Yii::app()->user->getSupplier()->id_service == Service::DAY_TOUR) {
 				$this->daytourHome();
 			} else if(Yii::app()->user->getSupplier()->id_service == Service::HOT_DEAL) {
-				$this->hotdealHome();
+				$this->doydealHome();
 			}
 		} else {
 			Yii::app()->user->logout();
@@ -68,11 +68,11 @@ class SupController extends Controller
 	}
 	
 	private function daytourHome() {
-		$this->render('dayture_home');
+		$this->render('daytour_home');
 	}
 	
-	private function hotdealHome() {
-		$this->render('hotdeal_home');
+	private function doydealHome() {
+		$this->render('doydeal_home');
 	}
 
 	/**

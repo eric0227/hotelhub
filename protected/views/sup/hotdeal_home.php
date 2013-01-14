@@ -1,6 +1,0 @@
-<?php
-
-
-?>
-
-HotDeal Supplier Home..

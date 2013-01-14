@@ -23,7 +23,7 @@ $this->menu=array(
 		'id_supplier',
 		array('name'=>'product.car_name', 'value'=>$model->product->name),
 		array('name'=>'classCode.class', 'value'=>$model->classCode->name),
-		array('name'=>'groupCode.group', 'value'=>$model->groupCode->name),
+		array('name'=>'carGroupCode.group', 'value'=>$model->carGroupCode->name),
 		'trans_type',
 		'people_maxnum',
 		array('name'=>'product.price', 'value'=>$model->product->price),
