@@ -299,6 +299,9 @@ h1.section, h2.section, h3.section {
 #supplier_address .map {float:left;margin-right:10px;}
 #supplier_address .map img {width: 70px;}
 
+.map-icon {cursor:pointer;}
+
+
 #supplier_address .address {font-size: 15px;}
 
 #hotel_table .room_title {font-size: 14px; font-weight:bold;}
@@ -311,3 +314,12 @@ h1.section, h2.section, h3.section {
 #hotel_table .bedding_item {float:left; margin-top:10px; margin-right:10px; width: 150px; text-align:center; height: 100px; background:#D0E3F1;}
 
 #hotel_table .facilities ul li {float:left; font-size:1em; display:inline;color:#567ca7;margin:0;padding:5px 0 5px 20px;width:130px;background:url('../images/front/check.png') no-repeat left 7px}
+
+#product_list .product_row {padding:5px;height:200px}
+#product_list .product_img {float:left;width:130px;}
+#product_list .product_name {float:left; font-size: 25px;}
+#product_list .product_price {float:right;width:100px;text-align: right;font-size: 20px;}
+#product_list .product_line {clear:both;}
+
+
+

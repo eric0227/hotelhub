@@ -22,12 +22,20 @@ $id = Yii::app()->user->id;
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/front.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/global.css" />
+	
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl ?>/css/modalPopLite.css" />
+	
 	<!-- load javascript files -->
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/jquery-1.8.2.js" type="text/javascript"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js_plugins/fancybox/jquery.easing-1.3.pack.js" type="text/javascript"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js_plugins/fancybox/jquery.fancybox-1.3.4.pack.js" type="text/javascript"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/hotel/hotel.js"></script>
+	
+	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/modalPopLite.min.js" type="text/javascript"></script>
+	
+	
+	
 	<!--[if lt IE 9]>
 		<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/html5shiv.js"></script>
 	<![endif]-->

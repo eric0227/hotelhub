@@ -17,12 +17,43 @@ $this->pageTitle=Yii::app()->name;
 <div id="room-details">
 	<div class="room-names">
 		<h2 class="room-name"><?php echo $room->product->name ?>
-			<img src="<?php echo Yii::app()->request->baseUrl; ?>/images/map-icon.png"  style="width:60px;" />
+			<img class="map-icon" src="<?php echo Yii::app()->request->baseUrl; ?>/images/map-icon.png"  style="width:60px;" />
 		</h2>
 	</div>
 	<div class="room-info">
-		<div class="map">
-			
+		<div class="map" >
+			<script type="text/javascript">
+				$(function () {
+				    $('#google-map').modalPopLite({ openButton: '.map-icon', isModal: false });
+				});
+			</script>
+			<div id="google-map" >
+				<?php 
+					Yii::import('ext.EGMap.*');
+					 
+					$gMap = new EGMap();
+					$gMap->setWidth(1050);
+					$gMap->setHeight(600);
+					$gMap->zoom = 16;
+					 
+					$address_str = $room->supplier->user->addressDefault->toString();
+					 
+					// Create geocoded address
+					$geocoded_address = new EGMapGeocodedAddress($address_str);
+					$geocoded_address->geocode($gMap->getGMapClient());
+					 
+					// Center the map on geocoded address
+					 $gMap->setCenter($geocoded_address->getLat(), $geocoded_address->getLng());
+					 
+					// Add marker on geocoded address
+					$gMap->addMarker(
+					     new EGMapMarker($geocoded_address->getLat(), $geocoded_address->getLng())
+					);
+					 
+					$gMap->renderMap();
+					
+				?>
+			</div>
 		</div>
 		<div class="left-columns">
 			<a rel="image_group" href="<?php echo isset($coverImage) ? $coverImage->getLink('large') : '' ?>" class="main-image">

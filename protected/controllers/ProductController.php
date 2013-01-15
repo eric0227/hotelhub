@@ -32,7 +32,7 @@ class ProductController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'address'),
 				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -181,5 +181,58 @@ class ProductController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	
+	public function actionAddress($id) {
+	
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		$product=$this->loadModel($id);
+	
+		$model = $this->getAddress($id);
+	
+		if(isset($_POST['Address']) && isset($_POST['yt0']))
+		{
+			$model->attributes=$_POST['Address'];
+			if($model->save()) {
+	
+				//if($model->isNewRecord) {
+				$this->setAddressId($product, $model);
+				//}
+	
+				Yii::app()->user->setFlash('success', "Data saved!");
+	
+				$this->render('address_form',array(
+						'model'=>$model,
+						'id'=>$product->id_product
+				));
+				return;
+			}
+		}
+	
+		$this->render('address_form',array(
+				'model'=>$model,
+				'id'=>$product->id_product
+		));
+	
+	}
+	
+	private function getAddress($id) {
+		$product=$this->loadModel($id);
+	
+		$address_code = Address::DEFAULT_CODE;	
+		$model = $product->address;
+	
+		if(!isset($model)) {
+			$model = new Address;
+			$model->address_code = $address_code;
+		}
+	
+		return $model;
+	}
+	
+	private function setAddressId($product, $address) {
+		$product->id_address = $address->id_address;
+		$product->save();
 	}
 }

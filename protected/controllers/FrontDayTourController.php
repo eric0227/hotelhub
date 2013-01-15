@@ -45,6 +45,11 @@ class FrontDayTourController extends Controller
 	public function actionIndex()
 	{
 		Yii::app()->session->add('service', Service::DAY_TOUR);
-		$this->render('index');
+		//$this->render('index');
+		$this->actionProducts();
+	}
+	
+	public function actionProducts(){
+		$this->render('products');
 	}
 }

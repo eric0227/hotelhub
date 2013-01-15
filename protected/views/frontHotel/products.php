@@ -327,12 +327,47 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 <h2 class="section">Accommodation details</h2>
 	<div id="supplier_address">
 		<div class="map">
-			<img src="<?php echo Yii::app()->request->baseUrl?>/images/map-icon2.png" />
+			<img class="map-icon" src="<?php echo Yii::app()->request->baseUrl?>/images/map-icon2.png" />
 		</div>
 		<div class="address">
 		  	<?php echo $supplier->user->addressDefault->toString() ?>
 		</div>
 		<div style="clear:both;"></div>
+		
+		<div class="google-map" style="display:;">
+			<script>
+				$(function() {
+					$('.map-icon').on('click', function() {
+						$('.google-map').toggle();
+					});
+				});
+			</script>
+			<?php 
+				Yii::import('ext.EGMap.*');
+				 
+				$gMap = new EGMap();
+				$gMap->setWidth('100%');
+				$gMap->setHeight(600);
+				$gMap->zoom = 16;
+				 
+				$address_str = $supplier->user->addressDefault->toString();
+				 
+				// Create geocoded address
+				$geocoded_address = new EGMapGeocodedAddress($address_str);
+				$geocoded_address->geocode($gMap->getGMapClient());
+				 
+				// Center the map on geocoded address
+				 $gMap->setCenter($geocoded_address->getLat(), $geocoded_address->getLng());
+				 
+				// Add marker on geocoded address
+				$gMap->addMarker(
+				     new EGMapMarker($geocoded_address->getLat(), $geocoded_address->getLng())
+				);
+				 
+				$gMap->renderMap();
+				
+			?>
+		</div>
 	</div>
 	<div class="short_promotional_blurb">
 		<?php echo $supplier->short_promotional_blurb  ?>
