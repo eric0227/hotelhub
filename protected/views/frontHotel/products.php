@@ -42,7 +42,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 		$roomList = array();
 		
 		const TOT_ROW_NUM = 100;
-		const DURATION = 20;	// show 14 days;
+		const DURATION = 14;	// show 14 days;
 		
 		$id_supplier = isset($_GET['id_supplier']) ? $_GET['id_supplier'] : (isset($_REQUEST['id_supplier']) ? $_REQUEST['id_supplier'] : 0);
 		$country = isset($_GET['country']) ? $_GET['country'] : (isset($_REQUEST['country']) ? $_REQUEST['country'] : 0);
@@ -349,7 +349,7 @@ $urlDoubleBed = Yii::app()->request->baseUrl . "/images/bed-d.gif";
 				$gMap->setWidth('100%');
 				$gMap->setHeight(600);
 				$gMap->zoom = 16;
-				 
+				
 				$address_str = $supplier->user->addressDefault->toString();
 				 
 				// Create geocoded address

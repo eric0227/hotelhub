@@ -348,3 +348,5 @@ th.center, td.center {
 	disabled: disabled !important;
 	background-color: #eee !important;
 }
+
+.copy {background-color: yellow;}

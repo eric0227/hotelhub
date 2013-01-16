@@ -39,7 +39,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		$carList = array();
 		
 		const TOT_ROW_NUM = 100;
-		const DURATION = 20;	// show 14 days;
+		const DURATION = 14;	// show 14 days;
 		
 		$id_supplier = isset($_GET['id_supplier']) ? $_GET['id_supplier'] : (isset($_REQUEST['id_supplier']) ? $_REQUEST['id_supplier'] : 0);
 		$country = isset($_GET['country']) ? $_GET['country'] : (isset($_REQUEST['country']) ? $_REQUEST['country'] : 0);
@@ -323,8 +323,8 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 <h2 class="section">Car Retal details</h2>
 	<div id="supplier_address">
 		<div class="map">
-			<img src="<?php echo Yii::app()->request->baseUrl?>/images/map-icon2.png" />
-		</div>
+			<img class="map-icon" src="<?php echo Yii::app()->request->baseUrl?>/images/map-icon2.png" />
+		</div>		
 		<div class="address">
 		  	<?php echo $supplier->user->addressDefault->toString() ?>
 		</div>

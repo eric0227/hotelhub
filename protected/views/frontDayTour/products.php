@@ -39,7 +39,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		$roomList = array();
 		
 		const TOT_ROW_NUM = 100;
-		const DURATION = 20;	// show 14 days;
+		const DURATION = 14;	// show 14 days;
 		
 		$id_supplier = isset($_GET['id_supplier']) ? $_GET['id_supplier'] : (isset($_REQUEST['id_supplier']) ? $_REQUEST['id_supplier'] : 0);
 		$country = isset($_GET['country']) ? $_GET['country'] : (isset($_REQUEST['country']) ? $_REQUEST['country'] : 0);
@@ -108,6 +108,9 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		);
 		
 		$items = SearchProduct::findAllProduct($search);
+		
+		//print_r($search);
+		//print_r($items);
 		
 		//print_r($items);
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontDayTour/order", "post", array("id"=>"order", "name"=>"order"));
@@ -259,7 +262,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		//echo CHtml::submitButton("Book Now");
 		echo '<div style="display:inline-block; width:300px;">';
 		echo '<div class="btn-container">';
-		echo '<button class="btn btn-success" style="width:48%" onClick="book(); return false;">BOOK</button>';
+		//echo '<button class="btn btn-success" style="width:48%" onClick="book(); return false;">BOOK</button>';
 		//echo '<button class="btn" style="margin-left:5px;width:48%" onclick="history.back(-1)">Cancel</button>';
 		echo '</div>';
 		echo '</div>';

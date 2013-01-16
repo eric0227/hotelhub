@@ -28,6 +28,55 @@ $(function() {
 		});
 </script>
  -->
+ 
+ <script>
+ 	var copyData = {
+ 		 sourceObj : null,
+ 		 price : null,
+ 		 agent_price : null,
+ 		 quantity : null
+ 	};
+ 	
+	$(function() {
+		$('.copy_button').on('click', function() {
+
+			if(copyData.sourceObj != null) {
+				copyData.sourceObj.removeClass("copy");
+			}
+			
+			var parent = $(this).parents('tr').first();
+			parent.addClass("copy");
+			
+			copyData.sourceObj = parent;
+			copyData.price = parent.find('.price').val();
+			copyData.agent_price = parent.find('.agent_price').val();
+			copyData.quantity = parent.find('.quantity').val();
+			
+			//alert(copyData.price);
+		});
+
+		$('.paste_button').on('click', function() {
+
+			if(copyData.sourceObj == null) {
+				return;
+			}
+			
+			var parent = $(this).parents('tr').first();
+			parent.find('.price').val(copyData.price);
+			parent.find('.agent_price').val(copyData.agent_price);
+			parent.find('.quantity').val(copyData.quantity);
+
+			parent.find('.stopsell').attr('checked', true);
+			
+			//alert(copyData.price);
+		});
+	});
+
+	
+ 
+ </script>
+ 
+ 
  <?php 
  	$successMsg = Yii::app()->user->getFlash('success');
  	if(isset($successMsg)) {
@@ -56,8 +105,9 @@ $(function() {
 			<th class="th_center">Advertised Base Rate<br><span class="desc">per night</span></th>
 			<th class="th_center">Agent Rate<br><span class="desc">per night</span></th>
 			<!-- <th class="th_center">Inclusions<br><span class="desc">(Leave blank for Room Only)</span></th> -->
-			<th class="th_center">Allotment</th>
-			<th class="th_center">Number Sold</th>
+			<th class="th_center">Allotment / <br>Number Sold</th>
+			<!-- <th class="th_center">Number Sold</th> -->
+			<th class="th_center">Copy Deal</th>
 			<th class="th_center">Active Selling</th>
 		</thead>
 		<tbody>
@@ -107,10 +157,15 @@ $(function() {
 			if($isExist) {
 		?>
 				<td class="" on_date="<?php echo $fulldate; ?>" id_product_date="<?php echo $productdate->id_product_date; ?>"><span><?php echo $fulldateExceptYear; ?></span></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", number_format($productdate->price, 2), array("style"=>"width: 70px;", "disabled"=>$outofdate_str))?></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", number_format($productdate->agent_price, 2), array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", $productdate->quantity, array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo CHtml::textField("sold", $productdate->getSoldDateQuantity(), array("style"=>"width: 70px;", "disabled"=>true)) ?></td>
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", number_format($productdate->price, 2), array("class"=>"price", "style"=>"width: 70px;", "disabled"=>$outofdate_str))?></td>
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", number_format($productdate->agent_price, 2), array("class"=>"agent_price", "style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td>
+					<?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", $productdate->quantity, array("class"=>"quantity", "style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?>
+					<br><?php echo "(".$productdate->getSoldDateQuantity().")" // CHtml::textField("sold", $productdate->getSoldDateQuantity(), array("style"=>"width: 70px;", "disabled"=>true)) ?></td>
+				<td class="center">
+					<input class="copy_button" type="button" name="copy" value="Copy" > / 
+					<input class="paste_button" type="button" name="paste" value="Paste" >
+				</td>
 				<td class="center"><?php echo CHtml::checkBox("bulk_save[".$fulldate."][is_active]", $productdate->active, array("disabled"=>$outofdate_str, "class"=>"stopsell")); ?></td>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][id_product_date]", $productdate->id_product_date, array("disabled"=>$outofdate_str)); ?>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][on_date]", $productdate->on_date, array("disabled"=>$outofdate_str)); ?>
@@ -118,10 +173,15 @@ $(function() {
 			} else {
 		?>
 				<td class="" on_date="<?php echo $fulldate; ?>" id_product_date=""><span><?php echo $fulldateExceptYear; ?></span></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", "", array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", "", array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", "", array("style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
-				<td><?php echo CHtml::textField("sold", "", array("style"=>"width: 70px;", "disabled"=>true)) ?></td>			
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][price]", "", array("class"=>"price", "style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td><?php echo "$".CHtml::textField("bulk_save[".$fulldate."][agent_price]", "", array("class"=>"agent_price", "style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?></td>
+				<td>
+					<?php echo CHtml::textField("bulk_save[".$fulldate."][quantity]", "", array("class"=>"quantity", "style"=>"width: 70px;", "disabled"=>$outofdate_str)) ?>
+					<br><?php echo "" //CHtml::textField("sold", "", array("style"=>"width: 70px;", "disabled"=>true)) ?></td>			
+				<td class="center">
+					<input class="copy_button" type="button" name="copy" value="Copy" > / 
+					<input class="paste_button" type="button" name="paste" value="Paste" >
+				</td>
 				<td class="center"><?php echo CHtml::checkBox("bulk_save[".$fulldate."][is_active]", false, array("disabled"=>$outofdate_str, "class"=>"stopsell")); ?></td>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][id_product_date]", "", array("disabled"=>$outofdate_str)); ?>
 				<?php echo CHtml::hiddenField("bulk_save[".$fulldate."][on_date]", $fulldate, array("disabled"=>$outofdate_str)); ?>

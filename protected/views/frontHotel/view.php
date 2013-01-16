@@ -27,7 +27,7 @@ $this->pageTitle=Yii::app()->name;
 				    $('#google-map').modalPopLite({ openButton: '.map-icon', isModal: false });
 				});
 			</script>
-			<div id="google-map" >
+			<div id="google-map">
 				<?php 
 					Yii::import('ext.EGMap.*');
 					 

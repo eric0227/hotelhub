@@ -52,7 +52,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 	
 	<?php
 		const TOT_ROW_NUM = 12;
-		const DURATION = 20;	// show 14 days;
+		const DURATION = 14;	// show 14 days;
 		
 		$country = isset($_REQUEST['country']) ? $_REQUEST['country'] : 0;
 		$destination = isset($_REQUEST['destination']) ? $_REQUEST['destination'] : 0;
