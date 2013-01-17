@@ -4,6 +4,73 @@
 $this->pageTitle=Yii::app()->name;
 $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('order' => 'name asc'));
 
+
+const TOT_ROW_NUM = 12;
+const DURATION = 14;	// show 14 days;
+
+$country = isset($_REQUEST['country']) ? $_REQUEST['country'] : 0;
+$destination = isset($_REQUEST['destination']) ? $_REQUEST['destination'] : 0;
+$start_date = isset($_REQUEST['start_date']) ? $_REQUEST['start_date'] : date("m/d/Y");
+$include_date = isset($_REQUEST['include_date']) ? $_REQUEST['include_date'] : $start_date;
+
+//echo "include_date:".$include_date."<br>";
+$recvDate = explode("/", $include_date);
+$include_date_month = $recvDate[0];
+$include_date_day = $recvDate[1];
+$include_date_year = $recvDate[2];
+
+
+$date1 = $start_date;
+$date2 = $include_date;
+
+$ts1 = strtotime($date1);
+$ts2 = strtotime($date2);
+
+$seconds_diff = $ts2 - $ts1;
+
+//echo floor($seconds_diff/3600/24);
+
+if(floor($seconds_diff/3600/24) > 5) {
+	$start_date = date("m/d/Y",strtotime($include_date_month."/".$include_date_day."/".$include_date_year." -4 days"));
+}
+
+$recvStartDate = explode("/", $start_date);
+$start_month = $recvStartDate[0];
+$start_day = $recvStartDate[1];
+$start_year = $recvStartDate[2];
+
+$lastday = date("Y-m-d",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1)." days"));
+//echo "lastday:".$lastday."<br>";
+
+$date1 = date("m/d/Y");
+$date2 = date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." -6 days"));
+
+$ts1 = strtotime($date1);
+$ts2 = strtotime($date2);
+
+$seconds_diff = $ts2 - $ts1;
+
+$prev_alt_diff = floor($seconds_diff/3600/24);
+//echo "prev_alt_diff:".$prev_alt_diff;
+if(floor($seconds_diff/3600/24) <= 0) {
+	$prev_alt_diff = -6 - $prev_alt_diff;
+} else {
+	$prev_alt_diff = -6;
+}
+
+$prev_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION+$prev_alt_diff-1)." days"));
+$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
+
+$search = array(
+					'country'=>$country,
+					'destination'=>$destination,
+					'start_date'=>$start_year."-".$start_month."-".$start_day,
+					'last_date'=>$lastday,
+					'search_text'=>$_REQUEST['search_text']
+);
+$items = Search::findAllHotel($search);
+
+
 ?>
 <script type="text/javascript">
 
@@ -50,62 +117,55 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 	
 	</form>
 	
+	<div class="map">
+		<img class="map-icon" src="<?php echo Yii::app()->request->baseUrl?>/images/map-icon2.png" />
+	</div>
+
+	<div class="google-map" style="display:;">
+		<script>
+			$(function() {
+				$('.map-icon').on('click', function() {
+					$('.google-map').toggle();
+				});
+
+				//$('.google-map').toggle();
+			});
+		</script>
+		<?php 
+			Yii::import('ext.EGMap.*');
+			 
+			$gMap = new EGMap();
+			$gMap->setWidth('100%');
+			$gMap->setHeight(500);
+			$gMap->zoom = 11;
+			
+			foreach($items as $item) {
+				$supplier = Supplier::model()->findByPk($item->id_supplier);
+
+				$address_str = $supplier->user->addressDefault->toString();
+				// Create geocoded address
+				$geocoded_address = new EGMapGeocodedAddress($address_str);
+				$geocoded_address->geocode($gMap->getGMapClient());
+				 
+				// Center the map on geocoded address
+				$gMap->setCenter($geocoded_address->getLat(), $geocoded_address->getLng());
+				 
+				// Add marker on geocoded address
+				$gMap->addMarker(
+				     new EGMapMarker($geocoded_address->getLat(), $geocoded_address->getLng())
+				);
+
+			}
+			
+			$gMap->renderMap();
+			
+		?>
+	</div>
+
+	
 	<?php
-		const TOT_ROW_NUM = 12;
-		const DURATION = 14;	// show 14 days;
 		
 		$country = isset($_REQUEST['country']) ? $_REQUEST['country'] : 0;
-		$destination = isset($_REQUEST['destination']) ? $_REQUEST['destination'] : 0;
-		$start_date = isset($_REQUEST['start_date']) ? $_REQUEST['start_date'] : date("m/d/Y");
-		$include_date = isset($_REQUEST['include_date']) ? $_REQUEST['include_date'] : $start_date;
-
-		//echo "include_date:".$include_date."<br>";
-		$recvDate = explode("/", $include_date);
-		$include_date_month = $recvDate[0];
-		$include_date_day = $recvDate[1];
-		$include_date_year = $recvDate[2];
-		
-		
-		$date1 = $start_date;
-		$date2 = $include_date;
-		
-		$ts1 = strtotime($date1);
-		$ts2 = strtotime($date2);
-		
-		$seconds_diff = $ts2 - $ts1;
-		
-		//echo floor($seconds_diff/3600/24);
-		
-		if(floor($seconds_diff/3600/24) > 5) {
-			$start_date = date("m/d/Y",strtotime($include_date_month."/".$include_date_day."/".$include_date_year." -4 days"));
-		}
-		
-		$recvStartDate = explode("/", $start_date);
-		$start_month = $recvStartDate[0];
-		$start_day = $recvStartDate[1];
-		$start_year = $recvStartDate[2];
-		
-		$lastday = date("Y-m-d",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1)." days"));
-		//echo "lastday:".$lastday."<br>";
-
-		$date1 = date("m/d/Y");
-		$date2 = date("m/d/Y",strtotime($start_year."-".$start_month."-".$start_day." -6 days"));
-		
-		$ts1 = strtotime($date1);
-		$ts2 = strtotime($date2);
-		
-		$seconds_diff = $ts2 - $ts1;
-		
-		$prev_alt_diff = floor($seconds_diff/3600/24);
-		//echo "prev_alt_diff:".$prev_alt_diff;
-		if(floor($seconds_diff/3600/24) <= 0) {
-			$prev_alt_diff = -6 - $prev_alt_diff;
-		} else {
-			$prev_alt_diff = -6;
-		}
-		
-		$prev_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." ".$prev_alt_diff." days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION+$prev_alt_diff-1)." days"));
-		$next_alt = date("d M",strtotime($start_year."-".$start_month."-".$start_day." +6 days"))." - ".date("d M",strtotime($start_year."-".$start_month."-".$start_day." +".(DURATION-1+6)." days"));
 		
 		echo CHtml::beginForm(Yii::app()->request->baseUrl."/frontHotel/suppliers", "get", array("id"=>"prev_navi", "name"=>"prev_navi"));
 		echo CHtml::hiddenField("country", $country);
@@ -123,14 +183,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		
 		//$items = array("1", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4", "2", "3", "4");
 		
-		$search = array(
-			'country'=>$country,
-			'destination'=>$destination,
-			'start_date'=>$start_year."-".$start_month."-".$start_day,
-			'last_date'=>$lastday,
-			'search_text'=>$_REQUEST['search_text']
-		);
-		$items = Search::findAllHotel($search);
+		
 		//print_r($items);
 		$rowCount = 0;
 		foreach($items as $item) {

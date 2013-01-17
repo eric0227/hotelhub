@@ -36,7 +36,15 @@ class FrontTicketController extends Controller
 	 */
 	public function actionView($id)
 	{
-		$this->render('view');
+		
+		$product = Product::model()->findByPk($id);
+		
+		$this->render('view', array('product'=>$product));
+	}
+	
+	public function actionOrder()
+	{
+		$this->render('order');
 	}
 
 	/**

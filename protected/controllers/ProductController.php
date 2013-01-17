@@ -26,17 +26,28 @@ class ProductController extends Controller
 	 */
 	public function accessRules()
 	{
+		$id_product = $_GET['id'];
+		if(!isset($id_product)) {
+			$id_product = $_POST['Product']['id_product'];
+		}
+		
+		if(isset($id_product)) {
+			$id_supplier = Product::model()->findByPk($id_product)->id_supplier;
+		}
+		
+		
+		
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update', 'address'),
-				'expression' => "Yii::app()->user->getLevel() >= 5",
+				'actions'=>array('create','update','delete' ),
+				'expression' => "Yii::app()->user->getLevel() >= 10 || Yii::app()->user->id == $id_supplier",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
+				'actions'=>array('admin','address'),
 				'expression' => "Yii::app()->user->getLevel() >= 5",
 			),
 			array('deny',  // deny all users

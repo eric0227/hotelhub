@@ -58,8 +58,8 @@ var hotel = {
 		
 		if(hotel.id_country == null || hotel.id_destination == null){ flag = false; }
 		if(!flag){
-			//alert('Please choose country and destination you want to find.');
-			//return false;
+			alert('Please choose country and destination you want to find.');
+			return false;
 		}
 		
 		return true;

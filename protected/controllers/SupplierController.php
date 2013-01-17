@@ -37,7 +37,7 @@ class SupplierController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('view','update','dates_editor', 'updateAddress'),
-				'expression' => "Yii::app()->user->getLevel() >= 5 || Yii::app()->user->id == $id_supplier",
+				'expression' => "Yii::app()->user->getLevel() >= 10 || Yii::app()->user->id == $id_supplier",
 				//'expression' => 'Yii::app()->user->id == $params["Supplier"]->id_supplier',
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions

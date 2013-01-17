@@ -154,6 +154,7 @@ if(Yii::app()->user->isGuest == false) {
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+/*				
 				array('label'=>'Cart', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Cart', 'url'=>array('/cart/index', 'tag'=>'cart')),
@@ -162,6 +163,7 @@ if(Yii::app()->user->isGuest == false) {
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+*/
 /*				
 				array('label'=>'Supplier', 'url'=>'',
 					'items'=>array(
@@ -180,6 +182,7 @@ if(Yii::app()->user->isGuest == false) {
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+/*				
 				array('label'=>'Service', 'url'=>'',
 					'items'=>array(
 						array('label'=>'Service', 'url'=>array('/service/index', 'tag'=>'service'))
@@ -193,9 +196,10 @@ if(Yii::app()->user->isGuest == false) {
 					),
 					'visible'=>!Yii::app()->user->isGuest
 				),
+*/
 				array('label'=>'Configuration', 'url'=>'',
 					'items'=>array(
-						array('label'=>'Configuration', 'url'=>array('/configuration/index', 'tag'=>'configuration')),
+						//array('label'=>'Configuration', 'url'=>array('/configuration/index', 'tag'=>'configuration')),
 						array('label'=>'Lang', 'url'=>array('/lang/index', 'tag'=>'lang')),
 						array('label'=>'Currency', 'url'=>array('/currency/index', 'tag'=>'Currency')),
 						array('label'=>'CodeType', 'url'=>array('/codeType/index', 'tag'=>'codeType')),

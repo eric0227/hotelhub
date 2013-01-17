@@ -28,6 +28,10 @@ $products = SearchProduct::findAllProduct($search);
 		$('#search').submit();
 	}
 
+	function viewProduct(id) {
+		location = "<?php echo Yii::app()->request->baseUrl; ?>/frontTicket/view/"+id;
+	}
+
 </script>
 
 <div id="attraction">
@@ -73,7 +77,7 @@ $products = SearchProduct::findAllProduct($search);
 		$productModel = Product::model()->findByPk($product['id_product']);
 		$coverImage = $productModel->getCoverImage();
 	?>	
-		<div class="product_row">
+		<div class="product_row" onclick="viewProduct(<?php echo $product['id_product'] ?>)">
 			<div class="product_img">
 			<?php 
 				if (empty($coverImage)) {
@@ -84,7 +88,7 @@ $products = SearchProduct::findAllProduct($search);
 			?>
 			</div>
 			<div class="product_name"><?php echo $product['name'] ?></div>
-			<div class="product_price">$<?php echo $product['price'] ?></div>
+			<div class="product_price">$<?php echo number_format($product['price'],2) ?></div>
 		</div>
 		<div class="product_line"> </div>
 	<?php }?>	

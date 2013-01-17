@@ -25,6 +25,11 @@ class UserController extends Controller
 	 */
 	public function accessRules()
 	{
+		$id_user = $_GET['id'];
+		if(!isset($id_user)) {
+			$id_user = $_POST['User']['id_user'];
+		}
+		
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('view'),
@@ -36,7 +41,7 @@ class UserController extends Controller
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions'=>array('create','update', 'address', 'password'),
-				'users'=>array('@'),
+				'expression' => "Yii::app()->user->getLevel() >= 10 || Yii::app()->user->id == $id_user",
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
@@ -47,6 +52,8 @@ class UserController extends Controller
 			),
 		);
 	}
+	
+
 
 	/**
 	 * Displays a particular model.
@@ -54,6 +61,8 @@ class UserController extends Controller
 	 */
 	public function actionView($id)
 	{
+		//Common::allowProc($id);
+		
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
@@ -89,6 +98,8 @@ class UserController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
+		//Common::allowProc($id);
+		
 		$model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
@@ -113,6 +124,8 @@ class UserController extends Controller
 	 */
 	public function actionDelete($id)
 	{
+		//Common::allowProc($id);
+		
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
@@ -153,7 +166,7 @@ class UserController extends Controller
 	}
 	
 	public function actionAddress($id) {
-				
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$user=$this->loadModel($id);
@@ -225,6 +238,8 @@ class UserController extends Controller
 	
 	public function actionPassword($id) {
 	
+		//Common::allowProc($id);
+		
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 		$model=$this->loadModel($id);
@@ -260,6 +275,8 @@ class UserController extends Controller
 	 */
 	public function loadModel($id)
 	{
+		//Common::allowProc($id);
+		
 		$model=User::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');

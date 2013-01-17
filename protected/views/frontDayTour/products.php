@@ -183,7 +183,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 				<tr>
 					<td class="hotel span4">
 
-						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontDayTour/view/<?php echo $item->id_product; ?>">
+						<a href="<?php echo Yii::app()->request->baseUrl; ?>/frontDayTour/view/<?php echo $item['id_product']; ?>">
 							<?php echo $item['name']; ?>
 						</a>
 				
