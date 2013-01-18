@@ -15,7 +15,7 @@ $countryList = Country::model()->findAllByAttributes(array('active'=>1), array('
 		
 </script>
 <div id="left_columns">
-	<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontCarRental/suppliers" method="post" id="search_form">
+	<form action="<?php echo Yii::app()->request->baseUrl; ?>/frontCarRental/suppliers" method="get" id="search_form">
 		<input type="text" name="search_text" id="search_text" placeholder="Enter Search keywrods here" />
 		<input type="image" class="search_submit_btn" src="<?php echo Yii::app()->request->baseUrl; ?>/images/front/search_btn.png" /> 
 	</form>

@@ -25,6 +25,8 @@ $id = Yii::app()->user->id;
 	
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl ?>/css/modalPopLite.css" />
 	
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl ?>/css/tipTip.css" />
+	
 	<!-- load javascript files -->
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/jquery-1.8.2.js" type="text/javascript"></script>
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/jquery-ui-1.9.1.custom.min.js" type="text/javascript"></script>
@@ -33,6 +35,8 @@ $id = Yii::app()->user->id;
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/hotel/hotel.js"></script>
 	
 	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/modalPopLite.min.js" type="text/javascript"></script>
+	
+	<script src="<?php echo Yii::app()->request->baseUrl ?>/js/jquery.tipTip.js" type="text/javascript"></script>
 	
 	
 	
